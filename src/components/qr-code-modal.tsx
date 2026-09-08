@@ -18,7 +18,7 @@ export function QrCodeImage({ url, size = 180, className = '' }: QrProps) {
       width: size * 2, // High resolution for crisp rendering
       margin: 1.5,
       color: {
-        dark: '#071b2e', // Brand dark blue
+        dark: '#0A131E', // Brand charcoal navy
         light: '#ffffff',
       },
       errorCorrectionLevel: 'M',
@@ -38,21 +38,21 @@ export function QrCodeImage({ url, size = 180, className = '' }: QrProps) {
     return (
       <div
         style={{ width: size, height: size }}
-        className={`flex items-center justify-center bg-white border border-[#c89b51]/40 animate-pulse text-xs text-slate-400 ${className}`}
+        className={`flex items-center justify-center bg-white border border-[rgba(197,155,39,0.4)] animate-pulse text-xs text-[#8C6B18] ${className}`}
       >
-        <QrIcon className="w-8 h-8 text-[#c89b51]/50 animate-spin" />
+        <QrIcon className="w-8 h-8 text-[#8C6B18]/50 animate-spin" />
       </div>
     );
   }
 
   return (
-    <div className={`p-2 bg-white rounded-xs border-2 border-[#c89b51] shadow-md inline-block ${className}`}>
+    <div className={`p-3 bg-white rounded-xl border-2 border-[rgba(197,155,39,0.5)] shadow-xl inline-block ${className}`}>
       <img
         src={dataUrl}
         alt="Mã QR Website Thịnh Vượng Legal"
         width={size}
         height={size}
-        className="block"
+        className="block rounded-lg"
         loading="lazy"
       />
     </div>
@@ -95,7 +95,6 @@ export function QrCodeModal({
       setCopied(true);
       setTimeout(() => setCopied(false), 2500);
     } catch {
-      // Fallback
       setCopied(true);
       setTimeout(() => setCopied(false), 2500);
     }
@@ -103,10 +102,10 @@ export function QrCodeModal({
 
   const handleDownload = () => {
     QRCode.toDataURL(currentUrl, {
-      width: 600,
+      width: 800,
       margin: 2,
       color: {
-        dark: '#071b2e',
+        dark: '#0A131E',
         light: '#ffffff',
       },
       errorCorrectionLevel: 'H',
@@ -125,11 +124,11 @@ export function QrCodeModal({
       role="dialog"
       aria-modal="true"
       aria-labelledby="qr-modal-title"
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-xs animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/45 backdrop-blur-sm animate-in fade-in duration-200"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-md bg-[#071b2e] text-white border-2 border-[#c89b51] shadow-2xl p-6 md:p-8"
+        className="relative w-full max-w-xl bg-gradient-to-br from-[#FFFDF8] via-[#FAF3DE] to-[#F5E5BA] text-[#0A131E] border-2 border-[rgba(197,155,39,0.55)] shadow-2xl rounded-2xl p-6 sm:p-8 md:p-10"
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -137,54 +136,54 @@ export function QrCodeModal({
           type="button"
           onClick={onClose}
           aria-label="Đóng cửa sổ mã QR"
-          className="absolute top-4 right-4 text-slate-400 hover:text-[#e7c487] p-1 transition cursor-pointer"
+          className="absolute top-4 right-4 text-[#8C6B18] hover:text-[#2A1F04] p-1.5 transition cursor-pointer rounded-full hover:bg-black/5"
         >
           <X className="w-5 h-5" />
         </button>
 
-        <div className="text-center mb-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#0c665f]/30 border border-[#0c665f] text-[#e7c487] text-xs font-semibold mb-3">
-            <Smartphone className="w-3.5 h-3.5 text-emerald-400" />
+        <div className="text-center mb-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#FAF1D7] border border-[rgba(197,155,39,0.4)] text-[#8C6B18] text-xs font-bold rounded-full mb-3 shadow-xs">
+            <Smartphone className="w-3.5 h-3.5 text-[#8C6B18]" />
             <span>Trải nghiệm di động &amp; Báo cáo đề án</span>
           </div>
-          <h3 id="qr-modal-title" className="font-display text-xl font-bold text-white tracking-wide">
+          <h3 id="qr-modal-title" className="font-serif text-2xl font-bold text-[#0A131E] tracking-tight">
             QUÉT MÃ QR TRUY CẬP WEBSITE
           </h3>
-          <p className="text-xs text-slate-300 mt-1 max-w-xs mx-auto">
+          <p className="text-sm text-[#556070] mt-1.5 max-w-md mx-auto leading-relaxed">
             Dùng Camera điện thoại hoặc Zalo quét mã để mở website trực tiếp trên điện thoại, máy tính bảng
           </p>
         </div>
 
         {/* QR Display */}
-        <div className="flex flex-col items-center justify-center my-4">
-          <QrCodeImage url={currentUrl} size={224} />
-          <span className="text-[11px] text-[#e7c487] font-mono mt-3 text-center break-all px-4 max-w-full">
+        <div className="flex flex-col items-center justify-center my-5">
+          <QrCodeImage url={currentUrl} size={280} />
+          <span className="text-xs text-[#7D5D0D] font-mono mt-3.5 text-center break-all px-4 py-1.5 bg-white/85 border border-[rgba(197,155,39,0.35)] rounded-lg shadow-xs max-w-full font-medium">
             {currentUrl}
           </span>
         </div>
 
         {/* Actions */}
-        <div className="grid grid-cols-2 gap-3 mt-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-6">
           <button
             type="button"
             onClick={handleCopy}
-            className="flex items-center justify-center gap-2 px-3 py-2.5 bg-[#0e2a44] hover:bg-[#13395c] border border-[#c89b51]/50 text-[#e7c487] text-xs font-semibold transition cursor-pointer"
+            className="flex items-center justify-center gap-2 px-4 py-3 bg-white hover:bg-[#FAF5E8] border-1.5 border-[rgba(197,155,39,0.4)] text-[#7D5D0D] text-xs font-bold transition cursor-pointer shadow-xs rounded-xl"
           >
-            {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
+            {copied ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
             <span>{copied ? 'Đã chép link!' : 'Sao chép liên kết'}</span>
           </button>
           <button
             type="button"
             onClick={handleDownload}
-            className="flex items-center justify-center gap-2 px-3 py-2.5 bg-[#0c665f] hover:bg-[#107d75] border border-[#0c665f] text-white text-xs font-semibold transition cursor-pointer"
+            className="flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-[#D4AF37] via-[#F7EBB8] to-[#C59B27] hover:opacity-95 text-[#2A1F04] text-xs font-bold transition cursor-pointer shadow-md rounded-xl border border-[rgba(197,155,39,0.5)]"
           >
             <Download className="w-4 h-4" />
             <span>Tải ảnh mã QR</span>
           </button>
         </div>
 
-        <div className="mt-4 pt-4 border-t border-white/10 text-center">
-          <p className="text-[11px] text-slate-400">
+        <div className="mt-5 pt-4 border-t border-[rgba(197,155,39,0.25)] text-center">
+          <p className="text-xs text-[#5F6E7C]">
             Hãng luật Thịnh Vượng Legal · Đề án Pháp lý Fintech &amp; Ví điện tử (Nhóm 13)
           </p>
         </div>

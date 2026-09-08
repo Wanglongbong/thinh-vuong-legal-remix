@@ -750,24 +750,24 @@ function Dashboard() {
       <ToolHeader tool="tong-quan" />
 
       {/* AI Connection Banner */}
-      <section className="ai-connection-banner my-4 p-4.5 bg-gradient-to-r from-[#071b2e] via-[#0d2a45] to-[#0c665f] text-white border border-[#c89b51]/40 shadow-sm flex flex-wrap items-center justify-between gap-4">
+      <section className="ai-connection-banner my-4 p-4.5 bg-gradient-to-r from-[#FFFDF8] via-[#FAF3DE] to-[#F5E5BA] text-[#0A131E] border-1.5 border-[rgba(197,155,39,0.45)] border-l-4 border-l-[#c59b27] shadow-md flex flex-wrap items-center justify-between gap-4 rounded-md">
         <div className="flex items-center gap-3.5">
-          <div className="w-11 h-11 rounded-sm bg-[#c89b51]/20 flex items-center justify-center text-[#e7c487] border border-[#c89b51]/40 shrink-0">
-            <Sparkles className="w-5 h-5" />
+          <div className="w-11 h-11 rounded-sm bg-gradient-to-br from-[#FFFDF7] to-[#FAF1D7] flex items-center justify-center text-[#8C6B18] border border-[rgba(197,155,39,0.4)] shadow-xs shrink-0">
+            <Sparkles className="w-5 h-5 text-[#8C6B18]" />
           </div>
           <div>
-            <div className="flex items-center gap-2">
-              <h2 className="text-sm font-bold text-white tracking-wide">
+            <div className="flex items-center gap-2 flex-wrap">
+              <h2 className="text-sm font-bold text-[#0A131E] tracking-wide">
                 Google Gemini 3.6 AI Đã Kết Nối Trực Tuyến
               </h2>
-              <span className="px-2 py-0.5 text-[10px] font-bold rounded-xs bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 flex items-center gap-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span className="px-2.5 py-0.5 text-[10px] font-bold rounded-xs bg-[#EBF7EE] text-[#1E7E34] border border-[#A3D9A5] flex items-center gap-1.5 shadow-xs">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#28A745] animate-pulse"></span>
                 Active API
               </span>
             </div>
-            <p className="text-xs text-slate-300 mt-0.5">
+            <p className="text-xs text-[#556070] mt-0.5">
               Tất cả 4 công cụ (Hỏi đáp, Soạn hợp đồng, Rà soát bẫy điều khoản, So sánh phiên bản) đang hoạt động với mô hình{" "}
-              <code className="text-[#e7c487] font-mono text-[11px] bg-black/20 px-1 py-0.2 rounded">
+              <code className="text-[#7D5D0D] font-mono text-[11px] bg-[#FAF1D7] border border-[rgba(197,155,39,0.35)] px-1.5 py-0.5 rounded font-semibold">
                 gemini-3.6-flash
               </code>
             </p>
@@ -780,9 +780,9 @@ function Dashboard() {
             onClick={() =>
               window.dispatchEvent(new CustomEvent("tv:open-ai-settings"))
             }
-            className="px-3.5 py-2 bg-[#c89b51] hover:bg-[#d9ab60] text-[#071b2e] font-bold text-xs flex items-center gap-1.5 transition cursor-pointer shadow-xs rounded-xs"
+            className="px-4 py-2.5 bg-gradient-to-r from-[#D4AF37] via-[#F7EBB8] to-[#C59B27] hover:opacity-95 text-[#2A1F04] font-bold text-xs flex items-center gap-1.5 transition cursor-pointer shadow-xs rounded-xs border border-[rgba(197,155,39,0.5)]"
           >
-            <Key className="w-3.5 h-3.5" />
+            <Key className="w-3.5 h-3.5 text-[#2A1F04]" />
             <span>Kiểm tra &amp; Cấu hình Khóa AI</span>
           </button>
         </div>

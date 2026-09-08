@@ -144,21 +144,21 @@ export function AiConfigModal({
         aria-labelledby="ai-config-title"
       >
         {/* Header */}
-        <div className="bg-[#071b2e] text-white p-5 border-b border-[#c89b51]/30 flex items-start justify-between">
+        <div className="bg-gradient-to-r from-[#FFFDF8] via-[#FAF3DE] to-[#F5E5BA] p-5 border-b border-[rgba(197,155,39,0.35)] flex items-start justify-between">
           <div className="flex items-center gap-3">
-            <span className="w-10 h-10 rounded-sm bg-[#0c665f] text-[#e7c487] flex items-center justify-center border border-[#c89b51]/30 shrink-0">
+            <span className="w-10 h-10 rounded-sm bg-gradient-to-br from-[#FFFDF7] to-[#FAF1D7] text-[#8C6B18] flex items-center justify-center border border-[rgba(197,155,39,0.4)] shadow-xs shrink-0">
               <Key className="w-5 h-5" />
             </span>
             <div>
               <div className="flex items-center gap-2">
-                <h2 id="ai-config-title" className="font-serif text-lg font-bold text-white">
+                <h2 id="ai-config-title" className="font-serif text-lg font-bold text-[#0A131E]">
                   Cấu hình &amp; Kết nối Khóa AI
                 </h2>
-                <span className="px-2 py-0.5 text-[10px] font-bold rounded-xs bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+                <span className="px-2 py-0.5 text-[10px] font-bold rounded-xs bg-[#EBF7EE] text-[#1E7E34] border border-[#A3D9A5]">
                   Google Gemini 3.6
                 </span>
               </div>
-              <p className="text-xs text-slate-300 mt-0.5">
+              <p className="text-xs text-[#556070] mt-0.5">
                 Quản lý trạng thái kết nối Google Gemini API và cấu hình khóa cá nhân.
               </p>
             </div>
@@ -166,7 +166,7 @@ export function AiConfigModal({
           <button
             type="button"
             onClick={onClose}
-            className="text-slate-400 hover:text-white p-1 transition cursor-pointer"
+            className="text-[#8C6B18] hover:text-[#2A1F04] p-1 transition cursor-pointer"
             aria-label="Đóng"
           >
             <X className="w-5 h-5" />
@@ -183,7 +183,7 @@ export function AiConfigModal({
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
                 </span>
-                <span className="font-bold text-xs text-[#071b2e] uppercase tracking-wider">
+                <span className="font-bold text-xs text-[#0A131E] uppercase tracking-wider">
                   Trạng thái kết nối:
                 </span>
                 <span className="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 border border-emerald-200">
@@ -194,7 +194,7 @@ export function AiConfigModal({
                 type="button"
                 onClick={loadStatus}
                 disabled={loadingStatus}
-                className="text-xs text-slate-500 hover:text-[#0c665f] flex items-center gap-1 cursor-pointer transition"
+                className="text-xs text-[#7D5D0D] hover:text-[#2A1F04] flex items-center gap-1 cursor-pointer transition"
                 title="Tải lại trạng thái"
               >
                 <RefreshCw className={`w-3 h-3 ${loadingStatus ? "animate-spin" : ""}`} />
@@ -205,11 +205,11 @@ export function AiConfigModal({
             <div className="grid grid-cols-2 gap-3 pt-3 text-xs">
               <div>
                 <span className="text-slate-500 block text-[11px]">Nhà cung cấp:</span>
-                <strong className="text-[#071b2e]">{status?.provider || "Google DeepMind (Gemini)"}</strong>
+                <strong className="text-[#0A131E]">{status?.provider || "Google DeepMind (Gemini)"}</strong>
               </div>
               <div>
                 <span className="text-slate-500 block text-[11px]">Mô hình AI:</span>
-                <strong className="text-[#0c665f] font-mono">{status?.model || "gemini-3.6-flash"}</strong>
+                <strong className="text-[#8C6B18] font-mono">{status?.model || "gemini-3.6-flash"}</strong>
               </div>
               <div>
                 <span className="text-slate-500 block text-[11px]">Nguồn khóa API:</span>
@@ -230,8 +230,8 @@ export function AiConfigModal({
           <div className="p-4 bg-white border border-[#d8ddd9] shadow-xs space-y-3">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="text-xs font-bold text-[#071b2e] flex items-center gap-1.5 uppercase tracking-wider">
-                  <Zap className="w-4 h-4 text-[#c89b51]" />
+                <h3 className="text-xs font-bold text-[#0A131E] flex items-center gap-1.5 uppercase tracking-wider">
+                  <Zap className="w-4 h-4 text-[#8C6B18]" />
                   Kiểm tra phản hồi trực tiếp (Ping API)
                 </h3>
                 <p className="text-[11px] text-slate-500 mt-0.5">
@@ -242,16 +242,16 @@ export function AiConfigModal({
                 type="button"
                 onClick={handlePing}
                 disabled={pingState === "testing"}
-                className="px-3 py-1.5 bg-[#071b2e] hover:bg-[#0c665f] text-white text-xs font-semibold flex items-center gap-1.5 transition disabled:opacity-50 cursor-pointer shrink-0"
+                className="px-3 py-1.5 bg-gradient-to-r from-[#D4AF37] via-[#F7EBB8] to-[#C59B27] hover:brightness-105 text-[#2A1F04] text-xs font-bold flex items-center gap-1.5 transition disabled:opacity-50 cursor-pointer shrink-0 border border-[rgba(197,155,39,0.5)] shadow-xs"
               >
                 {pingState === "testing" ? (
                   <>
-                    <LoaderCircle className="w-3.5 h-3.5 animate-spin text-[#e7c487]" />
+                    <LoaderCircle className="w-3.5 h-3.5 animate-spin text-[#2A1F04]" />
                     <span>Đang kiểm tra...</span>
                   </>
                 ) : (
                   <>
-                    <Zap className="w-3.5 h-3.5 text-[#e7c487]" />
+                    <Zap className="w-3.5 h-3.5 text-[#2A1F04]" />
                     <span>Kiểm tra kết nối</span>
                   </>
                 )}
@@ -292,8 +292,8 @@ export function AiConfigModal({
           <div className="p-4 bg-white border border-[#d8ddd9] shadow-xs space-y-3">
             <div>
               <div className="flex items-center justify-between">
-                <h3 className="text-xs font-bold text-[#071b2e] flex items-center gap-1.5 uppercase tracking-wider">
-                  <Key className="w-4 h-4 text-[#c89b51]" />
+                <h3 className="text-xs font-bold text-[#0A131E] flex items-center gap-1.5 uppercase tracking-wider">
+                  <Key className="w-4 h-4 text-[#8C6B18]" />
                   Khóa Google Gemini API Tùy chọn
                 </h3>
                 <span className="text-[10px] text-slate-500">
@@ -312,7 +312,7 @@ export function AiConfigModal({
                   value={customKey}
                   onChange={(e) => setCustomKey(e.target.value)}
                   placeholder="Nhập khóa API (ví dụ: AIzaSy...)"
-                  className="w-full px-3 py-2 pr-10 text-xs border border-[#d8ddd9] focus:outline-none focus:border-[#0c665f] bg-[#fdfdfc] font-mono"
+                  className="w-full px-3 py-2 pr-10 text-xs border border-[#d8ddd9] focus:outline-none focus:border-[#C59B27] bg-[#fdfdfc] font-mono"
                 />
                 <button
                   type="button"
@@ -329,16 +329,16 @@ export function AiConfigModal({
                   <button
                     type="button"
                     onClick={handleSaveKey}
-                    className="px-3.5 py-1.5 bg-[#0c665f] hover:bg-[#074b45] text-white text-xs font-bold flex items-center gap-1.5 transition cursor-pointer"
+                    className="px-3.5 py-1.5 bg-gradient-to-r from-[#D4AF37] via-[#F7EBB8] to-[#C59B27] hover:brightness-105 text-[#2A1F04] text-xs font-bold flex items-center gap-1.5 transition cursor-pointer border border-[rgba(197,155,39,0.5)] shadow-xs"
                   >
-                    <Check className="w-3.5 h-3.5 text-[#e7c487]" />
+                    <Check className="w-3.5 h-3.5 text-[#2A1F04]" />
                     <span>Lưu khóa</span>
                   </button>
                   {customKey && (
                     <button
                       type="button"
                       onClick={handleResetDefault}
-                      className="px-3 py-1.5 border border-slate-300 hover:border-slate-400 text-slate-600 text-xs font-medium transition cursor-pointer"
+                      className="px-3 py-1.5 bg-white border border-[rgba(197,155,39,0.4)] hover:bg-[#FAF5E8] text-[#7D5D0D] text-xs font-medium transition cursor-pointer"
                     >
                       Dùng khóa hệ thống
                     </button>
@@ -349,7 +349,7 @@ export function AiConfigModal({
                   href="https://aistudio.google.com/app/apikey"
                   target="_blank"
                   rel="noreferrer"
-                  className="text-[11px] text-[#0c665f] hover:underline flex items-center gap-1 font-medium"
+                  className="text-[11px] text-[#8C6B18] hover:underline flex items-center gap-1 font-medium"
                 >
                   <span>Lấy khóa tại Google AI Studio</span>
                   <ExternalLink className="w-3 h-3" />
@@ -366,8 +366,8 @@ export function AiConfigModal({
           </div>
 
           {/* Scope list */}
-          <div className="p-3 bg-[#edf3f2] border border-[#d2dedb] text-[11.5px] text-slate-700">
-            <span className="font-bold text-[#0c665f] block mb-1">
+          <div className="p-3 bg-gradient-to-br from-[#FFFDF9] to-[#FAF5E8] border border-[rgba(197,155,39,0.3)] text-[11.5px] text-slate-700">
+            <span className="font-bold text-[#8C6B18] block mb-1">
               Phạm vi kết nối Google Gemini API:
             </span>
             <ul className="grid grid-cols-2 gap-1.5 text-[11px]">
@@ -394,13 +394,13 @@ export function AiConfigModal({
         {/* Footer */}
         <div className="p-4 bg-white border-t border-[#ccd4d1] flex items-center justify-between">
           <div className="flex items-center gap-1.5 text-[11px] text-slate-500">
-            <Sparkles className="w-3.5 h-3.5 text-[#c89b51]" />
+            <Sparkles className="w-3.5 h-3.5 text-[#8C6B18]" />
             <span>Thịnh Vượng Legal · Đề án Nghiên cứu Nhóm 13</span>
           </div>
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-1.5 bg-[#071b2e] hover:bg-[#0c665f] text-white text-xs font-semibold transition cursor-pointer"
+            className="px-4 py-1.5 bg-gradient-to-r from-[#D4AF37] via-[#F7EBB8] to-[#C59B27] hover:brightness-105 text-[#2A1F04] text-xs font-bold transition cursor-pointer border border-[rgba(197,155,39,0.5)] shadow-xs"
           >
             Hoàn tất &amp; Đóng
           </button>
