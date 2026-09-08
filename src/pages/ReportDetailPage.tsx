@@ -14,9 +14,9 @@ function processReportHtml(rawHtml: string, slug: string): string {
   const logoMatch = coverPart.match(/<img[^>]*src="(data:image\/png;base64,[^"]+)"[^>]*>/);
   const logoSrc = logoMatch ? logoMatch[1] : '';
 
-  // Extract member table
-  const tableMatch = coverPart.match(/<table[\s\S]*?<\/table>/);
-  const tableHtml = tableMatch ? tableMatch[0] : '';
+  const minutesMarker = '<p><strong>BIÊN BẢN HỌP NHÓM 13.</strong></p>';
+  const minutesIndex = coverPart.indexOf(minutesMarker);
+  const minutesHtml = minutesIndex >= 0 ? coverPart.substring(minutesIndex) : '';
 
   const reportType = slug === 'rut-gon' ? 'BÁO CÁO SƠ BỘ' : 'BÁO CÁO TỔNG HỢP';
 
@@ -32,11 +32,8 @@ function processReportHtml(rawHtml: string, slug: string): string {
     DOANH NGHIỆP CUNG ỨNG VÍ ĐIỆN TỬ
   </h1>
   <div class="cover-group">NHÓM 13</div>
-  <div class="cover-members-heading">DANH SÁCH THÀNH VIÊN NHÓM 13.</div>
-  <div class="cover-table-wrap">
-    ${tableHtml}
-  </div>
 </div>
+${minutesHtml ? `<section class="report-minutes" aria-label="Biên bản họp Nhóm 13">${minutesHtml}</section>` : ''}
 `;
 
   return coverHtml + bodyPart;
@@ -57,7 +54,7 @@ export function ReportDetailPage() {
 
   const filteredHeadings = useMemo(() => {
     const list = [
-      { id: 'trang-dau-bao-cao', text: 'Thông tin chung & Nhóm 13', level: 1 },
+      { id: 'trang-dau-bao-cao', text: 'Bìa báo cáo', level: 1 },
       ...(report?.headings || []),
     ];
     return list.filter((h) =>

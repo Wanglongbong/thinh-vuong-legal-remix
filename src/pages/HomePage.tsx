@@ -528,7 +528,7 @@ export function HomePage() {
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
                 <span className="text-[11px] font-semibold text-[#8c6b18] bg-[#fbf6ea] px-2.5 py-1 rounded-sm border border-[#c59b27]/30">
-                  128 &amp; 57 trang
+                  82 &amp; 21 trang
                 </span>
               </div>
             </article>

@@ -1,7 +1,13 @@
+import { useState } from 'react';
 import { Link } from '@/router';
-import { ArrowUpRight, Mail, MessageCircle, Scale } from 'lucide-react';
+import { ArrowUpRight, Mail, MessageCircle, QrCode, Scale } from 'lucide-react';
+import { QrCodeImage, QrCodeModal } from '@/components/qr-code-modal';
+
+const OFFICIAL_SITE_URL = 'https://thinh-vuong-legal-remix.vercel.app/';
 
 export function SiteFooter() {
+  const [qrOpen, setQrOpen] = useState(false);
+
   return (
     <footer className="site-footer">
       <div className="site-shell footer-grid">
@@ -40,6 +46,24 @@ export function SiteFooter() {
             <MessageCircle /> Zalo 0961 621 602 <ArrowUpRight />
           </a>
           <Link href="/tuyen-bo-phap-ly">Tuyên bố pháp lý</Link>
+          <button
+            type="button"
+            className="footer-qr-trigger"
+            onClick={() => setQrOpen(true)}
+            aria-haspopup="dialog"
+            aria-label="Phóng lớn mã QR truy cập website Thịnh Vượng Legal"
+          >
+            <QrCodeImage url={OFFICIAL_SITE_URL} size={88} className="footer-qr-image" />
+            <span>
+              <strong><QrCode /> Quét để mở website</strong>
+              <small>Nhấn để phóng lớn mã QR</small>
+            </span>
+          </button>
+          <QrCodeModal
+            isOpen={qrOpen}
+            onClose={() => setQrOpen(false)}
+            url={OFFICIAL_SITE_URL}
+          />
         </div>
       </div>
       <div className="site-shell copyright">

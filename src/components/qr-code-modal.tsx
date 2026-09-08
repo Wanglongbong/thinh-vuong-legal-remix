@@ -1,6 +1,6 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import QRCode from 'qrcode';
-import { Check, Copy, Download, ExternalLink, QrCode as QrIcon, Smartphone, X } from 'lucide-react';
+import { Check, Copy, Download, QrCode as QrIcon, Smartphone, X } from 'lucide-react';
 
 interface QrProps {
   url?: string;
@@ -62,18 +62,30 @@ export function QrCodeImage({ url, size = 180, className = '' }: QrProps) {
 export function QrCodeModal({
   isOpen,
   onClose,
+  url,
 }: {
   isOpen: boolean;
   onClose: () => void;
+  url?: string;
 }) {
   const [copied, setCopied] = useState(false);
-  const [currentUrl, setCurrentUrl] = useState('');
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const currentUrl = url || (typeof window !== 'undefined' ? window.location.href : '');
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setCurrentUrl(window.location.href);
-    }
-  }, [isOpen]);
+    if (!isOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    closeButtonRef.current?.focus();
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -121,6 +133,7 @@ export function QrCodeModal({
         onClick={(e) => e.stopPropagation()}
       >
         <button
+          ref={closeButtonRef}
           type="button"
           onClick={onClose}
           aria-label="Đóng cửa sổ mã QR"
@@ -144,7 +157,7 @@ export function QrCodeModal({
 
         {/* QR Display */}
         <div className="flex flex-col items-center justify-center my-4">
-          <QrCodeImage url={currentUrl} size={210} />
+          <QrCodeImage url={currentUrl} size={224} />
           <span className="text-[11px] text-[#e7c487] font-mono mt-3 text-center break-all px-4 max-w-full">
             {currentUrl}
           </span>

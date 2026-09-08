@@ -56,9 +56,17 @@
 }
 .publication-actions .publication-primary,
 .publication-primary {
-  background: #18334f;
-  border-color: #18334f;
-  color: white;
+  background: var(--gold-gradient, linear-gradient(135deg, #d4af37 0%, #f7ebb8 50%, #c59b27 100%));
+  border: 1px solid rgba(197, 155, 39, 0.5);
+  color: #2A1F04;
+  font-weight: 750;
+  box-shadow: 0 4px 14px rgba(197, 155, 39, 0.22);
+}
+.publication-secondary {
+  background: #FFFDF8;
+  border: 1.5px solid rgba(197, 155, 39, 0.35);
+  color: #7D5D0D;
+  font-weight: 650;
 }
 .publication-page button:disabled {
   opacity: 0.5;
@@ -74,22 +82,28 @@
   gap: 26px;
 }
 .report-card {
-  background: white;
-  border: 1px solid #dce1e9;
+  background: linear-gradient(135deg, #FFFDF8 0%, #FAF2DC 60%, #F5E5BA 100%);
+  border: 1.5px solid rgba(197, 155, 39, 0.4);
   border-radius: 16px;
   padding: 32px;
-  box-shadow: 0 8px 24px #18334f07;
+  box-shadow: 0 10px 30px rgba(197, 155, 39, 0.12);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.report-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px rgba(197, 155, 39, 0.2);
 }
 .report-card > svg {
   width: 38px;
   height: 38px;
-  color: #a17b3e;
+  color: #8C6B18;
   margin-bottom: 20px;
 }
 .report-card h2 {
-  color: #18334f;
+  color: #0A131E;
   font-size: 1.55rem;
   margin: 15px 0;
+  font-weight: 600;
 }
 .report-card p {
   line-height: 1.8;
@@ -114,14 +128,15 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  background: #f1f4f8;
-  border: 1px solid #dde4ed;
+  background: linear-gradient(135deg, #FFFDF9 0%, #FAF3DE 100%);
+  border: 1.5px solid rgba(197, 155, 39, 0.35);
   border-radius: 8px;
   padding: 25px;
-  color: #18334f;
+  color: #0A131E;
+  box-shadow: 0 6px 20px rgba(197, 155, 39, 0.08);
 }
 .report-cover svg {
-  color: #9a763b;
+  color: #8C6B18;
   width: 34px;
   height: 34px;
 }
@@ -144,15 +159,19 @@
 .reader-toc {
   position: sticky;
   top: 100px;
-  background: #f0f3f7;
-  border: 1px solid #dce1e9;
+  background: #FFFDF9;
+  border: 1.5px solid rgba(197, 155, 39, 0.3);
   border-radius: 12px;
   overflow: hidden;
+  box-shadow: 0 8px 24px rgba(197, 155, 39, 0.06);
 }
 .reader-toc summary {
   padding: 18px;
-  font-weight: 700;
+  font-weight: 750;
+  color: #0A131E;
   cursor: pointer;
+  background: #FAF3DE;
+  border-bottom: 1px solid rgba(197, 155, 39, 0.2);
 }
 .reader-toc nav {
   max-height: 70vh;
@@ -163,12 +182,13 @@
   display: block;
   line-height: 1.5;
   font-size: 0.8rem;
-  color: #334963;
+  color: #4A5868;
   padding: 7px 0;
   text-decoration: none;
   overflow-wrap: anywhere;
 }
 .reader-toc a:hover {
+  color: #8C6B18;
   text-decoration: underline;
 }
 .reader-toc .toc-level-3 {
@@ -306,6 +326,34 @@ div#root > div > div#main-content > main > div:nth-of-type(2) > article:nth-of-t
   margin: 16px auto 14px auto;
 }
 
+.report-minutes {
+  margin: 0 0 42px;
+  padding: 28px;
+  border: 1px solid #d7dce2;
+  border-top: 3px solid #c59b27;
+  background: #fff;
+  font-family: 'Times New Roman', Times, serif;
+}
+.report-minutes > p:first-child,
+.report-minutes > p:nth-child(2) {
+  margin: 0;
+  color: #0f2744;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+.report-minutes > p:nth-child(2) { margin: 4px 0 20px; }
+.report-minutes table { table-layout: auto; font-size: .84rem; }
+.report-minutes th,
+.report-minutes td { padding: 7px !important; }
+.report-minutes table:first-of-type td { width: 50%; text-align: center; }
+
+@media (max-width: 680px) {
+  .report-minutes { padding: 18px 12px; overflow-x: auto; }
+  .report-minutes table { min-width: 720px; }
+  .report-minutes table:first-of-type { min-width: 560px; }
+}
+
 .report-cover-intro .cover-members-heading {
   font-family: 'Times New Roman', Times, serif;
   font-size: 0.98rem;
@@ -380,8 +428,8 @@ div#root > div > div#main-content > main > div:nth-of-type(2) > article:nth-of-t
 .forum-rules {
   display: flex;
   gap: 14px;
-  background: #f3f5f8;
-  border: 1px solid #dce1e9;
+  background: #FAF5E8;
+  border: 1px solid rgba(197, 155, 39, 0.25);
   border-radius: 10px;
   padding: 22px;
   margin: 26px 0;
@@ -391,10 +439,10 @@ div#root > div > div#main-content > main > div:nth-of-type(2) > article:nth-of-t
 }
 .forum-rules > svg {
   flex-shrink: 0;
-  color: #7b622f;
+  color: #8C6B18;
 }
 .forum-rules strong {
-  color: #223c57;
+  color: #0A131E;
 }
 .forum-rules p {
   margin: 6px 0 0;
@@ -436,8 +484,8 @@ div#root > div > div#main-content > main > div:nth-of-type(2) > article:nth-of-t
   height: 100%;
 }
 .forum-notice {
-  background: #fcf8ef;
-  border: 1px solid #e0d1b5;
+  background: linear-gradient(135deg, #FFFDF8 0%, #FAF3DE 100%);
+  border: 1.5px solid rgba(197, 155, 39, 0.35);
   border-radius: 10px;
   padding: 22px;
   line-height: 1.75;
@@ -466,10 +514,11 @@ div#root > div > div#main-content > main > div:nth-of-type(2) > article:nth-of-t
   gap: 8px;
 }
 .forum-post-meta span {
-  color: #385573;
+  color: #7D5D0D;
   font-size: 0.73rem;
   font-weight: 700;
-  background: #eef2f6;
+  background: #FAF3DE;
+  border: 1px solid rgba(197, 155, 39, 0.25);
   padding: 5px 10px;
   border-radius: 5px;
 }

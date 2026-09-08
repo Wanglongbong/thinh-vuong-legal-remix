@@ -26,7 +26,7 @@ export function ReportsPage() {
               <BookOpen />
               <span>NHÓM 13</span>
               <strong>{i === 0 ? 'BẢN ĐẦY ĐỦ' : 'BẢN RÚT GỌN'}</strong>
-              <small>{report.pages || (i === 0 ? '128' : '57')} trang theo bản Word nguồn</small>
+              <small>{report.pages} trang theo bản Word nguồn</small>
             </div>
             <div className="report-card-body">
               <h2>{report.title}</h2>
