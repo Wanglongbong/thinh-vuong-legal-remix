@@ -8,7 +8,23 @@ function processReportHtml(rawHtml: string, slug: string): string {
   if (h2Index === -1) return rawHtml;
 
   const coverPart = rawHtml.substring(0, h2Index);
-  const bodyPart = rawHtml.substring(h2Index);
+  let bodyPart = rawHtml.substring(h2Index);
+
+  // Mammoth preserves the tab between a Word TOC label and its page number,
+  // but browsers collapse it to ordinary whitespace. Rebuild only the
+  // document's TOC rows so the dot leader and right-aligned page number remain
+  // visible in the online reader just as they are in the source Word files.
+  const nextHeadingIndex = bodyPart.indexOf('<h2 id="de-muc-2">');
+  if (nextHeadingIndex !== -1) {
+    const tocHtml = bodyPart.substring(0, nextHeadingIndex).replace(
+      /<p>((?:<strong>)?[^<\t]*(?:<\/strong>)?)\t((?:<strong>)?\d+(?:<\/strong>)?)<\/p>/g,
+      (_match, label: string, page: string) => {
+        const isPrimary = label.startsWith('<strong>');
+        return `<p class="word-toc-row${isPrimary ? ' word-toc-level-1' : ' word-toc-level-2'}"><span class="word-toc-label">${label}</span><span class="word-toc-leader" aria-hidden="true"></span><span class="word-toc-page">${page}</span></p>`;
+      }
+    );
+    bodyPart = tocHtml + bodyPart.substring(nextHeadingIndex);
+  }
 
   // Extract logo
   const logoMatch = coverPart.match(/<img[^>]*src="(data:image\/png;base64,[^"]+)"[^>]*>/);
