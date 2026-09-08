@@ -1,0 +1,8 @@
+{
+  "name": "Remix Thịnh Vượng Legal",
+  "description": "Nền tảng pháp lý ví điện tử \u0026 Fintech - Hệ thống dịch vụ pháp lý và hợp đồng mô phỏng tại Việt Nam",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

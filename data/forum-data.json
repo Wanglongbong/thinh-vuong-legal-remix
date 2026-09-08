@@ -1,0 +1,91 @@
+{
+  "posts": [
+    {
+      "id": "post-nd52-cap-phep",
+      "title": "Thủ tục và điều kiện cấp Giấy phép cung ứng dịch vụ ví điện tử theo Nghị định 52/2024/NĐ-CP",
+      "body": "Chào các luật sư và chuyên gia, theo quy định tại Điều 22 và Điều 24 Nghị định 52/2024/NĐ-CP (có hiệu lực từ 01/07/2024):\n1. Vốn điều lệ thực góp tối thiểu 50 tỷ đồng cần chứng minh bằng văn bản xác nhận số dư tài khoản phong tỏa của NHTM như thế nào?\n2. Phương án kỹ thuật, an toàn thông tin cấp độ 3 (theo Nghị định 85/2016/NĐ-CP) và kiểm toán hệ thống định kỳ cần những tài liệu gì trong bộ hồ sơ nộp lên Vụ Thanh toán - NHNN?\nRất mong nhận được trao đổi và kinh nghiệm thực tế từ các anh chị.",
+      "category": "Ví điện tử và Fintech",
+      "nickname": "Luật sư Nguyễn Văn Thành",
+      "created_at": "2026-09-06T10:50:19.107Z",
+      "updated_at": "2026-09-06T10:50:19.107Z",
+      "status": "published",
+      "locked": false,
+      "mine": false
+    },
+    {
+      "id": "post-tk-bao-dam",
+      "title": "Cơ chế duy trì số dư tài khoản đảm bảo thanh toán tỷ lệ 1:1 theo Thông tư 40/2024/TT-NHNN",
+      "body": "Theo quy định tại Điều 25 Nghị định 52/2024/NĐ-CP và Thông tư 40/2024/TT-NHNN:\n- Doanh nghiệp cung ứng dịch vụ ví điện tử bắt buộc phải mở tài khoản đảm bảo thanh toán tại Ngân hàng thương mại hợp tác.\n- Tổng số dư trên tài khoản đảm bảo thanh toán KHÔNG ĐƯỢC THẤP HƠN tổng số dư của tất cả các ví điện tử của khách hàng tại cùng một thời điểm.\n- Quy trình đối soát cuối ngày và thời hạn bổ sung ký quỹ xử lý ra sao khi có biến động giao dịch đột biến vào ban đêm hoặc ngày nghỉ cuối tuần?",
+      "category": "Hợp đồng",
+      "nickname": "Trần Minh Quang · Fintech Lead",
+      "created_at": "2026-09-07T10:50:19.107Z",
+      "updated_at": "2026-09-07T10:50:19.107Z",
+      "status": "published",
+      "locked": false,
+      "mine": false
+    },
+    {
+      "id": "post-sla-api-merchant",
+      "title": "Phân định ranh giới trách nhiệm và cam kết SLA trong hợp đồng kết nối API trung gian thanh toán",
+      "body": "Trong các hợp đồng tích hợp cổng thanh toán / API ví điện tử giữa Tổ chức TGTT và Đơn vị chấp nhận thanh toán (Merchant):\n1. Mức cam kết sẵn sàng hệ thống (SLA Uptime) thông thường là bao nhiêu (99.5% hay 99.9%)?\n2. Khi phát sinh lỗi timeout giao dịch hoặc nghẽn mạng do đường truyền ngân hàng, cơ chế xử lý tra soát và miễn trừ thiệt hại gián tiếp (Loss of Profits) nên quy định như thế nào để vừa bảo vệ ví, vừa hài hòa lợi ích của Merchant?",
+      "category": "Hợp đồng",
+      "nickname": "Lê Hoàng Yến · Pháp chế Doanh nghiệp",
+      "created_at": "2026-09-07T22:50:19.107Z",
+      "updated_at": "2026-09-07T22:50:19.107Z",
+      "status": "published",
+      "locked": false,
+      "mine": false
+    },
+    {
+      "id": "post-dpia-luat-91",
+      "title": "Lập Báo cáo đánh giá tác động xử lý dữ liệu cá nhân (DPIA) cho quy trình eKYC sinh trắc học",
+      "body": "Theo Luật Bảo vệ dữ liệu cá nhân 91/2025/QH15 và Nghị định 356/2025/NĐ-CP:\n- Dữ liệu sinh trắc học (khuôn mặt, vân tay) và thông tin tài khoản thanh toán là Dữ liệu cá nhân nhạy cảm.\n- Hồ sơ DPIA theo Mẫu của Cục An ninh mạng và phòng chống tội phạm sử dụng công nghệ cao (A05) - Bộ Công an cần có những biện pháp kỹ thuật và tổ chức nào để bảo vệ dữ liệu lưu trữ trên máy chủ đám mây?",
+      "category": "Doanh nghiệp và đầu tư",
+      "nickname": "Phạm Thu Trang · CISO Legal Counsel",
+      "created_at": "2026-09-08T04:50:19.107Z",
+      "updated_at": "2026-09-08T04:50:19.107Z",
+      "status": "published",
+      "locked": false,
+      "mine": false
+    }
+  ],
+  "comments": [
+    {
+      "id": "cm-1",
+      "post_id": "post-nd52-cap-phep",
+      "body": "Chào Luật sư, theo kinh nghiệm thẩm định của Nhóm 13, văn bản xác nhận vốn 50 tỷ phải do Tổng giám đốc/Giám đốc chi nhánh NHTM ký phát hành và phong tỏa tài khoản chuyên dùng. Tiền này không được rút ra sử dụng cho bất kỳ hoạt động đầu tư hay chi trả lương nào trong suốt quá trình chờ NHNN thẩm định cấp phép.",
+      "nickname": "Vũ Anh Quân · Nhóm 13",
+      "created_at": "2026-09-06T22:50:19.107Z",
+      "status": "published",
+      "mine": false
+    },
+    {
+      "id": "cm-2",
+      "post_id": "post-nd52-cap-phep",
+      "body": "Về an toàn thông tin cấp độ 3, bạn cần Quyết định phê duyệt hồ sơ đề xuất cấp độ của Bộ Thông tin & Truyền thông hoặc cơ quan có thẩm quyền, kèm theo biên bản kiểm thử an ninh mạng (Penetration Test) không có lỗ hổng nghiêm trọng.",
+      "nickname": "Đoàn Anh Phương · Nhóm 13",
+      "created_at": "2026-09-07T14:50:19.107Z",
+      "status": "published",
+      "mine": false
+    },
+    {
+      "id": "cm-3",
+      "post_id": "post-tk-bao-dam",
+      "body": "Chào anh Quang, Thông tư 40/2024/TT-NHNN cho phép cơ chế đối soát tự động hằng ngày. Trường hợp số dư ví vượt số dư tài khoản đảm bảo, hệ thống cảnh báo sớm (Early Alert) sẽ tự động kích hoạt lệnh nạp bổ sung từ tài khoản thanh toán vốn lưu động của tổ chức TGTT vào tài khoản ký quỹ trước 09h00 ngày làm việc kế tiếp.",
+      "nickname": "Vũ Phương Thảo · Nhóm 13",
+      "created_at": "2026-09-07T16:50:19.107Z",
+      "status": "published",
+      "mine": false
+    },
+    {
+      "id": "cm-4",
+      "post_id": "post-sla-api-merchant",
+      "body": "Trong mẫu Hợp đồng tích hợp API của Thịnh Vượng Legal (Mẫu số 08), chúng tôi quy định rõ: Giới hạn trách nhiệm bồi thường thiệt hại trực tiếp tối đa bằng tổng giá trị phí dịch vụ trong 03 tháng liền kề trước đó; đồng thời miễn trừ hoàn toàn thiệt hại gián tiếp, cơ hội kinh doanh bị bỏ lỡ hoặc thiệt hại do bên thứ ba (đơn vị cung cấp viễn thông, mạng ngân hàng) gây ra.",
+      "nickname": "Lê Thị Hồng Nhung · Nhóm 13",
+      "created_at": "2026-09-08T02:50:19.107Z",
+      "status": "published",
+      "mine": false
+    }
+  ],
+  "flags": []
+}
