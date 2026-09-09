@@ -1091,6 +1091,12 @@ function DraftTool() {
   const [aiMode, setAiMode] = useState<"ai" | "demo" | "">("");
   const [pending, setPending] = useState(false);
   const [error, setError] = useState("");
+  useEffect(() => {
+    const requestedSlug = new URLSearchParams(window.location.search).get("mau");
+    if (requestedSlug && contracts.some((item) => item.slug === requestedSlug)) {
+      setContractSlug(requestedSlug);
+    }
+  }, []);
   const selected =
     contracts.find((item) => item.slug === contractSlug) || contracts[0];
   const selectedFile = files.find((item) => item.id === fileId);

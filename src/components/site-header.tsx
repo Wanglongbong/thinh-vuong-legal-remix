@@ -54,7 +54,7 @@ export function SiteHeader() {
           <div className="header-actions">
             <Link
               className="gold-button hidden md:inline-flex text-xs h-10 px-4"
-              href="/tao-hop-dong"
+              href="/cong-cu/tao-hop-dong"
             >
               <Wand2 className="w-3.5 h-3.5 mr-1" />
               Tạo hợp đồng

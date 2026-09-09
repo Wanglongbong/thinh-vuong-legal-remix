@@ -29,7 +29,7 @@ export function ContractsPage() {
                 Chọn một trong 20 mẫu pháp lý, nhập thông tin các bên và tải bản Word để tiếp tục rà soát.
               </p>
             </div>
-            <Link className="gold-button dark" href="/tao-hop-dong">
+            <Link className="gold-button dark" href="/cong-cu/tao-hop-dong">
               Tạo hợp đồng <ArrowRight />
             </Link>
           </div>

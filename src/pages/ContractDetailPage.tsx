@@ -149,7 +149,7 @@ export function ContractDetailPage() {
               {report ? (
                 <Link
                   className="gold-button dark"
-                  href={`/tao-hop-dong?mau=${item.slug}`}
+                  href={`/cong-cu/tao-hop-dong?mau=${item.slug}`}
                 >
                   Tạo hợp đồng <ArrowRight />
                 </Link>

@@ -33,7 +33,7 @@ export function SiteFooter() {
           <Link href="/bao-cao-so-bo">Báo cáo sơ bộ</Link>
           <Link href="/dien-dan">Diễn đàn thảo luận</Link>
           <Link href="/cong-cu">Nền tảng pháp lý AI</Link>
-          <Link href="/tao-hop-dong">Tạo hợp đồng</Link>
+          <Link href="/cong-cu/tao-hop-dong">Tạo hợp đồng</Link>
           <Link href="/kien-thuc">Cơ sở pháp lý</Link>
           <Link href="/doi-ngu">Đội ngũ dự án</Link>
         </div>

@@ -195,7 +195,7 @@ export function HomePage() {
               bảo vệ dữ liệu cá nhân theo chuẩn 2024–2026.
             </p>
             <div className="hero-actions">
-              <Link className="gold-button" href="/tao-hop-dong">
+              <Link className="gold-button" href="/cong-cu/tao-hop-dong">
                 <Wand2 className="w-4 h-4" /> Tạo hợp đồng <ArrowRight className="w-4 h-4" />
               </Link>
               <Link className="ghost-button" href="/hop-dong">
@@ -404,7 +404,7 @@ export function HomePage() {
                     Xem chi tiết <ArrowUpRight className="w-4 h-4" />
                   </Link>
                   <Link
-                    href={`/tao-hop-dong?mau=${item.slug}`}
+                    href={`/cong-cu/tao-hop-dong?mau=${item.slug}`}
                     className="text-xs font-semibold text-[#8c6b18] hover:text-[#c59b27] flex items-center gap-1"
                   >
                     <Wand2 className="w-3.5 h-3.5" /> Tạo hợp đồng
@@ -447,7 +447,7 @@ export function HomePage() {
                 Điền tham số dự án 4 bước, tự động tính toán tỷ lệ vốn, thẩm
                 quyền phê duyệt và xuất file DOCX chuẩn thể thức văn bản Việt Nam.
               </p>
-              <Link className="ai-suite-btn primary" href="/tao-hop-dong">
+              <Link className="ai-suite-btn primary" href="/cong-cu/tao-hop-dong">
                 Tạo hợp đồng ngay <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
