@@ -878,12 +878,14 @@ async function proxyForumRequest(req: express.Request, res: express.Response) {
 app.get('/api/forum', async (req, res) => {
   res.setHeader('Cache-Control', 'private, no-store');
   if (!forumConfigured()) {
+    res.setHeader('X-Forum-Storage', 'upstream');
     try {
       return await proxyForumRequest(req, res);
     } catch {
       return res.status(503).json({ ready: false, error: forumUnavailable });
     }
   }
+  res.setHeader('X-Forum-Storage', 'supabase');
   try {
     const { post: postId, q, category, page } = req.query;
     const identity = forumIdentity(req, res);
@@ -979,12 +981,14 @@ app.post('/api/forum', async (req, res) => {
     return res.status(403).json({ error: 'Nguồn yêu cầu không hợp lệ.' });
   }
   if (!forumConfigured()) {
+    res.setHeader('X-Forum-Storage', 'upstream');
     try {
       return await proxyForumRequest(req, res);
     } catch {
       return res.status(503).json({ error: forumUnavailable });
     }
   }
+  res.setHeader('X-Forum-Storage', 'supabase');
   try {
     const input = req.body;
     const { action, target } = input || {};
