@@ -5,6 +5,7 @@ import { SiteFooter } from '@/components/site-footer';
 import { SelectionAssistant } from '@/components/selection-assistant';
 import { LegalAssistant } from '@/components/legal-assistant';
 import { AiConfigModal } from '@/components/ai-config-modal';
+import { BackgroundMusic } from '@/components/background-music';
 import { ErrorBoundary } from '@/components/error-boundary';
 import { HomePage } from '@/pages/HomePage';
 import { ServicesPage } from '@/pages/ServicesPage';
@@ -84,6 +85,7 @@ function AppContent() {
       <SiteFooter />
       <SelectionAssistant />
       <LegalAssistant />
+      <BackgroundMusic />
       <AiConfigModal
         isOpen={aiModalOpen}
         onClose={() => setAiModalOpen(false)}
