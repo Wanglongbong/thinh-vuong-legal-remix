@@ -1021,12 +1021,14 @@ async function proxyForumRequest(req, res) {
 app.get("/api/forum", async (req, res) => {
   res.setHeader("Cache-Control", "private, no-store");
   if (!forumConfigured()) {
+    res.setHeader("X-Forum-Storage", "upstream");
     try {
       return await proxyForumRequest(req, res);
     } catch {
       return res.status(503).json({ ready: false, error: forumUnavailable });
     }
   }
+  res.setHeader("X-Forum-Storage", "supabase");
   try {
     const { post: postId, q, category, page } = req.query;
     const identity = forumIdentity(req, res);
@@ -1111,12 +1113,14 @@ app.post("/api/forum", async (req, res) => {
     return res.status(403).json({ error: "Ngu\u1ED3n y\xEAu c\u1EA7u kh\xF4ng h\u1EE3p l\u1EC7." });
   }
   if (!forumConfigured()) {
+    res.setHeader("X-Forum-Storage", "upstream");
     try {
       return await proxyForumRequest(req, res);
     } catch {
       return res.status(503).json({ error: forumUnavailable });
     }
   }
+  res.setHeader("X-Forum-Storage", "supabase");
   try {
     const input = req.body;
     const { action, target } = input || {};
