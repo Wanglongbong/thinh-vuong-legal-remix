@@ -32,7 +32,7 @@ import {
 import { contracts, legalSources, services, team, teamMembers } from '@/lib/site-data';
 import { safeStorage } from '@/lib/storage';
 import { compressImageFile } from '@/lib/image-utils';
-import { GrandImperialSeal, RoyalDivider } from '@/components/royal-flank-decor';
+import { RoyalHeroDecor, RoyalDivider } from '@/components/royal-flank-decor';
 
 export function HomePage() {
   const [activeTab, setActiveTab] = useState<'all' | 'minimum' | 'advanced'>('all');
@@ -168,7 +168,7 @@ export function HomePage() {
       {/* 1. HERO SECTION - PURE WHITE & WARM IMPERIAL GOLD WITH LADY JUSTICE */}
       <section className="home-hero relative overflow-hidden">
         <div className="hero-overlay" />
-        <GrandImperialSeal />
+        <RoyalHeroDecor />
 
         {/* TƯỢNG NỮ THẦN CÔNG LÝ NỬA THÂN TRÊN PHÓNG TO CỰC ĐẠI (NÉT VIỀN VÀNG DỊU NHẸ) */}
         <div className="themis-grand-backdrop" aria-hidden="true">
