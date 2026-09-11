@@ -32,7 +32,7 @@ import {
 import { contracts, legalSources, services, team, teamMembers } from '@/lib/site-data';
 import { safeStorage } from '@/lib/storage';
 import { compressImageFile } from '@/lib/image-utils';
-import { RoyalCornerDecor, RoyalDivider } from '@/components/royal-flank-decor';
+import { RoyalCornerDecor, RoyalDivider, RoyalHeroWings } from '@/components/royal-flank-decor';
 
 export function HomePage() {
   const [activeTab, setActiveTab] = useState<'all' | 'minimum' | 'advanced'>('all');
@@ -169,6 +169,7 @@ export function HomePage() {
       <section className="home-hero relative">
         <div className="hero-overlay" />
         <RoyalCornerDecor />
+        <RoyalHeroWings />
 
         {/* TƯỢNG NỮ THẦN CÔNG LÝ NỬA THÂN TRÊN PHÓNG TO CỰC ĐẠI (NÉT VIỀN VÀNG DỊU NHẸ) */}
         <div className="themis-grand-backdrop" aria-hidden="true">

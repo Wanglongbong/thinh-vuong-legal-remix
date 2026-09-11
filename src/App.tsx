@@ -6,7 +6,7 @@ import { SelectionAssistant } from '@/components/selection-assistant';
 import { LegalAssistant } from '@/components/legal-assistant';
 import { AiConfigModal } from '@/components/ai-config-modal';
 import { BackgroundMusic } from '@/components/background-music';
-import { RoyalFlankDecor } from '@/components/royal-flank-decor';
+import { RoyalThemeProvider } from '@/components/royal-flank-decor';
 import { ErrorBoundary } from '@/components/error-boundary';
 import { HomePage } from '@/pages/HomePage';
 import { ServicesPage } from '@/pages/ServicesPage';
@@ -77,7 +77,6 @@ function AppContent() {
       <a className="skip-link" href="#main-content">
         Bỏ qua điều hướng
       </a>
-      <RoyalFlankDecor />
       <SiteHeader />
       <div id="main-content" className="flex-1">
         <ErrorBoundary fallbackTitle="Không thể tải nội dung trang này">
@@ -99,7 +98,9 @@ function AppContent() {
 export default function App() {
   return (
     <RouterProvider>
-      <AppContent />
+      <RoyalThemeProvider>
+        <AppContent />
+      </RoyalThemeProvider>
     </RouterProvider>
   );
 }

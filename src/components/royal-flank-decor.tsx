@@ -1,47 +1,125 @@
-import React from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
+import { Sparkles, Frame, Sun, Check } from 'lucide-react';
+
+export type RoyalStyle = 'a' | 'b' | 'c';
+
+interface RoyalThemeContextType {
+  style: RoyalStyle;
+  setStyle: (style: RoyalStyle) => void;
+}
+
+const RoyalThemeContext = createContext<RoyalThemeContextType>({
+  style: 'a',
+  setStyle: () => {},
+});
+
+export function useRoyalTheme() {
+  return useContext(RoyalThemeContext);
+}
 
 /**
- * RoyalFlankDecor:
- * Hệ thống hoa văn hoàng gia sườn dọc đối xứng 2 bên (Bilateral Imperial Flank Pillars & Filigree).
- * Thiết kế chuẩn vector SVG mạ vàng kim đậm (#684F0E, #8C6B18, #C59B27) hòa sắc trắng ngà (#FFFDF8, #FAF4E6).
- * Phản chiếu gương hoàn hảo giữa mép trái và mép phải, không cản trở tương tác hay che chữ.
+ * RoyalThemeProvider: Quản lý trạng thái phong cách hoa văn hoàng gia (A, B, C)
  */
-export function RoyalFlankDecor() {
+export function RoyalThemeProvider({ children }: { children: React.ReactNode }) {
+  const [style, setStyleState] = useState<RoyalStyle>(() => {
+    if (typeof window !== 'undefined') {
+      try {
+        const saved = localStorage.getItem('tv_royal_style');
+        if (saved === 'a' || saved === 'b' || saved === 'c') return saved;
+      } catch {}
+    }
+    return 'a'; // Mặc định là Phương án A
+  });
+
+  const setStyle = (s: RoyalStyle) => {
+    setStyleState(s);
+    try {
+      localStorage.setItem('tv_royal_style', s);
+    } catch {}
+  };
+
   return (
-    <div className="royal-flank-container" aria-hidden="true">
-      {/* Sườn trái hoa văn hoàng gia */}
-      <div className="royal-flank-pillar left">
-        <RoyalPillarSvg />
+    <RoyalThemeContext.Provider value={{ style, setStyle }}>
+      <div className={`royal-theme-wrapper style-${style}`}>
+        {/* Nền vân chìm Guilloche hoàng gia dành riêng cho Phương án A */}
+        {style === 'a' && <RoyalGuillocheBg />}
+        {children}
+        {/* Thanh công cụ chuyển đổi thử nghiệm 3 phương án trực tiếp */}
+        <RoyalThemeSwitcher />
+      </div>
+    </RoyalThemeContext.Provider>
+  );
+}
+
+/**
+ * PHƯƠNG ÁN A: Cánh hoa văn hoàng gia sườn Hero (Royal Hero Symmetrical Wings)
+ * Chỉ xuất hiện ở khu vực Hero Section, chiều cao vừa vặn, vuốt nhọn 2 đầu, KHÔNG kéo dài theo trang.
+ */
+export function RoyalHeroWings() {
+  const { style } = useRoyalTheme();
+  if (style !== 'a') return null;
+
+  return (
+    <div className="royal-hero-wings-container pointer-events-none" aria-hidden="true">
+      {/* Cánh trái hoàng gia */}
+      <div className="royal-hero-wing left">
+        <RoyalWingSvg />
       </div>
 
-      {/* Sườn phải hoa văn hoàng gia (đối xứng gương hoàn hảo) */}
-      <div className="royal-flank-pillar right">
-        <RoyalPillarSvg />
+      {/* Cánh phải hoàng gia (đối xứng gương hoàn hảo qua scaleX(-1)) */}
+      <div className="royal-hero-wing right">
+        <RoyalWingSvg />
       </div>
     </div>
   );
 }
 
 /**
- * RoyalCornerDecor:
- * Cụm hoa văn góc hoàng gia (Royal Corner Filigree) dùng cho các khối giao diện như Hero Section, Card v.v.
+ * PHƯƠNG ÁN A: Nền vân chìm bảo an Guilloche (Royal Guilloche Watermark Pattern)
+ * Chìm sâu dưới đáy trang (độ mờ 3.5%), không che lấp chữ, tạo cảm giác như giấy in sắc chỉ hoàng gia.
+ */
+export function RoyalGuillocheBg() {
+  return (
+    <div className="royal-guilloche-watermark pointer-events-none" aria-hidden="true">
+      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="guillocheUnit" width="120" height="120" patternUnits="userSpaceOnUse">
+            <circle cx="60" cy="60" r="50" stroke="#8C6B18" strokeWidth="0.5" fill="none" opacity="0.3" />
+            <circle cx="60" cy="60" r="35" stroke="#C59B27" strokeWidth="0.5" fill="none" opacity="0.25" />
+            <circle cx="60" cy="60" r="20" stroke="#8C6B18" strokeWidth="0.5" strokeDasharray="2 3" fill="none" opacity="0.35" />
+            {/* 4 cánh hoa guilloche đối xứng */}
+            <path d="M60 10 C80 35 80 85 60 110 C40 85 40 35 60 10Z" stroke="#8C6B18" strokeWidth="0.4" fill="none" opacity="0.2" />
+            <path d="M10 60 C35 80 85 80 110 60 C85 40 35 40 10 60Z" stroke="#8C6B18" strokeWidth="0.4" fill="none" opacity="0.2" />
+            {/* Điểm nhấn hạt ngọc tâm */}
+            <circle cx="60" cy="60" r="1.5" fill="#C59B27" opacity="0.4" />
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#guillocheUnit)" />
+      </svg>
+    </div>
+  );
+}
+
+/**
+ * PHƯƠNG ÁN B: Cụm hoa văn góc hoàng gia (Royal Corner Filigree)
+ * Dùng cho Phương án B (khung chỉ vàng và 4 góc hoàng gia), hoặc điểm xuyết cho card.
  */
 export function RoyalCornerDecor({ className = '' }: { className?: string }) {
+  const { style } = useRoyalTheme();
+  // Ở phương án C tắt hoàn toàn hoa văn góc để đạt độ tối giản
+  if (style === 'c') return null;
+
   return (
     <div className={`royal-corner-wrapper pointer-events-none select-none ${className}`} aria-hidden="true">
-      {/* Góc trên trái */}
       <div className="royal-corner top-left">
         <RoyalCornerSvg />
       </div>
-      {/* Góc trên phải (đối xứng ngang) */}
       <div className="royal-corner top-right">
         <RoyalCornerSvg />
       </div>
-      {/* Góc dưới trái (đối xứng dọc) */}
       <div className="royal-corner bottom-left">
         <RoyalCornerSvg />
       </div>
-      {/* Góc dưới phải (đối xứng 2 chiều) */}
       <div className="royal-corner bottom-right">
         <RoyalCornerSvg />
       </div>
@@ -50,8 +128,7 @@ export function RoyalCornerDecor({ className = '' }: { className?: string }) {
 }
 
 /**
- * RoyalDivider:
- * Họa tiết phân cách hoàng gia đối xứng trung tâm (Symmetrical Palmette Crest Divider).
+ * Họa tiết phân cách hoàng gia đối xứng trung tâm (Symmetrical Palmette Crest Divider)
  */
 export function RoyalDivider({ className = '' }: { className?: string }) {
   return (
@@ -72,7 +149,6 @@ export function RoyalDivider({ className = '' }: { className?: string }) {
           strokeWidth="0.75"
         />
         <circle cx="55" cy="13" r="2" fill="#FFFDF8" />
-        {/* Cánh hoa văn uốn lượn trái */}
         <path
           d="M44 12C38 6 30 7 24 12C18 17 10 16 2 12"
           stroke="url(#crestGoldGrad)"
@@ -89,7 +165,6 @@ export function RoyalDivider({ className = '' }: { className?: string }) {
         <circle cx="24" cy="12" r="1.8" fill="#C59B27" />
         <circle cx="2" cy="12" r="2.2" fill="url(#crestGoldGrad)" />
 
-        {/* Cánh hoa văn uốn lượn phải (đối xứng) */}
         <path
           d="M66 12C72 6 80 7 86 12C92 17 100 16 108 12"
           stroke="url(#crestGoldGrad)"
@@ -122,187 +197,204 @@ export function RoyalDivider({ className = '' }: { className?: string }) {
 }
 
 /**
- * Cột hoa văn hoàng gia Baroque / Neoclassical Filigree lặp lại theo chiều dọc.
+ * Thanh chuyển đổi trực tiếp 3 Phương án (Floating Theme Preview Switcher)
+ * Giúp người dùng click thử nghiệm tức thì giữa Phương án A, B và C trên website thực tế.
  */
-function RoyalPillarSvg() {
+export function RoyalThemeSwitcher() {
+  const { style, setStyle } = useRoyalTheme();
+  const [minimized, setMinimized] = useState(false);
+
+  return (
+    <aside
+      className={`royal-switcher-panel ${minimized ? 'minimized' : ''}`}
+      aria-label="Bộ điều khiển thử nghiệm phong cách hoa văn hoàng gia"
+    >
+      <div className="switcher-header" onClick={() => setMinimized(!minimized)}>
+        <div className="flex items-center gap-2">
+          <span className="switcher-badge">Xem thử 3 phong cách</span>
+          <span className="text-xs font-bold text-[#8C6B18]">Hoa Văn Hoàng Gia</span>
+        </div>
+        <button
+          type="button"
+          className="text-xs text-[#8C6B18] font-semibold hover:underline"
+        >
+          {minimized ? 'Mở rộng ▲' : 'Thu gọn ▼'}
+        </button>
+      </div>
+
+      {!minimized && (
+        <div className="switcher-body">
+          <div className="switcher-options">
+            <button
+              type="button"
+              className={`switcher-btn ${style === 'a' ? 'active' : ''}`}
+              onClick={() => setStyle('a')}
+            >
+              <div className="switcher-btn-head">
+                <Sparkles className="w-4 h-4 text-[#8C6B18]" />
+                <strong>Phương án A</strong>
+                {style === 'a' && <Check className="w-3.5 h-3.5 ml-auto text-[#8C6B18]" />}
+              </div>
+              <p>Cánh hoa văn sườn Hero & Nền vân chìm Guilloche</p>
+            </button>
+
+            <button
+              type="button"
+              className={`switcher-btn ${style === 'b' ? 'active' : ''}`}
+              onClick={() => setStyle('b')}
+            >
+              <div className="switcher-btn-head">
+                <Frame className="w-4 h-4 text-[#8C6B18]" />
+                <strong>Phương án B</strong>
+                {style === 'b' && <Check className="w-3.5 h-3.5 ml-auto text-[#8C6B18]" />}
+              </div>
+              <p>Khung chỉ vàng đôi & 4 góc hoàng gia Baroque</p>
+            </button>
+
+            <button
+              type="button"
+              className={`switcher-btn ${style === 'c' ? 'active' : ''}`}
+              onClick={() => setStyle('c')}
+            >
+              <div className="switcher-btn-head">
+                <Sun className="w-4 h-4 text-[#8C6B18]" />
+                <strong>Phương án C</strong>
+                {style === 'c' && <Check className="w-3.5 h-3.5 ml-auto text-[#8C6B18]" />}
+              </div>
+              <p>Hào quang vàng ngà đối xứng & Phù hiệu tối giản</p>
+            </button>
+          </div>
+          <div className="switcher-note">
+            <span>💡 Bấm chọn từng phương án để so sánh trực tiếp trên giao diện thực tế!</span>
+          </div>
+        </div>
+      )}
+    </aside>
+  );
+}
+
+/**
+ * Cánh hoa văn sườn hoàng gia (Hero Wing SVG)
+ * Cao vừa vặn 540px, thon nhọn 2 đầu, tỏa rộng ở giữa, không kéo dài theo trang.
+ */
+function RoyalWingSvg() {
   return (
     <svg
       width="140"
-      height="1200"
-      viewBox="0 0 140 1200"
+      height="540"
+      viewBox="0 0 140 540"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="royal-pillar-svg"
-      preserveAspectRatio="xMinYMin slice"
+      className="royal-wing-svg"
+      preserveAspectRatio="none"
     >
       <defs>
-        {/* Gradient vàng đậm kết hợp vàng kim và trắng sáng */}
-        <linearGradient id="imperialGoldMain" x1="0%" y1="0%" x2="100%" y2="100%">
+        <linearGradient id="heroWingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#684F0E" />
           <stop offset="25%" stopColor="#8C6B18" />
           <stop offset="50%" stopColor="#C59B27" />
-          <stop offset="70%" stopColor="#FFFDF8" stopOpacity="0.9" />
+          <stop offset="70%" stopColor="#FFFDF8" stopOpacity="0.95" />
           <stop offset="85%" stopColor="#D4AF37" />
           <stop offset="100%" stopColor="#7D5D0D" />
         </linearGradient>
 
-        <linearGradient id="goldStrokeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#C59B27" />
-          <stop offset="30%" stopColor="#FFFDF8" />
-          <stop offset="70%" stopColor="#8C6B18" />
-          <stop offset="100%" stopColor="#684F0E" />
+        <linearGradient id="wingGlowFade" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#FFFDF8" stopOpacity="0" />
+          <stop offset="25%" stopColor="#C59B27" stopOpacity="0.35" />
+          <stop offset="50%" stopColor="#FFFDF8" stopOpacity="0.6" />
+          <stop offset="75%" stopColor="#C59B27" stopOpacity="0.35" />
+          <stop offset="100%" stopColor="#FFFDF8" stopOpacity="0" />
         </linearGradient>
-
-        <linearGradient id="goldGlowGrad" x1="0%" y1="50%" x2="100%" y2="50%">
-          <stop offset="0%" stopColor="#C59B27" stopOpacity="0.45" />
-          <stop offset="50%" stopColor="#FFFDF8" stopOpacity="0.25" />
-          <stop offset="100%" stopColor="#8C6B18" stopOpacity="0" />
-        </linearGradient>
-
-        {/* Pattern khối hoa văn hoàng gia lặp lại theo chu kỳ 300px */}
-        <pattern id="royalAcanthusUnit" width="140" height="300" patternUnits="userSpaceOnUse">
-          {/* Đường biên dọc chính với hạt ngọc hoàng gia (Beaded Border) */}
-          <line x1="8" y1="0" x2="8" y2="300" stroke="#8C6B18" strokeWidth="1.5" />
-          <line x1="14" y1="0" x2="14" y2="300" stroke="url(#imperialGoldMain)" strokeWidth="0.8" strokeDasharray="2 4" />
-
-          {/* Dãy chuỗi hạt ngọc mạ vàng và trắng ngà dọc đường biên */}
-          {[15, 45, 75, 105, 135, 165, 195, 225, 255, 285].map((y) => (
-            <g key={y}>
-              <circle cx="8" cy={y} r="2.2" fill="#FFFDF8" stroke="#8C6B18" strokeWidth="0.75" />
-              <circle cx="8" cy={y} r="0.9" fill="#C59B27" />
-            </g>
-          ))}
-
-          {/* Cụm vòm cuộn hoa văn Acanthus thứ nhất (0 - 150px) */}
-          <path
-            d="M8 30 C35 30 75 42 75 75 C75 105 40 115 25 110 C15 106 10 95 18 85 C26 75 42 78 40 92 C38 100 28 102 24 96"
-            stroke="url(#imperialGoldMain)"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-            fill="none"
-          />
-          {/* Nhánh lá nhỏ uốn lượn phụ trợ */}
-          <path
-            d="M38 46 C48 38 65 42 70 54 C74 65 62 76 50 72"
-            stroke="#8C6B18"
-            strokeWidth="1.2"
-            strokeLinecap="round"
-            fill="none"
-          />
-          <path
-            d="M20 35 C28 20 50 18 64 26"
-            stroke="url(#imperialGoldMain)"
-            strokeWidth="1"
-            strokeLinecap="round"
-            fill="none"
-          />
-
-          {/* Điểm nhấn hoa hoàng gia (Fleur / Rosette) tại tọa độ (75, 75) */}
-          <circle cx="75" cy="75" r="4.5" fill="#FFFDF8" stroke="#8C6B18" strokeWidth="1" />
-          <circle cx="75" cy="75" r="2.5" fill="#C59B27" />
-          <path
-            d="M75 66 V84 M66 75 H84"
-            stroke="url(#imperialGoldMain)"
-            strokeWidth="0.8"
-          />
-
-          {/* Họa tiết lá vươn ra rìa giữa (Acanthus Tip) */}
-          <path
-            d="M75 75 C95 70 125 82 128 105 C129 116 118 126 105 124 C90 121 82 105 92 94 C98 87 108 89 107 98"
-            stroke="url(#imperialGoldMain)"
-            strokeWidth="1.6"
-            strokeLinecap="round"
-            fill="none"
-          />
-          <path
-            d="M88 82 C104 80 120 90 118 104"
-            stroke="#C59B27"
-            strokeWidth="0.9"
-            strokeLinecap="round"
-            fill="none"
-          />
-
-          {/* Nút thắt hoa văn trung tâm (Palmette node tại y = 150) */}
-          <g transform="translate(8, 150)">
-            <path
-              d="M0 0 C25 -15 50 -10 65 0 C50 10 25 15 0 0Z"
-              fill="url(#imperialGoldMain)"
-              stroke="#684F0E"
-              strokeWidth="0.8"
-            />
-            <circle cx="35" cy="0" r="3" fill="#FFFDF8" stroke="#8C6B18" strokeWidth="1" />
-            <circle cx="35" cy="0" r="1.5" fill="#C59B27" />
-            {/* Tia sáng hoàng gia */}
-            <path d="M35 -8 V-4 M35 4 V8 M28 -5 L30 -3 M40 3 L42 5" stroke="#C59B27" strokeWidth="0.8" />
-          </g>
-
-          {/* Cụm vòm cuộn hoa văn Acanthus thứ hai (150 - 300px, đảo nhịp điệu) */}
-          <path
-            d="M8 270 C35 270 75 258 75 225 C75 195 40 185 25 190 C15 194 10 205 18 215 C26 225 42 222 40 208 C38 200 28 198 24 204"
-            stroke="url(#imperialGoldMain)"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-            fill="none"
-          />
-          <path
-            d="M38 254 C48 262 65 258 70 246 C74 235 62 224 50 228"
-            stroke="#8C6B18"
-            strokeWidth="1.2"
-            strokeLinecap="round"
-            fill="none"
-          />
-          <path
-            d="M20 265 C28 280 50 282 64 274"
-            stroke="url(#imperialGoldMain)"
-            strokeWidth="1"
-            strokeLinecap="round"
-            fill="none"
-          />
-
-          {/* Hoa hoàng gia tại y = 225 */}
-          <circle cx="75" cy="225" r="4.5" fill="#FFFDF8" stroke="#8C6B18" strokeWidth="1" />
-          <circle cx="75" cy="225" r="2.5" fill="#C59B27" />
-          <path
-            d="M75 216 V234 M66 225 H84"
-            stroke="url(#imperialGoldMain)"
-            strokeWidth="0.8"
-          />
-
-          <path
-            d="M75 225 C95 230 125 218 128 195 C129 184 118 174 105 176 C90 179 82 195 92 206 C98 213 108 211 107 202"
-            stroke="url(#imperialGoldMain)"
-            strokeWidth="1.6"
-            strokeLinecap="round"
-            fill="none"
-          />
-          <path
-            d="M88 218 C104 220 120 210 118 196"
-            stroke="#C59B27"
-            strokeWidth="0.9"
-            strokeLinecap="round"
-            fill="none"
-          />
-        </pattern>
       </defs>
 
-      {/* Nền phản chiếu hào quang vàng nhạt dịu */}
-      <rect x="0" y="0" width="140" height="1200" fill="url(#goldGlowGrad)" />
+      {/* Đường sống lưng vuốt nhọn hai đầu */}
+      <path
+        d="M6 30 Q12 180 12 270 Q12 360 6 510"
+        stroke="url(#heroWingGrad)"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+      <path
+        d="M12 70 Q18 190 18 270 Q18 350 12 470"
+        stroke="#8C6B18"
+        strokeWidth="0.8"
+        strokeDasharray="2 4"
+      />
 
-      {/* Lớp hoa văn acanthus lặp lại theo chiều dọc */}
-      <rect x="0" y="0" width="140" height="1200" fill="url(#royalAcanthusUnit)" />
+      {/* Chuỗi hạt ngọc mạ vàng thưa dần ở hai đầu */}
+      {[70, 110, 150, 190, 230, 270, 310, 350, 390, 430, 470].map((y) => (
+        <g key={y}>
+          <circle cx="6" cy={y} r="2" fill="#FFFDF8" stroke="#8C6B18" strokeWidth="0.75" />
+          <circle cx="6" cy={y} r="0.8" fill="#C59B27" />
+        </g>
+      ))}
+
+      {/* Cụm vòm cuộn lá Acanthus nở rộng ở trung tâm Hero (y: 180 - 360) */}
+      {/* Vòm trên */}
+      <path
+        d="M6 130 C45 130 90 150 95 190 C98 220 70 235 55 225 C40 215 42 195 55 188 C65 182 78 190 74 202"
+        stroke="url(#heroWingGrad)"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        fill="none"
+      />
+      <path
+        d="M25 155 C55 160 80 180 75 205"
+        stroke="#8C6B18"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+        fill="none"
+      />
+
+      {/* Hoa hoàng gia trung tâm cánh tại y = 270 */}
+      <g transform="translate(6, 270)">
+        <path
+          d="M0 0 C30 -20 75 -15 95 0 C75 15 30 20 0 0Z"
+          fill="url(#heroWingGrad)"
+          stroke="#684F0E"
+          strokeWidth="0.8"
+        />
+        <circle cx="50" cy="0" r="4.5" fill="#FFFDF8" stroke="#8C6B18" strokeWidth="1" />
+        <circle cx="50" cy="0" r="2.5" fill="#C59B27" />
+        <path d="M50 -10 V10 M40 0 H60" stroke="#C59B27" strokeWidth="0.8" />
+        {/* Lá vươn ra rìa sườn */}
+        <path
+          d="M95 0 C115 -10 135 5 130 20 C125 30 110 25 105 15"
+          stroke="url(#heroWingGrad)"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          fill="none"
+        />
+      </g>
+
+      {/* Vòm dưới đối xứng */}
+      <path
+        d="M6 410 C45 410 90 390 95 350 C98 320 70 305 55 315 C40 325 42 345 55 352 C65 358 78 350 74 338"
+        stroke="url(#heroWingGrad)"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        fill="none"
+      />
+      <path
+        d="M25 385 C55 380 80 360 75 335"
+        stroke="#8C6B18"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+        fill="none"
+      />
     </svg>
   );
 }
 
 /**
- * Cụm hoa văn góc Baroque (Royal Corner Filigree)
+ * Cụm hoa văn góc Baroque
  */
 function RoyalCornerSvg() {
   return (
     <svg
-      width="100"
-      height="100"
-      viewBox="0 0 100 100"
+      width="90"
+      height="90"
+      viewBox="0 0 90 90"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className="royal-corner-svg"
@@ -317,34 +409,29 @@ function RoyalCornerSvg() {
         </linearGradient>
       </defs>
 
-      {/* Viền góc ngoài đôi */}
-      <path d="M4 60 V12 C4 7.578 7.578 4 12 4 H60" stroke="url(#cornerGoldGrad)" strokeWidth="1.8" fill="none" />
-      <path d="M10 50 V16 C10 12.686 12.686 10 16 10 H50" stroke="#8C6B18" strokeWidth="0.8" strokeDasharray="1.5 3" fill="none" />
+      <path d="M4 55 V12 C4 7.578 7.578 4 12 4 H55" stroke="url(#cornerGoldGrad)" strokeWidth="1.6" fill="none" />
+      <path d="M9 45 V15 C9 11.686 11.686 9 15 9 H45" stroke="#8C6B18" strokeWidth="0.8" strokeDasharray="1.5 3" fill="none" />
 
-      {/* Hạt ngọc ở góc bo */}
-      <circle cx="8" cy="8" r="3" fill="#FFFDF8" stroke="#8C6B18" strokeWidth="1" />
-      <circle cx="8" cy="8" r="1.5" fill="#C59B27" />
+      <circle cx="8" cy="8" r="2.8" fill="#FFFDF8" stroke="#8C6B18" strokeWidth="0.8" />
+      <circle cx="8" cy="8" r="1.3" fill="#C59B27" />
 
-      {/* Cuộn lá Baroque uốn vào tâm */}
       <path
-        d="M8 8 C25 25 35 48 32 68 C30 76 22 80 16 75 C11 70 14 60 22 58 C28 57 32 64 28 70"
+        d="M8 8 C22 22 30 42 28 58 C26 65 19 68 14 64 C10 60 12 52 19 50 C24 49 28 55 24 60"
         stroke="url(#cornerGoldGrad)"
-        strokeWidth="1.5"
+        strokeWidth="1.3"
         strokeLinecap="round"
         fill="none"
       />
       <path
-        d="M8 8 C25 25 48 35 68 32 C76 30 80 22 75 16 C70 11 60 14 58 22 C57 28 64 32 70 28"
+        d="M8 8 C22 22 42 30 58 28 C65 26 68 19 64 14 C60 10 52 12 50 19 C49 24 55 28 60 24"
         stroke="url(#cornerGoldGrad)"
-        strokeWidth="1.5"
+        strokeWidth="1.3"
         strokeLinecap="round"
         fill="none"
       />
 
-      {/* Hoa điểm xuyết trung tâm góc */}
-      <circle cx="34" cy="34" r="3.5" fill="#FFFDF8" stroke="#8C6B18" strokeWidth="0.8" />
-      <circle cx="34" cy="34" r="1.8" fill="#C59B27" />
-      <path d="M34 26 V42 M26 34 H42" stroke="#8C6B18" strokeWidth="0.75" />
+      <circle cx="30" cy="30" r="3" fill="#FFFDF8" stroke="#8C6B18" strokeWidth="0.8" />
+      <circle cx="30" cy="30" r="1.5" fill="#C59B27" />
     </svg>
   );
 }

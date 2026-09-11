@@ -1065,49 +1065,71 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 }
 
 /* ==========================================================================
-   ROYAL IMPERIAL BACKGROUND & SYMMETRICAL FLANK FILIGREE (PHƯƠNG ÁN 1)
+   ROYAL IMPERIAL BACKGROUND & 3-OPTION LIVE PREVIEW SYSTEM
    ========================================================================== */
 
-.royal-flank-container {
+/* Nền vân chìm bảo an Guilloche hoàng gia (Phương án A) */
+.royal-guilloche-watermark {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 25;
-  overflow: hidden;
+  z-index: 0;
+  opacity: 0.55;
+  mix-blend-mode: multiply;
 }
 
-.royal-flank-pillar {
+/* Cánh hoa văn hoàng gia sườn Hero (Phương án A - Chỉ nằm trong Hero, không kéo dài) */
+.royal-hero-wings-container {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 140px;
-  height: 100%;
+  inset: 0;
   pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
 }
 
-.royal-flank-pillar.left {
+.royal-hero-wing {
+  position: absolute;
+  top: 50%;
+  width: 140px;
+  height: 540px;
+  max-height: 90%;
+  pointer-events: none;
+  filter: drop-shadow(0 4px 14px rgba(197, 155, 39, 0.25));
+}
+
+.royal-hero-wing.left {
   left: 0;
-  mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.6) 65%, rgba(0, 0, 0, 0) 100%);
-  -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.6) 65%, rgba(0, 0, 0, 0) 100%);
+  transform: translateY(-50%);
+  mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.45) 60%, rgba(0, 0, 0, 0) 100%);
+  -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.45) 60%, rgba(0, 0, 0, 0) 100%);
 }
 
-.royal-flank-pillar.right {
+.royal-hero-wing.right {
   right: 0;
-  transform: scaleX(-1);
-  mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.6) 65%, rgba(0, 0, 0, 0) 100%);
-  -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.6) 65%, rgba(0, 0, 0, 0) 100%);
+  transform: translateY(-50%) scaleX(-1);
+  mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.45) 60%, rgba(0, 0, 0, 0) 100%);
+  -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.45) 60%, rgba(0, 0, 0, 0) 100%);
 }
 
-.royal-pillar-svg {
+.royal-wing-svg {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  opacity: 0.72;
-  filter: drop-shadow(0 2px 10px rgba(197, 155, 39, 0.25));
-  transition: opacity 0.3s ease;
+  opacity: 0.8;
 }
 
-/* Royal Corner Embellishments */
+/* Phương án B: Khung chỉ vàng hoàng gia (Royal Charter Frame) */
+.royal-theme-wrapper.style-b .home-hero {
+  border-top: 2px solid var(--gold);
+  border-bottom: 2px solid var(--gold);
+  box-shadow: inset 0 0 0 6px rgba(255, 255, 255, 0.8), inset 0 0 0 7.5px rgba(197, 155, 39, 0.35);
+}
+
+.royal-theme-wrapper.style-b .themis-customer-card {
+  border: 1.5px solid rgba(197, 155, 39, 0.55);
+  box-shadow: 0 16px 40px rgba(197, 155, 39, 0.15), inset 0 0 0 4px rgba(255, 255, 255, 0.8), inset 0 0 0 5px rgba(197, 155, 39, 0.3);
+}
+
+/* Royal Corner Embellishments (Dùng cho cả A và B, tự động tắt ở C) */
 .royal-corner-wrapper {
   position: absolute;
   inset: 0;
@@ -1118,34 +1140,34 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 .royal-corner {
   position: absolute;
-  width: 80px;
-  height: 80px;
+  width: 75px;
+  height: 75px;
   pointer-events: none;
-  opacity: 0.68;
+  opacity: 0.65;
   filter: drop-shadow(0 2px 6px rgba(197, 155, 39, 0.2));
   transition: opacity 0.3s ease;
 }
 
 .royal-corner.top-left {
-  top: 10px;
-  left: 10px;
+  top: 12px;
+  left: 12px;
 }
 
 .royal-corner.top-right {
-  top: 10px;
-  right: 10px;
+  top: 12px;
+  right: 12px;
   transform: scaleX(-1);
 }
 
 .royal-corner.bottom-left {
-  bottom: 10px;
-  left: 10px;
+  bottom: 12px;
+  left: 12px;
   transform: scaleY(-1);
 }
 
 .royal-corner.bottom-right {
-  bottom: 10px;
-  right: 10px;
+  bottom: 12px;
+  right: 12px;
   transform: scale(-1);
 }
 
@@ -1179,41 +1201,153 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   filter: drop-shadow(0 2px 6px rgba(197, 155, 39, 0.28));
 }
 
-/* Responsive adjustments for Royal Flank */
-@media (max-width: 1400px) {
-  .royal-flank-pillar {
-    width: 100px;
-  }
-  .royal-pillar-svg {
-    opacity: 0.55;
+/* ==========================================================================
+   FLOATING THEME SWITCHER WIDGET
+   ========================================================================== */
+
+.royal-switcher-panel {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  width: min(340px, calc(100vw - 32px));
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(16px);
+  border: 1.5px solid var(--gold);
+  border-radius: 12px;
+  box-shadow: 0 16px 45px rgba(10, 19, 30, 0.16), 0 0 20px rgba(197, 155, 39, 0.2);
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  font-family: var(--body);
+}
+
+.royal-switcher-panel.minimized {
+  width: fit-content;
+  border-radius: 100px;
+  padding: 4px;
+}
+
+.royal-switcher-panel .switcher-header {
+  padding: 10px 14px;
+  background: linear-gradient(135deg, #FCF8ED 0%, #F5ECDA 100%);
+  border-bottom: 1px solid rgba(197, 155, 39, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  user-select: none;
+}
+
+.royal-switcher-panel.minimized .switcher-header {
+  border-bottom: 0;
+  background: transparent;
+  padding: 6px 14px;
+}
+
+.switcher-badge {
+  font-size: 0.64rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: var(--gold);
+  color: #2A1F04;
+  padding: 2px 7px;
+  border-radius: 100px;
+}
+
+.switcher-body {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.switcher-options {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.switcher-btn {
+  width: 100%;
+  text-align: left;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(197, 155, 39, 0.25);
+  background: #FFFDF9;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.switcher-btn:hover {
+  background: #FAF3DE;
+  border-color: var(--gold);
+  transform: translateX(2px);
+}
+
+.switcher-btn.active {
+  background: linear-gradient(135deg, #FFFDF7 0%, #FAF1D7 100%);
+  border: 1.5px solid var(--gold);
+  box-shadow: 0 4px 14px rgba(197, 155, 39, 0.22);
+}
+
+.switcher-btn-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #0A131E;
+}
+
+.switcher-btn-head strong {
+  font-size: 0.82rem;
+  font-weight: 750;
+  color: #684F0E;
+}
+
+.switcher-btn p {
+  margin: 3px 0 0 24px;
+  font-size: 0.72rem;
+  color: #5F6E7C;
+  line-height: 1.35;
+}
+
+.switcher-note {
+  font-size: 0.68rem;
+  color: #8C6B18;
+  font-weight: 600;
+  text-align: center;
+  padding: 6px 4px 2px;
+  border-top: 1px dashed rgba(197, 155, 39, 0.25);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1280px) {
+  .royal-hero-wing {
+    width: 90px;
   }
 }
 
-@media (max-width: 1100px) {
-  .royal-flank-pillar {
-    width: 65px;
-  }
-  .royal-pillar-svg {
+@media (max-width: 900px) {
+  .royal-hero-wing {
+    width: 50px;
     opacity: 0.4;
   }
   .royal-corner {
-    width: 60px;
-    height: 60px;
-    opacity: 0.5;
+    width: 50px;
+    height: 50px;
+    opacity: 0.45;
   }
 }
 
-@media (max-width: 768px) {
-  .royal-flank-pillar {
-    width: 36px;
+@media (max-width: 600px) {
+  .royal-hero-wings-container {
+    display: none; /* Tắt hẳn cánh hoa văn trên mobile để màn hình hoàn toàn thông thoáng */
   }
-  .royal-pillar-svg {
-    opacity: 0.25;
-  }
-  .royal-corner {
-    width: 45px;
-    height: 45px;
-    opacity: 0.35;
+  .royal-switcher-panel {
+    bottom: 12px;
+    right: 12px;
+    width: calc(100vw - 24px);
   }
 }
+
 
