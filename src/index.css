@@ -1065,113 +1065,52 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 }
 
 /* ==========================================================================
-   ROYAL IMPERIAL BACKGROUND & 3-OPTION LIVE PREVIEW SYSTEM
+   ROYAL IMPERIAL BACKGROUND & 3-CONCEPT SEAMLESS CANVAS SYSTEM
    ========================================================================== */
 
-/* Nền vân chìm bảo an Guilloche hoàng gia (Phương án A) */
-.royal-guilloche-watermark {
+/* PHONG CÁCH 1: Vân Gấm Hoàng Gia Dệt Chìm (Damask Silk Weave) */
+.royal-damask-canvas {
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.55;
+  opacity: 0.75;
   mix-blend-mode: multiply;
+  mask-image: radial-gradient(ellipse 75% 70% at 50% 45%, transparent 25%, rgba(0, 0, 0, 0.4) 60%, rgba(0, 0, 0, 0.95) 100%);
+  -webkit-mask-image: radial-gradient(ellipse 75% 70% at 50% 45%, transparent 25%, rgba(0, 0, 0, 0.4) 60%, rgba(0, 0, 0, 0.95) 100%);
 }
 
-/* Cánh hoa văn hoàng gia sườn Hero (Phương án A - Chỉ nằm trong Hero, không kéo dài) */
-.royal-hero-wings-container {
-  position: absolute;
+/* PHONG CÁCH 2: Vân Vi Sóng Bảo An Champagne (Micro-Guilloche Waves) */
+.royal-guilloche-waves-canvas {
+  position: fixed;
   inset: 0;
   pointer-events: none;
-  overflow: hidden;
-  z-index: 1;
-}
-
-.royal-hero-wing {
-  position: absolute;
-  top: 50%;
-  width: 140px;
-  height: 540px;
-  max-height: 90%;
-  pointer-events: none;
-  filter: drop-shadow(0 4px 14px rgba(197, 155, 39, 0.25));
-}
-
-.royal-hero-wing.left {
-  left: 0;
-  transform: translateY(-50%);
-  mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.45) 60%, rgba(0, 0, 0, 0) 100%);
-  -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.45) 60%, rgba(0, 0, 0, 0) 100%);
-}
-
-.royal-hero-wing.right {
-  right: 0;
-  transform: translateY(-50%) scaleX(-1);
-  mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.45) 60%, rgba(0, 0, 0, 0) 100%);
-  -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.45) 60%, rgba(0, 0, 0, 0) 100%);
-}
-
-.royal-wing-svg {
-  width: 100%;
-  height: 100%;
-  opacity: 0.8;
-}
-
-/* Phương án B: Khung chỉ vàng hoàng gia (Royal Charter Frame) */
-.royal-theme-wrapper.style-b .home-hero {
-  border-top: 2px solid var(--gold);
-  border-bottom: 2px solid var(--gold);
-  box-shadow: inset 0 0 0 6px rgba(255, 255, 255, 0.8), inset 0 0 0 7.5px rgba(197, 155, 39, 0.35);
-}
-
-.royal-theme-wrapper.style-b .themis-customer-card {
-  border: 1.5px solid rgba(197, 155, 39, 0.55);
-  box-shadow: 0 16px 40px rgba(197, 155, 39, 0.15), inset 0 0 0 4px rgba(255, 255, 255, 0.8), inset 0 0 0 5px rgba(197, 155, 39, 0.3);
-}
-
-/* Royal Corner Embellishments (Dùng cho cả A và B, tự động tắt ở C) */
-.royal-corner-wrapper {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: 2;
-}
-
-.royal-corner {
-  position: absolute;
-  width: 75px;
-  height: 75px;
-  pointer-events: none;
+  z-index: 0;
   opacity: 0.65;
-  filter: drop-shadow(0 2px 6px rgba(197, 155, 39, 0.2));
+  mix-blend-mode: multiply;
+  mask-image: radial-gradient(ellipse 80% 75% at 50% 50%, transparent 25%, rgba(0, 0, 0, 0.45) 65%, rgba(0, 0, 0, 0.9) 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 75% at 50% 50%, transparent 25%, rgba(0, 0, 0, 0.45) 65%, rgba(0, 0, 0, 0.9) 100%);
+}
+
+/* PHONG CÁCH 3: Phù Hiệu Bảo Chứng Khổng Lồ Chìm Mờ (Grand Imperial Seal) */
+.grand-imperial-seal-wrap {
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.18;
+  filter: drop-shadow(0 0 35px rgba(197, 155, 39, 0.3));
   transition: opacity 0.3s ease;
 }
 
-.royal-corner.top-left {
-  top: 12px;
-  left: 12px;
+.grand-imperial-seal-svg {
+  max-width: min(680px, 85vw);
+  height: auto;
 }
 
-.royal-corner.top-right {
-  top: 12px;
-  right: 12px;
-  transform: scaleX(-1);
-}
-
-.royal-corner.bottom-left {
-  bottom: 12px;
-  left: 12px;
-  transform: scaleY(-1);
-}
-
-.royal-corner.bottom-right {
-  bottom: 12px;
-  right: 12px;
-  transform: scale(-1);
-}
-
-/* Royal Symmetrical Crest Divider */
+/* Royal Symmetrical Crest Divider (Dùng cho cả 3 phong cách) */
 .royal-divider-wrap {
   display: flex;
   align-items: center;
@@ -1210,7 +1149,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   bottom: 24px;
   right: 24px;
   z-index: 9999;
-  width: min(340px, calc(100vw - 32px));
+  width: min(350px, calc(100vw - 32px));
   background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(16px);
   border: 1.5px solid var(--gold);
@@ -1320,34 +1259,13 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   border-top: 1px dashed rgba(197, 155, 39, 0.25);
 }
 
-/* Responsive adjustments */
-@media (max-width: 1280px) {
-  .royal-hero-wing {
-    width: 90px;
-  }
-}
-
-@media (max-width: 900px) {
-  .royal-hero-wing {
-    width: 50px;
-    opacity: 0.4;
-  }
-  .royal-corner {
-    width: 50px;
-    height: 50px;
-    opacity: 0.45;
-  }
-}
-
 @media (max-width: 600px) {
-  .royal-hero-wings-container {
-    display: none; /* Tắt hẳn cánh hoa văn trên mobile để màn hình hoàn toàn thông thoáng */
-  }
   .royal-switcher-panel {
     bottom: 12px;
     right: 12px;
     width: calc(100vw - 24px);
   }
 }
+
 
 

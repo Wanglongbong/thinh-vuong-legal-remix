@@ -32,7 +32,7 @@ import {
 import { contracts, legalSources, services, team, teamMembers } from '@/lib/site-data';
 import { safeStorage } from '@/lib/storage';
 import { compressImageFile } from '@/lib/image-utils';
-import { RoyalCornerDecor, RoyalDivider, RoyalHeroWings } from '@/components/royal-flank-decor';
+import { GrandImperialSeal, RoyalDivider } from '@/components/royal-flank-decor';
 
 export function HomePage() {
   const [activeTab, setActiveTab] = useState<'all' | 'minimum' | 'advanced'>('all');
@@ -166,10 +166,9 @@ export function HomePage() {
   return (
     <main>
       {/* 1. HERO SECTION - PURE WHITE & WARM IMPERIAL GOLD WITH LADY JUSTICE */}
-      <section className="home-hero relative">
+      <section className="home-hero relative overflow-hidden">
         <div className="hero-overlay" />
-        <RoyalCornerDecor />
-        <RoyalHeroWings />
+        <GrandImperialSeal />
 
         {/* TƯỢNG NỮ THẦN CÔNG LÝ NỬA THÂN TRÊN PHÓNG TO CỰC ĐẠI (NÉT VIỀN VÀNG DỊU NHẸ) */}
         <div className="themis-grand-backdrop" aria-hidden="true">
@@ -947,7 +946,6 @@ export function HomePage() {
 
       {/* 8. FINAL CTA */}
       <section className="cta-section relative overflow-hidden">
-        <RoyalCornerDecor />
         <div className="site-shell cta-inner relative z-10">
           <div>
             <span className="eyebrow">Khởi đầu vững chắc từ mô hình</span>
