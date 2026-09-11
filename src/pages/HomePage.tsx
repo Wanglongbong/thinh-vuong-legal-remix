@@ -32,6 +32,7 @@ import {
 import { contracts, legalSources, services, team, teamMembers } from '@/lib/site-data';
 import { safeStorage } from '@/lib/storage';
 import { compressImageFile } from '@/lib/image-utils';
+import { RoyalCornerDecor, RoyalDivider } from '@/components/royal-flank-decor';
 
 export function HomePage() {
   const [activeTab, setActiveTab] = useState<'all' | 'minimum' | 'advanced'>('all');
@@ -165,8 +166,9 @@ export function HomePage() {
   return (
     <main>
       {/* 1. HERO SECTION - PURE WHITE & WARM IMPERIAL GOLD WITH LADY JUSTICE */}
-      <section className="home-hero">
+      <section className="home-hero relative">
         <div className="hero-overlay" />
+        <RoyalCornerDecor />
 
         {/* TƯỢNG NỮ THẦN CÔNG LÝ NỬA THÂN TRÊN PHÓNG TO CỰC ĐẠI (NÉT VIỀN VÀNG DỊU NHẸ) */}
         <div className="themis-grand-backdrop" aria-hidden="true">
@@ -291,6 +293,8 @@ export function HomePage() {
               trước là đầu vào kỹ thuật và vận hành cho giai đoạn tiếp theo.
             </p>
           </div>
+
+          <RoyalDivider className="my-8" />
 
           <div className="bento-pillar-grid">
             {services.map((service, index) => {
@@ -941,8 +945,9 @@ export function HomePage() {
       </section>
 
       {/* 8. FINAL CTA */}
-      <section className="cta-section">
-        <div className="site-shell cta-inner">
+      <section className="cta-section relative overflow-hidden">
+        <RoyalCornerDecor />
+        <div className="site-shell cta-inner relative z-10">
           <div>
             <span className="eyebrow">Khởi đầu vững chắc từ mô hình</span>
             <h2>Biến yêu cầu pháp luật thành lộ trình có thể thực hiện.</h2>
