@@ -1065,77 +1065,58 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 }
 
 /* ==========================================================================
-   ROYAL IMPERIAL BACKGROUND & 3-CONCEPT SEAMLESS CANVAS SYSTEM
+   LEGAL CERTIFICATE CORNER FILIGREE SYSTEM (KHUNG HOA VĂN GÓC CHỨNG CHỈ)
+   Lấy cảm hứng từ Giấy chứng nhận Khoa Luật - Học viện Ngân hàng
    ========================================================================== */
 
-/* PHONG CÁCH 1 & 2 & 3: ĐẶT TRỰC TIẾP TRONG HERO SECTION (Z-INDEX 1) */
-.royal-hero-decor-container {
+.certificate-corner-container {
   position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: 1;
   overflow: hidden;
-  transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.hero-damask-wrap,
-.hero-guilloche-wrap {
+.certificate-corner-item {
   position: absolute;
-  inset: 0;
+  width: 120px;
+  height: 120px;
   pointer-events: none;
-  width: 100%;
-  height: 100%;
+  opacity: 0.85;
+  filter: drop-shadow(0 2px 8px rgba(197, 155, 39, 0.22));
+  transition: opacity 0.3s ease;
 }
 
-/* Hai dải sườn đối xứng hoàn hảo 2 bên mép Hero */
-.hero-flank-decor {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 175px;
-  height: 640px;
-  max-height: 96%;
-  pointer-events: none;
-  filter: drop-shadow(0 4px 18px rgba(197, 155, 39, 0.28));
-  transition: all 0.3s ease;
+.certificate-corner-item.top-left {
+  top: 18px;
+  left: 22px;
 }
 
-.hero-flank-decor.left {
-  left: 0;
+.certificate-corner-item.top-right {
+  top: 18px;
+  right: 22px;
+  transform: scaleX(-1);
 }
 
-.hero-flank-decor.right {
-  right: 0;
-  transform: translateY(-50%) scaleX(-1);
+.certificate-corner-item.bottom-left {
+  bottom: 18px;
+  left: 22px;
+  transform: scaleY(-1);
 }
 
-.hero-flank-svg {
+.certificate-corner-item.bottom-right {
+  bottom: 18px;
+  right: 22px;
+  transform: scale(-1, -1);
+}
+
+.certificate-corner-svg {
   width: 100%;
   height: 100%;
   display: block;
 }
 
-/* Phong cách 3: Con dấu hoàng gia lớn ở tâm Hero */
-.hero-seal-center-wrap {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  filter: drop-shadow(0 0 35px rgba(197, 155, 39, 0.32));
-  max-width: 90vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.grand-seal-svg {
-  width: min(640px, 85vw);
-  height: auto;
-  display: block;
-}
-
-/* Royal Symmetrical Crest Divider (Dùng cho cả 3 phong cách) */
+/* Royal Symmetrical Crest Divider (Dùng cho các phân đoạn trong trang) */
 .royal-divider-wrap {
   display: flex;
   align-items: center;
@@ -1165,156 +1146,27 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   filter: drop-shadow(0 2px 6px rgba(197, 155, 39, 0.28));
 }
 
-/* ==========================================================================
-   FLOATING THEME SWITCHER WIDGET
-   ========================================================================== */
-
-.royal-switcher-panel {
-  position: fixed;
-  bottom: 82px; /* Tọa lạc ngay phía trên nút Trợ lý AI ở góc phải */
-  right: 22px;
-  z-index: 9999;
-  width: min(350px, calc(100vw - 32px));
-  background: rgba(255, 255, 255, 0.96);
-  backdrop-filter: blur(16px);
-  border: 1.5px solid var(--gold);
-  border-radius: 12px;
-  box-shadow: 0 16px 45px rgba(10, 19, 30, 0.16), 0 0 20px rgba(197, 155, 39, 0.2);
-  overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  font-family: var(--body);
-}
-
-.royal-switcher-panel.minimized {
-  width: fit-content;
-  border-radius: 100px;
-  padding: 4px;
-}
-
-.royal-switcher-panel .switcher-header {
-  padding: 10px 14px;
-  background: linear-gradient(135deg, #FCF8ED 0%, #F5ECDA 100%);
-  border-bottom: 1px solid rgba(197, 155, 39, 0.3);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-  user-select: none;
-}
-
-.royal-switcher-panel.minimized .switcher-header {
-  border-bottom: 0;
-  background: transparent;
-  padding: 6px 14px;
-}
-
-.switcher-badge {
-  font-size: 0.64rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  background: var(--gold);
-  color: #2A1F04;
-  padding: 2px 7px;
-  border-radius: 100px;
-}
-
-.switcher-body {
-  padding: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.switcher-options {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.switcher-btn {
-  width: 100%;
-  text-align: left;
-  padding: 10px 12px;
-  border-radius: 8px;
-  border: 1px solid rgba(197, 155, 39, 0.25);
-  background: #FFFDF9;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.switcher-btn:hover {
-  background: #FAF3DE;
-  border-color: var(--gold);
-  transform: translateX(2px);
-}
-
-.switcher-btn.active {
-  background: linear-gradient(135deg, #FFFDF7 0%, #FAF1D7 100%);
-  border: 1.5px solid var(--gold);
-  box-shadow: 0 4px 14px rgba(197, 155, 39, 0.22);
-}
-
-.switcher-btn-head {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: #0A131E;
-}
-
-.switcher-btn-head strong {
-  font-size: 0.82rem;
-  font-weight: 750;
-  color: #684F0E;
-}
-
-.switcher-btn p {
-  margin: 3px 0 0 24px;
-  font-size: 0.72rem;
-  color: #5F6E7C;
-  line-height: 1.35;
-}
-
-.switcher-slider-box {
-  background: rgba(250, 243, 222, 0.75);
-  border: 1px solid rgba(197, 155, 39, 0.35);
-  border-radius: 8px;
-  padding: 8px 10px;
-  margin-top: 4px;
-}
-
-.switcher-note {
-  font-size: 0.68rem;
-  color: #8C6B18;
-  font-weight: 600;
-  text-align: center;
-  padding: 6px 4px 2px;
-  border-top: 1px dashed rgba(197, 155, 39, 0.25);
-}
-
-.royal-opacity-range {
-  width: 100%;
-  height: 6px;
-  border-radius: 3px;
-  background: #E8D8A7;
-  outline: none;
-  accent-color: var(--gold, #C59B27);
-  cursor: pointer;
-}
-
 @media (max-width: 768px) {
-  .hero-flank-decor {
-    width: 110px;
-    height: 520px;
-    opacity: 0.65;
+  .certificate-corner-item {
+    width: 64px;
+    height: 64px;
+    opacity: 0.7;
   }
-}
-
-@media (max-width: 600px) {
-  .royal-switcher-panel {
-    bottom: 74px;
+  .certificate-corner-item.top-left {
+    top: 10px;
+    left: 12px;
+  }
+  .certificate-corner-item.top-right {
+    top: 10px;
     right: 12px;
-    width: calc(100vw - 24px);
+  }
+  .certificate-corner-item.bottom-left {
+    bottom: 10px;
+    left: 12px;
+  }
+  .certificate-corner-item.bottom-right {
+    bottom: 10px;
+    right: 12px;
   }
 }
 
