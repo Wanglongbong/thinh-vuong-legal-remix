@@ -10,6 +10,7 @@ import {
 import { contracts, getContract, getService } from '@/lib/site-data';
 import { contractReportContent } from '@/lib/contract-report-content';
 import { ContractReport } from '@/components/contract-report';
+import { TvpayDocumentPresentation } from '@/components/tvpay-document-presentation';
 
 export function ContractDetailPage() {
   const { params } = useRouter();
@@ -136,6 +137,7 @@ export function ContractDetailPage() {
                 áp dụng thực tế.
               </p>
             </section>
+            <TvpayDocumentPresentation slug={item.slug} />
             {report && <ContractReport content={report} />}
           </article>
           <aside className="detail-sidebar">
