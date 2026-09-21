@@ -88,10 +88,10 @@ class UiSoundManager {
    */
   playExpand() {
     if (!this.enabled) return;
-    const ctx = this.initContext();
-    if (!ctx) return;
-
     try {
+      const ctx = this.initContext();
+      if (!ctx) return;
+
       const now = ctx.currentTime;
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
@@ -114,18 +114,25 @@ class UiSoundManager {
   }
 
   /**
+   * Alias for playExpand specifically used when opening legal provisions
+   */
+  playOpenProvision() {
+    this.playExpand();
+  }
+
+  /**
    * Play subtle typewriter tick during AI streaming text (ultra light)
    */
   playStreamingTick() {
     if (!this.enabled) return;
-    const nowMs = performance.now();
-    if (nowMs - this.lastPlayTime < 50) return;
-    this.lastPlayTime = nowMs;
-
-    const ctx = this.initContext();
-    if (!ctx) return;
-
     try {
+      const nowMs = performance.now();
+      if (nowMs - this.lastPlayTime < 50) return;
+      this.lastPlayTime = nowMs;
+
+      const ctx = this.initContext();
+      if (!ctx) return;
+
       const now = ctx.currentTime;
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
@@ -164,9 +171,11 @@ class UiSoundManager {
     return this.enabled;
   }
 
-  subscribe(cb: (enabled: boolean) => void) {
+  subscribe(cb: (enabled: boolean) => void): () => void {
     this.listeners.add(cb);
-    return () => this.listeners.delete(cb);
+    return () => {
+      this.listeners.delete(cb);
+    };
   }
 
   initGlobalListeners() {

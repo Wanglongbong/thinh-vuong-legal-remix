@@ -106,11 +106,15 @@ export function TvpayDocumentPresentation({ slug }: TvpayDocumentPresentationPro
   const [filterTier, setFilterTier] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [soundActive, setSoundActive] = useState(() => uiSound.isEnabled());
+  const [streamEnabled, setStreamEnabled] = useState<boolean>(true);
   const [highlightedArticleId, setHighlightedArticleId] = useState<string | null>(null);
 
-  // Subscribe to sound state
+  // Subscribe to sound state with void cleanup destructor
   useEffect(() => {
-    return uiSound.subscribe((enabled) => setSoundActive(enabled));
+    const unsub = uiSound.subscribe((enabled) => setSoundActive(enabled));
+    return () => {
+      unsub();
+    };
   }, []);
 
   if (!docData) {
@@ -125,27 +129,35 @@ export function TvpayDocumentPresentation({ slug }: TvpayDocumentPresentationPro
 
   // Toggle chapter
   const toggleChapter = (chapterId: string) => {
-    uiSound.playClick();
+    try {
+      uiSound.playClick();
+    } catch {}
     setExpandedChapters((prev) => ({
       ...prev,
       [chapterId]: !prev[chapterId],
     }));
   };
 
-  // Toggle single provision
+  // Toggle single provision directly underneath in-place
   const toggleArticle = (articleId: string) => {
-    setOpenedArticles((prev) => {
-      const willOpen = !prev[articleId];
-      if (willOpen) {
-        uiSound.playOpenProvision();
-      } else {
-        uiSound.playClick();
-      }
-      return {
-        ...prev,
-        [articleId]: willOpen,
-      };
-    });
+    try {
+      setOpenedArticles((prev) => {
+        const willOpen = !prev[articleId];
+        try {
+          if (willOpen) {
+            uiSound.playOpenProvision();
+          } else {
+            uiSound.playClick();
+          }
+        } catch {}
+        return {
+          ...prev,
+          [articleId]: willOpen,
+        };
+      });
+    } catch (err) {
+      console.error('Error toggling provision:', err);
+    }
   };
 
   const expandAllChapters = () => {
@@ -264,6 +276,26 @@ export function TvpayDocumentPresentation({ slug }: TvpayDocumentPresentationPro
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             )}
+
+            {/* AI Streaming Toggle Button */}
+            <button
+              type="button"
+              onClick={() => {
+                try {
+                  uiSound.playClick();
+                } catch {}
+                setStreamEnabled(!streamEnabled);
+              }}
+              className={`text-xs font-semibold px-3 py-1.5 rounded-lg border transition flex items-center gap-1.5 ${
+                streamEnabled
+                  ? 'bg-amber-50 text-[#8C6B18] border-[rgba(197,155,39,0.4)] shadow-xs'
+                  : 'bg-white text-slate-600 border-slate-200'
+              }`}
+              title="Bật/Tắt hiệu ứng chữ tuôn dần AI khi mở điều khoản"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-amber-500" />
+              <span>Gõ chữ AI: {streamEnabled ? 'Bật' : 'Tắt (Hiện ngay)'}</span>
+            </button>
 
             {/* Sound Toggle Button */}
             <button
@@ -497,9 +529,9 @@ export function TvpayDocumentPresentation({ slug }: TvpayDocumentPresentationPro
                                   <div className="tvpay-provision-detail p-3.5 bg-[#FCFBF8] border-t border-amber-200/50 rounded-b-xl">
                                     <StreamingLegalText
                                       text={art.content}
-                                      autoStart={true}
-                                      speedMs={24}
-                                      wordsPerStep={3}
+                                      autoStart={streamEnabled}
+                                      speedMs={18}
+                                      wordsPerStep={6}
                                     />
                                   </div>
                                 )}
