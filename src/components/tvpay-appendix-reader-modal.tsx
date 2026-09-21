@@ -103,32 +103,32 @@ export function TvpayAppendixReaderModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-slate-950/75 backdrop-blur-sm animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-slate-900/40 backdrop-blur-xs animate-in fade-in duration-200"
       role="dialog"
       aria-modal="true"
       aria-labelledby="appendix-modal-title"
     >
-      <div className="relative w-full max-w-5xl h-[92vh] max-h-[900px] flex flex-col bg-[#FAF9F5] text-slate-900 rounded-2xl shadow-2xl border border-amber-900/20 overflow-hidden">
+      <div className="relative w-full max-w-5xl h-[92vh] max-h-[900px] flex flex-col bg-[#FAF9F5] text-slate-900 rounded-2xl shadow-2xl border-2 border-amber-300/80 overflow-hidden">
         {/* =========================================================================
             HEADER BAR
             ========================================================================= */}
-        <div className="p-4 sm:px-6 bg-gradient-to-r from-[#0A131E] via-[#121E2C] to-[#0A131E] text-white flex items-center justify-between gap-3 border-b border-amber-500/30">
+        <div className="p-4 sm:px-6 bg-gradient-to-r from-[#FFFDF8] via-[#FAF5E8] to-[#FFFDF8] text-slate-900 flex items-center justify-between gap-3 border-b border-amber-300/80 shadow-xs">
           <div className="flex items-center gap-3 min-w-0">
-            <span className="p-2 rounded-xl bg-amber-500/20 border border-amber-400/40 text-amber-300 shrink-0">
+            <span className="p-2 rounded-xl bg-amber-100/90 border border-amber-300/80 text-[#8C6B18] shrink-0 shadow-xs">
               <BookOpen className="w-5 h-5" />
             </span>
             <div className="min-w-0">
               <div className="flex items-center gap-2">
-                <span className="text-[10px] uppercase font-bold tracking-wider text-amber-300 font-mono bg-amber-500/20 px-2 py-0.5 rounded">
+                <span className="text-[10px] uppercase font-bold tracking-wider text-[#7A5B10] font-mono bg-amber-100/90 border border-amber-300/80 px-2 py-0.5 rounded">
                   HỒ SƠ PHÁP LÝ NHÓM 13 · KHOA LUẬT HVNH
                 </span>
-                <span className="text-[11px] text-slate-300 hidden sm:inline-block">
+                <span className="text-[11px] text-slate-500 hidden sm:inline-block">
                   · {documentData.officialTitle}
                 </span>
               </div>
               <h2
                 id="appendix-modal-title"
-                className="font-serif text-sm sm:text-base font-bold text-white truncate m-0 mt-0.5"
+                className="font-serif text-sm sm:text-base font-bold text-slate-900 truncate m-0 mt-0.5"
               >
                 Toàn Văn Nội Dung, Vai Trò &amp; Giải Pháp Bảo Vệ Quyền Lợi Hợp Pháp DN
               </h2>
@@ -140,10 +140,10 @@ export function TvpayAppendixReaderModal({
             <button
               type="button"
               onClick={handleAskAI}
-              className="hidden md:flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold bg-[#0c665f] hover:bg-[#0e7c74] text-white rounded-lg border border-emerald-400/30 transition cursor-pointer shadow-sm"
+              className="hidden md:flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold bg-[#0c665f] hover:bg-[#0e7c74] text-white rounded-lg border border-emerald-400/40 transition cursor-pointer shadow-sm"
               title="Đưa nội dung phụ lục này vào AI Copilot"
             >
-              <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+              <Sparkles className="w-3.5 h-3.5 text-amber-200" />
               <span>Hỏi AI Copilot</span>
             </button>
 
@@ -151,17 +151,17 @@ export function TvpayAppendixReaderModal({
             <button
               type="button"
               onClick={handleCopyContent}
-              className="px-2.5 py-1.5 text-xs font-semibold bg-slate-800/80 hover:bg-slate-700 text-slate-200 rounded-lg border border-slate-700 transition flex items-center gap-1.5 cursor-pointer"
+              className="px-2.5 py-1.5 text-xs font-semibold bg-white hover:bg-amber-50 text-slate-700 rounded-lg border border-amber-200 transition flex items-center gap-1.5 cursor-pointer shadow-xs"
               title="Sao chép toàn văn phụ lục"
             >
               {copied ? (
                 <>
-                  <Check className="w-3.5 h-3.5 text-emerald-400" />
+                  <Check className="w-3.5 h-3.5 text-emerald-600" />
                   <span className="hidden sm:inline">Đã sao chép</span>
                 </>
               ) : (
                 <>
-                  <Copy className="w-3.5 h-3.5" />
+                  <Copy className="w-3.5 h-3.5 text-slate-600" />
                   <span className="hidden sm:inline">Sao chép</span>
                 </>
               )}
@@ -171,7 +171,7 @@ export function TvpayAppendixReaderModal({
             <button
               type="button"
               onClick={() => window.print()}
-              className="p-1.5 text-slate-300 hover:text-white rounded-lg hover:bg-slate-800 transition cursor-pointer"
+              className="p-1.5 text-slate-600 hover:text-slate-900 rounded-lg hover:bg-amber-100/60 border border-amber-200 bg-white transition cursor-pointer shadow-xs"
               title="In văn bản"
             >
               <Printer className="w-4 h-4" />
@@ -184,7 +184,7 @@ export function TvpayAppendixReaderModal({
                 uiSound.playClick();
                 onClose();
               }}
-              className="p-1.5 text-slate-400 hover:text-white rounded-lg hover:bg-red-500/20 hover:text-red-300 transition cursor-pointer ml-1"
+              className="p-1.5 text-slate-500 hover:text-slate-900 rounded-lg hover:bg-red-50 hover:text-red-600 transition cursor-pointer ml-1"
               aria-label="Đóng cửa sổ"
             >
               <X className="w-5 h-5" />
@@ -195,8 +195,8 @@ export function TvpayAppendixReaderModal({
         {/* =========================================================================
             APPENDIX TABS NAVIGATION
             ========================================================================= */}
-        <div className="bg-[#121e2c] px-4 py-2 flex items-center gap-2 overflow-x-auto border-b border-amber-900/20 text-xs shrink-0 scrollbar-none">
-          <span className="text-[11px] font-bold text-amber-400 uppercase tracking-wider shrink-0 mr-1 flex items-center gap-1">
+        <div className="bg-[#F8F4EA] px-4 py-2 flex items-center gap-2 overflow-x-auto border-b border-amber-200/80 text-xs shrink-0 scrollbar-none">
+          <span className="text-[11px] font-bold text-[#8C6B18] uppercase tracking-wider shrink-0 mr-1 flex items-center gap-1">
             <Scale className="w-3.5 h-3.5" />
             Phụ Lục:
           </span>
@@ -212,11 +212,15 @@ export function TvpayAppendixReaderModal({
                 }}
                 className={`px-3 py-1.5 rounded-lg font-bold text-xs whitespace-nowrap transition-all cursor-pointer flex items-center gap-1.5 shrink-0 ${
                   isSelected
-                    ? 'bg-amber-400 text-slate-950 shadow-md font-extrabold'
-                    : 'bg-slate-800/80 text-slate-300 hover:text-white hover:bg-slate-700'
+                    ? 'bg-[#C59B27] text-white shadow-md font-extrabold border border-amber-500'
+                    : 'bg-white/80 text-slate-700 hover:text-slate-950 hover:bg-white border border-amber-200/60'
                 }`}
               >
-                <span className="text-[10px] font-mono px-1 py-0.2 rounded bg-black/20">
+                <span
+                  className={`text-[10px] font-mono px-1 py-0.2 rounded ${
+                    isSelected ? 'bg-amber-900/25 text-white' : 'bg-amber-100/80 text-[#7A5B10]'
+                  }`}
+                >
                   {app.number}
                 </span>
                 <span className="truncate max-w-[200px] sm:max-w-[260px]">{app.title}</span>
@@ -453,18 +457,18 @@ export function TvpayAppendixReaderModal({
         {/* =========================================================================
             MODAL FOOTER
             ========================================================================= */}
-        <div className="p-3.5 sm:px-6 bg-white border-t border-slate-200 flex items-center justify-between gap-3 text-xs shrink-0">
+        <div className="p-3.5 sm:px-6 bg-[#FAF6ED] border-t border-amber-200/80 flex items-center justify-between gap-3 text-xs shrink-0">
           <div className="text-slate-500 italic hidden sm:block">
-            Nhấn <kbd className="px-1.5 py-0.5 bg-slate-100 border border-slate-300 rounded font-mono text-[10px]">Esc</kbd> để đóng cửa sổ
+            Nhấn <kbd className="px-1.5 py-0.5 bg-white border border-amber-200 rounded font-mono text-[10px] text-slate-700">Esc</kbd> để đóng cửa sổ
           </div>
 
           <div className="flex items-center gap-2 ml-auto">
             <button
               type="button"
               onClick={handleAskAI}
-              className="px-3.5 py-2 text-xs font-bold bg-gradient-to-r from-[#071b2e] to-[#0c665f] text-white hover:opacity-95 rounded-lg transition flex items-center gap-1.5 cursor-pointer shadow-sm"
+              className="px-3.5 py-2 text-xs font-bold bg-[#0c665f] hover:bg-[#0e7c74] text-white rounded-lg border border-emerald-400/40 transition flex items-center gap-1.5 cursor-pointer shadow-sm"
             >
-              <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+              <Sparkles className="w-3.5 h-3.5 text-amber-200" />
               <span>Hỏi AI về phụ lục này</span>
             </button>
 
@@ -474,7 +478,7 @@ export function TvpayAppendixReaderModal({
                 uiSound.playClick();
                 onClose();
               }}
-              className="px-4 py-2 text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-300 rounded-lg transition cursor-pointer"
+              className="px-4 py-2 text-xs font-bold bg-white hover:bg-amber-50 text-slate-800 border border-amber-300 rounded-lg transition cursor-pointer shadow-xs"
             >
               Đóng
             </button>

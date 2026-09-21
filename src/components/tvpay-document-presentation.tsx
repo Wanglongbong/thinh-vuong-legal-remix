@@ -608,27 +608,27 @@ export function TvpayDocumentPresentation({ slug }: TvpayDocumentPresentationPro
         <div className="lg:col-span-5">
           <div className="tvpay-right-sticky-dock sticky top-24 space-y-4">
             {/* Dock Main Header */}
-            <div className="tvpay-dock-header p-5 bg-gradient-to-br from-[#0A131E] to-[#162333] text-white rounded-2xl shadow-lg border border-slate-700/60">
-              <div className="flex items-center justify-between gap-2 pb-3 border-b border-slate-700/80">
+            <div className="tvpay-dock-header p-5 bg-gradient-to-br from-[#FFFDF8] via-[#FAF5E8] to-[#F6ECDA] text-slate-900 rounded-2xl shadow-[0_10px_30px_rgba(197,155,39,0.12)] border-2 border-amber-300/80">
+              <div className="flex items-center justify-between gap-2 pb-3 border-b border-amber-200/80">
                 <div className="flex items-center gap-2">
-                  <span className="p-1.5 rounded-lg bg-[#C59B27]/20 text-[#E6C86E]">
+                  <span className="p-1.5 rounded-lg bg-amber-100/90 text-[#8C6B18] border border-amber-300/80 shadow-xs">
                     <ShieldCheck className="w-4 h-4" />
                   </span>
                   <div>
-                    <span className="text-[10px] uppercase font-bold tracking-widest text-[#E6C86E] block">
+                    <span className="text-[10px] uppercase font-bold tracking-widest text-[#8C6B18] block">
                       Khoa Luật · HVNH
                     </span>
-                    <h3 className="text-sm font-bold text-white m-0">
+                    <h3 className="text-sm font-bold text-slate-900 m-0">
                       Tư Vấn Chiến Lược &amp; Phòng Vệ DN
                     </h3>
                   </div>
                 </div>
-                <span className="text-[10px] font-mono px-2 py-0.5 bg-slate-800 text-amber-300 border border-slate-700 rounded">
+                <span className="text-[10px] font-mono px-2 py-0.5 bg-white text-[#7A5B10] border border-amber-300/80 rounded-full font-bold shadow-xs">
                   TVPAY FINTECH
                 </span>
               </div>
 
-              <p className="text-xs text-slate-300 leading-relaxed mt-3 mb-0">
+              <p className="text-xs text-slate-700 leading-relaxed mt-3 mb-0">
                 Phân tích chuyên sâu 2 nội dung nhóm trưởng yêu cầu: Vai trò chiến lược đối với
                 cấp phép NHNN và ma trận giải pháp bảo vệ quyền lợi hợp pháp của doanh nghiệp.
               </p>
@@ -643,15 +643,15 @@ export function TvpayDocumentPresentation({ slug }: TvpayDocumentPresentationPro
                       : (slug === 'dieu-le-cong-ty-co-phan' ? 'phu-luc-2' : 'phu-luc-5')
                   )
                 }
-                className="w-full mt-3 py-2.5 px-3 bg-gradient-to-r from-amber-500/25 via-amber-400/35 to-amber-500/25 hover:from-amber-500/40 hover:to-amber-400/50 border border-amber-400/60 rounded-xl text-amber-200 text-xs font-bold flex items-center justify-center gap-2 transition cursor-pointer shadow-md group"
+                className="w-full mt-3 py-2.5 px-3 bg-gradient-to-r from-[#D4AF37] via-[#C59B27] to-[#A87B15] hover:brightness-105 border border-amber-300/80 rounded-xl text-white text-xs font-bold flex items-center justify-center gap-2 transition cursor-pointer shadow-md group"
               >
-                <BookOpen className="w-4 h-4 text-amber-300 group-hover:scale-110 transition-transform" />
+                <BookOpen className="w-4 h-4 text-amber-100 group-hover:scale-110 transition-transform" />
                 <span>Đọc Toàn Văn Nội Dung, Vai Trò &amp; Giải Pháp (Phụ lục)</span>
-                <ExternalLink className="w-3.5 h-3.5 text-amber-400 opacity-90" />
+                <ExternalLink className="w-3.5 h-3.5 text-amber-200 opacity-90" />
               </button>
 
               {/* Sub-tabs switcher */}
-              <div className="grid grid-cols-3 gap-1.5 mt-4 p-1 bg-slate-900/80 rounded-xl">
+              <div className="grid grid-cols-3 gap-1.5 mt-4 p-1 bg-amber-100/60 border border-amber-200/80 rounded-xl">
                 <button
                   type="button"
                   onClick={() => {
@@ -660,8 +660,8 @@ export function TvpayDocumentPresentation({ slug }: TvpayDocumentPresentationPro
                   }}
                   className={`text-[11px] font-bold py-1.5 px-2 rounded-lg transition flex items-center justify-center gap-1 ${
                     rightDockTab === 'roles'
-                      ? 'bg-[#C59B27] text-slate-950 shadow'
-                      : 'text-slate-300 hover:text-white'
+                      ? 'bg-[#C59B27] text-white shadow-sm'
+                      : 'text-[#7A5B10] hover:text-[#4A380A] hover:bg-white/60'
                   }`}
                 >
                   <Landmark className="w-3 h-3" />
@@ -676,8 +676,8 @@ export function TvpayDocumentPresentation({ slug }: TvpayDocumentPresentationPro
                   }}
                   className={`text-[11px] font-bold py-1.5 px-2 rounded-lg transition flex items-center justify-center gap-1 ${
                     rightDockTab === 'protection'
-                      ? 'bg-emerald-600 text-white shadow'
-                      : 'text-slate-300 hover:text-white'
+                      ? 'bg-[#0C665F] text-white shadow-sm'
+                      : 'text-[#0C665F] hover:text-[#063b37] hover:bg-white/60'
                   }`}
                 >
                   <Shield className="w-3 h-3" />
@@ -692,8 +692,8 @@ export function TvpayDocumentPresentation({ slug }: TvpayDocumentPresentationPro
                   }}
                   className={`text-[11px] font-bold py-1.5 px-2 rounded-lg transition flex items-center justify-center gap-1 ${
                     rightDockTab === 'brief'
-                      ? 'bg-blue-600 text-white shadow'
-                      : 'text-slate-300 hover:text-white'
+                      ? 'bg-[#1E40AF] text-white shadow-sm'
+                      : 'text-blue-900 hover:text-blue-950 hover:bg-white/60'
                   }`}
                 >
                   <FileText className="w-3 h-3" />
@@ -798,8 +798,8 @@ export function TvpayDocumentPresentation({ slug }: TvpayDocumentPresentationPro
                         }}
                         className={`text-[10px] px-2.5 py-1 rounded-full border transition font-semibold ${
                           filterTier === tier
-                            ? 'bg-[#0A131E] text-white border-[#0A131E]'
-                            : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
+                            ? 'bg-[#0C665F] text-white border-[#0C665F] shadow-xs'
+                            : 'bg-white text-slate-700 border-amber-200/80 hover:bg-amber-50/60'
                         }`}
                       >
                         {tier === 'all' ? 'Tất cả lá chắn' : tier}

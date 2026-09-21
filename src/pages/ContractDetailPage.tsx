@@ -96,7 +96,7 @@ export function ContractDetailPage() {
               <div className="flex items-center gap-2">
                 <a
                   href="#workbench-section"
-                  className="text-xs font-bold px-3.5 py-1.5 rounded-xl bg-[#0A131E] text-white shadow hover:bg-slate-800 transition flex items-center gap-1.5"
+                  className="text-xs font-bold px-3.5 py-1.5 rounded-xl bg-[#C59B27] hover:bg-[#8C6B18] text-white shadow-sm border border-amber-400/80 transition flex items-center gap-1.5"
                 >
                   📜 1. Hợp đồng 2 Cột
                 </a>
