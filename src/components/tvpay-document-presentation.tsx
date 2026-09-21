@@ -34,6 +34,7 @@ import {
 import { StreamingLegalText } from '@/components/streaming-legal-text';
 import { uiSound } from '@/lib/ui-sound';
 import { Link } from '@/router';
+import { TvpayAppendixReaderModal } from '@/components/tvpay-appendix-reader-modal';
 
 interface TvpayDocumentPresentationProps {
   slug: string;
@@ -108,6 +109,24 @@ export function TvpayDocumentPresentation({ slug }: TvpayDocumentPresentationPro
   const [soundActive, setSoundActive] = useState(() => uiSound.isEnabled());
   const [streamEnabled, setStreamEnabled] = useState<boolean>(true);
   const [highlightedArticleId, setHighlightedArticleId] = useState<string | null>(null);
+  const [appendixModalOpen, setAppendixModalOpen] = useState(false);
+  const [activeAppendixId, setActiveAppendixId] = useState<string | null>(null);
+
+  const openAppendixReader = (appendixId?: string) => {
+    try {
+      uiSound.playOpenProvision();
+    } catch {}
+    if (appendixId) {
+      setActiveAppendixId(appendixId);
+    } else {
+      const defaultId =
+        docData && docData.appendices && docData.appendices.length > 0
+          ? docData.appendices[0].id
+          : null;
+      setActiveAppendixId(defaultId);
+    }
+    setAppendixModalOpen(true);
+  };
 
   // Subscribe to sound state with void cleanup destructor
   useEffect(() => {
@@ -614,6 +633,23 @@ export function TvpayDocumentPresentation({ slug }: TvpayDocumentPresentationPro
                 cấp phép NHNN và ma trận giải pháp bảo vệ quyền lợi hợp pháp của doanh nghiệp.
               </p>
 
+              {/* Full Appendix Reader Button */}
+              <button
+                type="button"
+                onClick={() =>
+                  openAppendixReader(
+                    rightDockTab === 'roles'
+                      ? (slug === 'dieu-le-cong-ty-co-phan' ? 'phu-luc-1' : 'phu-luc-4')
+                      : (slug === 'dieu-le-cong-ty-co-phan' ? 'phu-luc-2' : 'phu-luc-5')
+                  )
+                }
+                className="w-full mt-3 py-2.5 px-3 bg-gradient-to-r from-amber-500/25 via-amber-400/35 to-amber-500/25 hover:from-amber-500/40 hover:to-amber-400/50 border border-amber-400/60 rounded-xl text-amber-200 text-xs font-bold flex items-center justify-center gap-2 transition cursor-pointer shadow-md group"
+              >
+                <BookOpen className="w-4 h-4 text-amber-300 group-hover:scale-110 transition-transform" />
+                <span>Đọc Toàn Văn Nội Dung, Vai Trò &amp; Giải Pháp (Phụ lục)</span>
+                <ExternalLink className="w-3.5 h-3.5 text-amber-400 opacity-90" />
+              </button>
+
               {/* Sub-tabs switcher */}
               <div className="grid grid-cols-3 gap-1.5 mt-4 p-1 bg-slate-900/80 rounded-xl">
                 <button
@@ -704,19 +740,32 @@ export function TvpayDocumentPresentation({ slug }: TvpayDocumentPresentationPro
                     </p>
 
                     <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px]">
-                      <span className="text-[#8C6B18] font-medium">{role.citation}</span>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          openAppendixReader(
+                            role.appendixRef || (slug === 'dieu-le-cong-ty-co-phan' ? 'phu-luc-1' : 'phu-luc-4')
+                          )
+                        }
+                        className="text-[11px] font-bold text-[#8C6B18] hover:text-[#5F450B] flex items-center gap-1 hover:underline cursor-pointer"
+                        title="Đọc toàn văn phân tích vai trò trong Phụ lục"
+                      >
+                        <BookOpen className="w-3 h-3 text-[#C59B27]" />
+                        <span>Đọc toàn văn</span>
+                      </button>
+
                       <button
                         type="button"
                         onClick={() => {
-                          // Extract chapter/article number from citation
                           const match = role.citation.match(/Điều\s+(\d+|xx)/i);
                           const artNum = match ? match[0] : 'Điều 1';
                           jumpToArticle('Chương', artNum);
                         }}
-                        className="text-[11px] font-bold text-[#8C6B18] hover:text-[#5F450B] flex items-center gap-1 hover:underline"
+                        className="text-[11px] font-semibold text-slate-500 hover:text-slate-900 flex items-center gap-1 hover:underline cursor-pointer"
+                        title="Xem vị trí điều khoản trong văn bản gốc"
                       >
-                        <span>Mở điều khoản</span>
-                        <ArrowRight className="w-3 h-3" />
+                        <span>{role.citation}</span>
+                        <ArrowRight className="w-3 h-3 text-slate-400" />
                       </button>
                     </div>
                   </div>
@@ -802,21 +851,32 @@ export function TvpayDocumentPresentation({ slug }: TvpayDocumentPresentationPro
                     </div>
 
                     <div className="mt-2.5 pt-2 border-t border-slate-100 flex items-center justify-between text-[11px]">
-                      <span className="text-[#8C6B18] font-bold flex items-center gap-1">
-                        <Sparkles className="w-3 h-3" />
-                        {prot.articleRef}
-                      </span>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          openAppendixReader(
+                            prot.appendixRef || (slug === 'dieu-le-cong-ty-co-phan' ? 'phu-luc-2' : 'phu-luc-5')
+                          )
+                        }
+                        className="text-[11px] font-bold text-emerald-800 hover:text-emerald-950 flex items-center gap-1 hover:underline cursor-pointer"
+                        title="Đọc toàn văn luận cứ và giải pháp phòng vệ trong Phụ lục"
+                      >
+                        <Shield className="w-3 h-3 text-emerald-600" />
+                        <span>Đọc toàn văn</span>
+                      </button>
+
                       <button
                         type="button"
                         onClick={() => {
-                          const match = prot.articleRef.match(/Điều\s+(\d+|xx)/i);
+                          const match = prot.articleRef?.match(/Điều\s+(\d+|xx)/i) || prot.contractClause.match(/Điều\s+(\d+|xx)/i);
                           const artNum = match ? match[0] : 'Điều 4';
                           jumpToArticle('Chương', artNum);
                         }}
-                        className="text-[11px] font-bold text-emerald-700 hover:text-emerald-900 flex items-center gap-1 hover:underline"
+                        className="text-[11px] font-semibold text-slate-500 hover:text-slate-900 flex items-center gap-1 hover:underline cursor-pointer"
+                        title="Xem vị trí điều khoản trong hợp đồng"
                       >
-                        <span>Mở lá chắn</span>
-                        <ArrowRight className="w-3 h-3" />
+                        <span>{prot.articleRef || prot.contractClause}</span>
+                        <ArrowRight className="w-3 h-3 text-slate-400" />
                       </button>
                     </div>
                   </div>
@@ -889,6 +949,14 @@ export function TvpayDocumentPresentation({ slug }: TvpayDocumentPresentationPro
           </div>
         </div>
       </div>
+
+      {/* Full Appendix Reader Modal */}
+      <TvpayAppendixReaderModal
+        isOpen={appendixModalOpen}
+        onClose={() => setAppendixModalOpen(false)}
+        documentData={docData}
+        initialAppendixId={activeAppendixId}
+      />
     </div>
   );
 }

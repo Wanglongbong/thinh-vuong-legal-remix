@@ -50,30 +50,39 @@ export function SheetTrigger({
 export function SheetContent({
   className,
   children,
+  modal = true,
 }: {
   className?: string;
   children: React.ReactNode;
+  modal?: boolean;
 }) {
   const ctx = useContext(SheetContext);
 
   if (!ctx?.open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex justify-end">
+    <div
+      className={cn(
+        'fixed inset-0 z-50 flex justify-end',
+        !modal && 'pointer-events-none'
+      )}
+    >
       {/* Backdrop */}
-      <div
-        className="fixed inset-0 bg-black/40 backdrop-blur-xs transition-opacity duration-200"
-        onClick={() => ctx.setOpen(false)}
-        aria-hidden="true"
-      />
+      {modal && (
+        <div
+          className="fixed inset-0 bg-black/40 backdrop-blur-xs transition-opacity duration-200 pointer-events-auto"
+          onClick={() => ctx.setOpen(false)}
+          aria-hidden="true"
+        />
+      )}
       {/* Drawer Panel */}
       <div
         className={cn(
-          'relative z-50 flex flex-col shadow-2xl h-full transition-transform duration-300 ease-out',
+          'relative z-50 flex flex-col shadow-2xl h-full transition-transform duration-300 ease-out pointer-events-auto',
           className
         )}
         role="dialog"
-        aria-modal="true"
+        aria-modal={modal ? 'true' : 'false'}
       >
         <button
           type="button"

@@ -11,10 +11,12 @@ import {
   HelpCircle,
   Key,
   LoaderCircle,
+  Paperclip,
   Scale,
   Send,
   ShieldAlert,
   Sparkles,
+  X,
   Zap,
 } from 'lucide-react';
 import {
@@ -246,6 +248,12 @@ export function LegalAssistant({
   // Chat State
   const [input, setInput] = useState('');
   const [selectedText, setSelectedText] = useState('');
+  const [attachedQuote, setAttachedQuote] = useState<{
+    text: string;
+    wordCount: number;
+    label?: string;
+  } | null>(null);
+  const [previewQuote, setPreviewQuote] = useState<string | null>(null);
   const [messages, setMessages] = useState<Message[]>([]);
   const [pending, setPending] = useState(false);
   const inputRef = useRef<HTMLTextAreaElement>(null);
@@ -259,10 +267,18 @@ export function LegalAssistant({
   useEffect(() => {
     const ask = (event: Event) => {
       const text = (event as CustomEvent<string>).detail;
+      if (!text) return;
+      const words = text.trim().split(/\s+/).length;
       setSelectedText(text);
-      setActiveTab('reviewer');
-      setClauseInput(text);
+      setAttachedQuote({
+        text: text.trim(),
+        wordCount: words,
+        label: text.length > 50 ? `${text.trim().slice(0, 45)}...` : text.trim(),
+      });
       setOpen(true);
+      setTimeout(() => {
+        inputRef.current?.focus();
+      }, 150);
     };
     const handleOpen = () => setOpen(true);
 
@@ -274,14 +290,33 @@ export function LegalAssistant({
     };
   }, [isControlled]);
 
+  const handleChatPaste = (e: React.ClipboardEvent<HTMLTextAreaElement>) => {
+    const pasted = e.clipboardData.getData('text');
+    if (!pasted) return;
+    const words = pasted.trim().split(/\s+/).length;
+    // If long text (> 35 words or > 200 characters), collapse cleanly into attached badge
+    if (words > 35 || pasted.length > 200) {
+      e.preventDefault();
+      setAttachedQuote({
+        text: pasted.trim(),
+        wordCount: words,
+        label: `Văn bản dán (${words.toLocaleString()} từ)`,
+      });
+    }
+  };
+
   // Submit Chat Message
   async function submitChat(event: SyntheticEvent<HTMLFormElement>) {
     event.preventDefault();
     const message = input.trim();
     if (!message || pending) return;
 
+    const quoteToSend = attachedQuote?.text || selectedText || undefined;
+
     setMessages((old) => [...old, { role: 'user', text: message }]);
     setInput('');
+    setAttachedQuote(null);
+    setSelectedText('');
     setPending(true);
 
     try {
@@ -298,7 +333,7 @@ export function LegalAssistant({
         headers: reqHeaders,
         body: JSON.stringify({
           message,
-          selectedText: selectedText || undefined,
+          selectedText: quoteToSend,
         }),
       });
 
@@ -307,7 +342,6 @@ export function LegalAssistant({
         throw new Error(payload?.error || 'Trợ lý chưa thể trả lời lúc này.');
       }
 
-      setSelectedText('');
       const data = await response.json();
       const answer = data.answer || 'Đã xử lý câu hỏi.';
       setMessages((old) => [...old, { role: 'assistant', text: answer }]);
@@ -388,7 +422,7 @@ export function LegalAssistant({
         </SheetTrigger>
       )}
 
-      <SheetContent className="ai-sheet flex flex-col p-0 w-full sm:max-w-lg bg-[#f7f6f1]">
+      <SheetContent modal={false} className="ai-sheet flex flex-col p-0 w-full sm:max-w-lg bg-[#f7f6f1]">
         {/* Header */}
         <SheetHeader className="ai-header bg-[#071b2e] text-white p-5 border-b border-[#c89b51]/30">
           <div className="ai-title-row flex items-center justify-between gap-3">
@@ -536,7 +570,40 @@ export function LegalAssistant({
 
             {/* Chat Input */}
             <form onSubmit={submitChat} className="p-3 bg-white border-t border-[#d8ddd9]">
-              {selectedText && (
+              {attachedQuote && (
+                <div className="mb-2 p-2 bg-[#edf3f2] border border-[#0c665f]/30 rounded text-[11px] flex items-center justify-between text-slate-800 shadow-xs">
+                  <div className="flex items-center gap-1.5 overflow-hidden">
+                    <Paperclip className="w-3.5 h-3.5 text-[#0c665f] shrink-0" />
+                    <span className="font-semibold text-[#071b2e] truncate max-w-[240px]">
+                      {attachedQuote.label}
+                    </span>
+                    <span className="text-[10px] text-[#0c665f] font-mono shrink-0 font-bold">
+                      [{attachedQuote.wordCount.toLocaleString()} từ]
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-1.5 shrink-0 ml-1">
+                    <button
+                      type="button"
+                      onClick={() => setPreviewQuote(attachedQuote.text)}
+                      className="px-1.5 py-0.5 text-[10px] font-bold text-[#0c665f] bg-white border border-[#0c665f]/30 rounded hover:bg-[#0c665f] hover:text-white transition cursor-pointer"
+                    >
+                      Xem
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setAttachedQuote(null);
+                        setSelectedText('');
+                      }}
+                      className="text-slate-400 hover:text-red-600 p-0.5 font-bold transition cursor-pointer"
+                      title="Bỏ đính kèm"
+                    >
+                      <X className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                </div>
+              )}
+              {selectedText && !attachedQuote && (
                 <div className="mb-2 p-2 bg-[#edf3f2] border-l-2 border-[#0c665f] text-[11px] flex justify-between items-center">
                   <span className="truncate max-w-[320px]">
                     Trích dẫn: &quot;{selectedText.slice(0, 60)}...&quot;
@@ -544,7 +611,7 @@ export function LegalAssistant({
                   <button
                     type="button"
                     onClick={() => setSelectedText('')}
-                    className="text-slate-500 hover:text-red-600 font-bold ml-2"
+                    className="text-slate-500 hover:text-red-600 font-bold ml-2 cursor-pointer"
                   >
                     Bỏ
                   </button>
@@ -555,13 +622,14 @@ export function LegalAssistant({
                   ref={inputRef}
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
+                  onPaste={handleChatPaste}
                   placeholder="Hỏi về thu phí, đầu lương, lợi nhuận khi chờ cấp phép, vốn 50 tỷ..."
                   rows={2}
                   className="w-full pr-10 p-2.5 text-xs border border-[#d8ddd9] focus:outline-none focus:border-[#0c665f] bg-[#fcfcfb] resize-none"
                 />
                 <button
                   type="submit"
-                  disabled={!input.trim() || pending}
+                  disabled={(!input.trim() && !attachedQuote) || pending}
                   className="absolute right-2 bottom-3 p-1.5 bg-[#071b2e] hover:bg-[#0c665f] text-white disabled:opacity-40 transition cursor-pointer"
                   title="Gửi câu hỏi"
                 >
@@ -721,6 +789,39 @@ export function LegalAssistant({
           </div>
         )}
       </SheetContent>
+
+      {/* Attached Quote Full Preview Modal */}
+      {previewQuote && (
+        <div className="fixed inset-0 z-[100] bg-black/60 flex items-center justify-center p-4">
+          <div className="bg-white max-w-lg w-full max-h-[80vh] flex flex-col rounded shadow-2xl border border-slate-300 overflow-hidden">
+            <div className="p-3.5 bg-[#071b2e] text-white flex items-center justify-between">
+              <span className="text-xs font-bold font-serif flex items-center gap-2">
+                <FileText className="w-4 h-4 text-[#e7c487]" />
+                Toàn văn đoạn trích dẫn đã đính kèm
+              </span>
+              <button
+                type="button"
+                onClick={() => setPreviewQuote(null)}
+                className="p-1 text-slate-300 hover:text-white transition cursor-pointer"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+            <div className="p-4 overflow-y-auto text-xs leading-relaxed text-slate-800 whitespace-pre-wrap font-sans bg-slate-50/50 flex-1">
+              {previewQuote}
+            </div>
+            <div className="p-3 bg-white border-t border-slate-200 flex justify-end">
+              <button
+                type="button"
+                onClick={() => setPreviewQuote(null)}
+                className="px-3 py-1.5 text-xs font-bold bg-[#071b2e] text-white hover:bg-[#0c665f] transition rounded cursor-pointer"
+              >
+                Đóng
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </Sheet>
   );
 }

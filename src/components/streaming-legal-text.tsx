@@ -214,20 +214,41 @@ export function StreamingLegalText({
             );
           }
 
-          // Numbered clause: "1. ", "2. ", "10. "
-          const numMatch = trimmed.match(/^(\d+[\.\)])\s*(.*)/s);
-          if (numMatch) {
-            return (
-              <div
-                key={idx}
-                className="tvpay-clause-row my-1.5 pl-3 border-l-2 border-amber-300/80 bg-amber-50/20 py-0.5 rounded-r"
-              >
-                <span className="font-bold text-slate-900 text-xs bg-amber-100/80 px-1.5 py-0.5 rounded mr-1.5 inline-block text-[11px]">
-                  {numMatch[1]}
-                </span>
-                <span className="whitespace-pre-wrap">{numMatch[2]}</span>
-              </div>
-            );
+          // Check for Markdown table
+          if (trimmed.startsWith('|') && trimmed.includes('\n|')) {
+            const tableLines = trimmed.split('\n').filter((l) => l.trim().startsWith('|'));
+            if (tableLines.length >= 2) {
+              const headers = tableLines[0].split('|').map((s) => s.trim()).filter(Boolean);
+              const rows = tableLines.slice(2).map((rowLine) =>
+                rowLine.split('|').map((s) => s.trim()).filter(Boolean),
+              );
+              return (
+                <div key={idx} className="my-3 overflow-x-auto rounded-lg border border-amber-200/80 shadow-xs">
+                  <table className="min-w-full text-xs text-left text-slate-800 divide-y divide-amber-200/70">
+                    <thead className="bg-amber-100/70 font-semibold text-slate-900">
+                      <tr>
+                        {headers.map((h, hIdx) => (
+                          <th key={hIdx} className="px-3 py-2 border-r border-amber-200/50 last:border-r-0 whitespace-nowrap">
+                            {h}
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-amber-100 bg-white">
+                      {rows.map((r, rIdx) => (
+                        <tr key={rIdx} className={rIdx % 2 === 0 ? 'bg-white' : 'bg-amber-50/30 hover:bg-amber-50/50'}>
+                          {r.map((c, cIdx) => (
+                            <td key={cIdx} className="px-3 py-2 border-r border-amber-100/50 last:border-r-0">
+                              {c}
+                            </td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              );
+            }
           }
 
           // Sub-clause lettered item: "a) ", "b) ", "c) ", "- ", "+ "
@@ -236,12 +257,28 @@ export function StreamingLegalText({
             return (
               <div
                 key={idx}
-                className="tvpay-subclause-row my-1 pl-5 text-slate-700 flex items-start gap-1.5"
+                className="tvpay-subclause-row my-1 pl-4 text-slate-700 flex items-start gap-2"
               >
-                <span className="font-bold text-[#8C6B18] text-xs flex-shrink-0">
+                <span className="font-bold text-[#8C6B18] text-xs flex-shrink-0 bg-amber-50/90 px-1 py-0.5 rounded border border-amber-200/40 text-[11px]">
                   {subMatch[1]}
                 </span>
-                <span className="whitespace-pre-wrap">{subMatch[2]}</span>
+                <span className="whitespace-pre-wrap text-[13px]">{subMatch[2]}</span>
+              </div>
+            );
+          }
+
+          // Numbered clause: "1. ", "2. ", "10. "
+          const numMatch = trimmed.match(/^(\d+[\.\)])\s*(.*)/s);
+          if (numMatch) {
+            return (
+              <div
+                key={idx}
+                className="tvpay-clause-row my-2 pl-3 border-l-2 border-amber-400 bg-amber-50/30 py-1 rounded-r"
+              >
+                <span className="font-bold text-slate-900 text-xs bg-amber-200/70 px-1.5 py-0.5 rounded mr-1.5 inline-block text-[11px]">
+                  {numMatch[1]}
+                </span>
+                <span className="whitespace-pre-wrap font-medium text-slate-800">{numMatch[2]}</span>
               </div>
             );
           }
