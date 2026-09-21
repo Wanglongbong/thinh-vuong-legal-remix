@@ -3,26 +3,13 @@ import {
   BookOpen,
   ChevronDown,
   ChevronUp,
-  FileCheck2,
-  FileText,
   HelpCircle,
-  Landmark,
-  Layers,
-  Scale,
   Search,
-  Shield,
-  ShieldAlert,
-  ShieldCheck,
   Sparkles,
   Volume2,
   VolumeX,
-  ExternalLink,
-  Check,
   Award,
   ArrowRight,
-  Maximize2,
-  Minimize2,
-  Eye,
 } from 'lucide-react';
 import {
   tvpayOfficialDocs,
@@ -103,8 +90,6 @@ export function TvpayDocumentPresentation({ slug }: TvpayDocumentPresentationPro
     'dl-chap-1-art-1': true, // open first provision by default
     'hd-sec-1-art-1': true,
   });
-  const [rightDockTab, setRightDockTab] = useState<'roles' | 'protection' | 'brief'>('roles');
-  const [filterTier, setFilterTier] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [soundActive, setSoundActive] = useState(() => uiSound.isEnabled());
   const [streamEnabled, setStreamEnabled] = useState<boolean>(true);
@@ -207,50 +192,6 @@ export function TvpayDocumentPresentation({ slug }: TvpayDocumentPresentationPro
     });
   };
 
-  // Jump from Right Dock (Roles or Shield) to a specific article on Left Parchment Contract
-  const jumpToArticle = (chapNumberQuery: string, articleNumberQuery: string) => {
-    uiSound.playOpenProvision();
-
-    // Find the chapter
-    const targetChapter = docData.chapters.find(
-      (c) =>
-        c.number.toLowerCase().includes(chapNumberQuery.toLowerCase()) ||
-        c.title.toLowerCase().includes(chapNumberQuery.toLowerCase()),
-    );
-
-    if (targetChapter) {
-      setExpandedChapters((prev) => ({ ...prev, [targetChapter.id]: true }));
-      const articles = getChapterArticles(targetChapter);
-      const targetArticle = articles.find(
-        (a) =>
-          a.articleNumber.toLowerCase().includes(articleNumberQuery.toLowerCase()) ||
-          a.title.toLowerCase().includes(articleNumberQuery.toLowerCase()),
-      );
-
-      if (targetArticle) {
-        setOpenedArticles((prev) => ({ ...prev, [targetArticle.id]: true }));
-        setHighlightedArticleId(targetArticle.id);
-
-        setTimeout(() => {
-          const el = document.getElementById(targetArticle.id);
-          if (el) {
-            el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          }
-        }, 150);
-
-        setTimeout(() => {
-          setHighlightedArticleId(null);
-        }, 3500);
-      }
-    }
-  };
-
-  // Filter protections
-  const filteredProtections = useMemo(() => {
-    if (filterTier === 'all') return docData.legalProtections;
-    return docData.legalProtections.filter((p) => p.protectionTier === filterTier);
-  }, [docData.legalProtections, filterTier]);
-
   // Filter chapters/provisions by search
   const filteredChapters = useMemo(() => {
     if (!searchQuery.trim()) return docData.chapters;
@@ -284,7 +225,25 @@ export function TvpayDocumentPresentation({ slug }: TvpayDocumentPresentationPro
             </span>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-2.5">
+            {/* Full Appendix Reader Button */}
+            <button
+              type="button"
+              onClick={() => openAppendixReader()}
+              className="text-xs font-semibold px-3 py-1.5 bg-gradient-to-r from-[#D4AF37] to-[#C59B27] hover:brightness-105 text-white border border-amber-300/80 rounded-lg shadow-xs flex items-center gap-1.5 transition cursor-pointer"
+            >
+              <BookOpen className="w-3.5 h-3.5" />
+              <span>Đọc Toàn Văn Phụ Lục (1-7)</span>
+            </button>
+
+            {/* Jump to Presentation Slides below */}
+            <a
+              href="#slides-section"
+              className="text-xs font-semibold px-3 py-1.5 bg-amber-50 hover:bg-amber-100/80 text-[#7A5B10] border border-amber-300/80 rounded-lg shadow-xs flex items-center gap-1.5 transition"
+            >
+              <span>🖥️ Xem Slide Ở Dưới ↓</span>
+            </a>
+
             {/* Quick Document Switcher */}
             {otherDocData && (
               <Link
@@ -343,13 +302,9 @@ export function TvpayDocumentPresentation({ slug }: TvpayDocumentPresentationPro
         </div>
       </div>
 
-      {/* 2. MAIN 2-COLUMN WORKBENCH GRID */}
-      <div className="tvpay-workbench-grid grid grid-cols-1 lg:grid-cols-12 gap-7 mt-6 items-start">
-        {/* =========================================================================
-            LEFT COLUMN (~58%): PARCHMENT CONTRACT (HỢP ĐỒNG GIẤY NGÀ TƯƠNG TÁC)
-            ========================================================================= */}
-        <div className="lg:col-span-7">
-          <div className="tvpay-parchment-contract relative p-6 sm:p-9 rounded-2xl shadow-xl">
+      {/* 2. MAIN CENTERED FULL-WIDTH PARCHMENT CONTRACT */}
+      <div className="tvpay-workbench-content mt-6 flex justify-center">
+        <div className="tvpay-parchment-contract relative p-6 sm:p-10 rounded-2xl shadow-xl w-full max-w-5xl mx-auto">
             {/* 4 Corner Filigree vector ornaments */}
             <CornerFiligree className="absolute top-2.5 left-2.5 w-14 h-14 pointer-events-none opacity-85" />
             <CornerFiligree className="absolute top-2.5 right-2.5 w-14 h-14 pointer-events-none opacity-85 -scale-x-100" />
@@ -601,361 +556,6 @@ export function TvpayDocumentPresentation({ slug }: TvpayDocumentPresentationPro
             </div>
           </div>
         </div>
-
-        {/* =========================================================================
-            RIGHT COLUMN (~42%): STICKY STRATEGIC ROLES & ENTERPRISE SHIELD DOCK
-            ========================================================================= */}
-        <div className="lg:col-span-5">
-          <div className="tvpay-right-sticky-dock sticky top-24 space-y-4">
-            {/* Dock Main Header */}
-            <div className="tvpay-dock-header p-5 bg-gradient-to-br from-[#FFFDF8] via-[#FAF5E8] to-[#F6ECDA] text-slate-900 rounded-2xl shadow-[0_10px_30px_rgba(197,155,39,0.12)] border-2 border-amber-300/80">
-              <div className="flex items-center justify-between gap-2 pb-3 border-b border-amber-200/80">
-                <div className="flex items-center gap-2">
-                  <span className="p-1.5 rounded-lg bg-amber-100/90 text-[#8C6B18] border border-amber-300/80 shadow-xs">
-                    <ShieldCheck className="w-4 h-4" />
-                  </span>
-                  <div>
-                    <span className="text-[10px] uppercase font-bold tracking-widest text-[#8C6B18] block">
-                      Khoa Luật · HVNH
-                    </span>
-                    <h3 className="text-sm font-bold text-slate-900 m-0">
-                      Tư Vấn Chiến Lược &amp; Phòng Vệ DN
-                    </h3>
-                  </div>
-                </div>
-                <span className="text-[10px] font-mono px-2 py-0.5 bg-white text-[#7A5B10] border border-amber-300/80 rounded-full font-bold shadow-xs">
-                  TVPAY FINTECH
-                </span>
-              </div>
-
-              <p className="text-xs text-slate-700 leading-relaxed mt-3 mb-0">
-                Phân tích chuyên sâu 2 nội dung nhóm trưởng yêu cầu: Vai trò chiến lược đối với
-                cấp phép NHNN và ma trận giải pháp bảo vệ quyền lợi hợp pháp của doanh nghiệp.
-              </p>
-
-              {/* Full Appendix Reader Button */}
-              <button
-                type="button"
-                onClick={() =>
-                  openAppendixReader(
-                    rightDockTab === 'roles'
-                      ? (slug === 'dieu-le-cong-ty-co-phan' ? 'phu-luc-1' : 'phu-luc-4')
-                      : (slug === 'dieu-le-cong-ty-co-phan' ? 'phu-luc-2' : 'phu-luc-5')
-                  )
-                }
-                className="w-full mt-3 py-2.5 px-3 bg-gradient-to-r from-[#D4AF37] via-[#C59B27] to-[#A87B15] hover:brightness-105 border border-amber-300/80 rounded-xl text-white text-xs font-bold flex items-center justify-center gap-2 transition cursor-pointer shadow-md group"
-              >
-                <BookOpen className="w-4 h-4 text-amber-100 group-hover:scale-110 transition-transform" />
-                <span>Đọc Toàn Văn Nội Dung, Vai Trò &amp; Giải Pháp (Phụ lục)</span>
-                <ExternalLink className="w-3.5 h-3.5 text-amber-200 opacity-90" />
-              </button>
-
-              {/* Sub-tabs switcher */}
-              <div className="grid grid-cols-3 gap-1.5 mt-4 p-1 bg-amber-100/60 border border-amber-200/80 rounded-xl">
-                <button
-                  type="button"
-                  onClick={() => {
-                    uiSound.playClick();
-                    setRightDockTab('roles');
-                  }}
-                  className={`text-[11px] font-bold py-1.5 px-2 rounded-lg transition flex items-center justify-center gap-1 ${
-                    rightDockTab === 'roles'
-                      ? 'bg-[#C59B27] text-white shadow-sm'
-                      : 'text-[#7A5B10] hover:text-[#4A380A] hover:bg-white/60'
-                  }`}
-                >
-                  <Landmark className="w-3 h-3" />
-                  <span>1. Vai trò</span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => {
-                    uiSound.playClick();
-                    setRightDockTab('protection');
-                  }}
-                  className={`text-[11px] font-bold py-1.5 px-2 rounded-lg transition flex items-center justify-center gap-1 ${
-                    rightDockTab === 'protection'
-                      ? 'bg-[#0C665F] text-white shadow-sm'
-                      : 'text-[#0C665F] hover:text-[#063b37] hover:bg-white/60'
-                  }`}
-                >
-                  <Shield className="w-3 h-3" />
-                  <span>2. Lá chắn</span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => {
-                    uiSound.playClick();
-                    setRightDockTab('brief');
-                  }}
-                  className={`text-[11px] font-bold py-1.5 px-2 rounded-lg transition flex items-center justify-center gap-1 ${
-                    rightDockTab === 'brief'
-                      ? 'bg-[#1E40AF] text-white shadow-sm'
-                      : 'text-blue-900 hover:text-blue-950 hover:bg-white/60'
-                  }`}
-                >
-                  <FileText className="w-3 h-3" />
-                  <span>3. Slide tóm tắt</span>
-                </button>
-              </div>
-            </div>
-
-            {/* TAB 1: STRATEGIC ROLES */}
-            {rightDockTab === 'roles' && (
-              <div className="space-y-3.5">
-                <div className="p-3 bg-amber-50/80 border border-amber-200/80 rounded-xl text-xs text-[#7A5B10]">
-                  <strong>🏛️ Tầm quan trọng chiến lược:</strong> Hồ sơ pháp lý sống còn để TVPAY
-                  đáp ứng đầy đủ các điều kiện khắt khe của NHNN theo Nghị định 52/2024/NĐ-CP và
-                  Thông tư 40/2024/TT-NHNN.
-                </div>
-
-                {docData.strategicRoles.map((role, idx) => (
-                  <div key={idx} className="tvpay-role-side-card">
-                    <div className="flex items-center justify-between gap-2 mb-2">
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-[#7A5B10] border border-amber-300">
-                        {role.badge}
-                      </span>
-                      <span className="text-[10px] font-mono text-slate-400">
-                        Trụ cột 0{idx + 1}
-                      </span>
-                    </div>
-
-                    <h4 className="text-xs sm:text-sm font-bold text-slate-900 mb-1.5 leading-snug">
-                      {role.title}
-                    </h4>
-
-                    <div className="bg-amber-50/40 p-2.5 rounded-lg border border-amber-200/60 mb-2">
-                      <span className="text-[10px] font-bold text-[#8C6B18] block uppercase">
-                        Điểm cốt lõi:
-                      </span>
-                      <strong className="text-xs text-slate-800 font-semibold block">
-                        {role.highlight}
-                      </strong>
-                    </div>
-
-                    <p className="text-xs text-slate-600 leading-relaxed mb-2.5">
-                      {role.description}
-                    </p>
-
-                    <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px]">
-                      <button
-                        type="button"
-                        onClick={() =>
-                          openAppendixReader(
-                            role.appendixRef || (slug === 'dieu-le-cong-ty-co-phan' ? 'phu-luc-1' : 'phu-luc-4')
-                          )
-                        }
-                        className="text-[11px] font-bold text-[#8C6B18] hover:text-[#5F450B] flex items-center gap-1 hover:underline cursor-pointer"
-                        title="Đọc toàn văn phân tích vai trò trong Phụ lục"
-                      >
-                        <BookOpen className="w-3 h-3 text-[#C59B27]" />
-                        <span>Đọc toàn văn</span>
-                      </button>
-
-                      <button
-                        type="button"
-                        onClick={() => {
-                          const match = role.citation.match(/Điều\s+(\d+|xx)/i);
-                          const artNum = match ? match[0] : 'Điều 1';
-                          jumpToArticle('Chương', artNum);
-                        }}
-                        className="text-[11px] font-semibold text-slate-500 hover:text-slate-900 flex items-center gap-1 hover:underline cursor-pointer"
-                        title="Xem vị trí điều khoản trong văn bản gốc"
-                      >
-                        <span>{role.citation}</span>
-                        <ArrowRight className="w-3 h-3 text-slate-400" />
-                      </button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-
-            {/* TAB 2: ENTERPRISE PROTECTION SHIELD MATRIX */}
-            {rightDockTab === 'protection' && (
-              <div className="space-y-3.5">
-                <div className="p-3 bg-emerald-50/80 border border-emerald-200/80 rounded-xl text-xs text-emerald-900">
-                  <strong className="flex items-center gap-1.5 mb-1 text-emerald-800">
-                    <ShieldCheck className="w-4 h-4 text-emerald-600" />
-                    Lá chắn bảo vệ quyền lợi hợp pháp TVPAY:
-                  </strong>
-                  Đối sách phòng thủ trước các vụ tranh chấp bồi thường của khách hàng, lỗi mạng ngân
-                  hàng và gian lận công nghệ cao.
-                </div>
-
-                {/* Filter buttons */}
-                <div className="flex flex-wrap items-center gap-1.5">
-                  {['all', 'Lá chắn cốt lõi', 'Miễn trừ trách nhiệm', 'Kiểm soát rủi ro'].map(
-                    (tier) => (
-                      <button
-                        key={tier}
-                        type="button"
-                        onClick={() => {
-                          uiSound.playClick();
-                          setFilterTier(tier);
-                        }}
-                        className={`text-[10px] px-2.5 py-1 rounded-full border transition font-semibold ${
-                          filterTier === tier
-                            ? 'bg-[#0C665F] text-white border-[#0C665F] shadow-xs'
-                            : 'bg-white text-slate-700 border-amber-200/80 hover:bg-amber-50/60'
-                        }`}
-                      >
-                        {tier === 'all' ? 'Tất cả lá chắn' : tier}
-                      </button>
-                    ),
-                  )}
-                </div>
-
-                {filteredProtections.map((prot, idx) => (
-                  <div key={idx} className="tvpay-protection-side-card">
-                    <div className="flex items-start justify-between gap-2 pb-2 border-b border-slate-100">
-                      <div className="flex items-center gap-1.5">
-                        <ShieldAlert className="w-3.5 h-3.5 text-red-500 flex-shrink-0" />
-                        <h4 className="text-xs font-bold text-slate-900 m-0">
-                          {prot.riskTitle}
-                        </h4>
-                      </div>
-                      <span
-                        className={`text-[9px] font-extrabold px-2 py-0.5 rounded-full flex-shrink-0 ${
-                          prot.protectionTier === 'Lá chắn cốt lõi'
-                            ? 'bg-amber-100 text-amber-900 border border-amber-300'
-                            : prot.protectionTier === 'Miễn trừ trách nhiệm'
-                            ? 'bg-emerald-100 text-emerald-900 border border-emerald-300'
-                            : 'bg-blue-100 text-blue-900 border border-blue-300'
-                        }`}
-                      >
-                        {prot.protectionTier}
-                      </span>
-                    </div>
-
-                    <div className="mt-2.5 space-y-2">
-                      <div className="bg-red-50/70 p-2.5 rounded-lg border border-red-100 text-xs">
-                        <span className="text-[10px] font-bold text-red-700 block uppercase">
-                          ⚠️ Rủi ro thực tế:
-                        </span>
-                        <p className="text-[11px] text-slate-700 m-0 leading-relaxed">
-                          {prot.riskScenario}
-                        </p>
-                      </div>
-
-                      <div className="bg-emerald-50/70 p-2.5 rounded-lg border border-emerald-100 text-xs">
-                        <span className="text-[10px] font-bold text-emerald-800 block uppercase">
-                          🛡️ Điều khoản bảo vệ TVPAY:
-                        </span>
-                        <p className="text-[11px] text-slate-800 m-0 leading-relaxed font-medium">
-                          {prot.solution}
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="mt-2.5 pt-2 border-t border-slate-100 flex items-center justify-between text-[11px]">
-                      <button
-                        type="button"
-                        onClick={() =>
-                          openAppendixReader(
-                            prot.appendixRef || (slug === 'dieu-le-cong-ty-co-phan' ? 'phu-luc-2' : 'phu-luc-5')
-                          )
-                        }
-                        className="text-[11px] font-bold text-emerald-800 hover:text-emerald-950 flex items-center gap-1 hover:underline cursor-pointer"
-                        title="Đọc toàn văn luận cứ và giải pháp phòng vệ trong Phụ lục"
-                      >
-                        <Shield className="w-3 h-3 text-emerald-600" />
-                        <span>Đọc toàn văn</span>
-                      </button>
-
-                      <button
-                        type="button"
-                        onClick={() => {
-                          const match = prot.articleRef?.match(/Điều\s+(\d+|xx)/i) || prot.contractClause.match(/Điều\s+(\d+|xx)/i);
-                          const artNum = match ? match[0] : 'Điều 4';
-                          jumpToArticle('Chương', artNum);
-                        }}
-                        className="text-[11px] font-semibold text-slate-500 hover:text-slate-900 flex items-center gap-1 hover:underline cursor-pointer"
-                        title="Xem vị trí điều khoản trong hợp đồng"
-                      >
-                        <span>{prot.articleRef || prot.contractClause}</span>
-                        <ArrowRight className="w-3 h-3 text-slate-400" />
-                      </button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-
-            {/* TAB 3: SLIDE TÓM TẮT DÀNH CHO NHÓM TRƯỞNG & THUYẾT TRÌNH */}
-            {rightDockTab === 'brief' && (
-              <div className="space-y-3">
-                <div className="p-4 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-xl text-xs text-blue-900">
-                  <h4 className="font-bold text-sm text-blue-950 mb-1.5">
-                    🎯 Kịch bản trình bày Slide theo yêu cầu Nhóm trưởng
-                  </h4>
-                  <p className="text-xs text-blue-800/90 leading-relaxed m-0">
-                    Nhóm trưởng yêu cầu tách bạch rõ: (1) Cấu trúc văn bản chỉ nêu tên chương/mục,
-                    (2) Trọng tâm dồn vào Vai trò quan trọng và Giải pháp bảo vệ lợi ích DN TVPAY.
-                  </p>
-
-                  <a
-                    href="#slides-section"
-                    className="mt-3 py-2 px-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm transition"
-                  >
-                    <span>🖥️ Xem Khung Slide Trình Chiếu Ở Dưới ↓</span>
-                  </a>
-                </div>
-
-                <div className="p-3.5 bg-white border border-slate-200 rounded-xl shadow-xs">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#8C6B18] block mb-1">
-                    Slide Mục 1: Nội dung &amp; Vai trò quan trọng
-                  </span>
-                  <ul className="text-xs text-slate-700 space-y-1.5 pl-4 list-disc m-0">
-                    <li>
-                      <strong>Vốn điều lệ 50 tỷ:</strong> Đáp ứng điều kiện tiên quyết cấp phép
-                      trung gian thanh toán theo NĐ 52/2024.
-                    </li>
-                    <li>
-                      <strong>Cơ chế bảo toàn 1:1:</strong> Ký quỹ ngân hàng liên kết, đảm bảo an
-                      toàn thanh khoản 24/7.
-                    </li>
-                    <li>
-                      <strong>Chuẩn hóa eKYC:</strong> Xác thực sinh trắc học và CCCD gắn chip
-                      chính chủ, ngăn chặn tài khoản ảo.
-                    </li>
-                    <li>
-                      <strong>Phân định quyền lực:</strong> ĐHĐCĐ - HĐQT - TGĐ tránh xung đột lợi
-                      ích cổ đông.
-                    </li>
-                  </ul>
-                </div>
-
-                <div className="p-3.5 bg-white border border-slate-200 rounded-xl shadow-xs">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-700 block mb-1">
-                    Slide Mục 2: Giải pháp bảo vệ quyền lợi hợp pháp TVPAY
-                  </span>
-                  <ul className="text-xs text-slate-700 space-y-1.5 pl-4 list-disc m-0">
-                    <li>
-                      <strong>Giao dịch không hủy ngang (Điều 5):</strong> Khách không thể đòi rút
-                      lại tiền sau khi lệnh đã thực hiện thành công.
-                    </li>
-                    <li>
-                      <strong>Miễn trừ sự cố bên thứ ba (Điều 16):</strong> Không bồi thường khi lỗi
-                      do ngân hàng liên kết hoặc người dùng để lộ OTP.
-                    </li>
-                    <li>
-                      <strong>Quyền phong tỏa khẩn cấp (Điều 10):</strong> Khóa ví ngay khi có dấu
-                      hiệu rửa tiền hoặc yêu cầu bằng văn bản từ Công an.
-                    </li>
-                    <li>
-                      <strong>Thời hiệu khiếu nại (Điều 13):</strong> Giới hạn thời gian tra soát,
-                      tránh rủi ro kiện tụng kéo dài.
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
 
       {/* Full Appendix Reader Modal */}
       <TvpayAppendixReaderModal

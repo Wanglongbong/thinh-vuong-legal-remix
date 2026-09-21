@@ -99,40 +99,34 @@ export function ContractDetailPage() {
                   href="#workbench-section"
                   className="text-xs font-bold px-3.5 py-1.5 rounded-xl bg-[#C59B27] hover:bg-[#8C6B18] text-white shadow-sm border border-amber-400/80 transition flex items-center gap-1.5"
                 >
-                  📜 1. Hợp đồng 2 Cột
+                  📜 1. Toàn Văn Hợp Đồng
                 </a>
                 <a
                   href="#slides-section"
                   className="text-xs font-bold px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:brightness-105 text-white shadow-sm border border-amber-400/80 transition flex items-center gap-1.5"
                 >
-                  🖥️ 2. Slide Thuyết Trình Tóm Tắt
-                </a>
-                <a
-                  href="#original-dossier-section"
-                  className="text-xs font-bold px-3.5 py-1.5 rounded-xl bg-white text-[#7A5B10] border border-amber-300 shadow-xs hover:bg-amber-100/60 transition flex items-center gap-1.5"
-                >
-                  📊 3. Khung Phân Tích File Cũ
+                  🖥️ 2. Slide Thuyết Trình 10 Trang
                 </a>
               </div>
             </div>
 
-            {/* PART 1: 2-COLUMN INTERACTIVE LEGAL WORKBENCH */}
+            {/* PART 1: CENTERED FULL-WIDTH INTERACTIVE LEGAL PARCHMENT */}
             <div id="workbench-section">
               <TvpayDocumentPresentation slug={item.slug} />
             </div>
 
-            {/* PART 2: INTERACTIVE PRESENTATION SLIDES (SLIDE TÓM TẮT DƯỚI HỢP ĐỒNG) */}
+            {/* PART 2: INTERACTIVE PRESENTATION SLIDES (10 TRANG CHI TIẾT) */}
             <div id="slides-section" className="mt-14 pt-8 border-t-2 border-dashed border-amber-900/25">
               <div className="flex flex-wrap items-center justify-between gap-3 pb-4 mb-2 border-b border-amber-200/80">
                 <div>
                   <span className="text-xs font-extrabold uppercase tracking-wider text-[#8C6B18] px-3 py-1 bg-amber-100 rounded-full inline-block mb-1.5">
-                    KHUNG TRÌNH CHIẾU SLIDE THUYẾT TRÌNH
+                    KHUNG TRÌNH CHIẾU SLIDE THUYẾT TRÌNH (10 TRANG CHI TIẾT)
                   </span>
                   <h2 className="text-xl sm:text-2xl font-serif font-bold text-[#0A131E] m-0">
-                    Tóm Tắt Nội Dung, Vai Trò Quan Trọng &amp; Lá Chắn Bảo Vệ DN TVPAY
+                    Phần Nội Dung Khác: Vai Trò, 7 Lá Chắn Bảo Vệ DN &amp; Ma Trận Rủi Ro TVPAY
                   </h2>
                   <p className="text-xs text-slate-600 mt-1 mb-0">
-                    Thiết kế theo đúng yêu cầu Nhóm trưởng: Chương mục chỉ ghi tên; Trọng tâm vào vai trò và giải pháp bảo vệ doanh nghiệp.
+                    Biên soạn bám sát 100% hồ sơ Google Doc chính thức: Đầy đủ ý thuyết trình, cơ cấu cổ đông sáng lập, nguyên tắc soạn thảo và 10 rủi ro pháp lý then chốt.
                   </p>
                 </div>
                 <div className="flex items-center gap-2">
@@ -140,139 +134,12 @@ export function ContractDetailPage() {
                     href="#workbench-section"
                     className="text-xs font-bold text-[#8C6B18] hover:underline flex items-center gap-1"
                   >
-                    ↑ Cuộn lên Hợp đồng 2 cột
-                  </a>
-                  <span className="text-slate-300">·</span>
-                  <a
-                    href="#original-dossier-section"
-                    className="text-xs font-bold text-[#7A5B10] hover:underline flex items-center gap-1"
-                  >
-                    ↓ Xem hồ sơ gốc
+                    ↑ Cuộn lên Văn bản hợp đồng
                   </a>
                 </div>
               </div>
 
               <TvpayPresentationSlides slug={item.slug} />
-            </div>
-
-            {/* PART 3: COMPLETE ORIGINAL DOSSIER (THÔNG TIN FILE CŨ NGUYÊN BẢN 100%) */}
-            <div
-              id="original-dossier-section"
-              className="mt-16 pt-12 border-t-2 border-dashed border-amber-900/25"
-            >
-              <div className="flex flex-wrap items-center justify-between gap-4 pb-6 mb-8 border-b border-slate-200">
-                <div>
-                  <span className="text-xs font-extrabold uppercase tracking-wider text-[#8C6B18] px-3 py-1 bg-amber-100 rounded-full inline-block mb-2">
-                    HỒ SƠ PHÂN TÍCH &amp; BÁO CÁO GỐC CỦA FILE
-                  </span>
-                  <h2 className="text-2xl font-serif font-bold text-[#0A131E] m-0">
-                    Khung Phân Tích Nghiệp Vụ &amp; Báo Cáo Chi Tiết
-                  </h2>
-                  <p className="text-xs text-slate-600 mt-1 mb-0">
-                    Lưu giữ đầy đủ 100% thông tin đối tượng áp dụng, rủi ro trọng tâm, tài liệu bàn giao, căn cứ và báo cáo tư vấn của Nhóm 13.
-                  </p>
-                </div>
-                <a
-                  href="#workbench-section"
-                  className="text-xs font-bold text-[#8C6B18] hover:underline flex items-center gap-1"
-                >
-                  ↑ Cuộn lên Hợp đồng 2 cột
-                </a>
-              </div>
-
-              <div className="contract-detail-grid">
-                <article className="legal-article">
-                  <section>
-                    <span className="article-kicker">01 · Đối tượng áp dụng</span>
-                    <h2>Quan hệ pháp lý được điều chỉnh</h2>
-                    <p>{item.audience}</p>
-                  </section>
-                  <section>
-                    <span className="article-kicker">02 · Vấn đề cần giải quyết</span>
-                    <h2>Rủi ro trọng tâm</h2>
-                    <p>{item.solves}</p>
-                    <div className="legal-warning">
-                      <CircleAlert />
-                      <p>
-                        Phạm vi hợp đồng phải thống nhất với giấy phép, quy trình kỹ
-                        thuật và thực tế vận hành. Tên gọi giao dịch không thay thế
-                        việc xác định đúng bản chất pháp lý.
-                      </p>
-                    </div>
-                  </section>
-                  <section>
-                    <span className="article-kicker">03 · Sản phẩm bàn giao</span>
-                    <h2>Bộ tài liệu dự kiến</h2>
-                    <ul className="check-list">
-                      {item.deliverables.map((entry) => (
-                        <li key={entry}>
-                          <Check />
-                          {entry}
-                        </li>
-                      ))}
-                    </ul>
-                  </section>
-                  <section>
-                    <span className="article-kicker">04 · Nội dung cốt lõi</span>
-                    <h2>Điều khoản cần ưu tiên</h2>
-                    <div className="clause-grid">
-                      {item.clauses.map((entry, index) => (
-                        <div key={entry}>
-                          <span>0{index + 1}</span>
-                          <strong>{entry}</strong>
-                        </div>
-                      ))}
-                    </div>
-                  </section>
-                  <section>
-                    <span className="article-kicker">05 · Căn cứ tham chiếu</span>
-                    <h2>Khung pháp luật liên quan</h2>
-                    <ul className="law-list">
-                      {item.legalBases.map((law) => (
-                        <li key={law}>
-                          <Scale />
-                          {law}
-                        </li>
-                      ))}
-                    </ul>
-                    <p className="source-note">
-                      Hiệu lực và văn bản sửa đổi cần được kiểm tra lại tại thời điểm
-                      áp dụng thực tế.
-                    </p>
-                  </section>
-                  {report && <ContractReport content={report} />}
-                </article>
-
-                <aside className="detail-sidebar">
-                  <div className="sticky-card">
-                    <FileCheck2 />
-                    <h2>Tạo bản dự thảo theo thông tin của bạn</h2>
-                    <p>
-                      Điền tên nhà đầu tư, thông tin doanh nghiệp ví và đối tác để
-                      nhận bản dự thảo có cấu trúc từ mẫu này.
-                    </p>
-                    {report ? (
-                      <Link
-                        className="gold-button dark"
-                        href={`/cong-cu/tao-hop-dong?mau=${item.slug}`}
-                      >
-                        Tạo hợp đồng <ArrowRight />
-                      </Link>
-                    ) : (
-                      <Link className="gold-button dark" href="/lien-he">
-                        Trao đổi phạm vi <ArrowRight />
-                      </Link>
-                    )}
-                  </div>
-                  <div className="selection-tip">
-                    <strong>Mẹo tra cứu</strong>
-                    <p>
-                      Bôi đen một đoạn rồi chọn “Hỏi trợ lý” để được giải thích theo
-                      bối cảnh ví điện tử.
-                    </p>
-                  </div>
-                </aside>
-              </div>
             </div>
           </div>
         </section>
