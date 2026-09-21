@@ -1372,5 +1372,187 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   box-shadow: 0 8px 22px rgba(10, 19, 30, 0.08);
 }
 
+/* ==========================================================================
+   TVPAY 2-COLUMN WORKBENCH & PARCHMENT CHARTER STYLES
+   ========================================================================== */
+
+.tvpay-full-workbench-wrap {
+  width: 100%;
+  margin-top: 24px;
+}
+
+.tvpay-top-action-bar {
+  background: #FFFFFF;
+  border: 1px solid rgba(197, 155, 39, 0.3);
+  padding: 12px 18px;
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(10, 19, 30, 0.04);
+}
+
+/* Parchment Contract Box */
+.tvpay-parchment-contract {
+  background: linear-gradient(180deg, #FFFEFC 0%, #FAF6EE 50%, #F5EDE0 100%);
+  border: 2px solid rgba(197, 155, 39, 0.5);
+  box-shadow: 0 12px 36px rgba(197, 155, 39, 0.12), 0 4px 12px rgba(10, 19, 30, 0.05);
+}
+
+.tvpay-parchment-inner-border {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  border: 1px solid rgba(197, 155, 39, 0.28);
+  border-radius: 12px;
+  pointer-events: none;
+}
+
+.tvpay-filigree-svg {
+  filter: drop-shadow(0 1px 2px rgba(197, 155, 39, 0.2));
+  transition: transform 0.3s ease;
+}
+
+/* Parchment Chapter Box */
+.tvpay-parchment-chapter-box {
+  background: #FFFFFF;
+  border: 1px solid rgba(197, 155, 39, 0.3);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.tvpay-parchment-chapter-box:hover {
+  border-color: var(--gold);
+  box-shadow: 0 4px 16px rgba(197, 155, 39, 0.12);
+}
+
+.tvpay-parchment-chapter-box.is-expanded {
+  border-color: var(--gold);
+  box-shadow: 0 6px 20px rgba(197, 155, 39, 0.14);
+}
+
+.tvpay-parchment-chapter-header {
+  width: 100%;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #FFFFFF;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.2s ease;
+}
+
+.tvpay-parchment-chapter-box.is-expanded .tvpay-parchment-chapter-header {
+  background: linear-gradient(135deg, #FFFDF9 0%, #FAF5E8 100%);
+  border-bottom: 1px solid rgba(197, 155, 39, 0.25);
+}
+
+.chapter-seal-pill {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: #FAF2DC;
+  color: #684F0E;
+  border: 1px solid rgba(197, 155, 39, 0.4);
+  white-space: nowrap;
+}
+
+/* Provision Item */
+.tvpay-provision-item {
+  background: #FFFFFF;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.tvpay-provision-item:hover {
+  border-color: rgba(197, 155, 39, 0.4);
+}
+
+.tvpay-provision-item.is-active {
+  border-color: rgba(197, 155, 39, 0.6);
+  box-shadow: 0 4px 14px rgba(197, 155, 39, 0.1);
+}
+
+.tvpay-provision-trigger {
+  width: 100%;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #FFFFFF;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s ease;
+}
+
+.tvpay-provision-trigger:hover {
+  background: #FAF7F0;
+}
+
+.provision-badge {
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: #F1ECE1;
+  color: #5A4716;
+  border: 1px solid rgba(197, 155, 39, 0.3);
+  white-space: nowrap;
+}
+
+/* AI Streaming Text Box */
+.tvpay-streaming-box {
+  background: #FFFFFF;
+  padding: 14px 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(197, 155, 39, 0.2);
+}
+
+.tvpay-streaming-cursor {
+  color: #C59B27;
+  display: inline-block;
+  font-weight: 900;
+  animation: pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Right Sticky Dock Cards */
+.tvpay-role-side-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(197, 155, 39, 0.35);
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 3px 12px rgba(10, 19, 30, 0.04);
+  transition: all 0.2s ease;
+}
+
+.tvpay-role-side-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--gold);
+  box-shadow: 0 6px 20px rgba(197, 155, 39, 0.15);
+}
+
+.tvpay-protection-side-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 3px 12px rgba(10, 19, 30, 0.04);
+  transition: all 0.2s ease;
+}
+
+.tvpay-protection-side-card:hover {
+  border-color: #CBD5E1;
+  box-shadow: 0 6px 18px rgba(10, 19, 30, 0.08);
+}
+
+
 
 

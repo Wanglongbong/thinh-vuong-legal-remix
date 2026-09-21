@@ -1,6 +1,14 @@
 // Dữ liệu chính thức Điều lệ TVPAY và Hợp đồng mở ví TVPAY
 // Trích xuất trực tiếp từ hồ sơ gốc của nhóm dự án TVPAY (Khoa Luật - HVNH)
 
+export interface DocumentArticle {
+  id: string;
+  articleNumber: string;
+  title: string;
+  fullTitle: string;
+  content: string;
+}
+
 export interface DocumentChapter {
   id: string;
   number: string;
@@ -8,6 +16,95 @@ export interface DocumentChapter {
   articleCount: number;
   summary: string;
   content: string;
+  articles?: DocumentArticle[];
+}
+
+const articlesCache = new Map<string, DocumentArticle[]>();
+
+export function getChapterArticles(chap: DocumentChapter): DocumentArticle[] {
+  if (articlesCache.has(chap.id)) {
+    return articlesCache.get(chap.id)!;
+  }
+
+  const paragraphs = chap.content.split('\n\n');
+  const articles: DocumentArticle[] = [];
+  let currentArticle: {
+    id: string;
+    articleNumber: string;
+    title: string;
+    fullTitle: string;
+    parts: string[];
+  } | null = null;
+  const preambleParts: string[] = [];
+
+  for (const rawP of paragraphs) {
+    const p = rawP.trim();
+    if (!p) continue;
+
+    // Check if line starts an article/provision
+    const isChapHeading = /^(CHƯƠNG\s+[IVX]+|QUY ĐỊNH CHUNG CỦA HỢP ĐỒNG)/i.test(p);
+    const isArticle =
+      /^((Điều\s+(?:\d+|xx|[a-z0-9]+))|PHẦN\s+[A-Z]|MỤC\s+[IVX]+)[\.:\s\-]/i.test(p) ||
+      /^(Điều\s+(?:\d+|xx)|PHẦN\s+[A-Z])$/i.test(p);
+
+    if (isArticle && !isChapHeading) {
+      if (currentArticle) {
+        articles.push({
+          id: currentArticle.id,
+          articleNumber: currentArticle.articleNumber,
+          title: currentArticle.title,
+          fullTitle: currentArticle.fullTitle,
+          content: currentArticle.parts.join('\n\n'),
+        });
+      }
+
+      const firstLine = p.split('\n')[0].trim();
+      const restOfP = p.slice(firstLine.length).trim();
+
+      const match = firstLine.match(
+        /^((?:Điều\s+(?:\d+|xx|[a-z0-9]+))|PHẦN\s+[A-Z]|MỤC\s+[IVX]+)[\.:\-]?\s*(.*)/i,
+      );
+      const articleNumber = match ? match[1].trim() : firstLine;
+      const title = match && match[2] ? match[2].trim() : firstLine;
+
+      currentArticle = {
+        id: `${chap.id}-art-${articles.length + 1}`,
+        articleNumber,
+        title: title || articleNumber,
+        fullTitle: firstLine,
+        parts: restOfP ? [restOfP] : [],
+      };
+    } else {
+      if (currentArticle) {
+        currentArticle.parts.push(p);
+      } else {
+        preambleParts.push(p);
+      }
+    }
+  }
+
+  if (currentArticle) {
+    articles.push({
+      id: currentArticle.id,
+      articleNumber: currentArticle.articleNumber,
+      title: currentArticle.title,
+      fullTitle: currentArticle.fullTitle,
+      content: currentArticle.parts.join('\n\n'),
+    });
+  }
+
+  if (articles.length === 0) {
+    articles.push({
+      id: `${chap.id}-art-1`,
+      articleNumber: chap.number,
+      title: chap.title,
+      fullTitle: `${chap.number}. ${chap.title}`,
+      content: preambleParts.join('\n\n') || chap.content,
+    });
+  }
+
+  articlesCache.set(chap.id, articles);
+  return articles;
 }
 
 export interface StrategicRoleItem {

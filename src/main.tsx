@@ -4,8 +4,11 @@ import App from './App.tsx';
 import { ErrorBoundary } from '@/components/error-boundary';
 import './index.css';
 
+import { uiSound } from '@/lib/ui-sound';
+
 // Guard against unhandled cross-origin runtime exceptions crashing the host
 if (typeof window !== 'undefined') {
+  uiSound.initGlobalListeners();
   window.addEventListener('error', (event) => {
     console.error('[Thịnh Vượng Legal Runtime Error]:', event.message, event.filename, event.lineno, event.error);
   });
