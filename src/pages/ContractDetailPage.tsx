@@ -91,7 +91,7 @@ export function ContractDetailPage() {
                   Chế độ hiển thị:
                 </span>
                 <span className="text-xs text-slate-600">
-                  (Bao gồm cả Bàn làm việc HĐ 2 cột mới &amp; Đầy đủ hồ sơ phân tích file cũ)
+                  (Văn kiện pháp lý chính thức &amp; Khung trình chiếu Slide thuyết trình 10 trang chuyên sâu)
                 </span>
               </div>
               <div className="flex items-center gap-2">
@@ -123,10 +123,10 @@ export function ContractDetailPage() {
                     KHUNG TRÌNH CHIẾU SLIDE THUYẾT TRÌNH (10 TRANG CHI TIẾT)
                   </span>
                   <h2 className="text-xl sm:text-2xl font-serif font-bold text-[#0A131E] m-0">
-                    Phần Nội Dung Khác: Vai Trò, 7 Lá Chắn Bảo Vệ DN &amp; Ma Trận Rủi Ro TVPAY
+                    Hồ Sơ Tư Vấn Điều Lệ TVPAY: 7 Lá Chắn Bảo Vệ Nhà Đầu Tư &amp; Ma Trận Rủi Ro
                   </h2>
                   <p className="text-xs text-slate-600 mt-1 mb-0">
-                    Biên soạn bám sát 100% hồ sơ Google Doc chính thức: Đầy đủ ý thuyết trình, cơ cấu cổ đông sáng lập, nguyên tắc soạn thảo và 10 rủi ro pháp lý then chốt.
+                    Biên soạn bám sát hồ sơ tư vấn chuyên môn của Nhóm 13 (Khoa Luật HVNH): Bảo vệ 05 Nhà đầu tư khách hàng (50 Tỷ VNĐ), 04 nguyên tắc soạn thảo, 07 lá chắn bảo vệ quyền lợi và ma trận xử lý rủi ro thực tiễn.
                   </p>
                 </div>
                 <div className="flex items-center gap-2">

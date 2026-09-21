@@ -14,6 +14,7 @@ import {
   Layers,
   Lock,
   Maximize2,
+  MessageSquare,
   Minimize2,
   Pause,
   Play,
@@ -42,6 +43,7 @@ interface SlideItem {
   category: string;
   title: string;
   subtitle: string;
+  speakerNotes?: string;
   renderContent: (docData: OfficialDocumentData) => React.ReactNode;
 }
 
@@ -70,17 +72,19 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
     // SLIDE 1: BÌA BÁO CÁO & PHÂN CÔNG THUYẾT TRÌNH NHÓM 13
     {
       id: 'slide-1',
-      badge: 'SLIDE 01 / 10 · BÌA & PHÂN CÔNG',
-      category: 'HỒ SƠ BÁO CÁO PHÁP LÝ NHÓM 13 · KHOA LUẬT HVNH',
-      title: 'ĐIỀU LỆ CÔNG TY CỔ PHẦN THANH TOÁN THỊNH VƯỢNG (TVPAY)',
-      subtitle: 'Hồ sơ pháp lý nền tảng xác lập tư cách pháp nhân và điều kiện cấp phép trung gian thanh toán',
+      badge: 'SLIDE 01 / 10 · BÁO CÁO TƯ VẤN',
+      category: 'HỒ SƠ TƯ VẤN PHÁP LÝ · NHÓM 13 (THỊNH VƯỢNG LEGAL) · KHOA LUẬT HVNH',
+      title: 'XÂY DỰNG ĐIỀU LỆ & GIẢI PHÁP BẢO VỆ 05 NHÀ ĐẦU TƯ CÔNG TY CỔ PHẦN TVPAY',
+      subtitle: 'Sản phẩm tư vấn pháp lý chuyên sâu bảo vệ 50 tỷ đồng vốn góp và chuẩn hóa điều kiện cấp phép ví điện tử tại NHNN',
+      speakerNotes:
+        'Kính thưa Thầy và các bạn, hôm nay Nhóm 13 đại diện cho Thịnh Vượng Legal xin báo cáo kết quả dự án tư vấn xây dựng Điều lệ cho 05 Nhà đầu tư sáng lập của Công ty Cổ phần TVPAY (ông Lê Quang Tùng, ông Trịnh Hoàng Sơn, ông Nguyễn Minh Lân, bà Phạm Phương Hà, bà Lê Thu Minh). Với quy mô vốn 50 tỷ đồng đầu tư vào lĩnh vực ví điện tử, yêu cầu cấp thiết mà 5 nhà đầu tư đặt ra cho nhóm tư vấn là phải xây dựng một bản Điều lệ vừa đủ điều kiện cấp phép khắt khe của Ngân hàng Nhà nước, vừa là thành trì pháp lý vững chắc bảo vệ quyền kiểm soát và tài sản cho các nhà đầu tư.',
       renderContent: () => (
         <div className="space-y-3.5">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             <div className="p-3.5 bg-white/95 rounded-xl border border-amber-300/80 shadow-2xs">
               <div className="flex items-center gap-2 mb-1.5 text-[#8C6B18]">
                 <Landmark className="w-4 h-4" />
-                <span className="text-[11px] font-bold uppercase tracking-wider">Pháp nhân &amp; Trụ sở</span>
+                <span className="text-[11px] font-bold uppercase tracking-wider">Doanh nghiệp thành lập</span>
               </div>
               <h4 className="text-xs font-bold text-slate-900 m-0 mb-1">CÔNG TY CỔ PHẦN TVPAY</h4>
               <p className="text-[11.5px] text-slate-600 leading-relaxed m-0">
@@ -91,22 +95,22 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
             <div className="p-3.5 bg-white/95 rounded-xl border border-amber-300/80 shadow-2xs">
               <div className="flex items-center gap-2 mb-1.5 text-[#8C6B18]">
                 <Award className="w-4 h-4" />
-                <span className="text-[11px] font-bold uppercase tracking-wider">Vốn điều lệ &amp; Cổ phần</span>
+                <span className="text-[11px] font-bold uppercase tracking-wider">Khách hàng: 05 Nhà đầu tư</span>
               </div>
               <h4 className="text-xs font-bold text-slate-900 m-0 mb-1">50.000.000.000 VNĐ (50 Tỷ)</h4>
               <p className="text-[11.5px] text-slate-600 leading-relaxed m-0">
-                500.000 cổ phần phổ thông (100.000 đ/CP). Gồm 05 cổ đông sáng lập: Lê Quang Tùng (40%), Trịnh Hoàng Sơn (20%), Nguyễn Minh Lân (16%), Phạm Phương Hà (14%), Lê Thu Minh (10%).
+                Gồm 05 Nhà đầu tư sáng lập: Lê Quang Tùng (40% - 20 Tỷ · Đại diện nhóm NĐT), Trịnh Hoàng Sơn (20% - 10 Tỷ), Nguyễn Minh Lân (16% - 8 Tỷ), Phạm Phương Hà (14% - 7 Tỷ), Lê Thu Minh (10% - 5 Tỷ).
               </p>
             </div>
 
             <div className="p-3.5 bg-white/95 rounded-xl border border-amber-300/80 shadow-2xs">
               <div className="flex items-center gap-2 mb-1.5 text-[#8C6B18]">
                 <Scale className="w-4 h-4" />
-                <span className="text-[11px] font-bold uppercase tracking-wider">Căn cứ pháp lý then chốt</span>
+                <span className="text-[11px] font-bold uppercase tracking-wider">Đơn vị tư vấn &amp; Căn cứ</span>
               </div>
-              <h4 className="text-xs font-bold text-slate-900 m-0 mb-1">Luật DN 2020 &amp; NĐ 52/2024</h4>
+              <h4 className="text-xs font-bold text-slate-900 m-0 mb-1">Nhóm 13 (Thịnh Vượng Legal)</h4>
               <p className="text-[11.5px] text-slate-600 leading-relaxed m-0">
-                Tuân thủ Luật Doanh nghiệp 2020 (sửa đổi bổ sung 2025), Nghị định 52/2024/NĐ-CP và Thông tư 40/2024/TT-NHNN về trung gian thanh toán.
+                Sinh viên Khoa Luật HVNH tư vấn xây dựng theo Luật Doanh nghiệp 2020 (sửa đổi bổ sung 2025), Nghị định 52/2024/NĐ-CP và Thông tư 40/2024/TT-NHNN.
               </p>
             </div>
           </div>
@@ -114,23 +118,23 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
           <div className="p-3.5 bg-gradient-to-r from-amber-100/70 via-amber-50 to-amber-100/70 rounded-xl border border-amber-300/80">
             <div className="flex items-center gap-2 mb-2 text-[#7A5B10] font-bold text-xs uppercase tracking-wide">
               <Users className="w-4 h-4 text-[#8C6B18]" />
-              <span>Phân công nhiệm vụ thuyết trình chính thức của Nhóm 13:</span>
+              <span>Phân công báo cáo của Tổ chuyên gia tư vấn Nhóm 13 trước Giảng viên &amp; Nhà đầu tư:</span>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
               <div className="p-2 bg-white rounded-lg border border-amber-200 shadow-2xs">
-                <strong className="text-[#8C6B18] block text-[11px] uppercase">Phần 1: Nội dung &amp; Vai trò</strong>
+                <strong className="text-[#8C6B18] block text-[11px] uppercase">Phần 1: Nội dung &amp; 5 Giá trị NĐT</strong>
                 <span className="text-slate-800 font-semibold">Lê Phương Thảo</span>
-                <span className="text-[10px] text-slate-500 block">Trình bày Slide 02 &amp; 03</span>
+                <span className="text-[10px] text-slate-500 block">Báo cáo Slide 02, 03 &amp; 04</span>
               </div>
               <div className="p-2 bg-white rounded-lg border border-emerald-200 shadow-2xs">
-                <strong className="text-emerald-800 block text-[11px] uppercase">Phần 2: Giải pháp bảo vệ DN</strong>
+                <strong className="text-emerald-800 block text-[11px] uppercase">Phần 2: 7 Lá chắn bảo vệ 50 tỷ</strong>
                 <span className="text-slate-800 font-semibold">Vũ Thảo + Dạ Thảo</span>
-                <span className="text-[10px] text-slate-500 block">Trình bày Slide 05, 06 &amp; 07</span>
+                <span className="text-[10px] text-slate-500 block">Báo cáo Slide 05, 06 &amp; 07</span>
               </div>
               <div className="p-2 bg-white rounded-lg border border-blue-200 shadow-2xs">
-                <strong className="text-blue-800 block text-[11px] uppercase">Phần 3: Rủi ro &amp; Xử lý (Q&amp;A)</strong>
+                <strong className="text-blue-800 block text-[11px] uppercase">Phần 3: 10 Rủi ro &amp; Phản biện (Q&amp;A)</strong>
                 <span className="text-slate-800 font-semibold">Nhung + Thu + AP (hỗ trợ)</span>
-                <span className="text-[10px] text-slate-500 block">Trình bày Slide 08, 09 &amp; 10</span>
+                <span className="text-[10px] text-slate-500 block">Báo cáo Slide 08, 09 &amp; 10</span>
               </div>
             </div>
           </div>
@@ -143,12 +147,14 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
       id: 'slide-2',
       badge: 'SLIDE 02 / 10 · NGUYÊN TẮC SOẠN THẢO',
       category: 'PHẦN 1 · LÊ PHƯƠNG THẢO PHỤ TRÁCH',
-      title: 'BẢN CHẤT PHÁP LÝ & 4 NGUYÊN TẮC VÀNG KHI XÂY DỰNG ĐIỀU LỆ',
+      title: 'BẢN CHẤT PHÁP LÝ & 4 NGUYÊN TẮC VÀNG BẢO VỆ 5 NHÀ ĐẦU TƯ TVPAY',
       subtitle: 'Căn cứ Khoản 2 Điều 22 và Khoản 2 Điều 24 Luật Doanh nghiệp 2020 (sửa đổi bổ sung 2025)',
+      speakerNotes:
+        'Kính thưa Thầy và các bạn, em là Lê Phương Thảo đại diện Nhóm 13 trình bày về 4 nguyên tắc vàng khi xây dựng Điều lệ cho 5 nhà đầu tư TVPAY. Để bảo đảm an toàn cho 50 tỷ đồng vốn góp, nhóm tư vấn quán triệt: Thứ nhất, không được trái luật để văn bản không bị Tòa án tuyên vô hiệu; Thứ hai, bảo đảm đầy đủ các điều khoản bắt buộc theo Điều 24 Luật Doanh nghiệp; Thứ ba, tự do thỏa thuận trong khuôn khổ pháp luật để tối ưu hóa quyền lợi của các nhà đầu tư; và Thứ tư, bắt buộc có sự đồng thuận và chữ ký của toàn bộ 5 nhà đầu tư sáng lập theo đúng Khoản 3 Điều 24 Luật Doanh nghiệp 2020.',
       renderContent: () => (
         <div className="space-y-3">
           <div className="p-3 bg-amber-50/80 rounded-xl border border-amber-200/90 text-xs text-[#7A5B10]">
-            <strong>📖 Bản chất pháp lý:</strong> Điều lệ là tài liệu bắt buộc trong hồ sơ đăng ký kinh doanh của Công ty cổ phần (Khoản 2 Điều 22 Luật DN). Đây là văn bản quy phạm nội bộ cao nhất, được các cổ đông sáng lập thỏa thuận bình đẳng và nhất trí thông qua.
+            <strong>📖 Bản chất pháp lý:</strong> Điều lệ là tài liệu bắt buộc trong hồ sơ đăng ký kinh doanh của Công ty cổ phần (Khoản 2 Điều 22 Luật DN). Đây là văn bản quy phạm nội bộ cao nhất, được các nhà đầu tư sáng lập thỏa thuận bình đẳng và nhất trí thông qua.
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
@@ -168,7 +174,7 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
                 <span>Nguyên tắc 2: Đảm bảo đầy đủ nội dung bắt buộc</span>
               </div>
               <p className="text-[11.5px] text-slate-600 m-0 leading-relaxed">
-                Đầy đủ các thông tin cốt lõi theo Khoản 2 Điều 24: tên, trụ sở, ngành nghề, vốn điều lệ, loại cổ phần, tỷ lệ sở hữu của 05 cổ đông sáng lập, quyền và nghĩa vụ cổ đông.
+                Đầy đủ các thông tin cốt lõi theo Khoản 2 Điều 24: tên, trụ sở, ngành nghề, vốn điều lệ, loại cổ phần, tỷ lệ sở hữu của 05 nhà đầu tư sáng lập, quyền và nghĩa vụ cổ đông.
               </p>
             </div>
 
@@ -178,17 +184,17 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
                 <span>Nguyên tắc 3: Tự nguyện và tự do thỏa thuận hợp pháp</span>
               </div>
               <p className="text-[11.5px] text-slate-600 m-0 leading-relaxed">
-                Mọi quy định quản trị và phân chia quyền lực đều xuất phát từ sự thảo luận dân chủ, đồng thuận và bảo vệ sự công bằng giữa các nhóm cổ đông lớn và nhỏ.
+                Mọi quy định quản trị và phân chia quyền lực đều xuất phát từ sự thảo luận dân chủ, đồng thuận và bảo vệ sự công bằng giữa các nhà đầu tư lớn và nhỏ.
               </p>
             </div>
 
             <div className="p-3.5 bg-white rounded-xl border border-amber-200/80 shadow-2xs">
               <div className="flex items-center gap-1.5 font-bold text-[#8C6B18] mb-1">
                 <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                <span>Nguyên tắc 4: Đồng thuận &amp; Chữ ký 100% cổ đông sáng lập</span>
+                <span>Nguyên tắc 4: Đồng thuận &amp; Chữ ký 100% 05 nhà đầu tư</span>
               </div>
               <p className="text-[11.5px] text-slate-600 m-0 leading-relaxed">
-                Bắt buộc phải có chữ ký của đầy đủ 05 cổ đông sáng lập và Người đại diện theo pháp luật. Là cam kết pháp lý ràng buộc vô điều kiện trong suốt quá trình hoạt động.
+                Bắt buộc phải có chữ ký của đầy đủ 05 nhà đầu tư sáng lập (theo Khoản 3 Điều 24 Luật DN). Là cam kết pháp lý ràng buộc vô điều kiện trong suốt quá trình hoạt động.
               </p>
             </div>
           </div>
@@ -201,8 +207,10 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
       id: 'slide-3',
       badge: 'SLIDE 03 / 10 · 5 VAI TRÒ CỐT LÕI',
       category: 'PHẦN 1 · LÊ PHƯƠNG THẢO PHỤ TRÁCH',
-      title: '5 VAI TRÒ NỀN TẢNG CỦA ĐIỀU LỆ ĐỐI VỚI VẬN HÀNH DOANH NGHIỆP',
-      subtitle: 'Điều lệ không chỉ là thủ tục thành lập mà là công cụ pháp lý sống còn xuyên suốt vòng đời TVPAY',
+      title: '5 VAI TRÒ TRỌNG YẾU CỦA ĐIỀU LỆ ĐỐI VỚI 5 NHÀ ĐẦU TƯ VÀ TVPAY',
+      subtitle: 'Điều lệ không chỉ là thủ tục thành lập mà là Hiến pháp nội bộ bảo vệ quyền kiểm soát của 5 nhà đầu tư',
+      speakerNotes:
+        'Em xin tiếp tục báo cáo 5 vai trò sống còn mà bản Điều lệ này mang lại cho 5 nhà đầu tư: Thứ nhất, xác lập cơ chế vận hành hệ thống mạch lạc; Thứ hai, là văn kiện pháp lý chính thức để NHNN thẩm định và cấp phép trung gian thanh toán; Thứ ba, là căn cứ pháp lý đầu tiên để giải quyết bất đồng giữa các nhà đầu tư; Thứ tư, tạo động lực gắn kết các thành viên sáng lập; và Thứ năm, là công cụ tối thượng hỗ trợ quản trị minh bạch, ngăn ngừa lạm quyền.',
       renderContent: () => (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 text-xs">
           <div className="p-3.5 bg-white rounded-xl border border-amber-200/80 shadow-2xs">
@@ -231,7 +239,7 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
             </span>
             <h4 className="text-xs font-bold text-slate-900 m-0 mb-1">Cơ sở giải quyết tranh chấp</h4>
             <p className="text-[11.5px] text-slate-600 m-0 leading-relaxed">
-              Căn cứ pháp lý đầu tiên và quan trọng nhất để các cơ quan tài phán giải quyết bất đồng nội bộ một cách công bằng, minh bạch.
+              Căn cứ pháp lý đầu tiên và quan trọng nhất để các cơ quan tài phán giải quyết bất đồng giữa các nhà đầu tư một cách công bằng, minh bạch.
             </p>
           </div>
 
@@ -262,9 +270,11 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
     {
       id: 'slide-4',
       badge: 'SLIDE 04 / 10 · MỤC LỤC 9 CHƯƠNG',
-      category: 'CẤU TRÚC TOÀN VĂN ĐIỀU LỆ (CHỈ GHI TÊN CÁC CHƯƠNG)',
+      category: 'CẤU TRÚC TOÀN VĂN ĐIỀU LỆ (DANH MỤC 09 CHƯƠNG)',
       title: 'HỆ THỐNG DANH MỤC 09 CHƯƠNG ĐIỀU LỆ TVPAY',
-      subtitle: 'Tuân thủ đúng chỉ đạo của nhóm trưởng: Chỉ ghi tên các chương, súc tích và dễ nhớ',
+      subtitle: 'Tuân thủ đúng chỉ đạo: Chỉ ghi tên danh mục 09 chương, súc tích và dồn trọng tâm vào cơ chế bảo vệ nhà đầu tư',
+      speakerNotes:
+        'Kính thưa Thầy và các bạn, theo đúng định hướng tư vấn và yêu cầu chỉ đạo, toàn bộ cấu trúc 09 chương của Điều lệ được chuẩn hóa theo danh mục tên ngắn gọn, tránh rườm rà, nhằm dồn toàn bộ trọng tâm vào các điều khoản then chốt bảo vệ quyền và lợi ích hợp pháp của 05 nhà đầu tư.',
       renderContent: () => (
         <div className="space-y-3">
           <div className="p-2.5 bg-amber-50/70 border border-amber-200/80 rounded-lg text-xs text-[#7A5B10] flex items-center justify-between">
@@ -308,8 +318,10 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
       id: 'slide-5',
       badge: 'SLIDE 05 / 10 · GIẢI PHÁP PHÒNG VỆ (1 & 2)',
       category: 'PHẦN 2 · VŨ THẢO + DẠ THẢO PHỤ TRÁCH',
-      title: 'BẢO VỆ QUYỀN LỢI CỔ ĐÔNG & PHÂN ĐỊNH RÀNH MẠCH QUYỀN LỰC QUẢN TRỊ',
-      subtitle: 'Giải pháp phòng vệ nhằm hạn chế biến động cổ đông đột ngột và ngăn ngừa lạm quyền nội bộ',
+      title: 'BẢO VỆ QUYỀN LỢI 5 NHÀ ĐẦU TƯ & PHÂN ĐỊNH RÀNH MẠCH QUYỀN LỰC QUẢN TRỊ',
+      subtitle: 'Giải pháp phòng vệ của Nhóm 13 giúp bảo toàn tỷ lệ sở hữu, chống pha loãng và ngăn ngừa lạm quyền nội bộ',
+      speakerNotes:
+        'Kính thưa Thầy và các bạn, em là Vũ Thảo. Xuất phát từ quyền lợi cốt lõi của 5 nhà đầu tư khi rót 50 tỷ đồng, nhóm tư vấn đã thiết kế các lá chắn phòng vệ đặc thù: Lá chắn 1 khóa chuyển nhượng trong 3 năm đầu để đảm bảo các nhà đầu tư đồng hành phát triển; đồng thời trao quyền ưu tiên mua cổ phần phát hành mới để tỷ lệ sở hữu của 5 nhà đầu tư không bị pha loãng khi công ty tăng vốn. Lá chắn 2 phân định rành mạch quyền lực ĐHĐCĐ, HĐQT và TGĐ, buộc cá nhân người quản lý phải bồi thường nếu lạm quyền.',
       renderContent: () => (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 text-xs">
           <div className="p-4 bg-white rounded-xl border border-emerald-300/90 shadow-2xs">
@@ -320,15 +332,15 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
               <span className="font-mono text-[11px] text-emerald-800 font-bold">Điều 6, 7</span>
             </div>
             <h4 className="text-xs font-bold text-slate-900 m-0 mb-2">
-              Bảo vệ quyền lợi cổ đông &amp; Sự ổn định của doanh nghiệp
+              Bảo vệ quyền lợi 5 nhà đầu tư &amp; Sự ổn định của doanh nghiệp
             </h4>
             <ul className="text-slate-600 space-y-1.5 pl-4 list-disc m-0 leading-relaxed text-[11.5px]">
-              <li>Quy định rõ ràng quyền biểu quyết, quyền tiếp cận thông tin tài chính và quyền hưởng cổ tức của từng cổ đông.</li>
-              <li>Thiết lập cơ chế thông báo nội bộ và quyền ưu tiên mua cổ phần của cổ đông hiện hữu khi có phát hành mới.</li>
-              <li>Giới hạn chuyển nhượng cổ phần ra bên ngoài trong giai đoạn đầu, hạn chế nguy cơ thâu tóm thù địch và thay đổi cơ cấu sở hữu đột ngột.</li>
+              <li>Quy định rõ ràng quyền biểu quyết, quyền tiếp cận thông tin tài chính và quyền hưởng cổ tức của 05 nhà đầu tư.</li>
+              <li>Thiết lập cơ chế thông báo nội bộ và quyền ưu tiên mua cổ phần của 05 nhà đầu tư hiện hữu khi có phát hành mới.</li>
+              <li>Giới hạn chuyển nhượng cổ phần ra bên ngoài trong 03 năm đầu, hạn chế nguy cơ thâu tóm thù địch và thay đổi cơ cấu sở hữu đột ngột.</li>
             </ul>
             <div className="mt-3 p-2 bg-emerald-50/70 rounded-lg text-[11px] text-emerald-900">
-              <strong>Mục tiêu:</strong> Tạo sự ổn định tuyệt đối trong quản trị và định hướng phát triển dài hạn của TVPAY.
+              <strong>Mục tiêu:</strong> Tạo sự ổn định tuyệt đối trong quản trị và bảo toàn quyền kiểm soát của 05 nhà đầu tư sáng lập.
             </div>
           </div>
 
@@ -348,7 +360,7 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
               <li>Ràng buộc trách nhiệm bồi thường tài sản cá nhân của người quản lý nếu ra quyết định vượt thẩm quyền gây tổn thất cho công ty.</li>
             </ul>
             <div className="mt-3 p-2 bg-emerald-50/70 rounded-lg text-[11px] text-emerald-900">
-              <strong>Mục tiêu:</strong> Ngăn chặn lạm quyền và có căn cứ pháp lý rõ ràng để truy cứu trách nhiệm khi có sai phạm.
+              <strong>Mục tiêu:</strong> Ngăn chặn lạm quyền và có căn cứ pháp lý rõ ràng để bảo vệ vốn của 05 nhà đầu tư.
             </div>
           </div>
         </div>
@@ -361,7 +373,9 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
       badge: 'SLIDE 06 / 10 · GIẢI PHÁP PHÒNG VỆ (3 & 4)',
       category: 'PHẦN 2 · VŨ THẢO + DẠ THẢO PHỤ TRÁCH',
       title: 'QUẢN LÝ TÀI CHÍNH DUY TRÌ VỐN 50 TỶ & KIỂM SOÁT XUNG ĐỘT LỢI ÍCH',
-      subtitle: 'Đáp ứng điều kiện cấp phép khắt khe của NHNN và chống thất thoát tài sản qua các giao dịch thân hữu',
+      subtitle: 'Bảo đảm an toàn dòng vốn cho 5 nhà đầu tư và chống nguy cơ rút ruột tài sản công ty',
+      speakerNotes:
+        'Em là Dạ Thảo xin tiếp tục trình bày: Lá chắn 3 thiết lập cơ chế trích lập các quỹ dự phòng tài chính trước khi chia cổ tức, giúp duy trì vững chắc điều kiện vốn 50 tỷ của NHNN và bảo toàn thanh khoản 1:1. Lá chắn 4 áp dụng nguyên tắc thị trường Arm\'s length đối với mọi giao dịch nội bộ và tước quyền biểu quyết của bên có lợi ích liên quan, triệt tiêu hoàn toàn nguy cơ rút ruột tài sản công ty.',
       renderContent: () => (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 text-xs">
           <div className="p-4 bg-white rounded-xl border border-emerald-300/90 shadow-2xs">
@@ -380,7 +394,7 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
               <li>Cơ chế kiểm toán độc lập định kỳ bảo đảm minh bạch số dư tiền gửi đảm bảo thanh toán tại ngân hàng liên kết.</li>
             </ul>
             <div className="mt-3 p-2 bg-emerald-50/70 rounded-lg text-[11px] text-emerald-900">
-              <strong>Mục tiêu:</strong> Tạo "bộ đệm" tài chính sẵn sàng hấp thụ rủi ro sự cố giao dịch và duy trì hiệu lực Giấy phép NHNN.
+              <strong>Mục tiêu:</strong> Tạo "bộ đệm" tài chính sẵn sàng hấp thụ rủi ro sự cố giao dịch và bảo toàn 50 tỷ đồng vốn góp của NĐT.
             </div>
           </div>
 
@@ -400,7 +414,7 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
               <li>Cổ đông hoặc thành viên HĐQT có lợi ích liên quan bị tước quyền biểu quyết đối với giao dịch đó.</li>
             </ul>
             <div className="mt-3 p-2 bg-emerald-50/70 rounded-lg text-[11px] text-emerald-900">
-              <strong>Mục tiêu:</strong> Triệt tiêu nguy cơ chuyển giá, thất thoát tài sản sang các công ty "sân sau" của người quản lý.
+              <strong>Mục tiêu:</strong> Triệt tiêu nguy cơ chuyển giá, thất thoát tài sản sang các công ty "sân sau" của người điều hành.
             </div>
           </div>
         </div>
@@ -412,8 +426,10 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
       id: 'slide-7',
       badge: 'SLIDE 07 / 10 · GIẢI PHÁP PHÒNG VỆ (5, 6 & 7)',
       category: 'PHẦN 2 · VŨ THẢO + DẠ THẢO PHỤ TRÁCH',
-      title: 'QUẢN TRỊ FINTECH, BẢO VỆ MÃ NGUỒN & ỨNG PHÓ AN NINH MẠNG',
-      subtitle: 'Bộ ba giải pháp đặc thù bảo vệ công nghệ cốt lõi, bí mật kinh doanh và tính liên tục của Ví',
+      title: 'QUẢN TRỊ FINTECH, BẢO VỆ BẢN QUYỀN CORE WALLET & ỨNG PHÓ KHỦNG HOẢNG',
+      subtitle: 'Bộ ba giải pháp bảo vệ tài sản vô hình có giá trị nhất của 5 nhà đầu tư và tính liên tục của hệ thống Ví',
+      speakerNotes:
+        'Đối với tài sản công nghệ, nhóm tư vấn xác lập nguyên tắc mã nguồn, thuật toán và cơ sở dữ liệu đều thuộc quyền sở hữu tuyệt đối của TVPAY, ngăn ngừa việc nhân sự chủ chốt mang công nghệ ra ngoài mở công ty đối thủ. Đồng thời, Điều lệ quy định cơ chế ủy quyền khẩn cấp để xử lý nhanh sự cố an ninh mạng mà vẫn hoàn toàn hợp pháp.',
       renderContent: () => (
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
           <div className="p-3.5 bg-white rounded-xl border border-emerald-300/80 shadow-2xs">
@@ -456,18 +472,19 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
     {
       id: 'slide-8',
       badge: 'SLIDE 08 / 10 · RỦI RO & XỬ LÝ (PHẦN 1)',
-      category: 'PHẦN 3 · NHUNG + THU + AP PHỤ TRÁCH',
+      category: 'PHẦN 3 · NHUNG (LÊ THỊ HỒNG NHUNG) PHỤ TRÁCH',
       title: 'MA TRẬN RỦI RO PHÁP LÝ: TÍNH HỢP PHÁP, THẨM QUYỀN & THỂ THỨC HỌP',
-      subtitle: 'Đối chiếu rủi ro thực tế, hậu quả pháp lý phát sinh và phương án kiểm soát tuân thủ',
+      subtitle: 'Tư vấn đối sách phòng ngừa 04 rủi ro nội bộ cấp bách cho 05 Nhà đầu tư sáng lập TVPAY',
+      speakerNotes: 'Gợi ý thuyết trình (Kim Nhung): "Thưa thầy và hội đồng, khi nhận đề bài tư vấn bảo vệ quyền lợi cho 05 nhà đầu tư TVPAY với số vốn 50 tỷ đồng, nhóm em nhận diện ngay 4 rủi ro pháp lý cơ bản có thể làm vô hiệu hoạt động doanh nghiệp. Rủi ro số 1 là Điều lệ trái luật, chúng em đã chuẩn hóa đối chiếu Luật Doanh nghiệp 2020 và Nghị định 52/2024. Rủi ro số 2 và 3 là tranh chấp quyền lực và thẩm quyền người đại diện, Điều lệ đã phân quyền rành mạch giữa 5 cổ đông và Tổng Giám đốc. Rủi ro số 4 là thể thức triệu tập họp, nhóm quy định chặt chẽ thời hạn thông báo để mọi nghị quyết của ĐHĐCĐ luôn có hiệu lực pháp lý vững chắc."',
       renderContent: () => (
         <div className="overflow-x-auto rounded-xl border border-amber-200/80 shadow-2xs">
           <table className="min-w-full text-xs text-left divide-y divide-amber-200/60">
             <thead className="bg-amber-100/70 font-serif font-bold text-slate-900">
               <tr>
                 <th className="px-3 py-2 border-r border-amber-200/50">STT</th>
-                <th className="px-3 py-2 border-r border-amber-200/50 w-1/4">Rủi ro pháp lý</th>
-                <th className="px-3 py-2 border-r border-amber-200/50 w-1/3">Hậu quả có thể xảy ra</th>
-                <th className="px-3 py-2">Cách xử lý chuẩn xác</th>
+                <th className="px-3 py-2 border-r border-amber-200/50 w-1/4">Rủi ro pháp lý nhận diện</th>
+                <th className="px-3 py-2 border-r border-amber-200/50 w-1/3">Hậu quả có thể xảy ra với Nhà đầu tư</th>
+                <th className="px-3 py-2">Phương án xử lý chuẩn tắc của Nhóm 13</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-amber-100 bg-white text-[11.5px] text-slate-700">
@@ -505,26 +522,27 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
     {
       id: 'slide-9',
       badge: 'SLIDE 09 / 10 · RỦI RO & XỬ LÝ (PHẦN 2)',
-      category: 'PHẦN 3 · NHUNG + THU + AP PHỤ TRÁCH',
+      category: 'PHẦN 3 · THU (KIỀU HOÀI THU) PHỤ TRÁCH',
       title: 'MA TRẬN RỦI RO PHÁP LÝ: CHUYỂN NHƯỢNG CỔ PHẦN, MỞ RỘNG VỐN & SỬA ĐỔI',
-      subtitle: 'Đối sách phòng ngừa tranh chấp khi đón nhận nhà đầu tư mới và khi thay đổi pháp luật',
+      subtitle: 'Đối sách bảo vệ 05 Nhà đầu tư khi mở rộng vốn gọi quỹ ngoại và điều chỉnh luật chuyên ngành',
+      speakerNotes: 'Gợi ý thuyết trình (Phương Thu): "Tiếp theo, ở giai đoạn mở rộng và vận hành thực tế, 4 rủi ro lớn nhất mà 5 nhà đầu tư TVPAY đối mặt là: chuyển nhượng cổ phần nội bộ bị người ngoài thâm nhập, bị động khi quỹ ngoại muốn rót vốn công nghệ, luật chuyên ngành thay đổi, và cơ chế xử lý tài sản khi phát sinh rủi ro thanh khoản ví. Nhóm 13 đã thiết lập cơ chế quyền ưu tiên mua 30 ngày cho 5 cổ đông sáng lập, quy định sẵn khung chào bán cổ phần riêng lẻ, và đặc biệt ưu tiên số 1 cho việc hoàn trả số dư ví của khách hàng trước khi thanh lý tài sản cho cổ đông, đảm bảo uy tín và trách nhiệm của các nhà đầu tư sáng lập."',
       renderContent: () => (
         <div className="overflow-x-auto rounded-xl border border-amber-200/80 shadow-2xs">
           <table className="min-w-full text-xs text-left divide-y divide-amber-200/60">
             <thead className="bg-amber-100/70 font-serif font-bold text-slate-900">
               <tr>
                 <th className="px-3 py-2 border-r border-amber-200/50">STT</th>
-                <th className="px-3 py-2 border-r border-amber-200/50 w-1/4">Rủi ro pháp lý</th>
-                <th className="px-3 py-2 border-r border-amber-200/50 w-1/3">Hậu quả có thể xảy ra</th>
-                <th className="px-3 py-2">Cách xử lý chuẩn xác</th>
+                <th className="px-3 py-2 border-r border-amber-200/50 w-1/4">Rủi ro mở rộng & thoái vốn</th>
+                <th className="px-3 py-2 border-r border-amber-200/50 w-1/3">Hậu quả có thể xảy ra với Nhà đầu tư</th>
+                <th className="px-3 py-2">Phương án bảo vệ của Nhóm 13</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-amber-100 bg-white text-[11.5px] text-slate-700">
               <tr className="hover:bg-amber-50/40">
                 <td className="px-3 py-2 font-bold font-mono text-[#8C6B18] border-r border-amber-100">05</td>
                 <td className="px-3 py-2 font-semibold text-slate-900 border-r border-amber-100">Chuyển nhượng cổ phần trong công ty khép kín</td>
-                <td className="px-3 py-2 border-r border-amber-100">Xâm nhập của cổ đông ngoài ý muốn, tranh chấp về việc mua lại cổ phần ưu tiên.</td>
-                <td className="px-3 py-2 text-[#7A5B10] font-medium">Quy định quy trình chào bán nội bộ trước 30 ngày, quyền ưu tiên mua của cổ đông sáng lập.</td>
+                <td className="px-3 py-2 border-r border-amber-100">Xâm nhập của bên ngoài làm xáo trộn chiến lược của 05 cổ đông sáng lập.</td>
+                <td className="px-3 py-2 text-[#7A5B10] font-medium">Quy định quy trình chào bán nội bộ trước 30 ngày, quyền ưu tiên mua của 05 cổ đông sáng lập.</td>
               </tr>
               <tr className="bg-amber-50/20 hover:bg-amber-50/40">
                 <td className="px-3 py-2 font-bold font-mono text-[#8C6B18] border-r border-amber-100">06</td>
@@ -554,35 +572,36 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
     {
       id: 'slide-10',
       badge: 'SLIDE 10 / 10 · Q&A & TỔNG KẾT',
-      category: 'TỔNG KẾT & THẢO LUẬN · NHÓM 13',
+      category: 'TỔNG KẾT & PHẢN BIỆN · ĐOÀN ÁNH PHƯƠNG (TRƯỞNG NHÓM)',
       title: 'KỊCH BẢN HỎI - ĐÁP PHẢN BIỆN (Q&A) & ĐỀ XUẤT NÂNG CẤP ĐIỀU LỆ SỐ HÓA',
-      subtitle: 'Sẵn sàng giải đáp chất vấn từ giảng viên, đối tác và hội đồng chuyên môn Khoa Luật HVNH',
+      subtitle: 'Nhóm 13 sẵn sàng giải đáp chất vấn từ Giảng viên & Hội đồng chuyên môn Khoa Luật HVNH',
+      speakerNotes: 'Gợi ý thuyết trình (Ánh Phương): "Để kết lại phần trình bày hồ sơ tư vấn Điều lệ TVPAY, Nhóm 13 đã chuẩn bị sẵn kịch bản phản biện cho 2 vấn đề trọng yếu mà Giảng viên thường đặt câu hỏi: (1) Vì sao TVPAY phải duy trì quỹ thanh khoản nghiêm ngặt hơn công ty thường, và (2) Cơ chế nào bảo vệ 5 nhà đầu tư sáng lập trước nguy cơ pha loãng vốn. Đồng thời, nhóm đề xuất bước tiến số hóa Điều lệ với chữ ký số cá nhân và hợp đồng điện tử theo Luật Giao dịch điện tử 2023. Xin trân trọng cảm ơn Thầy và các bạn đã lắng nghe!"',
       renderContent: () => (
         <div className="space-y-3.5">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
-            <div className="p-3.5 bg-white rounded-xl border border-blue-200 shadow-2xs">
-              <div className="flex items-center gap-1.5 text-blue-900 font-bold mb-1">
-                <HelpCircle className="w-4 h-4 text-blue-600" />
-                <span>Câu hỏi chất vấn 01 (Thường gặp):</span>
+            <div className="p-3.5 bg-white rounded-xl border border-amber-300/80 shadow-2xs">
+              <div className="flex items-center gap-1.5 text-amber-900 font-bold mb-1">
+                <HelpCircle className="w-4 h-4 text-[#8C6B18]" />
+                <span>Câu hỏi chất vấn 01 (Thường gặp từ Giảng viên):</span>
               </div>
               <p className="font-semibold text-slate-800 mb-1.5 leading-snug">
                 "Tại sao TVPAY lại bắt buộc phải duy trì quỹ dự phòng tài chính khắt khe hơn công ty cổ phần thông thường?"
               </p>
-              <div className="p-2 bg-blue-50/60 rounded-lg text-blue-950 leading-relaxed text-[11px]">
-                <strong>Trả lời:</strong> Vì TVPAY là tổ chức trung gian thanh toán, nắm giữ số dư ví điện tử của khách hàng. Bộ đệm tài chính này đảm bảo nguyên tắc bảo toàn thanh khoản 1:1, ngăn ngừa nguy cơ mất khả năng chi trả khi xảy ra sự cố nghẽn mạng ngân hàng đối tác.
+              <div className="p-2.5 bg-amber-50/70 rounded-lg text-amber-950 leading-relaxed text-[11px] border border-amber-200/60">
+                <strong>Tư vấn Nhóm 13:</strong> Vì TVPAY là tổ chức trung gian thanh toán, nắm giữ số dư ví điện tử của khách hàng. Bộ đệm tài chính này đảm bảo nguyên tắc bảo toàn thanh khoản 1:1 theo quy định NHNN, ngăn ngừa nguy cơ mất khả năng chi trả khi xảy ra sự cố nghẽn mạng ngân hàng đối tác.
               </div>
             </div>
 
-            <div className="p-3.5 bg-white rounded-xl border border-blue-200 shadow-2xs">
-              <div className="flex items-center gap-1.5 text-blue-900 font-bold mb-1">
-                <HelpCircle className="w-4 h-4 text-blue-600" />
-                <span>Câu hỏi chất vấn 02 (Thường gặp):</span>
+            <div className="p-3.5 bg-white rounded-xl border border-amber-300/80 shadow-2xs">
+              <div className="flex items-center gap-1.5 text-amber-900 font-bold mb-1">
+                <HelpCircle className="w-4 h-4 text-[#8C6B18]" />
+                <span>Câu hỏi chất vấn 02 (Thường gặp từ Giảng viên):</span>
               </div>
               <p className="font-semibold text-slate-800 mb-1.5 leading-snug">
-                "Cơ chế nào trong Điều lệ giúp bảo vệ quyền lợi của các cổ đông sáng lập trước nguy cơ bị pha loãng cổ phần?"
+                "Cơ chế nào trong Điều lệ giúp bảo vệ 05 nhà đầu tư sáng lập trước nguy cơ bị các nhà đầu tư vòng sau pha loãng?"
               </p>
-              <div className="p-2 bg-blue-50/60 rounded-lg text-blue-950 leading-relaxed text-[11px]">
-                <strong>Trả lời:</strong> Điều lệ trao quyền ưu tiên mua cổ phần chào bán mới tương ứng với tỷ lệ sở hữu hiện có (Điều 6), đồng thời quy định tỷ lệ biểu quyết tối thiểu 65% đối với các quyết định tăng vốn hoặc chuyển nhượng cổ phần cho nhà đầu tư ngoại.
+              <div className="p-2.5 bg-amber-50/70 rounded-lg text-amber-950 leading-relaxed text-[11px] border border-amber-200/60">
+                <strong>Tư vấn Nhóm 13:</strong> Điều lệ trao quyền ưu tiên mua cổ phần chào bán mới tương ứng với tỷ lệ sở hữu hiện có (Điều 6), đồng thời quy định tỷ lệ biểu quyết tối thiểu 65% đối với các quyết định tăng vốn hoặc chào bán cổ phần riêng lẻ cho nhà đầu tư ngoại.
               </div>
             </div>
           </div>
@@ -1030,6 +1049,19 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
             <div className="tvpay-slide-content animate-in fade-in duration-300">
               {activeSlide.renderContent(docData)}
             </div>
+
+            {/* Speaker Notes Callout if present */}
+            {activeSlide.speakerNotes && (
+              <div className="mt-4 p-3.5 bg-gradient-to-r from-amber-50/90 via-amber-100/40 to-amber-50/90 rounded-xl border border-amber-300/80 shadow-2xs">
+                <div className="flex items-center gap-2 mb-1.5 text-[#8C6B18] font-bold text-[11px] uppercase tracking-wider">
+                  <MessageSquare className="w-3.5 h-3.5 text-[#C59B27]" />
+                  <span>Gợi ý kịch bản thuyết trình · Nhóm 13 (Thịnh Vượng Legal)</span>
+                </div>
+                <p className="text-[11.5px] text-slate-700 leading-relaxed m-0 italic">
+                  {activeSlide.speakerNotes}
+                </p>
+              </div>
+            )}
           </div>
 
           {/* Bottom Interactive Navigation & Thumbnails */}

@@ -215,13 +215,16 @@ export function TvpayDocumentPresentation({ slug }: TvpayDocumentPresentationPro
       {/* 1. TOP DUAL-DOCUMENT SWITCHER & SOUND CONTROL BAR */}
       <div className="tvpay-top-action-bar">
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
               Văn kiện chính thức:
             </span>
             <span className="text-xs font-extrabold px-3 py-1 bg-amber-100 text-[#7A5B10] border border-amber-300 rounded-full flex items-center gap-1.5 shadow-sm">
               <Award className="w-3.5 h-3.5 text-[#8C6B18]" />
               {docData.officialTitle}
+            </span>
+            <span className="text-[11px] font-semibold px-2.5 py-0.5 bg-white text-slate-600 border border-amber-200/80 rounded-full hidden md:inline">
+              Tư vấn bởi Nhóm 13 (Thịnh Vượng Legal) · Khoa Luật HVNH cho 05 Nhà đầu tư
             </span>
           </div>
 
@@ -522,36 +525,51 @@ export function TvpayDocumentPresentation({ slug }: TvpayDocumentPresentationPro
 
             {/* Contract Signatures & Official Stamp Footer */}
             <div className="mt-8 pt-6 border-t-2 border-amber-900/15 relative z-10">
-              <div className="grid grid-cols-2 gap-4 text-center font-serif text-xs">
-                <div>
-                  <p className="font-bold uppercase text-slate-800 m-0">
-                    CÁC CỔ ĐÔNG SÁNG LẬP
+              {/* Official Signatures and Legal Attribution */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-center font-serif text-xs border-t border-amber-200/60 pt-6">
+                <div className="p-4 bg-amber-50/30 rounded-xl border border-amber-200/50">
+                  <p className="font-bold uppercase text-slate-800 m-0 tracking-wide">
+                    05 NHÀ ĐẦU TƯ / CỔ ĐÔNG SÁNG LẬP
                   </p>
                   <p className="text-[11px] text-slate-500 italic m-0">
-                    (Đã ký tên và nộp đủ vốn góp)
+                    (Cam kết góp đủ 50 Tỷ VNĐ vốn điều lệ ban đầu)
                   </p>
-                  <div className="my-6 text-slate-400 font-sans italic text-[11px]">
-                    [Đã ký điện tử xác thực 5 cổ đông]
+                  <div className="my-3 text-slate-500 font-sans text-[11px] space-y-0.5">
+                    <p className="font-semibold text-slate-800 m-0">1. Lê Quang Tùng (40%) - Đại diện nhóm</p>
+                    <p className="text-slate-600 m-0">2. Trịnh Hoàng Sơn (20%) · 3. Nguyễn Minh Lân (16%)</p>
+                    <p className="text-slate-600 m-0">4. Phạm Phương Hà (14%) · 5. Lê Thu Minh (10%)</p>
                   </div>
-                  <p className="font-bold text-slate-900 m-0">Lê Quang Tùng</p>
-                  <p className="text-[10px] text-slate-500 m-0">Đại diện nhóm sáng lập</p>
+                  <div className="my-2 text-slate-400 font-sans italic text-[10.5px]">
+                    [Đã ký điện tử xác thực theo Điều 24 Luật DN 2020]
+                  </div>
+                  <p className="font-bold text-slate-900 m-0 text-sm">Lê Quang Tùng</p>
+                  <p className="text-[10px] text-slate-500 m-0">Đại diện 05 Nhà đầu tư sáng lập</p>
                 </div>
 
-                <div>
-                  <p className="font-bold uppercase text-slate-800 m-0">
+                <div className="p-4 bg-amber-50/30 rounded-xl border border-amber-200/50">
+                  <p className="font-bold uppercase text-slate-800 m-0 tracking-wide">
                     CÔNG TY CỔ PHẦN TVPAY
                   </p>
                   <p className="text-[11px] text-slate-500 italic m-0">
                     (Người đại diện theo pháp luật)
                   </p>
                   <div className="my-6">
-                    <span className="inline-block px-3 py-1 border-2 border-dashed border-red-600/60 rounded text-red-600 font-bold text-[11px] uppercase tracking-wider -rotate-3">
+                    <span className="inline-block px-3.5 py-1.5 border-2 border-dashed border-red-600/70 rounded text-red-600 font-bold text-[11px] uppercase tracking-wider -rotate-3 bg-red-50/40">
                       ★ CHỨNG THỰC BẢN GỐC TVPAY ★
                     </span>
                   </div>
-                  <p className="font-bold text-slate-900 m-0">Lê Quang Tùng</p>
-                  <p className="text-[10px] text-slate-500 m-0">Tổng Giám đốc</p>
+                  <p className="font-bold text-slate-900 m-0 text-sm">Lê Quang Tùng</p>
+                  <p className="text-[10px] text-slate-500 m-0">Tổng Giám đốc · Người đại diện pháp luật</p>
                 </div>
+              </div>
+
+              {/* Attribution Note: Legal Counsel Group 13 HVNH */}
+              <div className="mt-6 p-3 bg-gradient-to-r from-amber-100/50 via-white to-amber-100/50 rounded-xl border border-amber-300/70 text-center">
+                <p className="text-[11.5px] text-slate-700 m-0">
+                  🏛️ <strong>Hồ sơ tư vấn pháp lý &amp; xây dựng Điều lệ TVPAY:</strong> Thực hiện bởi{' '}
+                  <strong className="text-[#8C6B18]">Nhóm 13 (Thịnh Vượng Legal) · Khoa Luật Học viện Ngân hàng</strong>{' '}
+                  nhằm thiết lập cơ chế quản trị và bảo vệ tối đa quyền lợi hợp pháp cho 05 Nhà đầu tư khách hàng.
+                </p>
               </div>
             </div>
           </div>
