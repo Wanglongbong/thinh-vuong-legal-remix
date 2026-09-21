@@ -11,6 +11,7 @@ import { contracts, getContract, getService } from '@/lib/site-data';
 import { contractReportContent } from '@/lib/contract-report-content';
 import { ContractReport } from '@/components/contract-report';
 import { TvpayDocumentPresentation } from '@/components/tvpay-document-presentation';
+import { TvpayPresentationSlides } from '@/components/tvpay-presentation-slides';
 import { tvpayOfficialDocs } from '@/lib/tvpay-official-docs';
 
 export function ContractDetailPage() {
@@ -101,10 +102,16 @@ export function ContractDetailPage() {
                   📜 1. Hợp đồng 2 Cột
                 </a>
                 <a
+                  href="#slides-section"
+                  className="text-xs font-bold px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:brightness-105 text-white shadow-sm border border-amber-400/80 transition flex items-center gap-1.5"
+                >
+                  🖥️ 2. Slide Thuyết Trình Tóm Tắt
+                </a>
+                <a
                   href="#original-dossier-section"
                   className="text-xs font-bold px-3.5 py-1.5 rounded-xl bg-white text-[#7A5B10] border border-amber-300 shadow-xs hover:bg-amber-100/60 transition flex items-center gap-1.5"
                 >
-                  📊 2. Khung Phân Tích File Cũ (Mục 01-06)
+                  📊 3. Khung Phân Tích File Cũ
                 </a>
               </div>
             </div>
@@ -114,7 +121,41 @@ export function ContractDetailPage() {
               <TvpayDocumentPresentation slug={item.slug} />
             </div>
 
-            {/* PART 2: COMPLETE ORIGINAL DOSSIER (THÔNG TIN FILE CŨ NGUYÊN BẢN 100%) */}
+            {/* PART 2: INTERACTIVE PRESENTATION SLIDES (SLIDE TÓM TẮT DƯỚI HỢP ĐỒNG) */}
+            <div id="slides-section" className="mt-14 pt-8 border-t-2 border-dashed border-amber-900/25">
+              <div className="flex flex-wrap items-center justify-between gap-3 pb-4 mb-2 border-b border-amber-200/80">
+                <div>
+                  <span className="text-xs font-extrabold uppercase tracking-wider text-[#8C6B18] px-3 py-1 bg-amber-100 rounded-full inline-block mb-1.5">
+                    KHUNG TRÌNH CHIẾU SLIDE THUYẾT TRÌNH
+                  </span>
+                  <h2 className="text-xl sm:text-2xl font-serif font-bold text-[#0A131E] m-0">
+                    Tóm Tắt Nội Dung, Vai Trò Quan Trọng &amp; Lá Chắn Bảo Vệ DN TVPAY
+                  </h2>
+                  <p className="text-xs text-slate-600 mt-1 mb-0">
+                    Thiết kế theo đúng yêu cầu Nhóm trưởng: Chương mục chỉ ghi tên; Trọng tâm vào vai trò và giải pháp bảo vệ doanh nghiệp.
+                  </p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <a
+                    href="#workbench-section"
+                    className="text-xs font-bold text-[#8C6B18] hover:underline flex items-center gap-1"
+                  >
+                    ↑ Cuộn lên Hợp đồng 2 cột
+                  </a>
+                  <span className="text-slate-300">·</span>
+                  <a
+                    href="#original-dossier-section"
+                    className="text-xs font-bold text-[#7A5B10] hover:underline flex items-center gap-1"
+                  >
+                    ↓ Xem hồ sơ gốc
+                  </a>
+                </div>
+              </div>
+
+              <TvpayPresentationSlides slug={item.slug} />
+            </div>
+
+            {/* PART 3: COMPLETE ORIGINAL DOSSIER (THÔNG TIN FILE CŨ NGUYÊN BẢN 100%) */}
             <div
               id="original-dossier-section"
               className="mt-16 pt-12 border-t-2 border-dashed border-amber-900/25"

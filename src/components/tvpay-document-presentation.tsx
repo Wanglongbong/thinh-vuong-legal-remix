@@ -895,6 +895,13 @@ export function TvpayDocumentPresentation({ slug }: TvpayDocumentPresentationPro
                     Nhóm trưởng yêu cầu tách bạch rõ: (1) Cấu trúc văn bản chỉ nêu tên chương/mục,
                     (2) Trọng tâm dồn vào Vai trò quan trọng và Giải pháp bảo vệ lợi ích DN TVPAY.
                   </p>
+
+                  <a
+                    href="#slides-section"
+                    className="mt-3 py-2 px-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm transition"
+                  >
+                    <span>🖥️ Xem Khung Slide Trình Chiếu Ở Dưới ↓</span>
+                  </a>
                 </div>
 
                 <div className="p-3.5 bg-white border border-slate-200 rounded-xl shadow-xs">
