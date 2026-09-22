@@ -54,7 +54,7 @@ export function ContractExplorer() {
             Hai Sản Phẩm Báo Cáo Cốt Lõi Của Nhóm 13 (Thịnh Vượng Legal)
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 mt-1.5 max-w-4xl leading-relaxed">
-            Dưới đây là 02 sản phẩm pháp lý nòng cốt được xây dựng chuyên sâu toàn diện, tích hợp đầy đủ <strong>10 Slide Thuyết trình Rạp chiếu (Cinema Mode)</strong>, trích lục toàn văn điều khoản, giải pháp bảo vệ quyền lợi doanh nghiệp và biểu mẫu tải Word theo đúng đề tài.
+            Dưới đây là 02 sản phẩm pháp lý nòng cốt được xây dựng chuyên sâu toàn diện, tích hợp đầy đủ <strong>Slide Thuyết trình Rạp chiếu (Cinema Mode)</strong>, trích lục toàn văn điều khoản, giải pháp bảo vệ quyền lợi doanh nghiệp và biểu mẫu tải Word theo đúng đề tài.
           </p>
         </div>
 
@@ -66,7 +66,7 @@ export function ContractExplorer() {
               <div className="flex items-center justify-between gap-2 mb-2.5 pb-2 border-b border-amber-100">
                 <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-[10.5px] font-bold uppercase tracking-wider bg-amber-50 text-[#8C6B18] border border-amber-200">
                   <FileText className="w-3.5 h-3.5 text-[#8C6B18]" />
-                  SẢN PHẨM DEMO 01 · 10 SLIDES
+                  SẢN PHẨM DEMO 01 · SLIDE THUYẾT TRÌNH
                 </span>
                 <span className="text-[11px] font-mono font-bold text-amber-800 bg-amber-100/70 px-2 py-0.5 rounded">
                   Vốn 50 Tỷ · 05 NĐT Sáng Lập
@@ -101,7 +101,7 @@ export function ContractExplorer() {
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-[#D4AF37] via-[#C59B27] to-[#8C6B18] text-white font-bold text-xs shadow-xs hover:brightness-110 transition cursor-pointer"
               >
                 <Presentation className="w-3.5 h-3.5" />
-                <span>Xem Toàn Văn &amp; 10 Slide Thuyết Trình</span>
+                <span>Xem Toàn Văn &amp; Slide Thuyết Trình</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </Link>
               <button
@@ -123,7 +123,7 @@ export function ContractExplorer() {
               <div className="flex items-center justify-between gap-2 mb-2.5 pb-2 border-b border-amber-100">
                 <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-[10.5px] font-bold uppercase tracking-wider bg-amber-50 text-[#8C6B18] border border-amber-200">
                   <FileCheck2 className="w-3.5 h-3.5 text-[#8C6B18]" />
-                  SẢN PHẨM DEMO 02 · 10 SLIDES
+                  SẢN PHẨM DEMO 02 · SLIDE THUYẾT TRÌNH
                 </span>
                 <span className="text-[11px] font-mono font-bold text-amber-800 bg-amber-100/70 px-2 py-0.5 rounded">
                   Hợp Đồng Mẫu · Người Dùng Cuối
@@ -158,7 +158,7 @@ export function ContractExplorer() {
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-[#D4AF37] via-[#C59B27] to-[#8C6B18] text-white font-bold text-xs shadow-xs hover:brightness-110 transition cursor-pointer"
               >
                 <Presentation className="w-3.5 h-3.5" />
-                <span>Xem Toàn Văn &amp; 10 Slide Thuyết Trình</span>
+                <span>Xem Toàn Văn &amp; Slide Thuyết Trình</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </Link>
               <button

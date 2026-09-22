@@ -120,12 +120,12 @@ export function ContractDetailPage() {
               <div className="flex flex-wrap items-center justify-between gap-3 pb-4 mb-2 border-b border-amber-200/80">
                 <div>
                   <span className="text-xs font-extrabold uppercase tracking-wider text-[#8C6B18] px-3 py-1 bg-amber-100 rounded-full inline-block mb-1.5">
-                    KHUNG TRÌNH CHIẾU SLIDE THUYẾT TRÌNH (10 TRANG CHI TIẾT)
+                    KHUNG TRÌNH CHIẾU SLIDE THUYẾT TRÌNH
                   </span>
                   <h2 className="text-xl sm:text-2xl font-serif font-bold text-[#0A131E] m-0">
                     {item.slug === 'dieu-le-cong-ty-co-phan'
-                      ? 'Báo Cáo Thuyết Trình Điều Lệ Công Ty Cổ Phần Cung Ứng Ví Điện Tử TVPAY (10 Slide)'
-                      : 'Báo Cáo Thuyết Trình Hợp Đồng Mở Và Sử Dụng Ví Điện Tử TVPAY (10 Slide)'}
+                      ? 'Báo Cáo Thuyết Trình Điều Lệ Công Ty Cổ Phần Cung Ứng Ví Điện Tử TVPAY'
+                      : 'Báo Cáo Thuyết Trình Hợp Đồng Mở Và Sử Dụng Ví Điện Tử TVPAY'}
                   </h2>
                   <p className="text-xs text-slate-600 mt-1 mb-0">
                     {item.slug === 'dieu-le-cong-ty-co-phan'
