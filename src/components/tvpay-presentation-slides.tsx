@@ -36,6 +36,16 @@ import {
   Volume2,
   VolumeX,
   Zap,
+  Clock,
+  Ban,
+  ArrowRight,
+  AlertOctagon,
+  Search,
+  Database,
+  Cpu,
+  RefreshCw,
+  Eye,
+  Key,
 } from 'lucide-react';
 import { tvpayOfficialDocs, type OfficialDocumentData } from '@/lib/tvpay-official-docs';
 import { uiSound } from '@/lib/ui-sound';
@@ -99,10 +109,10 @@ const RoyalWatermark = () => (
 
 // Đường kẻ phân cách hoàng gia tinh tế
 const RoyalDivider = ({ title }: { title?: string }) => (
-  <div className="flex items-center justify-center gap-2.5 my-2 opacity-70">
+  <div className="flex items-center justify-center gap-2.5 my-2.5 opacity-75">
     <div className="h-px bg-gradient-to-r from-transparent via-amber-400/60 to-transparent flex-1" />
     {title ? (
-      <span className="text-[10px] font-mono uppercase font-bold text-[#8C6B18] tracking-widest px-1.5">
+      <span className="text-[11px] sm:text-xs font-mono uppercase font-bold text-[#8C6B18] tracking-widest px-2">
         {title}
       </span>
     ) : (
@@ -110,6 +120,16 @@ const RoyalDivider = ({ title }: { title?: string }) => (
     )}
     <div className="h-px bg-gradient-to-r from-transparent via-amber-400/60 to-transparent flex-1" />
   </div>
+);
+
+
+// Biểu tượng quả cầu quốc tế mạ vàng
+const GlobeIcon = ({ className = '' }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="10" />
+    <line x1="2" y1="12" x2="22" y2="12" />
+    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+  </svg>
 );
 
 interface TvpayPresentationSlidesProps {
@@ -149,94 +169,103 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
   }, []);
 
   // =========================================================================
-  // 10 SLIDES CHUYÊN SÂU THEO FILE "PHẦN NỘI DUNG KHÁC" (GOOGLE DOC CHÍNH THỨC)
-  // Phân công: Lê Phương Thảo, Vũ Thảo, Dạ Thảo, Nhung, Thu, AP
+  // BỘ SLIDE 1: ĐIỀU LỆ CÔNG TY CP CUNG ỨNG VÍ ĐIỆN TỬ TVPAY (12 SLIDES)
+  // Chuẩn hóa 100% theo Google Doc 2: "Bộ Gen của doanh nghiệp" & 5 Giải pháp Fintech
   // =========================================================================
   const charterSlides: SlideItem[] = [
-    // SLIDE 1: BÌA BÁO CÁO & PHÂN CÔNG THUYẾT TRÌNH NHÓM 13
+    // SLIDE 1: BÌA BÁO CÁO & ĐỊNH VỊ "BỘ GEN CỦA DOANH NGHIỆP"
     {
-      id: 'slide-1',
-      badge: 'SLIDE 01 / 10 · BÁO CÁO TƯ VẤN',
+      id: 'charter-slide-1',
+      badge: 'SLIDE 01 / 12 · BÁO CÁO TƯ VẤN',
       category: 'HỒ SƠ TƯ VẤN PHÁP LÝ · NHÓM 13 (THỊNH VƯỢNG LEGAL) · KHOA LUẬT HVNH',
       title: 'ĐIỀU LỆ CÔNG TY CỔ PHẦN CUNG ỨNG VÍ ĐIỆN TỬ TVPAY',
-      subtitle: 'Bản Hiến pháp nội bộ bảo vệ 05 Nhà đầu tư sáng lập (50 Tỷ VNĐ) và chuẩn hóa điều kiện cấp phép ví điện tử tại NHNN',
+      subtitle: 'Bản "Bộ Gen" pháp lý tối cao định hình tổ chức, quản trị rủi ro và bảo vệ 05 Nhà đầu tư sáng lập (50 Tỷ VNĐ)',
       speakerName: 'Đoàn Ánh Phương',
       speakerRole: 'Trưởng Nhóm 13 · Điều phối viên',
       speakerAvatar: '/assets/team/anh-phuong.jpg',
       speakerNotes:
-        'Kính thưa Thầy và các bạn, hôm nay Nhóm 13 đại diện cho Thịnh Vượng Legal xin báo cáo kết quả dự án tư vấn xây dựng Điều lệ cho 05 Nhà đầu tư sáng lập của Công ty Cổ phần Cung ứng Ví điện tử TVPAY (ông Lê Quang Tùng, ông Trịnh Hoàng Sơn, ông Nguyễn Minh Lân, bà Phạm Phương Hà, bà Lê Thu Minh). Với quy mô vốn 50 tỷ đồng đầu tư vào lĩnh vực ví điện tử, yêu cầu cấp thiết mà 5 nhà đầu tư đặt ra cho nhóm tư vấn là phải xây dựng một bản Điều lệ vừa đủ điều kiện cấp phép khắt khe của Ngân hàng Nhà nước, vừa là thành trì pháp lý vững chắc bảo vệ quyền kiểm soát và tài sản cho các nhà đầu tư.',
+        'Kính thưa Thầy và các bạn, nếu ví một công ty cổ phần như một cơ thể sống, thì Điều lệ chính là "bộ gen" quyết định cách cơ thể đó vận hành - từ cách các cơ quan phối hợp với nhau, đến cách xử lý khi khủng hoảng xảy ra. Hôm nay, Nhóm 13 đại diện cho Thịnh Vượng Legal xin báo cáo toàn diện bản Điều lệ công ty TVPAY: không chỉ dưới góc độ một văn bản pháp lý bắt buộc khi thành lập, mà thực sự là công cụ chủ động bảo vệ quyền lợi doanh nghiệp và bảo toàn nguồn vốn 50 tỷ đồng của 05 nhà đầu tư sáng lập trong lĩnh vực ví điện tử.',
       renderContent: () => (
-        <div className="space-y-3">
-          {/* Top 3 Strategic Metric Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5">
-            <div className="stagger-1 p-3 bg-white/95 rounded-xl border border-amber-300 shadow-2xs">
-              <div className="flex items-center gap-2 mb-1 text-[#8C6B18]">
-                <Landmark className="w-4 h-4 text-amber-600" />
-                <span className="text-[10.5px] font-bold uppercase tracking-wider">Doanh nghiệp thành lập</span>
+        <div className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+            <div className="stagger-1 p-4 bg-white/95 rounded-2xl border-2 border-amber-300/80 shadow-xs relative overflow-hidden">
+              <RoyalFiligreeCorner className="absolute top-2 right-2" />
+              <div className="flex items-center gap-2 mb-2 text-[#8C6B18]">
+                <div className="p-2 rounded-xl bg-amber-100/80 border border-amber-300">
+                  <Landmark className="w-5 h-5 text-amber-700" />
+                </div>
+                <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">Doanh nghiệp thành lập</span>
               </div>
-              <h4 className="text-xs font-bold text-slate-900 m-0 mb-0.5">CÔNG TY CP CUNG ỨNG VÍ ĐIỆN TỬ TVPAY</h4>
-              <p className="text-[11px] text-slate-600 leading-relaxed m-0">
-                Số 89 Láng Hạ, Đống Đa, Hà Nội. Giấy phép trung gian thanh toán NHNN. Đại diện pháp luật: Tổng Giám đốc Lê Quang Tùng.
+              <h4 className="text-sm sm:text-base font-bold text-slate-900 m-0 mb-1">CÔNG TY CP CUNG ỨNG VÍ ĐIỆN TỬ TVPAY</h4>
+              <p className="text-xs sm:text-sm text-slate-700 leading-relaxed m-0">
+                Trụ sở: Số 89 Láng Hạ, Đống Đa, Hà Nội. Giấy phép trung gian thanh toán NHNN. Đại diện pháp luật: Tổng Giám đốc Lê Quang Tùng.
               </p>
             </div>
 
-            <div className="stagger-2 p-3 bg-gradient-to-br from-amber-50 to-white rounded-xl border border-amber-400 shadow-2xs">
-              <div className="flex items-center gap-2 mb-1 text-amber-800">
-                <Award className="w-4 h-4 text-[#C59B27]" />
-                <span className="text-[10.5px] font-bold uppercase tracking-wider">Khách hàng: 05 Nhà đầu tư</span>
+            <div className="stagger-2 p-4 bg-gradient-to-br from-amber-50/90 to-white rounded-2xl border-2 border-amber-400 shadow-xs relative overflow-hidden">
+              <RoyalFiligreeCorner className="absolute top-2 right-2" />
+              <div className="flex items-center gap-2 mb-2 text-amber-800">
+                <div className="p-2 rounded-xl bg-amber-200/70 border border-amber-400">
+                  <Coins className="w-5 h-5 text-amber-800" />
+                </div>
+                <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">Vốn điều lệ cam kết</span>
               </div>
-              <h4 className="text-xs font-black text-amber-900 m-0 mb-0.5">50.000.000.000 VNĐ (50 Tỷ)</h4>
-              <p className="text-[11px] text-slate-600 leading-relaxed m-0">
-                Góp đủ 100% bằng tiền đồng Việt Nam theo Điều 24 Luật DN &amp; quy chuẩn bảo toàn vốn 1:1 của Ngân hàng Nhà nước.
+              <h4 className="text-sm sm:text-base font-black text-amber-900 m-0 mb-1">50.000.000.000 VNĐ (50 TỶ ĐỒNG)</h4>
+              <p className="text-xs sm:text-sm text-slate-700 leading-relaxed m-0">
+                05 Cổ đông sáng lập góp đủ 100% bằng tiền đồng Việt Nam. Đạt điều kiện duy trì vốn pháp định tối thiểu theo Nghị định 52/2024/NĐ-CP.
               </p>
             </div>
 
-            <div className="stagger-3 p-3 bg-white/95 rounded-xl border border-amber-300 shadow-2xs">
-              <div className="flex items-center gap-2 mb-1 text-[#8C6B18]">
-                <Scale className="w-4 h-4 text-[#C59B27]" />
-                <span className="text-[10.5px] font-bold uppercase tracking-wider">Chuẩn mực pháp lý</span>
+            <div className="stagger-3 p-4 bg-white/95 rounded-2xl border-2 border-amber-300/80 shadow-xs relative overflow-hidden">
+              <RoyalFiligreeCorner className="absolute top-2 right-2" />
+              <div className="flex items-center gap-2 mb-2 text-[#8C6B18]">
+                <div className="p-2 rounded-xl bg-amber-100/80 border border-amber-300">
+                  <Scale className="w-5 h-5 text-amber-700" />
+                </div>
+                <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">Căn cứ pháp lý chuẩn mực</span>
               </div>
-              <h4 className="text-xs font-bold text-slate-900 m-0 mb-0.5">Luật DN 2020 &amp; NĐ 52/2024</h4>
-              <p className="text-[11px] text-slate-600 leading-relaxed m-0">
-                Tích hợp Thông tư 40/2024/TT-NHNN và Luật Giao dịch điện tử 2023, tạo cơ chế biểu quyết 65% bảo vệ nhà đầu tư sáng lập.
+              <h4 className="text-sm sm:text-base font-bold text-slate-900 m-0 mb-1">Luật DN 2020 &amp; NĐ 52/2024/NĐ-CP</h4>
+              <p className="text-xs sm:text-sm text-slate-700 leading-relaxed m-0">
+                Tích hợp Thông tư 40/2024/TT-NHNN, Luật GDĐT 2023, thiết lập cơ chế biểu quyết 65% bảo vệ quyền kiểm soát của nhóm sáng lập.
               </p>
             </div>
           </div>
 
-          {/* 5 Founding Shareholders Horizontal Grid */}
-          <div className="stagger-4 p-3 bg-amber-50/70 rounded-xl border border-amber-300/80">
-            <div className="flex items-center justify-between mb-2 pb-1 border-b border-amber-200">
-              <span className="text-[11px] font-bold text-[#7A5B10] uppercase flex items-center gap-1.5 font-mono">
-                <Users className="w-3.5 h-3.5 text-[#8C6B18]" />
-                05 Cổ đông sáng lập TVPAY (50 Tỷ đồng vốn góp)
+          <div className="stagger-4 p-4 bg-amber-50/80 rounded-2xl border-2 border-amber-300/80 shadow-xs">
+            <div className="flex items-center justify-between mb-2.5 pb-2 border-b border-amber-200">
+              <span className="text-xs sm:text-sm font-bold text-[#7A5B10] uppercase flex items-center gap-2 font-mono">
+                <Users className="w-4 h-4 text-[#8C6B18]" />
+                Cơ cấu 05 Cổ đông sáng lập TVPAY (100% Cổ phần phổ thông - 50 Tỷ đồng)
               </span>
-              <span className="text-[10.5px] text-amber-800 font-mono font-bold">100% Cổ phần phổ thông</span>
+              <span className="text-xs font-mono font-bold text-amber-800 bg-amber-200/80 px-2 py-0.5 rounded border border-amber-300">
+                Khóa chuyển nhượng 03 năm (Điều 120 Luật DN)
+              </span>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 text-xs">
-              <div className="p-2 bg-white rounded-lg border border-amber-200 text-center shadow-2xs">
-                <strong className="block text-slate-900 text-[11px]">Lê Quang Tùng</strong>
-                <span className="text-[#8C6B18] font-bold font-mono text-[11px]">30% · 15 Tỷ</span>
-                <span className="text-[9.5px] text-slate-500 block">Chủ tịch HĐQT &amp; TGĐ</span>
+            <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
+              <div className="p-3 bg-white rounded-xl border border-amber-300 text-center shadow-2xs">
+                <strong className="block text-slate-900 text-xs sm:text-sm">Lê Quang Tùng</strong>
+                <span className="text-[#8C6B18] font-bold font-mono text-xs sm:text-sm">30% · 15 Tỷ</span>
+                <span className="text-[11px] sm:text-xs text-slate-500 block mt-0.5">Chủ tịch HĐQT &amp; TGĐ</span>
               </div>
-              <div className="p-2 bg-white rounded-lg border border-amber-200 text-center shadow-2xs">
-                <strong className="block text-slate-900 text-[11px]">Trịnh Hoàng Sơn</strong>
-                <span className="text-[#8C6B18] font-bold font-mono text-[11px]">25% · 12.5 Tỷ</span>
-                <span className="text-[9.5px] text-slate-500 block">Thành viên HĐQT</span>
+              <div className="p-3 bg-white rounded-xl border border-amber-300 text-center shadow-2xs">
+                <strong className="block text-slate-900 text-xs sm:text-sm">Trịnh Hoàng Sơn</strong>
+                <span className="text-[#8C6B18] font-bold font-mono text-xs sm:text-sm">25% · 12.5 Tỷ</span>
+                <span className="text-[11px] sm:text-xs text-slate-500 block mt-0.5">Thành viên HĐQT</span>
               </div>
-              <div className="p-2 bg-white rounded-lg border border-amber-200 text-center shadow-2xs">
-                <strong className="block text-slate-900 text-[11px]">Nguyễn Minh Lân</strong>
-                <span className="text-[#8C6B18] font-bold font-mono text-[11px]">20% · 10 Tỷ</span>
-                <span className="text-[9.5px] text-slate-500 block">Thành viên HĐQT</span>
+              <div className="p-3 bg-white rounded-xl border border-amber-300 text-center shadow-2xs">
+                <strong className="block text-slate-900 text-xs sm:text-sm">Nguyễn Minh Lân</strong>
+                <span className="text-[#8C6B18] font-bold font-mono text-xs sm:text-sm">20% · 10 Tỷ</span>
+                <span className="text-[11px] sm:text-xs text-slate-500 block mt-0.5">Thành viên HĐQT</span>
               </div>
-              <div className="p-2 bg-white rounded-lg border border-amber-200 text-center shadow-2xs">
-                <strong className="block text-slate-900 text-[11px]">Phạm Phương Hà</strong>
-                <span className="text-[#8C6B18] font-bold font-mono text-[11px]">15% · 7.5 Tỷ</span>
-                <span className="text-[9.5px] text-slate-500 block">Cổ đông sáng lập</span>
+              <div className="p-3 bg-white rounded-xl border border-amber-300 text-center shadow-2xs">
+                <strong className="block text-slate-900 text-xs sm:text-sm">Phạm Phương Hà</strong>
+                <span className="text-[#8C6B18] font-bold font-mono text-xs sm:text-sm">15% · 7.5 Tỷ</span>
+                <span className="text-[11px] sm:text-xs text-slate-500 block mt-0.5">Cổ đông sáng lập</span>
               </div>
-              <div className="p-2 bg-white rounded-lg border border-amber-200 text-center shadow-2xs col-span-2 sm:col-span-1">
-                <strong className="block text-slate-900 text-[11px]">Lê Thu Minh</strong>
-                <span className="text-[#8C6B18] font-bold font-mono text-[11px]">10% · 5 Tỷ</span>
-                <span className="text-[9.5px] text-slate-500 block">Cổ đông sáng lập</span>
+              <div className="p-3 bg-white rounded-xl border border-amber-300 text-center shadow-2xs col-span-2 sm:col-span-1">
+                <strong className="block text-slate-900 text-xs sm:text-sm">Lê Thu Minh</strong>
+                <span className="text-[#8C6B18] font-bold font-mono text-xs sm:text-sm">10% · 5 Tỷ</span>
+                <span className="text-[11px] sm:text-xs text-slate-500 block mt-0.5">Cổ đông sáng lập</span>
               </div>
             </div>
           </div>
@@ -244,877 +273,720 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
       ),
     },
 
-    // SLIDE 2: NGUYÊN TẮC CỐT LÕI & CƠ CẤU VỐN 50 TỶ ĐỒNG
+    // SLIDE 2: 04 NGUYÊN TẮC VÀNG SOẠN THẢO ĐIỀU LỆ
     {
-      id: 'slide-2',
-      badge: 'SLIDE 02 / 10 · CƠ CẤU VỐN & NGUYÊN TẮC',
-      category: 'PHẦN 1 · LÊ PHƯƠNG THẢO PHỤ TRÁCH',
-      title: '04 NGUYÊN TẮC SOẠN THẢO ĐIỀU LỆ & CƠ CẤU VỐN 50 TỶ ĐỒNG',
-      subtitle: 'Đảm bảo tuân thủ nghiêm ngặt Luật Doanh nghiệp 2020 và Nghị định 52/2024/NĐ-CP về trung gian thanh toán',
+      id: 'charter-slide-2',
+      badge: 'SLIDE 02 / 12 · NGUYÊN TẮC VÀNG',
+      category: 'PHẦN 1 · NGUYÊN TẮC SOẠN THẢO · LÊ PHƯƠNG THẢO PHỤ TRÁCH',
+      title: '04 NGUYÊN TẮC VÀNG KHI SOẠN THẢO ĐIỀU LỆ FINTECH',
+      subtitle: '"Đúng Luật – Đầy Đủ – Tự Nguyện – Thống Nhất" theo chuẩn mực Luật Doanh nghiệp 2020',
       speakerName: 'Lê Phương Thảo',
       speakerRole: 'Phó Nhóm 13 · Nghiên cứu cấu trúc',
       speakerAvatar: '/assets/team/le-phuong-thao.jpg',
       speakerNotes:
-        'Thưa Thầy và các bạn, bước vào phần nội dung chi tiết, nguyên tắc đầu tiên và sống còn khi Nhóm 13 xây dựng Điều lệ TVPAY là phải bảo toàn điều kiện vốn 50 tỷ đồng theo Nghị định 52/2024. Chúng tôi thiết lập 4 nguyên tắc trụ cột: Tuân thủ pháp lý tối cao, Phân định thẩm quyền minh bạch, Bảo vệ quyền lợi cổ đông sáng lập trước nguy cơ pha loãng, và Cơ chế dự phòng rủi ro thanh toán. Năm cổ đông sáng lập sở hữu 100% cổ phần phổ thông với các cam kết khóa chuyển nhượng trong 3 năm đầu.',
+        'Kính thưa Thầy và các bạn, khi bắt tay vào soạn thảo Điều lệ TVPAY, Nhóm 13 luôn khắc ghi 4 nguyên tắc vàng được đúc kết từ thực tiễn: Đúng luật, Đầy đủ, Tự nguyện và Thống nhất. Đúng luật để không xâm phạm quyền lợi bên thứ ba và được cơ quan cấp phép chấp thuận; Đầy đủ nội dung theo Luật Doanh nghiệp để tạo cơ sở vận hành mạch lạc; Tự nguyện trong khuôn khổ pháp lý tôn trọng cam kết nhà đầu tư; và Thống nhất tuyệt đối với chữ ký của 5 cổ đông sáng lập. Bốn nguyên tắc này chính là nền móng để một công ty ví điện tử vận hành an toàn.',
       renderContent: () => (
-        <div className="space-y-3 text-xs">
-          {/* 4 Pillars Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
-            <div className="stagger-1 p-3 bg-white/95 rounded-xl border border-amber-300 shadow-2xs relative overflow-hidden">
-              <RoyalFiligreeCorner className="absolute top-1 right-1" />
-              <span className="font-mono text-[10px] font-bold px-2 py-0.5 rounded bg-amber-100 text-[#7A5B10] block w-fit mb-1.5 border border-amber-300">
-                Nguyên tắc 01
-              </span>
-              <h4 className="text-xs font-bold text-slate-900 m-0 mb-1">Tuân thủ tối cao</h4>
-              <p className="text-[11px] text-slate-600 m-0 leading-relaxed">
-                Đồng bộ 100% với Luật Doanh nghiệp 2020 và Nghị định 52/2024/NĐ-CP của NHNN về trung gian thanh toán.
-              </p>
-            </div>
-
-            <div className="stagger-2 p-3 bg-white/95 rounded-xl border border-amber-300 shadow-2xs relative overflow-hidden">
-              <RoyalFiligreeCorner className="absolute top-1 right-1" />
-              <span className="font-mono text-[10px] font-bold px-2 py-0.5 rounded bg-amber-100 text-[#7A5B10] block w-fit mb-1.5 border border-amber-300">
-                Nguyên tắc 02
-              </span>
-              <h4 className="text-xs font-bold text-slate-900 m-0 mb-1">Phân định thẩm quyền</h4>
-              <p className="text-[11px] text-slate-600 m-0 leading-relaxed">
-                Tách bạch rạch ròi quyền hạn giữa ĐHĐCĐ (chiến lược), HĐQT (giám sát) và Ban Tổng Giám đốc (điều hành).
-              </p>
-            </div>
-
-            <div className="stagger-3 p-3 bg-white/95 rounded-xl border border-amber-300 shadow-2xs relative overflow-hidden">
-              <RoyalFiligreeCorner className="absolute top-1 right-1" />
-              <span className="font-mono text-[10px] font-bold px-2 py-0.5 rounded bg-amber-100 text-[#7A5B10] block w-fit mb-1.5 border border-amber-300">
-                Nguyên tắc 03
-              </span>
-              <h4 className="text-xs font-bold text-slate-900 m-0 mb-1">Bảo vệ Nhà đầu tư</h4>
-              <p className="text-[11px] text-slate-600 m-0 leading-relaxed">
-                Quy định tỷ lệ biểu quyết 65% cho các quyết định trọng yếu, chống pha loãng cổ phần của nhóm sáng lập.
-              </p>
-            </div>
-
-            <div className="stagger-4 p-3 bg-white/95 rounded-xl border border-amber-300 shadow-2xs relative overflow-hidden">
-              <RoyalFiligreeCorner className="absolute top-1 right-1" />
-              <span className="font-mono text-[10px] font-bold px-2 py-0.5 rounded bg-amber-100 text-[#7A5B10] block w-fit mb-1.5 border border-amber-300">
-                Nguyên tắc 04
-              </span>
-              <h4 className="text-xs font-bold text-slate-900 m-0 mb-1">Dự phòng rủi ro</h4>
-              <p className="text-[11px] text-slate-600 m-0 leading-relaxed">
-                Bắt buộc trích lập Quỹ dự trữ thanh toán rủi ro 2% lợi nhuận hằng năm, bảo đảm an toàn dòng tiền ví.
-              </p>
-            </div>
-          </div>
-
-          {/* Capital Structure Callout Banner */}
-          <div className="stagger-3 p-3 bg-gradient-to-r from-amber-50 via-white to-amber-50 rounded-xl border border-amber-300/80">
-            <div className="flex flex-wrap items-center justify-between gap-2 mb-2 pb-1 border-b border-amber-200">
-              <div className="flex items-center gap-2">
-                <Coins className="w-4 h-4 text-[#C59B27]" />
-                <strong className="text-slate-900 text-xs">Cơ Cấu Vốn Điều Lệ: 50.000.000.000 VNĐ (5.000.000 Cổ Phần Phổ Thông)</strong>
-              </div>
-              <span className="text-[11px] font-mono text-amber-800 font-bold bg-amber-100/70 px-2 py-0.5 rounded">
-                Mệnh giá: 10.000 VNĐ/cổ phần
-              </span>
-            </div>
-            <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 text-[11px] text-slate-700">
-              <div className="p-1.5 bg-white/90 rounded border border-amber-200 text-center">
-                <strong className="block text-[#8C6B18] font-bold">1. Lê Quang Tùng</strong>
-                <span>30% · 15 Tỷ VNĐ</span>
-              </div>
-              <div className="p-1.5 bg-white/90 rounded border border-amber-200 text-center">
-                <strong className="block text-[#8C6B18] font-bold">2. Trịnh Hoàng Sơn</strong>
-                <span>25% · 12.5 Tỷ VNĐ</span>
-              </div>
-              <div className="p-1.5 bg-white/90 rounded border border-amber-200 text-center">
-                <strong className="block text-[#8C6B18] font-bold">3. Nguyễn Minh Lân</strong>
-                <span>20% · 10 Tỷ VNĐ</span>
-              </div>
-              <div className="p-1.5 bg-white/90 rounded border border-amber-200 text-center">
-                <strong className="block text-[#8C6B18] font-bold">4. Phạm Phương Hà</strong>
-                <span>15% · 7.5 Tỷ VNĐ</span>
-              </div>
-              <div className="p-1.5 bg-white/90 rounded border border-amber-200 text-center col-span-2 sm:col-span-1">
-                <strong className="block text-[#8C6B18] font-bold">5. Lê Thu Minh</strong>
-                <span>10% · 5 Tỷ VNĐ</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Team Presentation Roles Banner with Golden Vector Medallion (NO PHOTO) */}
-          <div className="stagger-4 p-3 bg-gradient-to-r from-amber-100/70 via-amber-50 to-amber-100/70 rounded-xl border border-amber-300/80 flex flex-col sm:flex-row items-center gap-3">
-            <div className="w-full sm:w-28 h-20 rounded-lg bg-gradient-to-br from-amber-100 via-white to-amber-50 border border-amber-300 shadow-xs shrink-0 flex flex-col items-center justify-center p-2 text-center relative overflow-hidden">
-              <RoyalFiligreeCorner className="absolute top-0.5 right-0.5" />
-              <FileCheck2 className="w-6 h-6 text-[#C59B27] mb-1" />
-              <span className="font-mono text-[9px] uppercase font-bold text-[#8C6B18]">Văn Kiện Sáng Lập</span>
-              <span className="text-[8.5px] text-slate-500">5 Cổ Đông Ký Kết</span>
-            </div>
-            <div className="min-w-0 flex-1">
-              <div className="flex items-center gap-1.5 mb-1 text-[#7A5B10] font-bold text-xs">
-                <Users className="w-3.5 h-3.5 text-[#8C6B18]" />
-                <span>Phân công báo cáo của Tổ chuyên gia tư vấn Nhóm 13:</span>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-1.5 text-xs">
-                <div className="p-1.5 bg-white/95 rounded-md border border-amber-200 shadow-2xs">
-                  <span className="text-[#8C6B18] font-bold block text-[10px] uppercase">Phần 1 · Slide 2, 3, 4</span>
-                  <span className="text-slate-800 font-semibold text-[11px]">Lê Phương Thảo</span>
-                </div>
-                <div className="p-1.5 bg-white/95 rounded-md border border-amber-200 shadow-2xs">
-                  <span className="text-[#8C6B18] font-bold block text-[10px] uppercase">Phần 2 · Slide 5, 6, 7</span>
-                  <span className="text-slate-800 font-semibold text-[11px]">Vũ Thảo + Dạ Thảo</span>
-                </div>
-                <div className="p-1.5 bg-white/95 rounded-md border border-amber-200 shadow-2xs">
-                  <span className="text-[#8C6B18] font-bold block text-[10px] uppercase">Phần 3 · Slide 8, 9, 10</span>
-                  <span className="text-slate-800 font-semibold text-[11px]">Nhung + Thu + Ánh Phương</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      ),
-    },
-
-    // SLIDE 2: KHÁI NIỆM & 4 NGUYÊN TẮC VÀNG SOẠN THẢO ĐIỀU LỆ
-    {
-      id: 'slide-2',
-      badge: 'SLIDE 02 / 10 · NGUYÊN TẮC SOẠN THẢO',
-      category: 'PHẦN 1 · LÊ PHƯƠNG THẢO PHỤ TRÁCH',
-      title: 'BẢN CHẤT PHÁP LÝ & 4 NGUYÊN TẮC VÀNG BẢO VỆ 5 NHÀ ĐẦU TƯ TVPAY',
-      subtitle: 'Căn cứ Khoản 2 Điều 22 và Khoản 2 Điều 24 Luật Doanh nghiệp 2020 (sửa đổi bổ sung 2025)',
-      speakerName: 'Lê Phương Thảo',
-      speakerRole: 'Chuyên viên Quy chế & Điều lệ',
-      speakerAvatar: '/assets/team/le-phuong-thao.jpg',
-      speakerNotes:
-        'Kính thưa Thầy và các bạn, em là Lê Phương Thảo đại diện Nhóm 13 trình bày về 4 nguyên tắc vàng khi xây dựng Điều lệ cho 5 nhà đầu tư TVPAY. Để bảo đảm an toàn cho 50 tỷ đồng vốn góp, nhóm tư vấn quán triệt: Thứ nhất, không được trái luật để văn bản không bị Tòa án tuyên vô hiệu; Thứ hai, bảo đảm đầy đủ các điều khoản bắt buộc theo Điều 24 Luật Doanh nghiệp; Thứ ba, tự do thỏa thuận trong khuôn khổ pháp luật để tối ưu hóa quyền lợi của các nhà đầu tư; và Thứ tư, bắt buộc có sự đồng thuận và chữ ký của toàn bộ 5 nhà đầu tư sáng lập theo đúng Khoản 3 Điều 24 Luật Doanh nghiệp 2020.',
-      renderContent: () => (
-        <div className="space-y-3">
-          <div className="stagger-1 p-3 bg-gradient-to-r from-amber-100/60 via-amber-50 to-amber-100/60 rounded-xl border border-amber-300 text-xs text-[#7A5B10] flex items-center justify-between">
-            <div>
-              <strong>📖 Bản chất pháp lý tối cao:</strong> Điều lệ là văn bản quy phạm nội bộ cao nhất của TVPAY, xác lập "luật chơi" công bằng và bảo vệ 50 tỷ vốn góp của 05 nhà đầu tư.
-            </div>
-            <span className="font-mono text-[10.5px] font-bold px-2 py-0.5 bg-white text-[#8C6B18] rounded border border-amber-300 shrink-0 ml-2">
-              Khoản 2 Điều 22 Luật DN
-            </span>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-            <div className="stagger-2 p-3.5 bg-white/95 rounded-xl border border-amber-300/80 shadow-[0_4px_16px_rgba(180,140,40,0.06)] relative overflow-hidden">
-              <RoyalFiligreeCorner className="absolute top-1 right-1" />
-              <div className="flex items-center justify-between gap-1 mb-1.5 pb-1 border-b border-amber-100">
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-50 text-[#8C6B18] border border-amber-200">
-                  Nguyên tắc 01 · Thượng tôn pháp luật
-                </span>
-                <span className="text-[10.5px] font-mono text-amber-800 font-bold">Bắt buộc</span>
-              </div>
-              <h4 className="text-xs font-bold text-slate-900 m-0 mb-1">Không trái luật, không xâm phạm quyền bên thứ ba</h4>
-              <p className="text-[11.5px] text-slate-600 m-0 leading-relaxed">
-                Soạn thảo chuẩn xác đối chiếu Luật DN 2020, Bộ luật Dân sự 2015 và quy định chuyên ngành ví điện tử. Tuyệt đối không để xảy ra điều khoản vô hiệu khi phát sinh tranh chấp.
-              </p>
-            </div>
-
-            <div className="stagger-3 p-3.5 bg-white/95 rounded-xl border border-amber-300/80 shadow-[0_4px_16px_rgba(180,140,40,0.06)] relative overflow-hidden">
-              <RoyalFiligreeCorner className="absolute top-1 right-1" />
-              <div className="flex items-center justify-between gap-1 mb-1.5 pb-1 border-b border-amber-100">
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-50 text-[#8C6B18] border border-amber-200">
-                  Nguyên tắc 02 · Chuẩn mực nội dung
-                </span>
-                <span className="text-[10.5px] font-mono text-amber-800 font-bold">Điều 24</span>
-              </div>
-              <h4 className="text-xs font-bold text-slate-900 m-0 mb-1">Đảm bảo đầy đủ nội dung luật định</h4>
-              <p className="text-[11.5px] text-slate-600 m-0 leading-relaxed">
-                Quy định đầy đủ 14 nhóm nội dung bắt buộc: Tên, trụ sở, vốn 50 tỷ, cơ cấu cổ đông sáng lập, quyền biểu quyết, thẩm quyền ĐHĐCĐ và cơ chế quản trị rủi ro thanh khoản.
-              </p>
-            </div>
-
-            <div className="stagger-4 p-3.5 bg-white/95 rounded-xl border border-amber-300/80 shadow-[0_4px_16px_rgba(180,140,40,0.06)] relative overflow-hidden">
-              <RoyalFiligreeCorner className="absolute top-1 right-1" />
-              <div className="flex items-center justify-between gap-1 mb-1.5 pb-1 border-b border-amber-100">
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-50 text-[#8C6B18] border border-amber-200">
-                  Nguyên tắc 03 · Tự do thỏa thuận
-                </span>
-                <span className="text-[10.5px] font-mono text-amber-800 font-bold">Tối ưu NĐT</span>
-              </div>
-              <h4 className="text-xs font-bold text-slate-900 m-0 mb-1">Tự nguyện và bình đẳng giữa 05 nhà đầu tư</h4>
-              <p className="text-[11.5px] text-slate-600 m-0 leading-relaxed">
-                Tối đa hóa các thỏa thuận nội bộ có lợi cho nhà đầu tư: Thiết lập quyền ưu tiên mua cổ phần chào bán, quyền kiểm tra chứng từ tài chính và tỷ lệ phủ quyết đa số đặc biệt.
-              </p>
-            </div>
-
-            <div className="stagger-5 p-3.5 bg-white/95 rounded-xl border border-amber-300/80 shadow-[0_4px_16px_rgba(180,140,40,0.06)] relative overflow-hidden">
-              <RoyalFiligreeCorner className="absolute top-1 right-1" />
-              <div className="flex items-center justify-between gap-1 mb-1.5 pb-1 border-b border-amber-100">
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-50 text-[#8C6B18] border border-amber-200">
-                  Nguyên tắc 04 · Đồng thuận 100%
-                </span>
-                <span className="text-[10.5px] font-mono text-amber-800 font-bold">Hiệu lực</span>
-              </div>
-              <h4 className="text-xs font-bold text-slate-900 m-0 mb-1">Chữ ký đầy đủ của 05 cổ đông sáng lập</h4>
-              <p className="text-[11.5px] text-slate-600 m-0 leading-relaxed">
-                Khoản 3 Điều 24 Luật DN quy định Điều lệ ban đầu phải có chữ ký của toàn bộ 05 nhà đầu tư sáng lập. Đây là bằng chứng cam kết cùng chịu trách nhiệm pháp lý và bảo toàn vốn.
-              </p>
-            </div>
-          </div>
-        </div>
-      ),
-    },
-
-    // SLIDE 3: 5 VAI TRÒ CỐT LÕI CỦA ĐIỀU LỆ TVPAY
-    {
-      id: 'slide-3',
-      badge: 'SLIDE 03 / 10 · 5 VAI TRÒ CỐT LÕI',
-      category: 'PHẦN 1 · LÊ PHƯƠNG THẢO PHỤ TRÁCH',
-      title: '5 VAI TRÒ TRỌNG YẾU CỦA ĐIỀU LỆ ĐỐI VỚI 5 NHÀ ĐẦU TƯ VÀ TVPAY',
-      subtitle: 'Điều lệ không chỉ là thủ tục thành lập mà là Hiến pháp nội bộ bảo vệ quyền kiểm soát của 5 nhà đầu tư',
-      speakerName: 'Lê Phương Thảo',
-      speakerRole: 'Chuyên viên Quy chế & Điều lệ',
-      speakerAvatar: '/assets/team/le-phuong-thao.jpg',
-      speakerNotes:
-        'Em xin tiếp tục báo cáo 5 vai trò sống còn mà bản Điều lệ này mang lại cho 5 nhà đầu tư: Thứ nhất, xác lập cơ chế vận hành hệ thống mạch lạc; Thứ hai, là văn kiện pháp lý chính thức để NHNN thẩm định và cấp phép trung gian thanh toán; Thứ ba, là căn cứ pháp lý đầu tiên để giải quyết bất đồng giữa các nhà đầu tư; Thứ tư, tạo động lực gắn kết các thành viên sáng lập; và Thứ năm, là công cụ tối thượng hỗ trợ quản trị minh bạch, ngăn ngừa lạm quyền.',
-      renderContent: () => (
-        <div className="space-y-3">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
-            {/* Left 4 Roles */}
-            <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-              <div className="stagger-1 p-3 bg-white/95 rounded-xl border border-amber-300/80 shadow-2xs">
-                <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-amber-50 text-[#8C6B18] border border-amber-200 block w-fit mb-1">
-                  Vai trò 01 · Cơ chế vận hành
-                </span>
-                <h4 className="text-xs font-bold text-slate-900 m-0 mb-1">Quy định cách thức hoạt động</h4>
-                <p className="text-[11px] text-slate-600 m-0 leading-relaxed">
-                  Cung cấp quy chế về mục đích, phạm vi kinh doanh, phân định thẩm quyền các bộ phận, giúp công ty hoạt động có hệ thống.
-                </p>
-              </div>
-
-              <div className="stagger-2 p-3 bg-white/95 rounded-xl border border-amber-300/80 shadow-2xs">
-                <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-amber-50 text-[#8C6B18] border border-amber-200 block w-fit mb-1">
-                  Vai trò 02 · Cấp phép NHNN
-                </span>
-                <h4 className="text-xs font-bold text-slate-900 m-0 mb-1">Tài liệu pháp lý chính thức</h4>
-                <p className="text-[11px] text-slate-600 m-0 leading-relaxed">
-                  Được cơ quan quản lý (NHNN, Sở KH&amp;ĐT) thẩm định, là điều kiện tiên quyết để được cấp Giấy phép ví điện tử.
-                </p>
-              </div>
-
-              <div className="stagger-3 p-3 bg-white/95 rounded-xl border border-amber-300/80 shadow-2xs">
-                <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-amber-50 text-[#8C6B18] border border-amber-200 block w-fit mb-1">
-                  Vai trò 03 · Tài phán công bằng
-                </span>
-                <h4 className="text-xs font-bold text-slate-900 m-0 mb-1">Cơ sở giải quyết tranh chấp</h4>
-                <p className="text-[11px] text-slate-600 m-0 leading-relaxed">
-                  Căn cứ pháp lý đầu tiên để VIAC hoặc Tòa án thụ lý và giải quyết bất đồng quyền lợi giữa 05 nhà đầu tư.
-                </p>
-              </div>
-
-              <div className="stagger-4 p-3 bg-white/95 rounded-xl border border-amber-300/80 shadow-2xs">
-                <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-amber-50 text-[#8C6B18] border border-amber-200 block w-fit mb-1">
-                  Vai trò 04 · Giá trị cốt lõi
-                </span>
-                <h4 className="text-xs font-bold text-slate-900 m-0 mb-1">Động lực gắn kết sáng lập</h4>
-                <p className="text-[11px] text-slate-600 m-0 leading-relaxed">
-                  Tôn chỉ xây dựng văn hóa minh bạch, bảo đảm tinh thần đồng hành dài hạn giữa 05 nhà đầu tư và đội ngũ kỹ thuật.
-                </p>
-              </div>
-            </div>
-
-            {/* Right Featured Card with Golden Scales Vector Emblem */}
-            <div className="stagger-5 p-3.5 bg-gradient-to-br from-[#FFFDF9] via-[#FAF6EE] to-[#F5ECE0] rounded-xl border border-amber-300/90 shadow-xs flex flex-col justify-between relative overflow-hidden">
-              <RoyalFiligreeCorner className="absolute top-1 right-1" />
+        <div className="space-y-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+            <div className="stagger-1 p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs relative overflow-hidden flex flex-col justify-between">
+              <RoyalFiligreeCorner className="absolute top-1.5 right-1.5" />
               <div>
-                <div className="relative rounded-lg overflow-hidden border border-amber-300/80 bg-gradient-to-br from-[#FFFDF9] to-[#FAF4E6] p-3 mb-2.5 flex items-center gap-3 shadow-2xs">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#FFF8E7] to-[#F3E5BE] border border-[#D4AF37]/50 flex items-center justify-center shrink-0 shadow-xs">
-                    <Scale className="w-6 h-6 text-[#8C6B18]" />
-                  </div>
-                  <div>
-                    <span className="text-[9px] font-bold tracking-wider text-[#8C6B18] uppercase bg-amber-100/80 px-2 py-0.5 rounded border border-amber-200 inline-block mb-1">
-                      HIẾN PHÁP NỘI BỘ
-                    </span>
-                    <p className="text-[11px] font-medium text-slate-700 m-0">Biểu tượng cán cân công lý &amp; trật tự pháp quyền</p>
-                  </div>
-                </div>
-                <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-amber-200/80 text-[#7A5B10] block w-fit mb-1 border border-amber-300/80">
-                  Vai trò 05 · Trọng tâm quản trị
+                <span className="font-mono text-xs font-bold px-2.5 py-1 rounded bg-amber-100 text-[#7A5B10] inline-block mb-2 border border-amber-300">
+                  Nguyên tắc 01
                 </span>
-                <h4 className="text-xs font-bold text-slate-900 m-0 mb-1">Ngăn chặn lạm quyền &amp; Rút ruột</h4>
-                <p className="text-[11px] text-slate-600 m-0 leading-relaxed">
-                  Chuẩn hóa cơ chế phê duyệt các khoản chi trên 5 tỷ đồng, bảo đảm số vốn 50 tỷ của nhà đầu tư không bị thất thoát.
+                <h4 className="text-sm sm:text-base font-bold text-slate-900 m-0 mb-1.5">ĐÚNG LUẬT</h4>
+                <p className="text-xs sm:text-sm text-slate-700 m-0 leading-relaxed">
+                  Tuân thủ tuyệt đối pháp luật chuyên ngành, không trái luật, không xâm phạm quyền và lợi ích hợp pháp của bất kỳ bên thứ ba nào.
                 </p>
               </div>
-              <span className="text-[10.5px] font-semibold text-[#8C6B18] mt-2 block border-t border-amber-200/60 pt-1.5">
-                ★ Lá chắn tối cao của 05 Nhà đầu tư
-              </span>
+              <div className="mt-3 pt-2 border-t border-amber-200/70 text-[11px] sm:text-xs font-semibold text-emerald-700 flex items-center gap-1">
+                <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
+                <span>Không có điều khoản vô hiệu</span>
+              </div>
+            </div>
+
+            <div className="stagger-2 p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs relative overflow-hidden flex flex-col justify-between">
+              <RoyalFiligreeCorner className="absolute top-1.5 right-1.5" />
+              <div>
+                <span className="font-mono text-xs font-bold px-2.5 py-1 rounded bg-amber-100 text-[#7A5B10] inline-block mb-2 border border-amber-300">
+                  Nguyên tắc 02
+                </span>
+                <h4 className="text-sm sm:text-base font-bold text-slate-900 m-0 mb-1.5">ĐẦY ĐỦ</h4>
+                <p className="text-xs sm:text-sm text-slate-700 m-0 leading-relaxed">
+                  Phải bao hàm đầy đủ các nội dung bắt buộc theo Luật Doanh nghiệp (tên, trụ sở, vốn, cổ đông, quyền hạn, cơ cấu quản lý).
+                </p>
+              </div>
+              <div className="mt-3 pt-2 border-t border-amber-200/70 text-[11px] sm:text-xs font-semibold text-emerald-700 flex items-center gap-1">
+                <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
+                <span>Cơ sở vững chắc cho quản trị</span>
+              </div>
+            </div>
+
+            <div className="stagger-3 p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs relative overflow-hidden flex flex-col justify-between">
+              <RoyalFiligreeCorner className="absolute top-1.5 right-1.5" />
+              <div>
+                <span className="font-mono text-xs font-bold px-2.5 py-1 rounded bg-amber-100 text-[#7A5B10] inline-block mb-2 border border-amber-300">
+                  Nguyên tắc 03
+                </span>
+                <h4 className="text-sm sm:text-base font-bold text-slate-900 m-0 mb-1.5">TỰ NGUYỆN</h4>
+                <p className="text-xs sm:text-sm text-slate-700 m-0 leading-relaxed">
+                  Các cổ đông được tự do, tự nguyện thỏa thuận các cơ chế quản trị và phân chia lợi ích đặc thù, miễn không trái luật định.
+                </p>
+              </div>
+              <div className="mt-3 pt-2 border-t border-amber-200/70 text-[11px] sm:text-xs font-semibold text-emerald-700 flex items-center gap-1">
+                <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
+                <span>Tôn trọng cam kết cổ đông</span>
+              </div>
+            </div>
+
+            <div className="stagger-4 p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs relative overflow-hidden flex flex-col justify-between">
+              <RoyalFiligreeCorner className="absolute top-1.5 right-1.5" />
+              <div>
+                <span className="font-mono text-xs font-bold px-2.5 py-1 rounded bg-amber-100 text-[#7A5B10] inline-block mb-2 border border-amber-300">
+                  Nguyên tắc 04
+                </span>
+                <h4 className="text-sm sm:text-base font-bold text-slate-900 m-0 mb-1.5">THỐNG NHẤT</h4>
+                <p className="text-xs sm:text-sm text-slate-700 m-0 leading-relaxed">
+                  Điều lệ phải đạt sự đồng thuận tuyệt đối và có đủ chữ ký của 05 cổ đông sáng lập trước khi nộp hồ sơ xin cấp phép NHNN.
+                </p>
+              </div>
+              <div className="mt-3 pt-2 border-t border-amber-200/70 text-[11px] sm:text-xs font-semibold text-emerald-700 flex items-center gap-1">
+                <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
+                <span>100% Chữ ký cổ đông sáng lập</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="p-3.5 bg-gradient-to-r from-amber-100/90 via-amber-50/90 to-amber-100/90 rounded-xl border border-amber-300 flex items-center justify-between text-xs sm:text-sm">
+            <span className="font-serif font-bold text-[#7A5B10] flex items-center gap-2">
+              <Sparkles className="w-4 h-4 text-[#C59B27]" />
+              Quy tắc cốt lõi: "Đúng Luật – Đầy Đủ – Tự Nguyện – Thống Nhất"
+            </span>
+            <span className="text-slate-600 hidden md:inline">
+              Áp dụng xuyên suốt quá trình tư vấn và thiết lập bộ máy TVPAY
+            </span>
+          </div>
+        </div>
+      ),
+    },
+
+    // SLIDE 3: 05 VAI TRÒ PHÁP LÝ CỐT LÕI SUỐT VÒNG ĐỜI DOANH NGHIỆP
+    {
+      id: 'charter-slide-3',
+      badge: 'SLIDE 03 / 12 · VAI TRÒ ĐIỀU LỆ',
+      category: 'PHẦN 1 · VAI TRÒ DOANH NGHIỆP · LÊ PHƯƠNG THẢO PHỤ TRÁCH',
+      title: '05 VAI TRÒ PHÁP LÝ CỐT LÕI CỦA ĐIỀU LỆ TRONG SUỐT VÒNG ĐỜI DN',
+      subtitle: 'Nền tảng pháp lý giúp TVPAY hoạt động rõ ràng, minh bạch, kiểm soát rủi ro và phát triển bền vững',
+      speakerName: 'Lê Phương Thảo',
+      speakerRole: 'Phó Nhóm 13 · Nghiên cứu cấu trúc',
+      speakerAvatar: '/assets/team/le-phuong-thao.jpg',
+      speakerNotes:
+        'Kính thưa quý vị, Điều lệ công ty không chỉ là thủ tục hành chính khi thành lập doanh nghiệp, mà nó mang trên mình 5 vai trò sống còn trong suốt vòng đời: Thứ nhất, quy định cách thức tổ chức và phân định quyền hạn, trách nhiệm giữa các bộ phận; Thứ hai, là tài liệu pháp lý chính thức giúp công ty hoạt động chuẩn chỉ; Thứ ba, là cơ sở tối cao để giải quyết tranh chấp khi có mâu thuẫn nội bộ; Thứ tư, định hướng thành viên và nhân viên về mục tiêu chung; Và thứ năm, hỗ trợ quản lý điều hành minh bạch, giúp mọi quyết định được thực hiện theo nguyên tắc đã thống nhất.',
+      renderContent: () => (
+        <div className="space-y-3.5">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-3">
+            <div className="stagger-1 p-3.5 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs flex flex-col justify-between">
+              <div>
+                <div className="w-8 h-8 rounded-lg bg-amber-100 border border-amber-300 flex items-center justify-center text-amber-800 font-bold mb-2">
+                  1
+                </div>
+                <h4 className="text-xs sm:text-sm font-bold text-slate-900 m-0 mb-1">Cách thức tổ chức &amp; hoạt động</h4>
+                <p className="text-xs sm:text-sm text-slate-600 m-0 leading-relaxed">
+                  Phân định quyền hạn và trách nhiệm giữa ĐHĐCĐ, HĐQT, Ban Giám đốc và Ban Kiểm soát.
+                </p>
+              </div>
+              <span className="text-[11px] font-mono text-[#8C6B18] font-bold mt-2">Trật tự tổ chức</span>
+            </div>
+
+            <div className="stagger-2 p-3.5 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs flex flex-col justify-between">
+              <div>
+                <div className="w-8 h-8 rounded-lg bg-amber-100 border border-amber-300 flex items-center justify-center text-amber-800 font-bold mb-2">
+                  2
+                </div>
+                <h4 className="text-xs sm:text-sm font-bold text-slate-900 m-0 mb-1">Tài liệu pháp lý chính thức</h4>
+                <p className="text-xs sm:text-sm text-slate-600 m-0 leading-relaxed">
+                  Văn bản có giá trị pháp lý cao nhất trong doanh nghiệp, giúp công ty hoạt động đúng quy định pháp luật.
+                </p>
+              </div>
+              <span className="text-[11px] font-mono text-[#8C6B18] font-bold mt-2">Chuẩn mực pháp lý</span>
+            </div>
+
+            <div className="stagger-3 p-3.5 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs flex flex-col justify-between">
+              <div>
+                <div className="w-8 h-8 rounded-lg bg-amber-100 border border-amber-300 flex items-center justify-center text-amber-800 font-bold mb-2">
+                  3
+                </div>
+                <h4 className="text-xs sm:text-sm font-bold text-slate-900 m-0 mb-1">Cơ sở giải quyết tranh chấp</h4>
+                <p className="text-xs sm:text-sm text-slate-600 m-0 leading-relaxed">
+                  Căn cứ giải quyết mâu thuẫn giữa các cổ đông sáng lập, giữa cổ đông với người quản lý công ty.
+                </p>
+              </div>
+              <span className="text-[11px] font-mono text-[#8C6B18] font-bold mt-2">Hòa giải nội bộ</span>
+            </div>
+
+            <div className="stagger-4 p-3.5 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs flex flex-col justify-between">
+              <div>
+                <div className="w-8 h-8 rounded-lg bg-amber-100 border border-amber-300 flex items-center justify-center text-amber-800 font-bold mb-2">
+                  4
+                </div>
+                <h4 className="text-xs sm:text-sm font-bold text-slate-900 m-0 mb-1">Định hướng thành viên &amp; nhân sự</h4>
+                <p className="text-xs sm:text-sm text-slate-600 m-0 leading-relaxed">
+                  Tạo sự thống nhất về mục tiêu, trách nhiệm nghề nghiệp và quy chuẩn đạo đức trong ngành ví điện tử.
+                </p>
+              </div>
+              <span className="text-[11px] font-mono text-[#8C6B18] font-bold mt-2">Đồng thuận văn hóa</span>
+            </div>
+
+            <div className="stagger-5 p-3.5 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs flex flex-col justify-between">
+              <div>
+                <div className="w-8 h-8 rounded-lg bg-amber-100 border border-amber-300 flex items-center justify-center text-amber-800 font-bold mb-2">
+                  5
+                </div>
+                <h4 className="text-xs sm:text-sm font-bold text-slate-900 m-0 mb-1">Hỗ trợ quản lý &amp; điều hành</h4>
+                <p className="text-xs sm:text-sm text-slate-600 m-0 leading-relaxed">
+                  Đảm bảo mọi quyết định kinh doanh và giải ngân tài chính được thực thi theo đúng nguyên tắc đã thống nhất.
+                </p>
+              </div>
+              <span className="text-[11px] font-mono text-[#8C6B18] font-bold mt-2">Minh bạch điều hành</span>
+            </div>
+          </div>
+
+          <div className="p-3 bg-amber-50 rounded-xl border border-amber-300/80 text-center">
+            <span className="text-xs sm:text-sm font-bold text-amber-900 font-serif">
+              "Tóm lại: Điều lệ là nền tảng pháp lý giúp doanh nghiệp hoạt động rõ ràng, minh bạch và hiệu quả."
+            </span>
+          </div>
+        </div>
+      ),
+    },
+
+    // SLIDE 4: CẤU TRÚC TOÀN VĂN 09 CHƯƠNG ĐIỀU LỆ
+    {
+      id: 'charter-slide-4',
+      badge: 'SLIDE 04 / 12 · CẤU TRÚC ĐIỀU LỆ',
+      category: 'PHẦN 1 · CẤU TRÚC 09 CHƯƠNG · LÊ PHƯƠNG THẢO PHỤ TRÁCH',
+      title: 'HỆ THỐNG CẤU TRÚC 09 CHƯƠNG TOÀN VĂN ĐIỀU LỆ MẪU TVPAY',
+      subtitle: 'Khung pháp lý hoàn chỉnh thiết lập trật tự quản trị, thẩm quyền và bảo vệ quyền lợi cổ đông',
+      speakerName: 'Lê Phương Thảo',
+      speakerRole: 'Phó Nhóm 13 · Nghiên cứu cấu trúc',
+      speakerAvatar: '/assets/team/le-phuong-thao.jpg',
+      speakerNotes:
+        'Thưa Thầy và các bạn, Điều lệ TVPAY được cấu trúc thành 9 chương mạch lạc, tuân thủ Luật Doanh nghiệp 2020 và may đo theo đặc thù ví điện tử. Trong đó, 4 chương trọng tâm nhất là Chương II về cơ cấu vốn 50 tỷ; Chương IV về thẩm quyền chiến lược của ĐHĐCĐ; Chương V về phân định quyền hạn HĐQT và TGĐ để chống lạm quyền; và Chương VII về quản trị tài chính, bắt buộc trích lập Quỹ dự phòng an toàn hệ thống trước khi chia cổ tức.',
+      renderContent: () => (
+        <div className="space-y-3.5">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs sm:text-sm">
+            <div className="p-3.5 bg-white rounded-xl border border-amber-300 shadow-2xs">
+              <span className="font-mono text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Chương I</span>
+              <h4 className="font-bold text-slate-900 mt-1 mb-0.5">Quy định chung</h4>
+              <p className="text-slate-600 m-0 text-xs sm:text-[13px] leading-relaxed">
+                Tên công ty, trụ sở chính tại 89 Láng Hạ, ngành nghề kinh doanh ví điện tử, tư cách pháp nhân và đại diện pháp luật.
+              </p>
+            </div>
+
+            <div className="p-3.5 bg-amber-50/90 rounded-xl border-2 border-amber-400 shadow-2xs">
+              <span className="font-mono text-xs font-bold text-amber-900 bg-amber-200 px-2 py-0.5 rounded">Chương II · Trọng tâm</span>
+              <h4 className="font-bold text-amber-950 mt-1 mb-0.5">Vốn điều lệ, cổ phần &amp; cổ đông</h4>
+              <p className="text-slate-700 m-0 text-xs sm:text-[13px] leading-relaxed">
+                Vốn 50 tỷ đồng, 5 cổ đông sáng lập, quyền ưu tiên mua cổ phần, chuyển nhượng và kiểm soát nhà đầu tư nước ngoài.
+              </p>
+            </div>
+
+            <div className="p-3.5 bg-white rounded-xl border border-amber-300 shadow-2xs">
+              <span className="font-mono text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Chương III</span>
+              <h4 className="font-bold text-slate-900 mt-1 mb-0.5">Quyền &amp; nghĩa vụ cổ đông</h4>
+              <p className="text-slate-600 m-0 text-xs sm:text-[13px] leading-relaxed">
+                Quyền biểu quyết, nhận cổ tức, tiếp cận thông tin báo cáo tài chính và nghĩa vụ thanh toán đủ vốn góp.
+              </p>
+            </div>
+
+            <div className="p-3.5 bg-amber-50/90 rounded-xl border-2 border-amber-400 shadow-2xs">
+              <span className="font-mono text-xs font-bold text-amber-900 bg-amber-200 px-2 py-0.5 rounded">Chương IV · Trọng tâm</span>
+              <h4 className="font-bold text-amber-950 mt-1 mb-0.5">Đại hội đồng cổ đông</h4>
+              <p className="text-slate-700 m-0 text-xs sm:text-[13px] leading-relaxed">
+                Cơ quan quyền lực tối cao, thẩm quyền thông qua sửa đổi Điều lệ, tái cấu trúc và tỷ lệ biểu quyết thông qua 65%.
+              </p>
+            </div>
+
+            <div className="p-3.5 bg-amber-50/90 rounded-xl border-2 border-amber-400 shadow-2xs">
+              <span className="font-mono text-xs font-bold text-amber-900 bg-amber-200 px-2 py-0.5 rounded">Chương V · Trọng tâm</span>
+              <h4 className="font-bold text-amber-950 mt-1 mb-0.5">HĐQT &amp; Ban Tổng Giám đốc</h4>
+              <p className="text-slate-700 m-0 text-xs sm:text-[13px] leading-relaxed">
+                Phân định thẩm quyền phê duyệt hợp đồng &gt;5 tỷ đồng, nhiệm kỳ 5 năm, ngăn ngừa lạm quyền và xung đột lợi ích.
+              </p>
+            </div>
+
+            <div className="p-3.5 bg-white rounded-xl border border-amber-300 shadow-2xs">
+              <span className="font-mono text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Chương VI</span>
+              <h4 className="font-bold text-slate-900 mt-1 mb-0.5">Ban Kiểm soát</h4>
+              <p className="text-slate-600 m-0 text-xs sm:text-[13px] leading-relaxed">
+                Bộ máy giám sát độc lập, kiểm tra sổ sách kế toán, quy trình an toàn thông tin và báo cáo trực tiếp ĐHĐCĐ.
+              </p>
+            </div>
+
+            <div className="p-3.5 bg-amber-50/90 rounded-xl border-2 border-amber-400 shadow-2xs">
+              <span className="font-mono text-xs font-bold text-amber-900 bg-amber-200 px-2 py-0.5 rounded">Chương VII · Trọng tâm</span>
+              <h4 className="font-bold text-amber-950 mt-1 mb-0.5">Tài chính, Quỹ rủi ro &amp; Cổ tức</h4>
+              <p className="text-slate-700 m-0 text-xs sm:text-[13px] leading-relaxed">
+                Bắt buộc trích lập Quỹ dự phòng rủi ro &amp; Quỹ an toàn hệ thống trước khi chia cổ tức để bảo toàn giấy phép NHNN.
+              </p>
+            </div>
+
+            <div className="p-3.5 bg-white rounded-xl border border-amber-300 shadow-2xs">
+              <span className="font-mono text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Chương VIII</span>
+              <h4 className="font-bold text-slate-900 mt-1 mb-0.5">Giải quyết tranh chấp &amp; Khủng hoảng</h4>
+              <p className="text-slate-600 m-0 text-xs sm:text-[13px] leading-relaxed">
+                Cơ chế thương lượng hòa giải nội bộ, trọng tài VIAC hoặc Tòa án, và quy trình họp khẩn cấp khi bị tấn công mạng.
+              </p>
+            </div>
+
+            <div className="p-3.5 bg-white rounded-xl border border-amber-300 shadow-2xs">
+              <span className="font-mono text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Chương IX</span>
+              <h4 className="font-bold text-slate-900 mt-1 mb-0.5">Điều khoản thi hành &amp; Hiệu lực</h4>
+              <p className="text-slate-600 m-0 text-xs sm:text-[13px] leading-relaxed">
+                Sửa đổi bổ sung điều lệ, cam kết tuân thủ của toàn thể cổ đông và chữ ký chứng thực của 5 cổ đông sáng lập.
+              </p>
             </div>
           </div>
         </div>
       ),
     },
 
-    // SLIDE 4: CẤU TRÚC 9 CHƯƠNG TOÀN VĂN (CHỈ GHI TÊN THEO CHỈ ĐẠO NHÓM TRƯỞNG)
+    // SLIDE 5: CƠ CẤU 05 CỔ ĐÔNG SÁNG LẬP & 50 TỶ VỐN ĐIỀU LỆ
     {
-      id: 'slide-4',
-      badge: 'SLIDE 04 / 10 · MỤC LỤC 9 CHƯƠNG',
-      category: 'CẤU TRÚC TOÀN VĂN ĐIỀU LỆ (DANH MỤC 09 CHƯƠNG)',
-      title: 'HỆ THỐNG DANH MỤC 09 CHƯƠNG ĐIỀU LỆ TVPAY',
-      subtitle: 'Tuân thủ đúng chỉ đạo: Chỉ ghi tên danh mục 09 chương, súc tích và dồn trọng tâm vào cơ chế bảo vệ nhà đầu tư',
-      speakerName: 'Lê Phương Thảo',
-      speakerRole: 'Chuyên viên Quy chế & Điều lệ',
-      speakerAvatar: '/assets/team/le-phuong-thao.jpg',
-      speakerNotes:
-        'Kính thưa Thầy và các bạn, theo đúng định hướng tư vấn và yêu cầu chỉ đạo, toàn bộ cấu trúc 09 chương của Điều lệ được chuẩn hóa theo danh mục tên ngắn gọn, tránh rườm rà, nhằm dồn toàn bộ trọng tâm vào các điều khoản then chốt bảo vệ quyền và lợi ích hợp pháp của 05 nhà đầu tư.',
-      renderContent: () => (
-        <div className="space-y-3">
-          <div className="stagger-1 p-2.5 bg-amber-50/80 border border-amber-300 rounded-lg text-xs text-[#7A5B10] flex items-center justify-between">
-            <span className="font-semibold flex items-center gap-1.5">
-              <BookOpen className="w-4 h-4 text-amber-600" />
-              Danh mục 09 Chương theo chuẩn Điều lệ công ty cổ phần TVPAY:
-            </span>
-            <span className="font-mono font-bold text-[11px] bg-white text-[#8C6B18] px-2.5 py-0.5 rounded border border-amber-300">
-              Tổng cộng 86 Điều khoản
-            </span>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-            {[
-              { num: 'Chương I', name: 'Quy định chung', sub: 'Tên, trụ sở, tư cách pháp lý & ngành nghề ví điện tử' },
-              { num: 'Chương II', name: 'Vốn điều lệ, cổ phần & 05 NĐT', sub: 'Quy mô 50 tỷ VNĐ, loại cổ phần & cam kết góp đủ vốn' },
-              { num: 'Chương III', name: 'Quyền & Nghĩa vụ của Cổ đông', sub: 'Quyền biểu quyết, kiểm tra sổ sách & nhận cổ tức' },
-              { num: 'Chương IV', name: 'Cơ cấu tổ chức quản trị', sub: 'Đại hội đồng cổ đông, HĐQT & Tổng Giám đốc' },
-              { num: 'Chương V', name: 'Người đại diện theo pháp luật', sub: 'Tiêu chuẩn, hạn mức ký duyệt & trách nhiệm bồi thường' },
-              { num: 'Chương VI', name: 'Ban Kiểm soát & Giám sát', sub: 'Kiểm soát độc lập báo cáo tài chính & dòng tiền ví' },
-              { num: 'Chương VII', name: 'Tài chính, Quỹ rủi ro 1:1', sub: 'Trích lập quỹ an toàn thanh toán trước khi chia cổ tức' },
-              { num: 'Chương VIII', name: 'Giải quyết tranh chấp & VIAC', sub: 'Hòa giải nội bộ & Trọng tài thương mại quốc tế' },
-              { num: 'Chương IX', name: 'Sửa đổi điều lệ & Giải thể', sub: 'Thủ tục sáp nhập, giải thể & chữ ký 05 NĐT sáng lập' },
-            ].map((item, idx) => (
-              <div
-                key={idx}
-                className="stagger-2 p-3 rounded-xl border border-amber-200/80 hover:border-amber-400 transition bg-white/95 shadow-2xs"
-              >
-                <div className="flex items-center justify-between gap-1 mb-1">
-                  <span className="text-[10px] font-mono font-bold px-2 py-0.5 bg-amber-50 text-[#8C6B18] rounded-md border border-amber-200">
-                    {item.num}
-                  </span>
-                  <span className="text-[10px] text-amber-700 font-mono font-bold">Mục 0{idx + 1}</span>
-                </div>
-                <h5 className="text-xs font-bold text-slate-900 m-0 mb-1 leading-snug">{item.name}</h5>
-                <p className="text-[11px] text-slate-500 m-0 line-clamp-1">{item.sub}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      ),
-    },
-
-    // SLIDE 5: GIẢI PHÁP 1 & 2: BẢO VỆ CỔ ĐÔNG & PHÂN ĐỊNH THẨM QUYỀN
-    {
-      id: 'slide-5',
-      badge: 'SLIDE 05 / 10 · GIẢI PHÁP PHÒNG VỆ (1 & 2)',
-      category: 'PHẦN 2 · VŨ PHƯƠNG THẢO PHỤ TRÁCH',
-      title: 'BẢO VỆ QUYỀN LỢI 5 NHÀ ĐẦU TƯ & PHÂN ĐỊNH RÀNH MẠCH QUYỀN LỰC QUẢN TRỊ',
-      subtitle: 'Giải pháp phòng vệ của Nhóm 13 giúp bảo toàn tỷ lệ sở hữu, chống pha loãng và ngăn ngừa lạm quyền nội bộ',
+      id: 'charter-slide-5',
+      badge: 'SLIDE 05 / 12 · CƠ CẤU VỐN SÁNG LẬP',
+      category: 'PHẦN 2 · VỐN & CỔ ĐÔNG · VŨ PHƯƠNG THẢO PHỤ TRÁCH',
+      title: 'CƠ CẤU 05 CỔ ĐÔNG SÁNG LẬP & DUY TRÌ VỐN ĐIỀU LỆ 50 TỶ ĐỒNG',
+      subtitle: 'Cơ chế biểu quyết bảo vệ 65% và cam kết khóa chuyển nhượng 3 năm đầu cho nhà đầu tư',
       speakerName: 'Vũ Phương Thảo',
-      speakerRole: 'Chuyên viên Doanh nghiệp & Vốn',
+      speakerRole: 'Chuyên viên Quản trị Cổ đông',
       speakerAvatar: '/assets/team/phuong-thao.jpg',
       speakerNotes:
-        'Kính thưa Thầy và các bạn, em là Vũ Thảo. Xuất phát từ quyền lợi cốt lõi của 5 nhà đầu tư khi rót 50 tỷ đồng, nhóm tư vấn đã thiết kế các lá chắn phòng vệ đặc thù: Lá chắn 1 khóa chuyển nhượng trong 3 năm đầu để đảm bảo các nhà đầu tư đồng hành phát triển; đồng thời trao quyền ưu tiên mua cổ phần phát hành mới để tỷ lệ sở hữu của 5 nhà đầu tư không bị pha loãng khi công ty tăng vốn. Lá chắn 2 phân định rành mạch quyền lực ĐHĐCĐ, HĐQT và TGĐ, buộc cá nhân người quản lý phải bồi thường nếu lạm quyền.',
+        'Kính thưa Thầy và các bạn, 50 tỷ đồng là điều kiện pháp định tối thiểu sống còn để duy trì giấy phép ví điện tử theo Nghị định 52/2024. Nhóm tư vấn đã thiết kế cơ cấu cổ phần đảm bảo 100% bằng tiền VNĐ, phân bổ cho 5 nhà đầu tư sáng lập: ông Lê Quang Tùng nắm 30%, ông Trịnh Hoàng Sơn 25%, ông Nguyễn Minh Lân 20%, bà Phạm Phương Hà 15% và bà Lê Thu Minh 10%. Với tỷ lệ biểu quyết 65% theo Luật Doanh nghiệp, các quyết định lớn bắt buộc phải có sự đồng thuận của nhóm sáng lập, triệt tiêu nguy cơ bị thâu tóm.',
       renderContent: () => (
-        <div className="space-y-3">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 text-xs">
-            <div className="stagger-1 p-4 bg-white/95 rounded-xl border border-amber-300/80 shadow-[0_4px_16px_rgba(180,140,40,0.06)] relative overflow-hidden">
-              <RoyalFiligreeCorner className="absolute top-1 right-1" />
-              <div className="flex items-center justify-between gap-2 mb-2 pb-1.5 border-b border-amber-100">
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-50 text-[#8C6B18] border border-amber-200">
-                  Lá chắn 01 · Ổn định cơ cấu sở hữu 50 Tỷ
-                </span>
-                <span className="font-mono text-[11px] text-amber-800 font-bold">Điều 6, 7</span>
-              </div>
-              <h4 className="text-xs font-bold text-slate-900 m-0 mb-2">
-                Khóa chuyển nhượng 3 năm &amp; Quyền ưu tiên mua (Pre-emption Rights)
+        <div className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs">
+              <h4 className="text-sm sm:text-base font-bold text-slate-900 m-0 mb-3 flex items-center gap-2">
+                <ShieldCheck className="w-5 h-5 text-amber-600" />
+                Cơ chế bảo vệ biểu quyết 65% cổ đông sáng lập
               </h4>
-              <ul className="text-slate-600 space-y-1.5 pl-4 list-disc m-0 leading-relaxed text-[11.5px]">
-                <li>Khóa chuyển nhượng cổ phần ra bên ngoài trong 03 năm đầu (Khoản 3 Điều 120 Luật DN), ngăn ngừa đối thủ thâu tóm thù địch.</li>
-                <li>Quy trình chào bán nội bộ bắt buộc trước 30 ngày: 05 nhà đầu tư được quyền ưu tiên mua theo tỷ lệ sở hữu tương ứng.</li>
-                <li>Bảo toàn tỷ lệ quyền lực của 05 nhà đầu tư khi công ty phát hành thêm cổ phần để mở rộng quy mô.</li>
+              <ul className="space-y-2 text-xs sm:text-sm text-slate-700 m-0 p-0 list-none">
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span><strong>Quyết định trọng yếu:</strong> Sửa đổi điều lệ, thay đổi vốn, sáp nhập cần tối thiểu 65% tổng số phiếu biểu quyết.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span><strong>Khóa cổ phần 03 năm:</strong> Theo Điều 120 Luật Doanh nghiệp 2020, cổ đông sáng lập chỉ được tự do chuyển nhượng cho nhau.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span><strong>Quyền ưu tiên mua (ROFR):</strong> Khi chào bán ra ngoài, cổ đông còn lại có quyền ưu tiên mua tương ứng tỷ lệ sở hữu.</span>
+                </li>
               </ul>
-              <div className="mt-3 p-2 bg-amber-50/70 rounded-lg text-[11px] text-amber-950 border border-amber-200">
-                <strong>Hiệu quả bảo vệ:</strong> Triệt tiêu nguy cơ bị pha loãng tỷ lệ sở hữu của 05 cổ đông sáng lập ban đầu.
-              </div>
             </div>
 
-            <div className="stagger-2 p-4 bg-white/95 rounded-xl border border-amber-300/80 shadow-[0_4px_16px_rgba(180,140,40,0.06)] relative overflow-hidden">
-              <RoyalFiligreeCorner className="absolute top-1 right-1" />
-              <div className="flex items-center justify-between gap-2 mb-2 pb-1.5 border-b border-amber-100">
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-50 text-[#8C6B18] border border-amber-200">
-                  Lá chắn 02 · Đối trọng quyền lực quản trị
-                </span>
-                <span className="font-mono text-[11px] text-amber-800 font-bold">Điều 15-55</span>
-              </div>
-              <h4 className="text-xs font-bold text-slate-900 m-0 mb-2">
-                Tam quyền phân lập: ĐHĐCĐ - HĐQT - Ban Điều hành TVPAY
+            <div className="p-4 bg-gradient-to-br from-amber-50 to-white rounded-2xl border-2 border-amber-400 shadow-xs">
+              <h4 className="text-sm sm:text-base font-bold text-amber-950 m-0 mb-3 flex items-center gap-2">
+                <Scale className="w-5 h-5 text-amber-700" />
+                Bảo toàn điều kiện cấp phép ví điện tử tại NHNN
               </h4>
-              <ul className="text-slate-600 space-y-1.5 pl-4 list-disc m-0 leading-relaxed text-[11.5px]">
-                <li>Phân định thẩm quyền phê duyệt: Hợp đồng từ 5 tỷ đồng trở lên bắt buộc phải được HĐQT hoặc ĐHĐCĐ thông qua.</li>
-                <li>Tổng Giám đốc là Người đại diện theo pháp luật nhưng bị giới hạn hạn mức ký kết độc lập để kiểm soát rủi ro.</li>
-                <li>Ràng buộc trách nhiệm bồi thường tài sản cá nhân nếu người điều hành vượt thẩm quyền gây thiệt hại cho công ty.</li>
+              <ul className="space-y-2 text-xs sm:text-sm text-slate-700 m-0 p-0 list-none">
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                  <span><strong>Vốn thực góp 100%:</strong> Góp đủ trong 90 ngày kể từ ngày cấp GCN đăng ký doanh nghiệp.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                  <span><strong>Không được dùng vốn ủy thác:</strong> Cổ đông cam kết nguồn vốn hợp pháp, không dùng tiền vay hoặc tiền rửa.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                  <span><strong>Duy trì liên tục:</strong> Không để vốn chủ sở hữu tụt dưới mức 50 tỷ đồng trong mọi thời kỳ hoạt động.</span>
+                </li>
               </ul>
-              <div className="mt-3 p-2 bg-amber-50/70 rounded-lg text-[11px] text-amber-950 border border-amber-200">
-                <strong>Hiệu quả bảo vệ:</strong> Ngăn chặn lạm quyền và bảo vệ an toàn tối đa cho dòng vốn của 05 nhà đầu tư.
-              </div>
             </div>
           </div>
         </div>
       ),
     },
 
-    // SLIDE 6: GIẢI PHÁP 3 & 4: BỘ ĐỆM TÀI CHÍNH 50 TỶ & XUNG ĐỘT LỢI ÍCH (ARM'S LENGTH)
+    // SLIDE 6: GIẢI PHÁP 1: ỔN ĐỊNH CƠ CẤU CỔ ĐÔNG & KIỂM SOÁT NĐT NGOẠI
     {
-      id: 'slide-6',
-      badge: 'SLIDE 06 / 10 · GIẢI PHÁP PHÒNG VỆ (3 & 4)',
-      category: 'PHẦN 2 · PHẠM DẠ THẢO PHỤ TRÁCH',
-      title: 'QUẢN LÝ TÀI CHÍNH DUY TRÌ VỐN 50 TỶ & KIỂM SOÁT XUNG ĐỘT LỢI ÍCH',
-      subtitle: 'Bảo đảm an toàn dòng vốn cho 5 nhà đầu tư và chống nguy cơ rút ruột tài sản công ty',
+      id: 'charter-slide-6',
+      badge: 'SLIDE 06 / 12 · GIẢI PHÁP FINTECH 1',
+      category: 'PHẦN 3 · 05 GIẢI PHÁP ĐẶC THÙ VÍ ĐIỆN TỬ · PHẠM DẠ THẢO PHỤ TRÁCH',
+      title: 'GIẢI PHÁP 1: BẢO VỆ SỰ ỔN ĐỊNH CƠ CẤU CỔ ĐÔNG SÁNG LẬP',
+      subtitle: 'Cơ chế thông báo chuyển nhượng, quyền ưu tiên mua và kiểm soát nhà đầu tư nước ngoài',
       speakerName: 'Phạm Dạ Thảo',
-      speakerRole: 'Chuyên viên Quản trị rủi ro & Tài chính',
+      speakerRole: 'Chuyên viên Pháp chế Đầu tư',
       speakerAvatar: '/assets/team/pham-da-thao.jpg',
       speakerNotes:
-        'Em là Dạ Thảo xin tiếp tục trình bày: Lá chắn 3 thiết lập cơ chế trích lập các quỹ dự phòng tài chính trước khi chia cổ tức, giúp duy trì vững chắc điều kiện vốn 50 tỷ của NHNN và bảo toàn thanh khoản 1:1. Lá chắn 4 áp dụng nguyên tắc thị trường Arm\'s length đối với mọi giao dịch nội bộ và tước quyền biểu quyết của bên có lợi ích liên quan, triệt tiêu hoàn toàn nguy cơ rút ruột tài sản công ty.',
+        'Kính thưa Thầy và các bạn, với một công ty Fintech kinh doanh ví điện tử, sự ổn định của cơ cấu cổ đông là yếu tố quyết định sự sống còn. Google Doc 2 đã nhấn mạnh giải pháp then chốt: Với các giao dịch có thể làm thay đổi cơ cấu sở hữu - đặc biệt là chuyển nhượng cho nhà đầu tư nước ngoài - Điều lệ TVPAY thiết lập cơ chế thông báo trước và quyền ưu tiên mua cổ phần rõ ràng, tránh nguy cơ xáo trộn đột ngột hoặc thâu tóm thù địch từ bên ngoài.',
       renderContent: () => (
-        <div className="space-y-3">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
-            <div className="stagger-1 p-3.5 bg-white/95 rounded-xl border border-amber-300/80 shadow-[0_4px_16px_rgba(180,140,40,0.06)] relative overflow-hidden">
-              <RoyalFiligreeCorner className="absolute top-1 right-1" />
-              <div className="flex items-center justify-between gap-2 mb-2 pb-1 border-b border-amber-100">
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-50 text-[#8C6B18] border border-amber-200">
-                  Lá chắn 03 · Bảo toàn vốn 1:1
-                </span>
-                <span className="font-mono text-[10.5px] text-amber-800 font-bold">Điều 69, 71</span>
+        <div className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+            <div className="stagger-1 p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs">
+              <div className="flex items-center gap-2 mb-2 text-[#8C6B18]">
+                <Clock className="w-5 h-5 text-amber-600" />
+                <h4 className="text-sm sm:text-base font-bold text-slate-900 m-0">Quy trình thông báo trước 30 ngày</h4>
               </div>
-              <h4 className="text-xs font-bold text-slate-900 m-0 mb-1.5">Bộ đệm tài chính &amp; Quỹ dự phòng rủi ro</h4>
-              <p className="text-[11.5px] text-slate-600 leading-relaxed m-0 mb-2">
-                Duy trì vốn thực góp không thấp hơn 50 tỷ đồng theo giấy phép NHNN. Mở tài khoản bảo đảm thanh toán độc lập bảo toàn 100% số dư ví.
+              <p className="text-xs sm:text-sm text-slate-700 leading-relaxed m-0">
+                Bất kỳ cổ đông nào muốn chuyển nhượng cổ phần phải gửi thông báo bằng văn bản đến HĐQT trước ít nhất 30 ngày, nêu rõ số lượng và giá chào bán.
               </p>
-              <div className="p-2 bg-amber-50/70 rounded-lg text-[11px] text-amber-950 font-medium border border-amber-200">
-                Cấm dùng tiền ví đầu tư rủi ro.
-              </div>
             </div>
 
-            <div className="stagger-2 p-3.5 bg-white/95 rounded-xl border border-amber-300/80 shadow-[0_4px_16px_rgba(180,140,40,0.06)] relative overflow-hidden">
-              <RoyalFiligreeCorner className="absolute top-1 right-1" />
-              <div className="flex items-center justify-between gap-2 mb-2 pb-1 border-b border-amber-100">
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-50 text-[#8C6B18] border border-amber-200">
-                  Lá chắn 04 · Chống rút ruột
-                </span>
-                <span className="font-mono text-[10.5px] text-amber-800 font-bold">Điều 62</span>
+            <div className="stagger-2 p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs">
+              <div className="flex items-center gap-2 mb-2 text-[#8C6B18]">
+                <ShieldCheck className="w-5 h-5 text-amber-600" />
+                <h4 className="text-sm sm:text-base font-bold text-slate-900 m-0">Quyền ưu tiên mua (ROFR)</h4>
               </div>
-              <h4 className="text-xs font-bold text-slate-900 m-0 mb-1.5">Nguyên tắc thị trường (Arm's length)</h4>
-              <p className="text-[11.5px] text-slate-600 leading-relaxed m-0 mb-2">
-                Công khai toàn bộ quan hệ sở hữu của HĐQT &amp; Ban Giám đốc. Giao dịch nội bộ phải được ĐHĐCĐ thông qua; bên liên quan bị tước quyền biểu quyết.
+              <p className="text-xs sm:text-sm text-slate-700 leading-relaxed m-0">
+                Các cổ đông sáng lập còn lại được quyền ưu tiên mua lại cổ phần đó theo điều kiện ngang bằng, bảo đảm tỷ lệ chi phối thuộc về nhóm sáng lập.
               </p>
-              <div className="p-2 bg-amber-50/70 rounded-lg text-[11px] text-amber-950 font-medium border border-amber-200">
-                Ngăn chặn tuồn vốn sang sân sau.
-              </div>
             </div>
 
-            {/* Featured Golden Emblem Card */}
-            <div className="stagger-3 p-3 bg-gradient-to-br from-[#FFFDF9] via-[#FAF6EE] to-[#F5ECE0] rounded-xl border border-amber-300/90 shadow-xs flex flex-col justify-between relative overflow-hidden">
-              <RoyalFiligreeCorner className="absolute top-1 right-1" />
-              <div>
-                <div className="relative rounded-lg overflow-hidden border border-amber-300/80 bg-gradient-to-br from-[#FFFDF9] to-[#FAF4E6] p-3 mb-2 flex items-center gap-3 shadow-2xs">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#FFF8E7] to-[#F3E5BE] border border-[#D4AF37]/50 flex items-center justify-center shrink-0 shadow-xs">
-                    <Landmark className="w-6 h-6 text-[#8C6B18]" />
-                  </div>
-                  <div>
-                    <span className="text-[9px] font-bold tracking-wider text-[#8C6B18] uppercase bg-amber-100/80 px-2 py-0.5 rounded border border-amber-200 inline-block mb-1">
-                      QUỸ BẢO TOÀN 1:1
-                    </span>
-                    <p className="text-[11px] font-medium text-slate-700 m-0">Két thanh khoản đảm bảo tại Ngân hàng Hợp tác</p>
-                  </div>
-                </div>
-                <h5 className="text-xs font-bold text-slate-900 m-0 mb-1">Kiểm toán số dư độc lập</h5>
-                <p className="text-[11px] text-slate-600 leading-relaxed m-0">
-                  Báo cáo kiểm toán định kỳ bảo đảm tiền ví của khách hàng và 50 tỷ vốn điều lệ luôn được quản lý tách bạch tại ngân hàng liên kết.
-                </p>
+            <div className="stagger-3 p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs">
+              <div className="flex items-center gap-2 mb-2 text-[#8C6B18]">
+                <GlobeIcon className="w-5 h-5 text-amber-600" />
+                <h4 className="text-sm sm:text-base font-bold text-slate-900 m-0">Kiểm soát nhà đầu tư ngoại</h4>
               </div>
-              <span className="text-[10px] font-bold text-[#8C6B18] mt-2 block border-t border-amber-200 pt-1">
-                Tuân thủ Nghị định 52/2024/NĐ-CP
-              </span>
+              <p className="text-xs sm:text-sm text-slate-700 leading-relaxed m-0">
+                Chuyển nhượng cho nhà đầu tư nước ngoài bắt buộc phải tuân thủ trần sở hữu (room ngoại), phê duyệt của NHNN và không làm gián đoạn hạ tầng ví.
+              </p>
             </div>
+          </div>
+
+          <div className="p-3.5 bg-amber-50 rounded-xl border border-amber-300 text-xs sm:text-sm text-slate-800">
+            <strong>Trích dẫn kịch bản Google Doc 2:</strong> "Điều lệ phải thiết lập cơ chế thông báo và quyền ưu tiên rõ ràng, tránh xáo trộn đột ngột trong quản trị khi đón nhận dòng vốn đầu tư mới."
           </div>
         </div>
       ),
     },
 
-    // SLIDE 7: GIẢI PHÁP 5, 6 & 7: QUẢN TRỊ FINTECH, BẢN QUYỀN MÃ NGUỒN & ỨNG PHÓ KHỦNG HOẢNG
+    // SLIDE 7: GIẢI PHÁP 2: PHÂN ĐỊNH THẨM QUYỀN ĐHĐCĐ - HĐQT - TỔNG GIÁM ĐỐC
     {
-      id: 'slide-7',
-      badge: 'SLIDE 07 / 10 · GIẢI PHÁP PHÒNG VỆ (5, 6 & 7)',
-      category: 'PHẦN 2 · PHẠM DẠ THẢO PHỤ TRÁCH',
-      title: 'QUẢN TRỊ FINTECH, BẢO VỆ BẢN QUYỀN CORE WALLET & ỨNG PHÓ KHỦNG HOẢNG',
-      subtitle: 'Bộ ba giải pháp bảo vệ tài sản vô hình có giá trị nhất của 5 nhà đầu tư và tính liên tục của hệ thống Ví',
+      id: 'charter-slide-7',
+      badge: 'SLIDE 07 / 12 · GIẢI PHÁP FINTECH 2',
+      category: 'PHẦN 3 · 05 GIẢI PHÁP ĐẶC THÙ VÍ ĐIỆN TỬ · PHẠM DẠ THẢO PHỤ TRÁCH',
+      title: 'GIẢI PHÁP 2: PHÂN ĐỊNH THẨM QUYỀN ĐHĐCĐ - HĐQT - TỔNG GIÁM ĐỐC',
+      subtitle: 'Ngăn chặn chồng chéo, lạm quyền và cơ chế kiểm soát hợp đồng trọng yếu trên 5 tỷ đồng',
       speakerName: 'Phạm Dạ Thảo',
-      speakerRole: 'Chuyên viên Sở hữu trí tuệ & Công nghệ',
+      speakerRole: 'Chuyên viên Pháp chế Đầu tư',
       speakerAvatar: '/assets/team/pham-da-thao.jpg',
       speakerNotes:
-        'Đối với tài sản công nghệ, nhóm tư vấn xác lập nguyên tắc mã nguồn, thuật toán và cơ sở dữ liệu đều thuộc quyền sở hữu tuyệt đối của TVPAY, ngăn ngừa việc nhân sự chủ chốt mang công nghệ ra ngoài mở công ty đối thủ. Đồng thời, Điều lệ quy định cơ chế ủy quyền khẩn cấp để xử lý nhanh sự cố an ninh mạng mà vẫn hoàn toàn hợp pháp.',
+        'Kính thưa Thầy và các bạn, giải pháp cốt lõi thứ hai được nêu trong Google Doc 2 là phân định rạch ròi thẩm quyền giữa Đại hội đồng cổ đông, Hội đồng quản trị và Tổng Giám đốc. Trong công ty Fintech, tốc độ ra quyết định rất cao nhưng nếu thiếu cơ chế kiểm soát sẽ dẫn tới lạm quyền hoặc thất thoát tài sản. Điều lệ TVPAY quy định: TGĐ quyết định các hợp đồng vận hành dưới 5 tỷ; HĐQT phê duyệt từ 5 đến 20 tỷ; và trên 20 tỷ hoặc trên 35% tài sản phải do ĐHĐCĐ thông qua.',
       renderContent: () => (
-        <div className="space-y-3">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-            <div className="stagger-1 p-3.5 bg-white/95 rounded-xl border border-amber-300/80 shadow-[0_4px_16px_rgba(180,140,40,0.06)] relative overflow-hidden">
-              <RoyalFiligreeCorner className="absolute top-1 right-1" />
-              <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-amber-50 text-[#8C6B18] border border-amber-200 block w-fit mb-1.5">
-                Lá chắn 05 · NĐ 13/2023
-              </span>
-              <h4 className="text-xs font-bold text-slate-900 m-0 mb-1.5">Bảo vệ dữ liệu người dùng</h4>
-              <p className="text-[11.5px] text-slate-600 m-0 leading-relaxed mb-2">
-                Trách nhiệm người quản lý đối với dữ liệu eKYC khách hàng, tuân thủ nghiêm ngặt quy định bảo mật thông tin tài chính và an ninh thanh toán.
+        <div className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs">
+              <span className="font-mono text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Cấp 1 · Tối cao</span>
+              <h4 className="text-sm sm:text-base font-bold text-slate-900 mt-2 mb-1">ĐẠI HỘI ĐỒNG CỔ ĐÔNG</h4>
+              <p className="text-xs sm:text-sm text-slate-700 leading-relaxed m-0 mb-2">
+                Quyết định chiến lược phát triển, thay đổi vốn điều lệ, sửa đổi Điều lệ, giao dịch &gt;35% tổng tài sản hoặc &gt;20 tỷ đồng.
               </p>
-              <span className="text-[10.5px] text-amber-800 font-bold block">Chuẩn dữ liệu số</span>
+              <span className="text-[11px] font-mono text-emerald-700 font-bold">Biểu quyết 65% thông qua</span>
             </div>
 
-            <div className="stagger-2 p-3.5 bg-white/95 rounded-xl border border-amber-300/80 shadow-[0_4px_16px_rgba(180,140,40,0.06)] relative overflow-hidden">
-              <RoyalFiligreeCorner className="absolute top-1 right-1" />
-              <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-amber-50 text-[#8C6B18] border border-amber-200 block w-fit mb-1.5">
-                Lá chắn 06 · Độc quyền IP
-              </span>
-              <h4 className="text-xs font-bold text-slate-900 m-0 mb-1.5">Bảo vệ độc quyền Core Wallet</h4>
-              <p className="text-[11.5px] text-slate-600 m-0 leading-relaxed mb-2">
-                Mã nguồn ví, thuật toán đối soát và kiến trúc hạ tầng do nhân sự sáng tạo đều thuộc quyền sở hữu độc quyền của TVPAY. Ràng buộc cấm cạnh tranh.
+            <div className="p-4 bg-amber-50/90 rounded-2xl border-2 border-amber-400 shadow-xs">
+              <span className="font-mono text-xs font-bold text-amber-900 bg-amber-200 px-2 py-0.5 rounded">Cấp 2 · Quản trị &amp; Giám sát</span>
+              <h4 className="text-sm sm:text-base font-bold text-amber-950 mt-2 mb-1">HỘI ĐỒNG QUẢN TRỊ (03 TV)</h4>
+              <p className="text-xs sm:text-sm text-slate-700 leading-relaxed m-0 mb-2">
+                Phê duyệt hợp đồng mua sắm hạ tầng CNTT, giải pháp ví từ 5 đến 20 tỷ đồng; bổ nhiệm, giám sát và bãi nhiệm Tổng Giám đốc.
               </p>
-              <span className="text-[10.5px] text-amber-800 font-bold block">Chống chảy máu công nghệ</span>
+              <span className="text-[11px] font-mono text-amber-800 font-bold">Quyết định tập thể đa số</span>
             </div>
 
-            <div className="stagger-3 p-3.5 bg-white/95 rounded-xl border border-amber-300/80 shadow-[0_4px_16px_rgba(180,140,40,0.06)] relative overflow-hidden">
-              <RoyalFiligreeCorner className="absolute top-1 right-1" />
-              <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-amber-50 text-[#8C6B18] border border-amber-200 block w-fit mb-1.5">
-                Lá chắn 07 · Khẩn cấp
-              </span>
-              <h4 className="text-xs font-bold text-slate-900 m-0 mb-1.5">Ứng phó khủng hoảng mạng</h4>
-              <p className="text-[11.5px] text-slate-600 m-0 leading-relaxed mb-2">
-                Cơ chế họp trực tuyến khẩn cấp và ủy quyền đặc biệt cho TGĐ tạm ngưng giao dịch khi xảy ra tấn công DDoS hoặc nghẽn mạch ngân hàng liên kết.
+            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs">
+              <span className="font-mono text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Cấp 3 · Điều hành tác nghiệp</span>
+              <h4 className="text-sm sm:text-base font-bold text-slate-900 mt-2 mb-1">TỔNG GIÁM ĐỐC</h4>
+              <p className="text-xs sm:text-sm text-slate-700 leading-relaxed m-0 mb-2">
+                Đại diện pháp luật, điều hành hoạt động kinh doanh hàng ngày, ký hợp đồng &lt;5 tỷ đồng trong hạn mức kế hoạch ngân sách đã duyệt.
               </p>
-              <span className="text-[10.5px] text-amber-800 font-bold block">Phản ứng nhanh &amp; Hợp pháp</span>
+              <span className="text-[11px] font-mono text-blue-700 font-bold">Chịu trách nhiệm cá nhân</span>
             </div>
           </div>
 
-          {/* Infrastructure Golden Emblem Banner */}
-          <div className="stagger-4 p-2.5 bg-gradient-to-r from-[#FFFDF9] via-[#FAF5E8] to-[#FFFDF9] rounded-xl border border-amber-300/80 flex items-center justify-between gap-3 text-xs shadow-2xs">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#FFF8E7] to-[#F3E5BE] border border-[#D4AF37]/50 flex items-center justify-center shrink-0 shadow-xs">
-                <Server className="w-5 h-5 text-[#8C6B18]" />
-              </div>
-              <div>
-                <strong className="text-slate-900 block text-[11px]">Hạ tầng công nghệ thông tin &amp; An ninh mạng TVPAY</strong>
-                <span className="text-slate-600 text-[10.5px]">Được bảo hộ toàn diện bởi Điều lệ, thỏa mãn tiêu chuẩn kỹ thuật cấp phép của Ngân hàng Nhà nước.</span>
-              </div>
-            </div>
-            <span className="font-mono text-[10px] font-bold px-2.5 py-1 bg-amber-100/90 text-[#7A5B10] rounded border border-amber-300 shrink-0 hidden sm:inline">
-              ISO/IEC 27001
-            </span>
+          <div className="p-3.5 bg-white rounded-xl border border-amber-300 text-xs sm:text-sm text-slate-700">
+            <strong>Ngăn ngừa lạm quyền &amp; rút ruột:</strong> Bất kỳ hợp đồng nào ký kết giữa công ty với cổ đông, người quản trị hoặc người có liên quan đều phải báo cáo và được HĐQT/ĐHĐCĐ chấp thuận theo quy định tại Điều 167 Luật DN.
           </div>
         </div>
       ),
     },
 
-    // SLIDE 8: MA TRẬN RỦI RO PHÁP LÝ THỰC TIỄN (PHẦN 1: HỢP PHÁP, THẨM QUYỀN & HỌP)
+    // SLIDE 8: GIẢI PHÁP 3: DUY TRÌ VỐN 50 TỶ & BẮT BUỘC TRÍCH LẬP QUỸ RỦI RO
     {
-      id: 'slide-8',
-      badge: 'SLIDE 08 / 10 · RỦI RO & XỬ LÝ (PHẦN 1)',
-      category: 'PHẦN 3 · LÊ THỊ HỒNG NHUNG PHỤ TRÁCH',
-      title: 'MA TRẬN RỦI RO PHÁP LÝ: TÍNH HỢP PHÁP, THẨM QUYỀN & THỂ THỨC HỌP',
-      subtitle: 'Tư vấn đối sách phòng ngừa 04 rủi ro nội bộ cấp bách cho 05 Nhà đầu tư sáng lập TVPAY',
-      speakerName: 'Lê Thị Hồng Nhung',
-      speakerRole: 'Chuyên viên Tuân thủ & Trọng tài · Nhóm 13',
+      id: 'charter-slide-8',
+      badge: 'SLIDE 08 / 12 · GIẢI PHÁP FINTECH 3',
+      category: 'PHẦN 3 · 05 GIẢI PHÁP ĐẶC THÙ VÍ ĐIỆN TỬ · NGUYỄN HỒNG NHUNG PHỤ TRÁCH',
+      title: 'GIẢI PHÁP 3: DUY TRÌ VỐN 50 TỶ & BẮT BUỘC TRÍCH LẬP QUỸ RỦI RO',
+      subtitle: 'Điểm cốt lõi ngành ví điện tử: Trích lập Quỹ dự phòng rủi ro & Quỹ an toàn hệ thống trước khi chia cổ tức',
+      speakerName: 'Nguyễn Hồng Nhung',
+      speakerRole: 'Chuyên viên Pháp chế Tài chính',
       speakerAvatar: '/assets/team/hong-nhung.jpg',
-      speakerNotes: 'Thưa thầy và hội đồng, khi nhận đề bài tư vấn bảo vệ quyền lợi cho 05 nhà đầu tư TVPAY với số vốn 50 tỷ đồng, nhóm em nhận diện ngay 4 rủi ro pháp lý cơ bản có thể làm tê liệt hoặc vô hiệu hoạt động doanh nghiệp. Rủi ro số 1 là Điều lệ trái luật, chúng em đã chuẩn hóa đối chiếu Luật Doanh nghiệp 2020 và Nghị định 52/2024. Rủi ro số 2 và 3 là tranh chấp quyền lực và thẩm quyền người đại diện, Điều lệ đã phân quyền rành mạch giữa 5 cổ đông và Tổng Giám đốc. Rủi ro số 4 là thể thức triệu tập họp, nhóm quy định chặt chẽ thời hạn thông báo để mọi nghị quyết của ĐHĐCĐ luôn có hiệu lực pháp lý vững chắc.',
+      speakerNotes:
+        'Kính thưa Thầy và các bạn, đây chính là điểm rất riêng và đắt giá nhất của ngành ví điện tử được nhấn mạnh trong Google Doc 2. Quản lý tài chính ở TVPAY chặt chẽ hơn nhiều so với doanh nghiệp thông thường. Pháp luật yêu cầu duy trì vốn điều lệ tối thiểu 50 tỷ đồng, nên Điều lệ TVPAY bắt buộc phải trích lập Quỹ dự phòng rủi ro và Quỹ bảo đảm an toàn hệ thống TRƯỚC CẢ KHI CHIA CỔ TỨC. Đây chính là "bộ đệm" tài chính sống còn giúp công ty giữ được giấy phép của NHNN và có nguồn lực bồi thường ngay lập tức khi xảy ra sự cố kỹ thuật.',
       renderContent: () => (
-        <div className="space-y-3.5">
-          <div className="stagger-1 overflow-x-auto rounded-xl border border-amber-300/80 shadow-2xs bg-white">
-            <table className="min-w-full text-xs text-left divide-y divide-amber-200/60">
-              <thead className="bg-gradient-to-r from-amber-100 via-amber-50 to-amber-100 font-serif font-bold text-slate-900">
-                <tr>
-                  <th className="px-3 py-2.5 border-r border-amber-200/50 text-center w-12">STT</th>
-                  <th className="px-3.5 py-2.5 border-r border-amber-200/50 w-28 text-center">Mức độ</th>
-                  <th className="px-3.5 py-2.5 border-r border-amber-200/50 w-1/4">Rủi ro nhận diện</th>
-                  <th className="px-3.5 py-2.5 border-r border-amber-200/50 w-1/3">Hậu quả đối với 05 Nhà đầu tư</th>
-                  <th className="px-3.5 py-2.5">Phương án xử lý chuẩn tắc của Nhóm 13</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-amber-100 text-[11.5px] text-slate-700">
-                <tr className="hover:bg-amber-50/30 transition">
-                  <td className="px-3 py-2.5 font-bold font-mono text-center text-amber-900 border-r border-amber-100">01</td>
-                  <td className="px-3 py-2.5 text-center border-r border-amber-100">
-                    <span className="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-rose-50 text-rose-900 border border-rose-200">
-                      NGHIÊM TRỌNG
-                    </span>
-                  </td>
-                  <td className="px-3.5 py-2.5 font-semibold text-slate-900 border-r border-amber-100">
-                    Điều lệ chứa nội dung trái luật hoặc thiếu quy chuẩn NHNN
-                  </td>
-                  <td className="px-3.5 py-2.5 border-r border-amber-100 text-rose-900">
-                    Tranh chấp cổ đông, nguy cơ bị Tòa án tuyên vô hiệu, bị NHNN từ chối hoặc thu hồi giấy phép trung gian thanh toán.
-                  </td>
-                  <td className="px-3.5 py-2.5 text-emerald-900 font-medium bg-emerald-50/20">
-                    Rà soát toàn diện 86 điều khoản, đối chiếu song song Luật Doanh nghiệp 2020 và Nghị định 52/2024/NĐ-CP.
-                  </td>
-                </tr>
-                <tr className="bg-amber-50/20 hover:bg-amber-50/50 transition">
-                  <td className="px-3 py-2.5 font-bold font-mono text-center text-amber-800 border-r border-amber-100">02</td>
-                  <td className="px-3 py-2.5 text-center border-r border-amber-100">
-                    <span className="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-amber-100/90 text-amber-900 border border-amber-300">
-                      RỦI RO CAO
-                    </span>
-                  </td>
-                  <td className="px-3.5 py-2.5 font-semibold text-slate-900 border-r border-amber-100">
-                    Không phân định rõ cơ cấu và thẩm quyền quản trị
-                  </td>
-                  <td className="px-3.5 py-2.5 border-r border-amber-100 text-amber-950">
-                    Chồng chéo quyền hạn giữa ĐHĐCĐ, HĐQT và TGĐ; bế tắc nội bộ khi phát sinh quyết định đầu tư công nghệ lớn.
-                  </td>
-                  <td className="px-3.5 py-2.5 text-emerald-900 font-medium bg-emerald-50/20">
-                    Quy định cụ thể chức năng, thẩm quyền phê duyệt ngân sách và tỷ lệ biểu quyết tối thiểu (65% ĐHĐCĐ) của từng chức danh.
-                  </td>
-                </tr>
-                <tr className="hover:bg-amber-50/50 transition">
-                  <td className="px-3 py-2.5 font-bold font-mono text-center text-amber-800 border-r border-amber-100">03</td>
-                  <td className="px-3 py-2.5 text-center border-r border-amber-100">
-                    <span className="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-amber-100/90 text-amber-900 border border-amber-300">
-                      RỦI RO CAO
-                    </span>
-                  </td>
-                  <td className="px-3.5 py-2.5 font-semibold text-slate-900 border-r border-amber-100">
-                    Quy định người đại diện theo pháp luật không rõ ràng
-                  </td>
-                  <td className="px-3.5 py-2.5 border-r border-amber-100 text-amber-950">
-                    Hợp đồng kết nối cổng thanh toán ngân hàng bị vô hiệu do người ký vượt quá thẩm quyền hoặc xung đột lợi ích.
-                  </td>
-                  <td className="px-3.5 py-2.5 text-emerald-900 font-medium bg-emerald-50/20">
-                    Quy định rõ TGĐ là người đại diện theo pháp luật duy nhất, ràng buộc hạn mức giao dịch và ủy quyền bằng văn bản.
-                  </td>
-                </tr>
-                <tr className="bg-amber-50/20 hover:bg-amber-50/50 transition">
-                  <td className="px-3 py-2.5 font-bold font-mono text-center text-slate-700 border-r border-amber-100">04</td>
-                  <td className="px-3 py-2.5 text-center border-r border-amber-100">
-                    <span className="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-slate-100 text-slate-800 border border-slate-300">
-                      TRUNG BÌNH
-                    </span>
-                  </td>
-                  <td className="px-3.5 py-2.5 font-semibold text-slate-900 border-r border-amber-100">
-                    Thể thức triệu tập họp và biểu quyết sai quy trình
-                  </td>
-                  <td className="px-3.5 py-2.5 border-r border-amber-100 text-slate-700">
-                    Nghị quyết ĐHĐCĐ bị cổ đông thiểu số khởi kiện yêu cầu Tòa án hủy bỏ do vi phạm trình tự thông báo.
-                  </td>
-                  <td className="px-3.5 py-2.5 text-emerald-900 font-medium bg-emerald-50/20">
-                    Quy định chi tiết thời hạn gửi giấy mời 21 ngày, điều kiện tiến hành họp 50% và cơ chế biểu quyết điện tử có xác thực.
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+        <div className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs">
+              <div className="flex items-center gap-2 mb-2 text-[#8C6B18]">
+                <ShieldAlert className="w-5 h-5 text-amber-600" />
+                <h4 className="text-sm sm:text-base font-bold text-slate-900 m-0">Quỹ dự phòng rủi ro &amp; An toàn hệ thống</h4>
+              </div>
+              <ul className="space-y-2 text-xs sm:text-sm text-slate-700 m-0 p-0 list-none">
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span><strong>Trích lập bắt buộc:</strong> Hàng năm trích tối thiểu 5% lợi nhuận sau thuế vào Quỹ dự phòng rủi ro cho đến khi đạt 10% vốn điều lệ.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span><strong>Ưu tiên trước cổ tức:</strong> Tuyệt đối không được chia cổ tức nếu chưa bù đắp lỗ lũy kế và chưa trích lập đủ quỹ rủi ro.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span><strong>Nguồn bồi hoàn tức thì:</strong> Quỹ là nguồn vốn sẵn sàng chi trả bồi thường cho khách hàng khi lỗi kỹ thuật phát sinh.</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="p-4 bg-gradient-to-br from-amber-50 to-white rounded-2xl border-2 border-amber-400 shadow-xs">
+              <div className="flex items-center gap-2 mb-2 text-amber-800">
+                <Landmark className="w-5 h-5 text-amber-700" />
+                <h4 className="text-sm sm:text-base font-bold text-amber-950 m-0">Tài khoản đảm bảo thanh toán (Bảo toàn 1:1)</h4>
+              </div>
+              <ul className="space-y-2 text-xs sm:text-sm text-slate-700 m-0 p-0 list-none">
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                  <span><strong>Tách biệt 100%:</strong> Tài khoản đảm bảo thanh toán tại ngân hàng liên kết tách biệt hoàn toàn với tài khoản chi phí của TVPAY.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                  <span><strong>Không được thấu chi:</strong> Cấm tuyệt đối việc sử dụng tiền trong tài khoản ví người dùng để cho vay hoặc kinh doanh.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                  <span><strong>Kiểm toán độc lập:</strong> Định kỳ kiểm toán số dư đảm bảo và báo cáo số liệu hàng ngày về Ngân hàng Nhà nước.</span>
+                </li>
+              </ul>
+            </div>
           </div>
 
-          {/* Governance Golden Emblem Banner */}
-          <div className="stagger-4 p-2.5 bg-gradient-to-r from-[#FFFDF9] via-[#FAF5E8] to-[#FFFDF9] rounded-xl border border-amber-300/80 flex items-center justify-between gap-3 text-xs shadow-2xs">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#FFF8E7] to-[#F3E5BE] border border-[#D4AF37]/50 flex items-center justify-center shrink-0 shadow-xs">
-                <Users className="w-5 h-5 text-[#8C6B18]" />
-              </div>
-              <div>
-                <strong className="text-slate-900 block text-[11px]">Cơ chế biểu quyết và điều hành Hội đồng quản trị TVPAY</strong>
-                <span className="text-slate-600 text-[10.5px]">Được chuẩn hóa nhằm giải tỏa bế tắc (Deadlock) giữa 5 nhà đầu tư sáng lập, bảo đảm vận hành thông suốt.</span>
-              </div>
-            </div>
-            <span className="font-mono text-[10px] font-bold px-2.5 py-1 bg-amber-100/90 text-[#7A5B10] rounded border border-amber-300 shrink-0 hidden sm:inline">
-              ĐIỀU 28 - 34 ĐIỀU LỆ
-            </span>
+          <div className="p-3 bg-amber-100/80 rounded-xl border border-amber-300 text-center text-xs sm:text-sm font-semibold text-amber-950">
+            Bộ đệm giữ giấy phép NHNN: "Không có quỹ rủi ro vững chắc - Không có an toàn hoạt động cho ví điện tử."
           </div>
         </div>
       ),
     },
 
-    // SLIDE 9: MA TRẬN RỦI RO PHÁP LÝ THỰC TIỄN (PHẦN 2: CHUYỂN NHƯỢNG, VỐN & SỬA ĐỔI)
+    // SLIDE 9: GIẢI PHÁP 4: BẢO VỆ TÀI SẢN TRÍ TUỆ & NON-COMPETE FINTECH
     {
-      id: 'slide-9',
-      badge: 'SLIDE 09 / 10 · RỦI RO & XỬ LÝ (PHẦN 2)',
-      category: 'PHẦN 3 · KIỀU HOÀI THU PHỤ TRÁCH',
-      title: 'MA TRẬN RỦI RO PHÁP LÝ: CHUYỂN NHƯỢNG CỔ PHẦN, MỞ RỘNG VỐN & SỬA ĐỔI',
-      subtitle: 'Đối sách bảo vệ 05 Nhà đầu tư khi mở rộng vốn gọi quỹ ngoại và điều chỉnh luật chuyên ngành',
+      id: 'charter-slide-9',
+      badge: 'SLIDE 09 / 12 · GIẢI PHÁP FINTECH 4',
+      category: 'PHẦN 3 · 05 GIẢI PHÁP ĐẶC THÙ VÍ ĐIỆN TỬ · KIỀU HOÀI THU PHỤ TRÁCH',
+      title: 'GIẢI PHÁP 4: BẢO VỆ TÀI SẢN TRÍ TUỆ & NON-COMPETE TRONG FINTECH',
+      subtitle: 'Khẳng định quyền sở hữu tuyệt đối với mã nguồn, thuật toán và cam kết bảo mật sau khi thôi việc',
       speakerName: 'Kiều Hoài Thu',
-      speakerRole: 'Chuyên viên M&A & Pháp lý Fintech · Nhóm 13',
+      speakerRole: 'Chuyên viên Sở hữu Trí tuệ Fintech',
       speakerAvatar: '/assets/team/kieu-hoai-thu.jpg',
-      speakerNotes: 'Tiếp theo, ở giai đoạn mở rộng và vận hành thực tế, 4 rủi ro lớn nhất mà 5 nhà đầu tư TVPAY đối mặt là: chuyển nhượng cổ phần nội bộ bị người ngoài thâm nhập, bị động khi quỹ ngoại muốn rót vốn công nghệ, luật chuyên ngành thay đổi, và cơ chế xử lý tài sản khi phát sinh rủi ro thanh khoản ví. Nhóm 13 đã thiết lập cơ chế quyền ưu tiên mua 30 ngày cho 5 cổ đông sáng lập, quy định sẵn khung chào bán cổ phần riêng lẻ, và đặc biệt ưu tiên số 1 cho việc hoàn trả số dư ví của khách hàng trước khi thanh lý tài sản cho cổ đông, đảm bảo uy tín và trách nhiệm của các nhà đầu tư sáng lập.',
+      speakerNotes:
+        'Kính thưa Thầy và các bạn, với doanh nghiệp Fintech, tài sản lớn nhất không phải nhà xưởng hay máy móc, mà chính là mã nguồn phần mềm, thuật toán thanh toán và cơ sở dữ liệu khách hàng. Google Doc 2 khẳng định giải pháp thứ tư: Điều lệ TVPAY quy định rõ quyền sở hữu tuyệt đối của công ty đối với toàn bộ tài sản trí tuệ do nhân sự sáng tạo trong thời gian làm việc; đồng thời thiết lập nghĩa vụ bảo mật thông tin và cam kết hạn chế cạnh tranh (Non-Compete) không được đầu quân cho đối thủ trực tiếp trong vòng 24 tháng sau khi rời đi.',
       renderContent: () => (
-        <div className="space-y-3.5">
-          <div className="stagger-1 overflow-x-auto rounded-xl border border-amber-300/80 shadow-2xs bg-white">
-            <table className="min-w-full text-xs text-left divide-y divide-amber-200/60">
-              <thead className="bg-gradient-to-r from-amber-100 via-amber-50 to-amber-100 font-serif font-bold text-slate-900">
-                <tr>
-                  <th className="px-3 py-2.5 border-r border-amber-200/50 text-center w-12">STT</th>
-                  <th className="px-3.5 py-2.5 border-r border-amber-200/50 w-28 text-center">Mức độ</th>
-                  <th className="px-3.5 py-2.5 border-r border-amber-200/50 w-1/4">Rủi ro mở rộng &amp; thoái vốn</th>
-                  <th className="px-3.5 py-2.5 border-r border-amber-200/50 w-1/3">Hậu quả đối với 05 Nhà đầu tư</th>
-                  <th className="px-3.5 py-2.5">Phương án bảo vệ của Nhóm 13</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-amber-100 text-[11.5px] text-slate-700">
-                <tr className="hover:bg-amber-50/50 transition">
-                  <td className="px-3 py-2.5 font-bold font-mono text-center text-amber-800 border-r border-amber-100">05</td>
-                  <td className="px-3 py-2.5 text-center border-r border-amber-100">
-                    <span className="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-amber-100/90 text-amber-900 border border-amber-300">
-                      RỦI RO CAO
-                    </span>
-                  </td>
-                  <td className="px-3.5 py-2.5 font-semibold text-slate-900 border-r border-amber-100">
-                    Chuyển nhượng cổ phần trong công ty khép kín
-                  </td>
-                  <td className="px-3.5 py-2.5 border-r border-amber-100 text-amber-950">
-                    Bên thứ ba thâm nhập thao túng hoạt động công ty, phá vỡ khối liên kết của 05 cổ đông sáng lập.
-                  </td>
-                  <td className="px-3.5 py-2.5 text-emerald-900 font-medium bg-emerald-50/20">
-                    Khóa chuyển nhượng 03 năm đầu (Khoản 3 Điều 120 Luật DN), quy trình chào bán nội bộ 30 ngày và quyền ưu tiên mua (ROFR).
-                  </td>
-                </tr>
-                <tr className="bg-amber-50/20 hover:bg-amber-50/50 transition">
-                  <td className="px-3 py-2.5 font-bold font-mono text-center text-slate-700 border-r border-amber-100">06</td>
-                  <td className="px-3 py-2.5 text-center border-r border-amber-100">
-                    <span className="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-slate-100 text-slate-800 border border-slate-300">
-                      TRUNG BÌNH
-                    </span>
-                  </td>
-                  <td className="px-3.5 py-2.5 font-semibold text-slate-900 border-r border-amber-100">
-                    Không dự liệu cơ chế mở rộng vốn &amp; Quỹ ngoại
-                  </td>
-                  <td className="px-3.5 py-2.5 border-r border-amber-100 text-slate-700">
-                    Bị động khi tiếp cận quỹ đầu tư mạo hiểm fintech (Series A/B), thủ tục sửa đổi Điều lệ phức tạp kéo dài làm mất cơ hội.
-                  </td>
-                  <td className="px-3.5 py-2.5 text-emerald-900 font-medium bg-emerald-50/20">
-                    Quy định sẵn khung chào bán cổ phần riêng lẻ, điều kiện tiếp cận thị trường và giới hạn tỷ lệ sở hữu nhà đầu tư nước ngoài.
-                  </td>
-                </tr>
-                <tr className="hover:bg-amber-50/50 transition">
-                  <td className="px-3 py-2.5 font-bold font-mono text-center text-slate-700 border-r border-amber-100">07</td>
-                  <td className="px-3 py-2.5 text-center border-r border-amber-100">
-                    <span className="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-slate-100 text-slate-800 border border-slate-300">
-                      TRUNG BÌNH
-                    </span>
-                  </td>
-                  <td className="px-3.5 py-2.5 font-semibold text-slate-900 border-r border-amber-100">
-                    Sửa đổi Điều lệ khi pháp luật chuyên ngành thay đổi
-                  </td>
-                  <td className="px-3.5 py-2.5 border-r border-amber-100 text-slate-700">
-                    Điều lệ xung đột với thông tư mới của NHNN về an toàn thanh toán trực tuyến, rủi ro bị xử phạt hành chính.
-                  </td>
-                  <td className="px-3.5 py-2.5 text-emerald-900 font-medium bg-emerald-50/20">
-                    Thiết lập nguyên tắc định kỳ rà soát Điều lệ hàng năm, cơ chế ủy quyền HĐQT cập nhật các nội dung kỹ thuật do luật ấn định.
-                  </td>
-                </tr>
-                <tr className="bg-amber-50/20 hover:bg-amber-50/30 transition">
-                  <td className="px-3 py-2.5 font-bold font-mono text-center text-amber-900 border-r border-amber-100">08</td>
-                  <td className="px-3 py-2.5 text-center border-r border-amber-100">
-                    <span className="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-rose-50 text-rose-900 border border-rose-200">
-                      NGHIÊM TRỌNG
-                    </span>
-                  </td>
-                  <td className="px-3.5 py-2.5 font-semibold text-slate-900 border-r border-amber-100">
-                    Giải thể &amp; Thanh lý tài sản không rõ ràng
-                  </td>
-                  <td className="px-3.5 py-2.5 border-r border-amber-100 text-rose-900">
-                    Tranh chấp thứ tự thanh toán nghĩa vụ nợ; rủi ro pháp lý với số dư tiền ví của hàng triệu khách hàng khi chấm dứt hoạt động.
-                  </td>
-                  <td className="px-3.5 py-2.5 text-emerald-900 font-medium bg-emerald-50/20">
-                    Xác lập nguyên tắc thanh lý tài sản nghiêm ngặt: Tuyệt đối ưu tiên hoàn trả số dư ví người dùng trước khi phân chia cho cổ đông.
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+        <div className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs">
+              <div className="flex items-center gap-2 mb-2 text-[#8C6B18]">
+                <Cpu className="w-5 h-5 text-amber-600" />
+                <h4 className="text-sm sm:text-base font-bold text-slate-900 m-0">Sở hữu mã nguồn &amp; Thuật toán</h4>
+              </div>
+              <p className="text-xs sm:text-sm text-slate-700 leading-relaxed m-0">
+                100% mã nguồn ví TVPAY, API tích hợp, cơ chế mã hóa token và giải pháp bảo mật sinh trắc học thuộc quyền sở hữu độc quyền của pháp nhân TVPAY.
+              </p>
+            </div>
+
+            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs">
+              <div className="flex items-center gap-2 mb-2 text-[#8C6B18]">
+                <Database className="w-5 h-5 text-amber-600" />
+                <h4 className="text-sm sm:text-base font-bold text-slate-900 m-0">Bảo mật dữ liệu người dùng</h4>
+              </div>
+              <p className="text-xs sm:text-sm text-slate-700 leading-relaxed m-0">
+                Dữ liệu định danh eKYC và lịch sử giao dịch được bảo vệ theo Luật An ninh mạng và Luật Bảo vệ dữ liệu cá nhân. Nghiêm cấm trích xuất trái phép.
+              </p>
+            </div>
+
+            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs">
+              <div className="flex items-center gap-2 mb-2 text-[#8C6B18]">
+                <Lock className="w-5 h-5 text-amber-600" />
+                <h4 className="text-sm sm:text-base font-bold text-slate-900 m-0">Cam kết Non-Compete (24 tháng)</h4>
+              </div>
+              <p className="text-xs sm:text-sm text-slate-700 leading-relaxed m-0">
+                Cổ đông sáng lập và nhân sự công nghệ chủ chốt cam kết không làm việc cho các tổ chức ví điện tử đối thủ trong 24 tháng sau khi thôi nhiệm.
+              </p>
+            </div>
           </div>
 
-          {/* Key Strategic Pillars Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-0.5">
-            <div className="stagger-2 p-2.5 bg-white/95 rounded-xl border border-amber-300/80 shadow-2xs">
-              <span className="text-[10px] font-bold text-[#8C6B18] block uppercase">Đối sách 1 · Giữ ổn định</span>
-              <strong className="text-xs text-slate-900 block mt-0.5">Quyền ưu tiên mua 30 ngày</strong>
-              <p className="text-[11px] text-slate-600 m-0 mt-1">
-                Bảo đảm 05 nhà đầu tư sáng lập luôn có quyền giữ vững tỷ lệ chi phối trước bất kỳ đề nghị chuyển nhượng nào.
-              </p>
-            </div>
-            <div className="stagger-3 p-2.5 bg-white/95 rounded-xl border border-amber-300/80 shadow-2xs">
-              <span className="text-[10px] font-bold text-[#8C6B18] block uppercase">Đối sách 2 · Mở rộng vốn</span>
-              <strong className="text-xs text-slate-900 block mt-0.5">Tiếp nhận Quỹ Ngoại M&amp;A</strong>
-              <p className="text-[11px] text-slate-600 m-0 mt-1">
-                Quy chế chào bán riêng lẻ chuẩn hóa, định giá tài sản vô hình và bảo lưu quyền phủ quyết công nghệ.
-              </p>
-            </div>
-            <div className="stagger-4 p-2.5 bg-white/95 rounded-xl border border-amber-300/80 shadow-2xs">
-              <span className="text-[10px] font-bold text-[#8C6B18] block uppercase">Đối sách 3 · Uy tín tài chính</span>
-              <strong className="text-xs text-slate-900 block mt-0.5">Ưu tiên số dư ví người dùng</strong>
-              <p className="text-[11px] text-slate-600 m-0 mt-1">
-                Tách biệt tài khoản ký quỹ bảo toàn số dư 100% tại ngân hàng, không thể bị kê biên hay cấn trừ nợ doanh nghiệp.
-              </p>
-            </div>
+          <div className="p-3.5 bg-amber-50 rounded-xl border border-amber-300 text-xs sm:text-sm text-slate-700 flex items-center justify-between">
+            <span><strong>Chế tài nghiêm khắc:</strong> Vi phạm bảo mật bí mật kinh doanh phải bồi thường toàn bộ thiệt hại và chịu trách nhiệm hình sự.</span>
+            <span className="font-mono text-amber-800 font-bold hidden sm:inline">Điều 42 Điều lệ TVPAY</span>
           </div>
         </div>
       ),
     },
 
-    // SLIDE 10: KỊCH BẢN Q&A PHẢN BIỆN & TỔNG KẾT BÁO CÁO
+    // SLIDE 10: GIẢI PHÁP 5: CƠ CHẾ KHẨN CẤP ỨNG PHÓ KHỦNG HOẢNG AN NINH MẠNG
     {
-      id: 'slide-10',
-      badge: 'SLIDE 10 / 10 · Q&A & TỔNG KẾT',
-      category: 'TỔNG KẾT & PHẢN BIỆN · ĐOÀN ÁNH PHƯƠNG (TRƯỞNG NHÓM)',
-      title: 'KỊCH BẢN HỎI - ĐÁP PHẢN BIỆN (Q&A) & ĐỀ XUẤT NÂNG CẤP ĐIỀU LỆ SỐ HÓA',
-      subtitle: 'Nhóm 13 sẵn sàng giải đáp chất vấn từ Giảng viên & Hội đồng chuyên môn Khoa Luật HVNH',
-      speakerName: 'Đoàn Ánh Phương',
-      speakerRole: 'Trưởng Nhóm 13 · Phản biện chuyên sâu',
-      speakerAvatar: '/assets/team/anh-phuong.jpg',
-      speakerNotes: 'Để kết lại phần trình bày hồ sơ tư vấn Điều lệ TVPAY, Nhóm 13 đã chuẩn bị sẵn kịch bản phản biện cho 2 vấn đề trọng yếu mà Giảng viên thường đặt câu hỏi: (1) Vì sao TVPAY phải duy trì quỹ thanh khoản nghiêm ngặt hơn công ty thường, và (2) Cơ chế nào bảo vệ 5 nhà đầu tư sáng lập trước nguy cơ pha loãng vốn. Đồng thời, nhóm đề xuất bước tiến số hóa Điều lệ với chữ ký số cá nhân và hợp đồng điện tử theo Luật Giao dịch điện tử 2023. Xin trân trọng cảm ơn Thầy và các bạn đã lắng nghe!',
+      id: 'charter-slide-10',
+      badge: 'SLIDE 10 / 12 · GIẢI PHÁP FINTECH 5',
+      category: 'PHẦN 3 · 05 GIẢI PHÁP ĐẶC THÙ VÍ ĐIỆN TỬ · KIỀU HOÀI THU PHỤ TRÁCH',
+      title: 'GIẢI PHÁP 5: CƠ CHẾ ỨNG PHÓ KHỦNG HOẢNG MẠNG & HỌP KHẨN CẤP',
+      subtitle: 'Ra quyết định trong tích tắc: Họp trực tuyến khẩn, biểu quyết từ xa và ủy quyền cách ly hệ thống',
+      speakerName: 'Kiều Hoài Thu',
+      speakerRole: 'Chuyên viên An toàn Thông tin',
+      speakerAvatar: '/assets/team/kieu-hoai-thu.jpg',
+      speakerNotes:
+        'Kính thưa quý vị, giải pháp thứ năm giải quyết bài toán sống còn: Khi xảy ra tấn công mạng DDoS hoặc sự cố nghẽn hệ thống, công ty cần ra quyết định trong tích tắc chứ không thể chờ họp ĐHĐCĐ kéo dài cả tuần. Điều lệ TVPAY trao sẵn thẩm quyền: Cho phép họp khẩn cấp trực tuyến trong vòng 2 giờ, biểu quyết từ xa bằng chữ ký số, và ủy quyền đặc biệt cho Tổng Giám đốc tạm thời ngắt kết nối an toàn để bảo vệ số dư tài khoản người dùng, sau đó báo cáo NHNN và cơ quan an ninh mạng quốc gia.',
       renderContent: () => (
-        <div className="space-y-3.5">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
-            <div className="stagger-1 p-3.5 bg-white/95 rounded-xl border border-amber-300/80 shadow-[0_4px_16px_rgba(180,140,40,0.06)] relative overflow-hidden">
-              <RoyalFiligreeCorner className="absolute top-1 right-1" />
-              <div className="flex items-center gap-1.5 text-[#8C6B18] font-bold mb-1.5">
-                <HelpCircle className="w-4 h-4 text-[#C59B27]" />
-                <span className="text-[11px] uppercase tracking-wide">Chất vấn 01 (Thường gặp từ Giảng viên)</span>
-              </div>
-              <p className="font-bold text-slate-900 mb-2 leading-snug">
-                "Tại sao TVPAY lại bắt buộc phải duy trì quỹ dự phòng tài chính khắt khe hơn công ty cổ phần thông thường?"
+        <div className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs">
+              <span className="font-mono text-xs font-bold text-red-700 bg-red-100 px-2 py-0.5 rounded border border-red-300">Tác chiến 01</span>
+              <h4 className="text-sm sm:text-base font-bold text-slate-900 mt-2 mb-1">Ủy quyền ngắt kết nối an toàn</h4>
+              <p className="text-xs sm:text-sm text-slate-700 leading-relaxed m-0">
+                Tổng Giám đốc có quyền ban bố tình trạng khẩn cấp, tạm ngắt cổng API kết nối liên ngân hàng để ngăn chặn hacker rút tiền tự động.
               </p>
-              <div className="p-2.5 bg-[#FAF6EE] rounded-lg text-slate-800 leading-relaxed text-[11px] border border-amber-200/80">
-                <strong className="text-[#8C6B18]">Tư vấn của Nhóm 13:</strong> Vì TVPAY là tổ chức trung gian thanh toán, nắm giữ số dư ví điện tử của hàng trăm ngàn khách hàng. Bộ đệm tài chính này đảm bảo nguyên tắc bảo toàn thanh khoản 1:1 theo quy định NHNN (Nghị định 52/2024), ngăn ngừa nguy cơ mất khả năng chi trả khi xảy ra sự cố nghẽn mạng ngân hàng đối tác.
-              </div>
             </div>
 
-            <div className="stagger-2 p-3.5 bg-white/95 rounded-xl border border-amber-300/80 shadow-[0_4px_16px_rgba(180,140,40,0.06)] relative overflow-hidden">
-              <RoyalFiligreeCorner className="absolute top-1 right-1" />
-              <div className="flex items-center gap-1.5 text-[#8C6B18] font-bold mb-1.5">
-                <HelpCircle className="w-4 h-4 text-[#C59B27]" />
-                <span className="text-[11px] uppercase tracking-wide">Chất vấn 02 (Thường gặp từ Giảng viên)</span>
-              </div>
-              <p className="font-bold text-slate-900 mb-2 leading-snug">
-                "Cơ chế nào trong Điều lệ giúp bảo vệ 05 nhà đầu tư sáng lập trước nguy cơ bị các nhà đầu tư vòng sau pha loãng?"
+            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs">
+              <span className="font-mono text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded border border-amber-300">Tác chiến 02</span>
+              <h4 className="text-sm sm:text-base font-bold text-slate-900 mt-2 mb-1">Họp trực tuyến khẩn &amp; Ký số</h4>
+              <p className="text-xs sm:text-sm text-slate-700 leading-relaxed m-0">
+                HĐQT triệu tập họp trực tuyến khẩn trong vòng 02 giờ. Các quyết nghị thông qua bằng chữ ký số hoặc biểu quyết điện tử có giá trị thi hành ngay.
               </p>
-              <div className="p-2.5 bg-[#FAF6EE] rounded-lg text-slate-800 leading-relaxed text-[11px] border border-amber-200/80">
-                <strong className="text-[#8C6B18]">Tư vấn của Nhóm 13:</strong> Điều lệ trao quyền ưu tiên mua cổ phần chào bán mới tương ứng với tỷ lệ sở hữu hiện có (Điều 6), đồng thời quy định tỷ lệ biểu quyết tối thiểu 65% đối với các quyết định tăng vốn hoặc chào bán cổ phần riêng lẻ cho nhà đầu tư ngoại, ngăn chặn việc ép giá pha loãng.
-              </div>
+            </div>
+
+            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs">
+              <span className="font-mono text-xs font-bold text-blue-800 bg-blue-100 px-2 py-0.5 rounded border border-blue-300">Tác chiến 03</span>
+              <h4 className="text-sm sm:text-base font-bold text-slate-900 mt-2 mb-1">Kích hoạt quy trình NCSC &amp; NHNN</h4>
+              <p className="text-xs sm:text-sm text-slate-700 leading-relaxed m-0">
+                Kích hoạt hợp tác với Trung tâm Giám sát an toàn không gian mạng Quốc gia (NCSC) và báo cáo khẩn cấp Cục CNTT - Ngân hàng Nhà nước.
+              </p>
             </div>
           </div>
 
-          {/* Corporate Counsel Golden Emblem Banner & Digital Proposal */}
-          <div className="stagger-3 p-3 bg-gradient-to-r from-[#FFFDF9] via-[#FAF5E8] to-[#FFFDF9] rounded-xl border border-amber-300 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-700 shadow-2xs">
-            <div className="flex items-center gap-3">
-              <div className="w-11 h-11 rounded-lg bg-gradient-to-br from-[#FFF8E7] to-[#F3E5BE] border border-[#D4AF37]/50 flex items-center justify-center shrink-0 shadow-xs">
-                <Award className="w-5 h-5 text-[#8C6B18]" />
+          <div className="p-3.5 bg-amber-50 rounded-xl border border-amber-300 text-xs sm:text-sm text-slate-800">
+            <strong>Nguyên tắc Google Doc 2:</strong> "Điều lệ phải trao sẵn thẩm quyền họp khẩn, biểu quyết từ xa, ủy quyền đặc biệt để bộ máy hành động hợp pháp và kịp thời, giữ vững niềm tin người dùng ví điện tử."
+          </div>
+        </div>
+      ),
+    },
+
+    // SLIDE 11: ĐIỀU LỆ "MAY ĐO" THEO RỦI RO ĐẶC THÙ NGÀNH VÍ ĐIỆN TỬ
+    {
+      id: 'charter-slide-11',
+      badge: 'SLIDE 11 / 12 · MAY ĐO NGÀNH VÍ',
+      category: 'PHẦN 4 · THỰC TIỄN MAY ĐO · ĐOÀN ÁNH PHƯƠNG PHỤ TRÁCH',
+      title: 'ĐIỀU LỆ "MAY ĐO" THEO RỦI RO ĐẶC THÙ NGÀNH VÍ ĐIỆN TỬ',
+      subtitle: 'Minh chứng Điều lệ TVPAY không sao chép khuôn mẫu, tích hợp sâu quy chuẩn an toàn số',
+      speakerName: 'Đoàn Ánh Phương',
+      speakerRole: 'Trưởng Nhóm 13 · Điều phối viên',
+      speakerAvatar: '/assets/team/anh-phuong.jpg',
+      speakerNotes:
+        'Kính thưa Thầy và các bạn, nhìn vào Điều lệ TVPAY, chúng ta thấy rõ một bản Điều lệ được "may đo" tỉ mỉ theo đúng rủi ro đặc thù ngành ví điện tử chứ không hề sao chép các mẫu Điều lệ chung chung trên mạng. Cụ thể: chúng tôi thiết kế quy định riêng cho cổ đông nước ngoài; cơ chế bảo lưu quyền kiểm soát hạ tầng an ninh mạng tại Việt Nam; và yêu cầu đối chiếu sinh trắc học khi chuyển nhượng cổ phần giữa các cổ đông sáng lập. Đó là minh chứng rõ nhất cho chất lượng tư vấn của Nhóm 13.',
+      renderContent: () => (
+        <div className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs">
+              <div className="flex items-center gap-2 mb-2 text-[#8C6B18]">
+                <GlobeIcon className="w-5 h-5 text-amber-600" />
+                <h4 className="text-sm sm:text-base font-bold text-slate-900 m-0">Cơ chế cổ đông nước ngoài</h4>
               </div>
-              <div>
-                <strong className="text-slate-900 block text-[11.5px] flex items-center gap-1.5">
-                  <Sparkles className="w-3.5 h-3.5 text-[#C59B27]" />
-                  Đề xuất số hóa Điều lệ TVPAY · Nâng tầm văn kiện pháp lý
-                </strong>
-                <span className="text-slate-600 text-[11px]">
-                  Tích hợp biểu quyết ĐHĐCĐ bằng chữ ký số cá nhân và chứng thực hợp đồng điện tử theo Luật Giao dịch điện tử 2023.
-                </span>
-              </div>
+              <p className="text-xs sm:text-sm text-slate-700 leading-relaxed m-0">
+                Quy định chi tiết về giới hạn sở hữu gián tiếp, nghĩa vụ tuân thủ kiểm soát ngoại hối và cam kết không chuyển dữ liệu tài chính người dùng ra nước ngoài.
+              </p>
             </div>
-            <span className="font-mono text-[10px] font-bold px-2.5 py-1 bg-amber-100 text-[#7A5B10] rounded-lg border border-amber-300 shrink-0">
-              NHÓM 13 · KHOA LUẬT HVNH
-            </span>
+
+            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs">
+              <div className="flex items-center gap-2 mb-2 text-[#8C6B18]">
+                <Server className="w-5 h-5 text-amber-600" />
+                <h4 className="text-sm sm:text-base font-bold text-slate-900 m-0">Bảo lưu kiểm soát hạ tầng</h4>
+              </div>
+              <p className="text-xs sm:text-sm text-slate-700 leading-relaxed m-0">
+                Toàn bộ máy chủ chính và hệ thống dự phòng thảm họa (Disaster Recovery) bắt buộc đặt trên lãnh thổ Việt Nam theo Nghị định 52/2024.
+              </p>
+            </div>
+
+            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs">
+              <div className="flex items-center gap-2 mb-2 text-[#8C6B18]">
+                <UserCheck className="w-5 h-5 text-amber-600" />
+                <h4 className="text-sm sm:text-base font-bold text-slate-900 m-0">Đối chiếu sinh trắc học nội bộ</h4>
+              </div>
+              <p className="text-xs sm:text-sm text-slate-700 leading-relaxed m-0">
+                Hợp đồng chuyển nhượng cổ phần và các biên bản biểu quyết ĐHĐCĐ được xác thực sinh trắc học CCCD gắn chip để loại trừ rủi ro giả mạo chữ ký.
+              </p>
+            </div>
+          </div>
+
+          <div className="p-3.5 bg-gradient-to-r from-amber-100 to-amber-50 rounded-xl border border-amber-300 text-center text-xs sm:text-sm font-serif font-bold text-[#7A5B10]">
+            "Điều lệ không phải bản sao khuôn mẫu – mà phải được may đo theo đúng rủi ro đặc thù của công nghệ và dòng tiền ví điện tử."
+          </div>
+        </div>
+      ),
+    },
+
+    // SLIDE 12: TỔNG KẾT BÁO CÁO ĐIỀU LỆ
+    {
+      id: 'charter-slide-12',
+      badge: 'SLIDE 12 / 12 · TỔNG KẾT ĐIỀU LỆ',
+      category: 'PHẦN 4 · KẾT LUẬN & ĐỀ XUẤT THI HÀNH · ĐOÀN ÁNH PHƯƠNG PHỤ TRÁCH',
+      title: 'TỔNG KẾT BÁO CÁO ĐIỀU LỆ: BẢO VỆ NHÀ ĐẦU TƯ & ĐỒNG BỘ THANH TRA NHNN',
+      subtitle: 'Điều lệ là bộ gen sống kiến tạo tổ chức vững mạnh, sẵn sàng mở rộng quy mô thị trường',
+      speakerName: 'Đoàn Ánh Phương',
+      speakerRole: 'Trưởng Nhóm 13 · Điều phối viên',
+      speakerAvatar: '/assets/team/anh-phuong.jpg',
+      speakerNotes:
+        'Kính thưa Thầy và các bạn, tổng kết lại phần Điều lệ: Nhóm 13 đã thành công trong việc xây dựng một bản Điều lệ mẫu toàn diện, vừa là "bộ gen" kiến tạo tổ chức minh bạch, vừa là thành trì pháp lý bảo vệ 50 tỷ đồng vốn góp của 5 cổ đông sáng lập. Bản Điều lệ này sẵn sàng đáp ứng mọi yêu cầu thẩm định khắt khe của Ngân hàng Nhà nước Việt Nam để đưa ví điện tử TVPAY vào vận hành chính thức. Xin trân trọng cảm ơn Thầy và các bạn!',
+      renderContent: () => (
+        <div className="space-y-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs text-center">
+              <div className="w-10 h-10 rounded-full bg-amber-100 border border-amber-300 flex items-center justify-center text-amber-800 mx-auto mb-2">
+                <CheckCircle2 className="w-6 h-6 text-emerald-600" />
+              </div>
+              <h4 className="text-xs sm:text-sm font-bold text-slate-900 m-0 mb-1">Cấp phép thuận lợi</h4>
+              <p className="text-[11px] sm:text-xs text-slate-600 m-0">Đáp ứng 100% tiêu chí pháp lý theo Nghị định 52/2024 tại Ngân hàng Nhà nước.</p>
+            </div>
+
+            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs text-center">
+              <div className="w-10 h-10 rounded-full bg-amber-100 border border-amber-300 flex items-center justify-center text-amber-800 mx-auto mb-2">
+                <Shield className="w-6 h-6 text-amber-600" />
+              </div>
+              <h4 className="text-xs sm:text-sm font-bold text-slate-900 m-0 mb-1">An toàn cổ đông</h4>
+              <p className="text-[11px] sm:text-xs text-slate-600 m-0">Tỷ lệ 65% và khóa chuyển nhượng bảo vệ quyền kiểm soát của nhóm sáng lập.</p>
+            </div>
+
+            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs text-center">
+              <div className="w-10 h-10 rounded-full bg-amber-100 border border-amber-300 flex items-center justify-center text-amber-800 mx-auto mb-2">
+                <Coins className="w-6 h-6 text-amber-700" />
+              </div>
+              <h4 className="text-xs sm:text-sm font-bold text-slate-900 m-0 mb-1">Quản lý vốn 50 Tỷ</h4>
+              <p className="text-[11px] sm:text-xs text-slate-600 m-0">Quỹ dự phòng an toàn hệ thống trích lập trước khi chia cổ tức.</p>
+            </div>
+
+            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs text-center">
+              <div className="w-10 h-10 rounded-full bg-amber-100 border border-amber-300 flex items-center justify-center text-amber-800 mx-auto mb-2">
+                <Zap className="w-6 h-6 text-amber-600" />
+              </div>
+              <h4 className="text-xs sm:text-sm font-bold text-slate-900 m-0 mb-1">Tác chiến tức thì</h4>
+              <p className="text-[11px] sm:text-xs text-slate-600 m-0">Cơ chế họp khẩn trực tuyến và ủy quyền TGĐ ứng phó khủng hoảng trong 02 giờ.</p>
+            </div>
+          </div>
+
+          <div className="p-4 bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700 rounded-2xl text-white text-center shadow-md">
+            <h3 className="text-sm sm:text-base font-bold m-0 mb-1">ĐIỀU LỆ TVPAY · LÁ CHẮN TỐI CAO BẢO VỆ 50 TỶ ĐỒNG VỐN ĐẦU TƯ</h3>
+            <p className="text-xs sm:text-sm text-amber-100 m-0">
+              Kiến tạo cơ chế quản trị chuẩn mực, minh bạch và phát triển bền vững trong kỷ nguyên thanh toán số.
+            </p>
           </div>
         </div>
       ),
@@ -1122,724 +994,897 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
   ];
 
   // =========================================================================
-  // SLIDES FOR HỢP ĐỒNG MỞ & SỬ DỤNG VÍ ĐIỆN TỬ TVPAY (10 SLIDES CHUYÊN SÂU)
+  // BỘ SLIDE 2: HỢP ĐỒNG MỞ & CUNG ỨNG DỊCH VỤ VÍ ĐIỆN TỬ TVPAY (14 SLIDES)
+  // Chuẩn hóa 100% theo Google Doc 1: "Hệ thần kinh & Tuyến phòng thủ tuyến đầu"
   // =========================================================================
   const walletSlides: SlideItem[] = [
+    // SLIDE 1: BÌA BÁO CÁO & ĐỊNH VỊ "HỆ THẦN KINH TUYẾN ĐẦU"
     {
-      id: 'w-slide-1',
-      badge: 'SLIDE 01 / 10 · BẢN CHẤT PHÁP LÝ',
-      category: 'BÁO CÁO PHÁP LÝ NHÓM 13 · DIỄN GIẢ: TRẦN THỊ THƠ (NHÓM TRƯỞNG)',
-      title: 'HỢP ĐỒNG MỞ VÀ SỬ DỤNG VÍ ĐIỆN TỬ TVPAY',
-      subtitle: 'Hợp đồng dịch vụ trung gian thanh toán chuẩn mực bảo vệ nền tảng Fintech và quyền lợi người dùng',
+      id: 'wallet-slide-1',
+      badge: 'SLIDE 01 / 14 · BÁO CÁO HỢP ĐỒNG VÍ',
+      category: 'HỒ SƠ TƯ VẤN PHÁP LÝ · NHÓM 13 (THỊNH VƯỢNG LEGAL) · KHOA LUẬT HVNH',
+      title: 'HỢP ĐỒNG MỞ VÀ CUNG ỨNG DỊCH VỤ VÍ ĐIỆN TỬ TVPAY',
+      subtitle: 'Tuyến phòng thủ tuyến đầu trực tiếp đối mặt hàng triệu giao dịch mỗi ngày. Trả lời câu hỏi: "Khi giao dịch, ai chịu trách nhiệm gì?"',
+      speakerName: 'Trần Thị Thơ',
+      speakerRole: 'Chuyên viên Pháp chế Hợp đồng',
+      speakerAvatar: '/assets/team/tran-thi-tho.jpg',
+      speakerNotes:
+        'Kính thưa Thầy và các bạn, nếu ở phần trước Điều lệ được định vị là "bộ gen" và khung xương quản trị nội bộ của doanh nghiệp, thì ở cấp độ vận hành hàng ngày - nơi doanh nghiệp trực tiếp chạm tới hàng triệu người dùng - văn bản pháp lý quan trọng bậc nhất chính là Hợp đồng mở và cung ứng dịch vụ ví điện tử. Nếu Điều lệ trả lời câu hỏi "công ty được tổ chức và quản trị như thế nào", thì Hợp đồng ví trả lời câu hỏi sát sườn hơn: "Khi khách hàng và doanh nghiệp giao dịch với nhau, ai chịu trách nhiệm gì?"',
       renderContent: () => (
-        <div className="space-y-3.5 text-xs">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <div className="p-3.5 bg-white/95 rounded-xl border border-amber-300/80 shadow-[0_4px_16px_rgba(180,140,40,0.06)] relative overflow-hidden flex flex-col justify-between">
-              <RoyalFiligreeCorner className="absolute top-1 right-1" />
-              <div>
-                <div className="flex items-center gap-1.5 mb-2 text-[#8C6B18]">
-                  <FileText className="w-4 h-4 text-[#C59B27]" />
-                  <span className="text-[11px] font-bold uppercase tracking-wider">Bản chất pháp lý</span>
+        <div className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+            <div className="stagger-1 p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs relative overflow-hidden">
+              <RoyalFiligreeCorner className="absolute top-2 right-2" />
+              <div className="flex items-center gap-2 mb-2 text-[#8C6B18]">
+                <div className="p-2 rounded-xl bg-amber-100 border border-amber-300">
+                  <Smartphone className="w-5 h-5 text-amber-700" />
                 </div>
-                <h4 className="text-xs font-bold text-slate-900 m-0 mb-1.5">Hợp đồng gia nhập (Adhesion)</h4>
-                <p className="text-[11.5px] text-slate-600 leading-relaxed m-0">
-                  Xác lập quan hệ dịch vụ trung gian thanh toán giữa TVPAY và khách hàng qua cơ chế chấp thuận trực tuyến (Opt-in). Giá trị pháp lý tương đương hợp đồng ký kết văn bản truyền thống.
-                </p>
+                <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">Tuyến đầu vận hành</span>
               </div>
-              <div className="mt-3 pt-2 border-t border-amber-200/80 flex items-center justify-between text-[10.5px] text-[#8C6B18] font-medium">
-                <span>Luật Giao dịch điện tử 2023</span>
-                <span className="font-mono font-bold">Điều 1</span>
-              </div>
+              <h4 className="text-sm sm:text-base font-bold text-slate-900 m-0 mb-1">Giao dịch chạm tới hàng triệu User</h4>
+              <p className="text-xs sm:text-sm text-slate-700 leading-relaxed m-0">
+                Hợp đồng điện tử ký kết trực tuyến 1-Touch, thiết lập quyền, nghĩa vụ và chế tài pháp lý ràng buộc giữa TVPAY và từng khách hàng mở ví.
+              </p>
             </div>
 
-            <div className="p-3.5 bg-white/95 rounded-xl border border-amber-300/80 shadow-[0_4px_16px_rgba(180,140,40,0.06)] relative overflow-hidden flex flex-col justify-between">
-              <RoyalFiligreeCorner className="absolute top-1 right-1" />
-              <div>
-                <div className="flex items-center gap-1.5 mb-2 text-[#8C6B18]">
-                  <ShieldCheck className="w-4 h-4 text-[#C59B27]" />
-                  <span className="text-[11px] font-bold uppercase tracking-wider">Hành lang pháp lý</span>
+            <div className="stagger-2 p-4 bg-gradient-to-br from-amber-50 to-white rounded-2xl border-2 border-amber-400 shadow-xs relative overflow-hidden">
+              <RoyalFiligreeCorner className="absolute top-2 right-2" />
+              <div className="flex items-center gap-2 mb-2 text-amber-800">
+                <div className="p-2 rounded-xl bg-amber-200 border border-amber-400">
+                  <Scale className="w-5 h-5 text-amber-800" />
                 </div>
-                <h4 className="text-xs font-bold text-slate-900 m-0 mb-1.5">Nghị định 52/2024 &amp; TT 40/2024</h4>
-                <p className="text-[11.5px] text-slate-600 leading-relaxed m-0">
-                  Tuân thủ nghiêm ngặt quy định của Ngân hàng Nhà nước về quản lý dịch vụ thanh toán không dùng tiền mặt, xác thực sinh trắc học và phòng chống rửa tiền (AML).
-                </p>
+                <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">Câu hỏi cốt lõi</span>
               </div>
-              <div className="mt-3 pt-2 border-t border-amber-200/80 flex items-center justify-between text-[10.5px] text-[#8C6B18] font-medium">
-                <span>NHNN cấp phép TGTT</span>
-                <span className="font-mono font-bold">Nghị định 52</span>
-              </div>
+              <h4 className="text-sm sm:text-base font-black text-amber-950 m-0 mb-1">"AI CHỊU TRÁCH NHIỆM GÌ?"</h4>
+              <p className="text-xs sm:text-sm text-slate-700 leading-relaxed m-0">
+                Phân bổ rủi ro công bằng khi lộ OTP, mất thiết bị, giao dịch gian lận hay lỗi hệ thống viễn thông liên ngân hàng.
+              </p>
             </div>
 
-            <div className="p-3.5 bg-white/95 rounded-xl border border-amber-300/80 shadow-[0_4px_16px_rgba(180,140,40,0.06)] relative overflow-hidden flex flex-col justify-between">
-              <RoyalFiligreeCorner className="absolute top-1 right-1" />
-              <div>
-                <div className="flex items-center gap-1.5 mb-2 text-[#8C6B18]">
-                  <Scale className="w-4 h-4 text-[#C59B27]" />
-                  <span className="text-[11px] font-bold uppercase tracking-wider">Nguyên tắc thanh khoản</span>
+            <div className="stagger-3 p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs relative overflow-hidden">
+              <RoyalFiligreeCorner className="absolute top-2 right-2" />
+              <div className="flex items-center gap-2 mb-2 text-[#8C6B18]">
+                <div className="p-2 rounded-xl bg-amber-100 border border-amber-300">
+                  <ShieldCheck className="w-5 h-5 text-amber-700" />
                 </div>
-                <h4 className="text-xs font-bold text-slate-900 m-0 mb-1.5">Bảo toàn vốn 1:1 tuyệt đối</h4>
-                <p className="text-[11.5px] text-slate-600 leading-relaxed m-0">
-                  Số dư tiền trong ví được bảo chứng 100% bằng tài khoản đảm bảo thanh toán mở tại Ngân hàng liên kết. TVPAY tuyệt đối không cấp tín dụng hoặc trả lãi trên số dư ví.
-                </p>
+                <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">Hệ thần kinh doanh nghiệp</span>
               </div>
-              <div className="mt-3 pt-2 border-t border-amber-200/80 flex items-center justify-between text-[10.5px] text-[#8C6B18] font-medium">
-                <span>Bảo chứng ngân hàng</span>
-                <span className="font-mono font-bold">Điều 2.3</span>
-              </div>
+              <h4 className="text-sm sm:text-base font-bold text-slate-900 m-0 mb-1">Phòng thủ từ sớm, từ xa</h4>
+              <p className="text-xs sm:text-sm text-slate-700 leading-relaxed m-0">
+                Kết hợp chặt chẽ giữa Luật Giao dịch điện tử 2023, Nghị định 52/2024/NĐ-CP và Luật Bảo vệ dữ liệu cá nhân 2025.
+              </p>
             </div>
           </div>
 
-          <div className="p-3 bg-gradient-to-r from-amber-50 via-white to-amber-50 rounded-xl border border-amber-300/80 flex flex-wrap items-center justify-between gap-2.5 text-xs text-slate-700">
-            <div className="flex items-center gap-2.5">
-              <span className="px-2 py-0.5 rounded bg-amber-200/60 text-[#7A5B10] font-mono text-[10px] font-bold border border-amber-300">
-                SẢN PHẨM DEMO 02
-              </span>
-              <span className="text-slate-800 font-medium text-[11.5px]">
-                Hồ sơ giải pháp pháp lý được nhóm sinh viên Luật HVNH hoàn thiện cho nền tảng TVPAY theo đề bài tình huống.
-              </span>
-            </div>
-            <span className="text-[11px] font-mono text-[#8C6B18] font-semibold">
-              Nhóm trưởng: Trần Thị Thơ
+          <div className="p-3.5 bg-amber-50 rounded-xl border border-amber-300 text-center">
+            <span className="text-xs sm:text-sm font-serif font-bold text-[#7A5B10]">
+              "Nếu Điều lệ là khung xương của doanh nghiệp, thì Hợp đồng ví điện tử chính là hệ thần kinh - nơi mọi tương tác với khách hàng được ghi nhận và kiểm soát."
             </span>
           </div>
         </div>
       ),
     },
+
+    // SLIDE 2: 04 NHÓM NỘI DUNG CỐT LÕI CỦA HỢP ĐỒNG VÍ
     {
-      id: 'w-slide-2',
-      badge: 'SLIDE 02 / 10 · CẤU TRÚC VĂN KIỆN',
-      category: 'CẤU TRÚC TOÀN VĂN HỢP ĐỒNG · DIỄN GIẢ: TRẦN THỊ THƠ',
-      title: 'HỆ THỐNG 3 TẦNG VĂN KIỆN VÀ DANH MỤC 18 ĐIỀU KHOẢN HỢP ĐỒNG',
-      subtitle: 'Kiến trúc văn bản chặt chẽ từ hồ sơ eKYC, 18 Điều khoản quy định chung đến cam kết thực thi',
+      id: 'wallet-slide-2',
+      badge: 'SLIDE 02 / 14 · NỘI DUNG HỢP ĐỒNG',
+      category: 'PHẦN 1 · NỘI DUNG & VAI TRÒ · TRẦN THỊ THƠ PHỤ TRÁCH',
+      title: '04 NHÓM NỘI DUNG CỐT LÕI CỦA HỢP ĐỒNG VÍ ĐIỆN TỬ',
+      subtitle: 'Bốn trụ cột nội dung thiết lập quy chuẩn pháp lý minh bạch giữa TVPAY và Khách hàng',
+      speakerName: 'Trần Thị Thơ',
+      speakerRole: 'Chuyên viên Pháp chế Hợp đồng',
+      speakerAvatar: '/assets/team/tran-thi-tho.jpg',
+      speakerNotes:
+        'Kính thưa Thầy và các bạn, theo tài liệu chính thức của nhóm tại Mục I.1, Hợp đồng ví điện tử TVPAY bao gồm 4 nhóm nội dung cốt lõi: Thứ nhất, Điều kiện mở và sử dụng ví - xác định quyền hạn doanh nghiệp, phương thức xác thực eKYC và đặc biệt là trách nhiệm bảo quản mật khẩu, mã PIN của khách hàng; Thứ hai, Cách thức thực hiện giao dịch - thời điểm xác lập, hạn mức và cách xử lý lỗi; Thứ ba, Biểu phí dịch vụ minh bạch; Và thứ tư, Bảo mật dữ liệu cá nhân và cơ chế xử lý khiếu nại tranh chấp.',
       renderContent: () => (
-        <div className="space-y-3 text-xs">
-          {/* 3 Tầng tài liệu */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-            <div className="p-2.5 bg-white/95 rounded-lg border border-amber-300/80 shadow-2xs">
-              <span className="text-[10px] font-mono font-bold text-[#8C6B18] block mb-0.5">TẦNG 1 · PHẦN A</span>
-              <strong className="text-slate-900 text-[11.5px] block">Hồ sơ Thông tin Khách hàng</strong>
-              <p className="text-[10.5px] text-slate-600 m-0 mt-1">Định danh cá nhân, doanh nghiệp và người nước ngoài cư trú.</p>
-            </div>
-            <div className="p-2.5 bg-white/95 rounded-lg border border-amber-300/80 shadow-2xs">
-              <span className="text-[10px] font-mono font-bold text-[#8C6B18] block mb-0.5">TẦNG 2 · PHẦN B</span>
-              <strong className="text-slate-900 text-[11.5px] block">18 Điều khoản Quy định chung</strong>
-              <p className="text-[10.5px] text-slate-600 m-0 mt-1">Quy chế vận hành giao dịch, tra soát, bảo mật và miễn trừ.</p>
-            </div>
-            <div className="p-2.5 bg-white/95 rounded-lg border border-amber-300/80 shadow-2xs">
-              <span className="text-[10px] font-mono font-bold text-[#8C6B18] block mb-0.5">TẦNG 3 · PHẦN C</span>
-              <strong className="text-slate-900 text-[11.5px] block">Tiện ích Lõi &amp; Lợi thế Đầu tư</strong>
-              <p className="text-[10.5px] text-slate-600 m-0 mt-1">4 Điều mở rộng: Hệ sinh thái, An toàn bảo mật &amp; Lợi thế NĐT.</p>
-            </div>
-          </div>
-
-          <div className="p-2 bg-amber-50/70 border border-amber-200/80 rounded-lg text-xs text-[#7A5B10] flex items-center justify-between">
-            <span>📋 Danh mục 18 Điều khoản chính thức Phần B:</span>
-            <span className="font-mono font-bold text-[10.5px] bg-white px-2 py-0.5 rounded border border-amber-300">TVPAY E-Wallet Terms</span>
-          </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-1.5 text-xs">
-            {[
-              { tag: 'Điều 1', name: 'Giải thích từ ngữ' },
-              { tag: 'Điều 2', name: 'Nguyên tắc mở & sử dụng' },
-              { tag: 'Điều 3', name: 'Chính sách chi phí' },
-              { tag: 'Điều 4', name: 'Xử lý giao dịch' },
-              { tag: 'Điều 5', name: 'Giao dịch không hủy ngang' },
-              { tag: 'Điều 6', name: 'Các hành vi bị cấm' },
-              { tag: 'Điều 7', name: 'Quyền & nghĩa vụ KH' },
-              { tag: 'Điều 8', name: 'Quyền & nghĩa vụ TVPAY' },
-              { tag: 'Điều 9', name: 'Cập nhật thông tin KH' },
-              { tag: 'Điều 10', name: 'Phong tỏa tài khoản ví' },
-              { tag: 'Điều 11', name: 'Chính sách hoàn tiền' },
-              { tag: 'Điều 12', name: 'Đóng tài khoản ví' },
-              { tag: 'Điều 13', name: 'Tra soát & khiếu nại' },
-              { tag: 'Điều 14', name: 'Sự kiện Bất khả kháng' },
-              { tag: 'Điều 15', name: 'Quyền sở hữu trí tuệ' },
-              { tag: 'Điều 16', name: 'Giới hạn trách nhiệm' },
-              { tag: 'Điều 17', name: 'Thông báo & tiếp nhận' },
-              { tag: 'Điều 18', name: 'Điều khoản chung' },
-            ].map((item, idx) => (
-              <div
-                key={idx}
-                className="p-1.5 bg-white/95 rounded-md border border-amber-200/70 shadow-2xs hover:border-amber-400 transition"
-              >
-                <span className="font-mono font-bold text-[9.5px] text-[#8C6B18] block">{item.tag}</span>
-                <strong className="text-[10.5px] text-slate-800 font-semibold truncate block">{item.name}</strong>
-              </div>
-            ))}
-          </div>
-        </div>
-      ),
-    },
-    {
-      id: 'w-slide-3',
-      badge: 'SLIDE 03 / 10 · NỘI DUNG & VAI TRÒ',
-      category: 'PHỤ LỤC 4 TỔNG THỰC HIỆN · DIỄN GIẢ: TRẦN THỊ THƠ (NHÓM TRƯỞNG)',
-      title: '04 NỘI DUNG CỐT LÕI & 06 VAI TRÒ PHÁP LÝ TRỌNG YẾU',
-      subtitle: 'Hành lang pháp lý bảo đảm an toàn giao dịch số và tuân thủ chuẩn thanh toán quốc gia (Phụ lục 4)',
-      renderContent: () => (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
-          {/* 04 Nội dung cốt lõi */}
-          <div className="p-3.5 bg-white/95 rounded-xl border border-amber-300/80 shadow-[0_4px_16px_rgba(180,140,40,0.06)] relative overflow-hidden">
-            <RoyalFiligreeCorner className="absolute top-1 right-1" />
-            <div className="flex items-center gap-1.5 text-[#8C6B18] font-bold text-xs mb-2 pb-1.5 border-b border-amber-200/70">
-              <CheckCircle2 className="w-4 h-4 text-[#C59B27]" />
-              <span className="uppercase tracking-wide">04 Nội Dung Cốt Lõi Của Hợp Đồng</span>
-            </div>
-            <div className="space-y-2 text-[11px] text-slate-700 leading-relaxed">
-              <div className="p-2 bg-amber-50/50 rounded-lg border border-amber-200/60">
-                <strong className="text-slate-900">1. Điều kiện mở ví &amp; Phương thức xác thực:</strong> Quy định hồ sơ eKYC, đối soát giấy tờ tùy thân và nghĩa vụ bảo quản mật khẩu, mã PIN, soft Token của khách hàng.
-              </div>
-              <div className="p-2 bg-amber-50/50 rounded-lg border border-amber-200/60">
-                <strong className="text-slate-900">2. Quy chuẩn giao dịch &amp; Hạn mức thanh toán:</strong> Thời điểm giao dịch được xác lập không hủy ngang, hạn mức cá nhân 100 triệu/tháng và phương thức xử lý lỗi.
-              </div>
-              <div className="p-2 bg-amber-50/50 rounded-lg border border-amber-200/60">
-                <strong className="text-slate-900">3. Chính sách chi phí dịch vụ minh bạch:</strong> Biểu phí nạp, rút, chuyển tiền, cơ chế trích nợ tự động từ số dư ví và thời điểm thu phí định kỳ.
-              </div>
-              <div className="p-2 bg-amber-50/50 rounded-lg border border-amber-200/60">
-                <strong className="text-slate-900">4. Bảo vệ dữ liệu &amp; Giải quyết khiếu nại:</strong> Tuân thủ Luật Bảo vệ dữ liệu cá nhân 2025, quy trình tra soát tối đa 30 ngày và cơ chế phong tỏa bảo toàn.
-              </div>
-            </div>
-          </div>
-
-          {/* 06 Vai trò trọng yếu */}
-          <div className="p-3.5 bg-white/95 rounded-xl border border-amber-300/80 shadow-[0_4px_16px_rgba(180,140,40,0.06)] relative overflow-hidden">
-            <RoyalFiligreeCorner className="absolute top-1 right-1" />
-            <div className="flex items-center gap-1.5 text-[#8C6B18] font-bold text-xs mb-2 pb-1.5 border-b border-amber-200/70">
-              <Scale className="w-4 h-4 text-[#C59B27]" />
-              <span className="uppercase tracking-wide">06 Vai Trò Pháp Lý Trọng Yếu</span>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 text-[10.5px] text-slate-700">
-              <div className="p-1.5 bg-amber-50/40 rounded border border-amber-200/50">
-                <strong className="text-slate-900 block text-[11px]">1. Xác lập quan hệ pháp lý</strong>
-                Ràng buộc quyền &amp; nghĩa vụ dân sự giữa TVPAY và khách hàng.
-              </div>
-              <div className="p-1.5 bg-amber-50/40 rounded border border-amber-200/50">
-                <strong className="text-slate-900 block text-[11px]">2. Công cụ vận hành tự động</strong>
-                Chuẩn hóa quy trình nạp, rút, chuyển tiền và xử lý lệnh 24/7.
-              </div>
-              <div className="p-1.5 bg-amber-50/40 rounded border border-amber-200/50">
-                <strong className="text-slate-900 block text-[11px]">3. Phân bổ &amp; kiểm soát rủi ro</strong>
-                Phân định trách nhiệm khi lộ OTP, nghẽn mạng hay lỗi bên thứ ba.
-              </div>
-              <div className="p-1.5 bg-amber-50/40 rounded border border-amber-200/50">
-                <strong className="text-slate-900 block text-[11px]">4. Lá chắn bảo vệ khách hàng</strong>
-                Minh bạch điều khoản, quy trình tra soát và bảo toàn tài sản 1:1.
-              </div>
-              <div className="p-1.5 bg-amber-50/40 rounded border border-amber-200/50">
-                <strong className="text-slate-900 block text-[11px]">5. Tuân thủ phòng rửa tiền (AML)</strong>
-                Công cụ đáp ứng tiêu chuẩn thanh tra của NHNN và cơ quan công an.
-              </div>
-              <div className="p-1.5 bg-amber-50/40 rounded border border-amber-200/50">
-                <strong className="text-slate-900 block text-[11px]">6. Căn cứ giải quyết tranh chấp</strong>
-                Cơ sở xác định bồi hoàn và lưu trữ chứng cứ điện tử trước tòa.
-              </div>
-            </div>
-          </div>
-        </div>
-      ),
-    },
-    {
-      id: 'w-slide-4',
-      badge: 'SLIDE 04 / 10 · eKYC & BẢO TOÀN VỐN',
-      category: 'QUY CHUẨN KỸ THUẬT PHÁP LÝ · DIỄN GIẢ: LÊ PHƯƠNG THẢO',
-      title: 'QUY TRÌNH eKYC SINH TRẮC HỌC & NGUYÊN TẮC BẢO TOÀN VỐN 1:1',
-      subtitle: 'Tuân thủ Thông tư 40/2024/TT-NHNN và Nghị định 52/2024/NĐ-CP bảo vệ thanh khoản nền tảng',
-      renderContent: () => (
-        <div className="space-y-3.5 text-xs">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
-            {/* Quy trình eKYC */}
-            <div className="p-4 bg-white/95 rounded-xl border border-amber-300/80 shadow-[0_4px_16px_rgba(180,140,40,0.06)] relative overflow-hidden">
-              <RoyalFiligreeCorner className="absolute top-1 right-1" />
-              <div className="flex items-center gap-1.5 text-[#8C6B18] font-bold text-xs mb-2">
-                <UserCheck className="w-4 h-4 text-[#C59B27]" />
-                <span className="uppercase tracking-wide">Quy Trình eKYC 3 Bước Chuẩn Pháp Lý</span>
-              </div>
-              <p className="text-[11px] text-slate-600 mb-2.5">
-                Căn cứ Điều 2 Khoản 5 Hợp đồng và Thông tư 40/2024/TT-NHNN về nhận biết khách hàng:
-              </p>
-              <div className="space-y-2 text-[11px] text-slate-700">
-                <div className="flex items-start gap-2 p-2 bg-amber-50/60 rounded-lg border border-amber-200/60">
-                  <span className="w-5 h-5 rounded-full bg-amber-200/80 text-[#7A5B10] font-mono font-bold flex items-center justify-center shrink-0 text-[10px]">1</span>
-                  <div>
-                    <strong className="text-slate-900">Quét OCR &amp; Đọc chip NFC:</strong> Thu thập thông tin CCCD gắn chip, xác thực số định danh cá nhân và ngày hết hạn hiệu lực.
-                  </div>
-                </div>
-                <div className="flex items-start gap-2 p-2 bg-amber-50/60 rounded-lg border border-amber-200/60">
-                  <span className="w-5 h-5 rounded-full bg-amber-200/80 text-[#7A5B10] font-mono font-bold flex items-center justify-center shrink-0 text-[10px]">2</span>
-                  <div>
-                    <strong className="text-slate-900">Liveness Face Detection:</strong> Nhận diện chuyển động khuôn mặt thực tế chống giả mạo ảnh tĩnh, video Deepfake.
-                  </div>
-                </div>
-                <div className="flex items-start gap-2 p-2 bg-amber-50/60 rounded-lg border border-amber-200/60">
-                  <span className="w-5 h-5 rounded-full bg-amber-200/80 text-[#7A5B10] font-mono font-bold flex items-center justify-center shrink-0 text-[10px]">3</span>
-                  <div>
-                    <strong className="text-slate-900">Liên kết Ngân hàng Chính chủ:</strong> Đối soát khớp đúng họ tên, số CCCD giữa tài khoản ngân hàng và ví điện tử trước khi kích hoạt.
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Nguyên tắc bảo toàn vốn 1:1 */}
-            <div className="p-4 bg-white/95 rounded-xl border border-amber-300/80 shadow-[0_4px_16px_rgba(180,140,40,0.06)] relative overflow-hidden">
-              <RoyalFiligreeCorner className="absolute top-1 right-1" />
-              <div className="flex items-center gap-1.5 text-[#8C6B18] font-bold text-xs mb-2">
-                <Landmark className="w-4 h-4 text-[#C59B27]" />
-                <span className="uppercase tracking-wide">Nguyên Tắc Bảo Toàn Thanh Khoản 1:1</span>
-              </div>
-              <p className="text-[11px] text-slate-600 mb-2.5">
-                Căn cứ Nghị định 52/2024/NĐ-CP về tài khoản đảm bảo thanh toán dịch vụ ví điện tử:
-              </p>
-              <div className="space-y-2 text-[11px] text-slate-700">
-                <div className="p-2.5 bg-amber-50/60 rounded-lg border border-amber-200/60">
-                  <strong className="text-slate-900 block mb-1">Ký quỹ 100% tại Ngân hàng Thương mại:</strong>
-                  Tổng số dư trên toàn bộ ví TVPAY luôn được ký quỹ đối ứng bằng tiền đồng Việt Nam tại các ngân hàng đối tác, sẵn sàng rút tiền 24/7.
-                </div>
-                <div className="p-2.5 bg-amber-50/60 rounded-lg border border-amber-200/60">
-                  <strong className="text-slate-900 block mb-1">Cấm tuyệt đối cấp tín dụng &amp; trả lãi:</strong>
-                  TVPAY không được dùng số dư ví để cho vay, đầu tư sinh lời hay trả lãi cho khách hàng, ngăn ngừa biến tướng huy động vốn trái phép.
-                </div>
-                <div className="p-2 bg-amber-100/70 rounded-lg border border-amber-300 text-[10.5px] text-[#7A5B10] font-medium flex items-center justify-between">
-                  <span>Hạn mức giao dịch cá nhân: <strong>100.000.000 VNĐ / tháng</strong></span>
-                  <span className="font-mono font-bold text-[10px]">Điều 2.10</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      ),
-    },
-    {
-      id: 'w-slide-5',
-      badge: 'SLIDE 05 / 10 · TIỆN ÍCH LÕI TÀI CHÍNH',
-      category: 'PHẦN C - ĐIỀU 1 HỢP ĐỒNG · DIỄN GIẢ: TRẦN THỊ THÙY',
-      title: 'HỆ THỐNG TIỆN ÍCH LÕI VỀ TÀI CHÍNH VÀ THANH TOÁN',
-      subtitle: 'Onboarding không ma sát dưới 2 phút, Nạp - Rút 24/7 và Mạng lưới QR Code toàn quốc (Phần C - Điều 1)',
-      renderContent: () => (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
-          <div className="p-3.5 bg-white/95 rounded-xl border border-amber-300/80 shadow-[0_4px_16px_rgba(180,140,40,0.06)] relative overflow-hidden flex flex-col justify-between">
-            <RoyalFiligreeCorner className="absolute top-1 right-1" />
-            <div>
-              <div className="flex items-center gap-1.5 text-[#8C6B18] font-bold mb-2">
-                <Smartphone className="w-4 h-4 text-[#C59B27]" />
-                <span className="text-[11px] uppercase tracking-wide">1. Đăng ký &amp; Định danh Siêu tốc</span>
-              </div>
-              <h4 className="text-xs font-bold text-slate-900 mb-1.5">Onboarding không ma sát &lt; 2 phút</h4>
-              <p className="text-[11px] text-slate-600 leading-relaxed m-0 mb-2">
-                Người dùng mở ví hoàn toàn trực tuyến 100% mọi lúc, mọi nơi mà không cần đến quầy giao dịch truyền thống.
-              </p>
-              <div className="p-2 bg-amber-50/60 rounded-lg text-[10.5px] text-slate-700 border border-amber-200/60">
-                <strong className="text-slate-900">Sinh trắc học tiên tiến:</strong> Tích hợp xác thực khuôn mặt và đối chiếu dữ liệu theo Thông tư 40/2024/TT-NHNN, chống tài khoản ảo và tạo dựng niềm tin tuyệt đối.
-              </div>
-            </div>
-            <div className="mt-3 pt-2 border-t border-amber-100 text-[10.5px] font-semibold text-[#8C6B18]">
-              Căn cứ Phần C - Điều 1 Khoản 1
-            </div>
-          </div>
-
-          <div className="p-3.5 bg-white/95 rounded-xl border border-amber-300/80 shadow-[0_4px_16px_rgba(180,140,40,0.06)] relative overflow-hidden flex flex-col justify-between">
-            <RoyalFiligreeCorner className="absolute top-1 right-1" />
-            <div>
-              <div className="flex items-center gap-1.5 text-[#8C6B18] font-bold mb-2">
-                <Zap className="w-4 h-4 text-[#C59B27]" />
-                <span className="text-[11px] uppercase tracking-wide">2. Quản lý Dòng tiền &amp; Chuyển tiền</span>
-              </div>
-              <h4 className="text-xs font-bold text-slate-900 mb-1.5">Liên kết đa Ngân hàng &amp; Nạp Rút 24/7</h4>
-              <p className="text-[11px] text-slate-600 leading-relaxed m-0 mb-2">
-                Hỗ trợ liên kết trực tiếp hầu hết ngân hàng thương mại tại Việt Nam qua tài khoản thanh toán hoặc thẻ ghi nợ.
-              </p>
-              <div className="p-2 bg-amber-50/60 rounded-lg text-[10.5px] text-slate-700 border border-amber-200/60 space-y-1">
-                <div>• Nạp tiền miễn phí từ ngân hàng vào ví.</div>
-                <div>• Rút tiền cấp tốc về tài khoản chính chủ.</div>
-                <div>• Chuyển tiền nội bộ 24/7 tức thì qua Số điện thoại / Mã QR.</div>
-              </div>
-            </div>
-            <div className="mt-3 pt-2 border-t border-amber-100 text-[10.5px] font-semibold text-[#8C6B18]">
-              Căn cứ Phần C - Điều 1 Khoản 2
-            </div>
-          </div>
-
-          <div className="p-3.5 bg-white/95 rounded-xl border border-amber-300/80 shadow-[0_4px_16px_rgba(180,140,40,0.06)] relative overflow-hidden flex flex-col justify-between">
-            <RoyalFiligreeCorner className="absolute top-1 right-1" />
-            <div>
-              <div className="flex items-center gap-1.5 text-[#8C6B18] font-bold mb-2">
-                <QrCode className="w-4 h-4 text-[#C59B27]" />
-                <span className="text-[11px] uppercase tracking-wide">3. Thanh toán Đa kênh &amp; Đời sống</span>
-              </div>
-              <h4 className="text-xs font-bold text-slate-900 mb-1.5">Mạng lưới QR Code &amp; Hóa đơn tự động</h4>
-              <p className="text-[11px] text-slate-600 leading-relaxed m-0 mb-2">
-                Quét mã trả tiền tại hàng trăm nghìn điểm bán offline (cửa hàng tiện lợi, nhà hàng, siêu thị) và online sàn TMĐT.
-              </p>
-              <div className="p-2 bg-amber-50/60 rounded-lg text-[10.5px] text-slate-700 border border-amber-200/60">
-                <strong className="text-slate-900">Auto-Billing 24/7:</strong> Thanh toán điện, nước, internet, học phí với tính năng cài đặt định kỳ không bao giờ trễ hạn.
-              </div>
-            </div>
-            <div className="mt-3 pt-2 border-t border-amber-100 text-[10.5px] font-semibold text-[#8C6B18]">
-              Căn cứ Phần C - Điều 1 Khoản 3
-            </div>
-          </div>
-        </div>
-      ),
-    },
-    {
-      id: 'w-slide-6',
-      badge: 'SLIDE 06 / 10 · HỆ SINH THÁI TĂNG TRƯỞNG',
-      category: 'PHẦN C - ĐIỀU 2 HỢP ĐỒNG · DIỄN GIẢ: VƯƠNG THU THỦY',
-      title: 'HỆ SINH THÁI TĂNG TRƯỞNG VÀ GIỮ CHÂN NGƯỜI DÙNG',
-      subtitle: 'Hoàn tiền tức thì, Kho Voucher thông minh, Loyalty 4 cấp và Liên minh Đối tác 3 bên (Phần C - Điều 2)',
-      renderContent: () => (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
-          <div className="p-3.5 bg-white/95 rounded-xl border border-amber-300/80 shadow-[0_4px_16px_rgba(180,140,40,0.06)] relative overflow-hidden flex flex-col justify-between">
-            <RoyalFiligreeCorner className="absolute top-1 right-1" />
-            <div>
-              <div className="flex items-center gap-1.5 text-[#8C6B18] font-bold mb-2">
-                <Coins className="w-4 h-4 text-[#C59B27]" />
-                <span className="text-[11px] uppercase tracking-wide">1. Ưu đãi &amp; Hoàn tiền tự động</span>
-              </div>
-              <h4 className="text-xs font-bold text-slate-900 mb-1.5">Cashback tức thì &amp; Smart Voucher</h4>
-              <p className="text-[11px] text-slate-600 leading-relaxed m-0 mb-2">
-                Hoàn tiền thẳng vào số dư Ví ngay sau khi hoàn tất giao dịch tại thương hiệu đối tác - tính năng có tỷ lệ quay lại cao nhất.
-              </p>
-              <div className="p-2 bg-amber-50/60 rounded-lg text-[10.5px] text-slate-700 border border-amber-200/60">
-                <strong className="text-slate-900">Kho Voucher Thông minh:</strong> Tự động thu thập, quản lý và áp dụng ngay tại màn hình thanh toán mà không cần nhập mã thủ công.
-              </div>
-            </div>
-            <div className="mt-3 pt-2 border-t border-amber-100 text-[10.5px] font-semibold text-[#8C6B18]">
-              Căn cứ Phần C - Điều 2 Khoản 1
-            </div>
-          </div>
-
-          <div className="p-3.5 bg-white/95 rounded-xl border border-amber-300/80 shadow-[0_4px_16px_rgba(180,140,40,0.06)] relative overflow-hidden flex flex-col justify-between">
-            <RoyalFiligreeCorner className="absolute top-1 right-1" />
-            <div>
-              <div className="flex items-center gap-1.5 text-[#8C6B18] font-bold mb-2">
-                <Star className="w-4 h-4 text-[#C59B27]" />
-                <span className="text-[11px] uppercase tracking-wide">2. Khách hàng thân thiết</span>
-              </div>
-              <h4 className="text-xs font-bold text-slate-900 mb-1.5">Tích điểm đổi quà &amp; 4 Hạng Thành viên</h4>
-              <p className="text-[11px] text-slate-600 leading-relaxed m-0 mb-2">
-                Mỗi giao dịch thanh toán đều phát sinh điểm thưởng, có thể quy đổi ra voucher hoặc trừ trực tiếp vào tiền thanh toán.
-              </p>
-              <div className="p-2 bg-amber-50/60 rounded-lg text-[10.5px] text-slate-700 border border-amber-200/60">
-                <strong className="text-slate-900">Phân hạng tài khoản:</strong> 4 cấp bậc <em>Đồng · Bạc · Vàng · Kim Cương</em> mở khóa đặc quyền riêng biệt, thúc đẩy người dùng tăng chi tiêu để thăng hạng.
-              </div>
-            </div>
-            <div className="mt-3 pt-2 border-t border-amber-100 text-[10.5px] font-semibold text-[#8C6B18]">
-              Căn cứ Phần C - Điều 2 Khoản 2
-            </div>
-          </div>
-
-          <div className="p-3.5 bg-white/95 rounded-xl border border-amber-300/80 shadow-[0_4px_16px_rgba(180,140,40,0.06)] relative overflow-hidden flex flex-col justify-between">
-            <RoyalFiligreeCorner className="absolute top-1 right-1" />
-            <div>
-              <div className="flex items-center gap-1.5 text-[#8C6B18] font-bold mb-2">
-                <Users className="w-4 h-4 text-[#C59B27]" />
-                <span className="text-[11px] uppercase tracking-wide">3. Mạng lưới Đối tác Doanh nghiệp</span>
-              </div>
-              <h4 className="text-xs font-bold text-slate-900 mb-1.5">Liên minh Lợi ích 3 Bên Chuẩn chỉnh</h4>
-              <p className="text-[11px] text-slate-600 leading-relaxed m-0 mb-2">
-                Hợp tác khuyến mại chuẩn mực với các chuỗi F&amp;B, bán lẻ, giải trí tạo ra chuỗi ưu đãi chéo bền vững.
-              </p>
-              <div className="p-2 bg-amber-50/60 rounded-lg text-[10.5px] text-slate-700 border border-amber-200/60 space-y-0.5">
-                <div>• <strong>Người dùng:</strong> Tiết kiệm tối đa chi phí sinh hoạt.</div>
-                <div>• <strong>Nhãn hàng:</strong> Tiếp cận tệp khách hàng khổng lồ.</div>
-                <div>• <strong>Ví TVPAY:</strong> Tăng trưởng đột phá sản lượng giao dịch.</div>
-              </div>
-            </div>
-            <div className="mt-3 pt-2 border-t border-amber-100 text-[10.5px] font-semibold text-[#8C6B18]">
-              Căn cứ Phần C - Điều 2 Khoản 3
-            </div>
-          </div>
-        </div>
-      ),
-    },
-    {
-      id: 'w-slide-7',
-      badge: 'SLIDE 07 / 10 · AN TOÀN & BẢO MẬT ĐA TẦNG',
-      category: 'PHẦN C - ĐIỀU 3 HỢP ĐỒNG · DIỄN GIẢ: TRẦN THỊ THÙY',
-      title: 'AN TOÀN, BẢO MẬT VÀ TRUY XUẤT THÔNG TIN MINH BẠCH',
-      subtitle: 'Khóa ví tức thì 1 chạm, Tra soát khiếu nại minh bạch và Tiêu chuẩn mã hóa đa tầng (Phần C - Điều 3)',
-      renderContent: () => (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
-          <div className="p-3.5 bg-white/95 rounded-xl border border-amber-300/80 shadow-[0_4px_16px_rgba(180,140,40,0.06)] relative overflow-hidden flex flex-col justify-between">
-            <RoyalFiligreeCorner className="absolute top-1 right-1" />
-            <div>
-              <div className="flex items-center gap-1.5 text-[#8C6B18] font-bold mb-2">
-                <FileCheck2 className="w-4 h-4 text-[#C59B27]" />
-                <span className="text-[11px] uppercase tracking-wide">1. Minh bạch Lịch sử Tài chính</span>
-              </div>
-              <h4 className="text-xs font-bold text-slate-900 mb-1.5">Nhật ký Realtime &amp; Phân tích Chi tiêu</h4>
-              <p className="text-[11px] text-slate-600 leading-relaxed m-0 mb-2">
-                Tra cứu, lọc lịch sử thu - chi chi tiết theo thời gian thực; xem hóa đơn điện tử và biến động số dư tức thì.
-              </p>
-              <div className="p-2 bg-amber-50/60 rounded-lg text-[10.5px] text-slate-700 border border-amber-200/60">
-                <strong className="text-slate-900">Thống kê chi tiêu thông minh:</strong> Tự động phân loại chi tiêu (Ăn uống, Giải trí, Hóa đơn...) giúp người dùng quản lý tài chính cá nhân khoa học.
-              </div>
-            </div>
-            <div className="mt-3 pt-2 border-t border-amber-100 text-[10.5px] font-semibold text-[#8C6B18]">
-              Căn cứ Phần C - Điều 3 Khoản 1
-            </div>
-          </div>
-
-          <div className="p-3.5 bg-white/95 rounded-xl border border-amber-300/80 shadow-[0_4px_16px_rgba(180,140,40,0.06)] relative overflow-hidden flex flex-col justify-between">
-            <RoyalFiligreeCorner className="absolute top-1 right-1" />
-            <div>
-              <div className="flex items-center gap-1.5 text-[#8C6B18] font-bold mb-2">
-                <Lock className="w-4 h-4 text-[#C59B27]" />
-                <span className="text-[11px] uppercase tracking-wide">2. Bảo vệ &amp; Xử lý Khẩn cấp</span>
-              </div>
-              <h4 className="text-xs font-bold text-slate-900 mb-1.5">Khóa ví Tức thì &amp; Tra soát 1-Touch</h4>
-              <p className="text-[11px] text-slate-600 leading-relaxed m-0 mb-2">
-                Người dùng chủ động bấm "Khóa ví tức thì" ngay trên app khi mất điện thoại hoặc nghi lộ mật khẩu, ngăn ngừa thất thoát tài sản.
-              </p>
-              <div className="p-2 bg-amber-50/60 rounded-lg text-[10.5px] text-slate-700 border border-amber-200/60">
-                <strong className="text-slate-900">Tra soát khiếu nại 1-Touch:</strong> Trung tâm hỗ trợ trực tuyến tiếp nhận và cập nhật tiến độ xử lý minh bạch trong thời hạn quy định.
-              </div>
-            </div>
-            <div className="mt-3 pt-2 border-t border-amber-100 text-[10.5px] font-semibold text-[#8C6B18]">
-              Căn cứ Phần C - Điều 3 Khoản 2
-            </div>
-          </div>
-
-          <div className="p-3.5 bg-white/95 rounded-xl border border-amber-300/80 shadow-[0_4px_16px_rgba(180,140,40,0.06)] relative overflow-hidden flex flex-col justify-between">
-            <RoyalFiligreeCorner className="absolute top-1 right-1" />
-            <div>
-              <div className="flex items-center gap-1.5 text-[#8C6B18] font-bold mb-2">
-                <Shield className="w-4 h-4 text-[#C59B27]" />
-                <span className="text-[11px] uppercase tracking-wide">3. Bảo mật Đa tầng Quốc tế</span>
-              </div>
-              <h4 className="text-xs font-bold text-slate-900 mb-1.5">Mã hóa End-to-End &amp; AI An ninh</h4>
-              <p className="text-[11px] text-slate-600 leading-relaxed m-0 mb-2">
-                Đáp ứng tiêu chuẩn bảo mật ngân hàng quốc tế khắt khe, bảo vệ dữ liệu khách hàng theo Nghị định 13/2023/NĐ-CP.
-              </p>
-              <div className="p-2 bg-amber-50/60 rounded-lg text-[10.5px] text-slate-700 border border-amber-200/60 space-y-1">
-                <div>• Xác thực 2 yếu tố (OTP / PIN / Sinh trắc học).</div>
-                <div>• Mã hóa đường truyền dữ liệu chuẩn TLS 1.3.</div>
-                <div>• Hệ thống AI quét và chặn giao dịch bất thường realtime.</div>
-              </div>
-            </div>
-            <div className="mt-3 pt-2 border-t border-amber-100 text-[10.5px] font-semibold text-[#8C6B18]">
-              Căn cứ Phần C - Điều 3 Khoản 3
-            </div>
-          </div>
-        </div>
-      ),
-    },
-    {
-      id: 'w-slide-8',
-      badge: 'SLIDE 08 / 10 · LỢI THẾ NHÀ ĐẦU TƯ',
-      category: 'PHẦN C - ĐIỀU 4 HỢP ĐỒNG · DIỄN GIẢ: VƯƠNG THU THỦY',
-      title: 'LỢI THẾ VƯỢT TRỘI DÀNH CHO NHÀ ĐẦU TƯ & MÔ HÌNH DOANH THU',
-      subtitle: 'Triệt tiêu rủi ro thanh tra, Đa dạng hóa dòng doanh thu và Bánh đà tăng trưởng tự củng cố (Phần C - Điều 4)',
-      renderContent: () => (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
-          <div className="p-3.5 bg-white/95 rounded-xl border border-amber-300/80 shadow-[0_4px_16px_rgba(180,140,40,0.06)] relative overflow-hidden flex flex-col justify-between">
-            <RoyalFiligreeCorner className="absolute top-1 right-1" />
-            <div>
-              <div className="flex items-center gap-1.5 text-[#8C6B18] font-bold mb-2">
-                <ShieldCheck className="w-4 h-4 text-[#C59B27]" />
-                <span className="text-[11px] uppercase tracking-wide">1. Tuân thủ Pháp lý Chuẩn chỉnh</span>
-              </div>
-              <h4 className="text-xs font-bold text-slate-900 mb-1.5">Triệt tiêu rủi ro xử phạt vận hành</h4>
-              <p className="text-[11px] text-slate-600 leading-relaxed m-0 mb-2">
-                Tất cả tiện ích từ mở ví, hạn mức giao dịch đến bảo mật đều được thiết kế dựa trên khung pháp lý mới nhất:
-              </p>
-              <div className="p-2 bg-amber-50/60 rounded-lg text-[10.5px] text-slate-700 border border-amber-200/60 space-y-1">
-                <div>• Nghị định 52/2024/NĐ-CP (TT không dùng tiền mặt).</div>
-                <div>• Thông tư 40/2024/TT-NHNN (Quy chuẩn eKYC).</div>
-                <div>• Luật Bảo vệ dữ liệu cá nhân số 91/2025/QH15.</div>
-              </div>
-            </div>
-            <div className="mt-3 pt-2 border-t border-amber-100 text-[10.5px] font-semibold text-[#8C6B18]">
-              Căn cứ Phần C - Điều 4 Khoản 1
-            </div>
-          </div>
-
-          <div className="p-3.5 bg-white/95 rounded-xl border border-amber-300/80 shadow-[0_4px_16px_rgba(180,140,40,0.06)] relative overflow-hidden flex flex-col justify-between">
-            <RoyalFiligreeCorner className="absolute top-1 right-1" />
-            <div>
-              <div className="flex items-center gap-1.5 text-[#8C6B18] font-bold mb-2">
-                <TrendingUp className="w-4 h-4 text-[#C59B27]" />
-                <span className="text-[11px] uppercase tracking-wide">2. Mở rộng Mô hình Kinh doanh</span>
-              </div>
-              <h4 className="text-xs font-bold text-slate-900 mb-1.5">Nguồn thu Đa kênh &amp; CAC Siêu thấp</h4>
-              <p className="text-[11px] text-slate-600 leading-relaxed m-0 mb-2">
-                Mô hình doanh thu đa tầng từ phí xử lý thanh toán Merchant, phí tiếp thị nhãn hàng và hợp đồng hợp tác BCC.
-              </p>
-              <div className="p-2 bg-amber-50/60 rounded-lg text-[10.5px] text-slate-700 border border-amber-200/60">
-                <strong className="text-slate-900">Tối ưu chi phí Marketing (CAC):</strong> Khuyến mại chéo với thương hiệu đối tác lớn giúp ví tận dụng tệp khách hàng sẵn có mà không tốn ngân sách độc lập.
-              </div>
-            </div>
-            <div className="mt-3 pt-2 border-t border-amber-100 text-[10.5px] font-semibold text-[#8C6B18]">
-              Căn cứ Phần C - Điều 4 Khoản 2
-            </div>
-          </div>
-
-          <div className="p-3.5 bg-white/95 rounded-xl border border-amber-300/80 shadow-[0_4px_16px_rgba(180,140,40,0.06)] relative overflow-hidden flex flex-col justify-between">
-            <RoyalFiligreeCorner className="absolute top-1 right-1" />
-            <div>
-              <div className="flex items-center gap-1.5 text-[#8C6B18] font-bold mb-2">
-                <Sparkles className="w-4 h-4 text-[#C59B27]" />
-                <span className="text-[11px] uppercase tracking-wide">3. Bánh đà Tăng trưởng Tự củng cố</span>
-              </div>
-              <h4 className="text-xs font-bold text-slate-900 mb-1.5">Vòng lặp Giá trị Thu hút &amp; Giữ chân</h4>
-              <div className="p-2.5 bg-amber-50/70 rounded-lg border border-amber-200/80 text-[11px] text-slate-800 leading-relaxed">
-                <p className="m-0 font-medium text-center">
-                  Tiện ích tài chính hút User <br />
-                  ↓ <br />
-                  Hệ sinh thái ưu đãi giữ chân <br />
-                  ↓ <br />
-                  Tăng sản lượng GMV giao dịch <br />
-                  ↓ <br />
-                  Thu hút thêm nhiều Merchant lớn <br />
-                  ↓ <br />
-                  <strong className="text-[#8C6B18]">Bùng nổ Doanh thu &amp; Lợi nhuận Nhà đầu tư</strong>
+        <div className="space-y-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs relative overflow-hidden flex flex-col justify-between">
+              <RoyalFiligreeCorner className="absolute top-1.5 right-1.5" />
+              <div>
+                <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-amber-100 text-[#7A5B10] inline-block mb-2 border border-amber-300">
+                  Nhóm 01
+                </span>
+                <h4 className="text-sm sm:text-base font-bold text-slate-900 m-0 mb-1.5">ĐIỀU KIỆN MỞ &amp; DÙNG VÍ</h4>
+                <p className="text-xs sm:text-sm text-slate-700 m-0 leading-relaxed">
+                  Quy định điều kiện đối tượng (đủ 18 tuổi), hồ sơ giấy tờ, quyền từ chối mở ví và trách nhiệm tự bảo quản OTP, PIN, thiết bị xác thực của khách hàng.
                 </p>
               </div>
+              <div className="mt-3 pt-2 border-t border-amber-200 text-[11px] sm:text-xs text-amber-800 font-semibold">
+                Hạn chế nguy cơ chiếm đoạt ví
+              </div>
             </div>
-            <div className="mt-3 pt-2 border-t border-amber-100 text-[10.5px] font-semibold text-[#8C6B18]">
-              Căn cứ Phần C - Điều 4 Khoản 3
+
+            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs relative overflow-hidden flex flex-col justify-between">
+              <RoyalFiligreeCorner className="absolute top-1.5 right-1.5" />
+              <div>
+                <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-amber-100 text-[#7A5B10] inline-block mb-2 border border-amber-300">
+                  Nhóm 02
+                </span>
+                <h4 className="text-sm sm:text-base font-bold text-slate-900 m-0 mb-1.5">CÁCH THỨC GIAO DỊCH</h4>
+                <p className="text-xs sm:text-sm text-slate-700 m-0 leading-relaxed">
+                  Xác định thời điểm giao dịch được ghi nhận thành công, phương thức xác nhận đa nhân tố, hạn mức theo ngày/tháng và quy trình xử lý lỗi kỹ thuật.
+                </p>
+              </div>
+              <div className="mt-3 pt-2 border-t border-amber-200 text-[11px] sm:text-xs text-amber-800 font-semibold">
+                Chuẩn hóa luồng thanh toán
+              </div>
+            </div>
+
+            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs relative overflow-hidden flex flex-col justify-between">
+              <RoyalFiligreeCorner className="absolute top-1.5 right-1.5" />
+              <div>
+                <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-amber-100 text-[#7A5B10] inline-block mb-2 border border-amber-300">
+                  Nhóm 03
+                </span>
+                <h4 className="text-sm sm:text-base font-bold text-slate-900 m-0 mb-1.5">BIỂU PHÍ DỊCH VỤ</h4>
+                <p className="text-xs sm:text-sm text-slate-700 m-0 leading-relaxed">
+                  Minh bạch các loại phí (nạp, rút, chuyển khoản, xử lý tranh chấp), thời điểm thu phí và phương thức trích nợ tự động trên số dư ví hợp pháp.
+                </p>
+              </div>
+              <div className="mt-3 pt-2 border-t border-amber-200 text-[11px] sm:text-xs text-amber-800 font-semibold">
+                Công khai, không phí ẩn
+              </div>
+            </div>
+
+            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs relative overflow-hidden flex flex-col justify-between">
+              <RoyalFiligreeCorner className="absolute top-1.5 right-1.5" />
+              <div>
+                <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-amber-100 text-[#7A5B10] inline-block mb-2 border border-amber-300">
+                  Nhóm 04
+                </span>
+                <h4 className="text-sm sm:text-base font-bold text-slate-900 m-0 mb-1.5">BẢO MẬT &amp; KHIẾU NẠI</h4>
+                <p className="text-xs sm:text-sm text-slate-700 m-0 leading-relaxed">
+                  Bảo vệ dữ liệu cá nhân theo Luật 91/2025, cơ chế tiếp nhận tra soát 24/7 và giải quyết bồi hoàn thiệt hại theo đúng kết luận phân định lỗi.
+                </p>
+              </div>
+              <div className="mt-3 pt-2 border-t border-amber-200 text-[11px] sm:text-xs text-amber-800 font-semibold">
+                Thành trì bảo vệ quyền lợi
+              </div>
             </div>
           </div>
         </div>
       ),
     },
+
+    // SLIDE 3: 06 VAI TRÒ PHÁP LÝ TRỌNG YẾU CỦA HỢP ĐỒNG VÍ
     {
-      id: 'w-slide-9',
-      badge: 'SLIDE 09 / 10 · LÁ CHẮN PHÁP LÝ FINTECH',
-      category: 'PHỤ LỤC 5 TỔNG THỰC HIỆN · DIỄN GIẢ: TRẦN THỊ THÙY & VƯƠNG THU THỦY',
-      title: '05 Ý TƯỞNG & GIẢI PHÁP PHÁP LÝ BẢO VỆ QUYỀN LỢI DOANH NGHIỆP',
-      subtitle: 'Chiến lược phòng vệ chủ động chuyển từ xử lý sự vụ sang nhận diện và ngăn ngừa rủi ro từ sớm (Phụ lục 5)',
+      id: 'wallet-slide-3',
+      badge: 'SLIDE 03 / 14 · VAI TRÒ HỢP ĐỒNG',
+      category: 'PHẦN 1 · NỘI DUNG & VAI TRÒ · TRẦN THỊ THƠ PHỤ TRÁCH',
+      title: '06 VAI TRÒ PHÁP LÝ TRỌNG YẾU CỦA HỢP ĐỒNG VÍ ĐIỆN TỬ',
+      subtitle: 'Phân bổ rủi ro công bằng, bảo vệ người dùng và đảm bảo tuân thủ chuẩn mực thanh toán quốc gia',
+      speakerName: 'Trần Thị Thơ',
+      speakerRole: 'Chuyên viên Pháp chế Hợp đồng',
+      speakerAvatar: '/assets/team/tran-thi-tho.jpg',
+      speakerNotes:
+        'Kính thưa quý vị, từ 4 nhóm nội dung cốt lõi trên, Hợp đồng ví TVPAY đảm nhận 6 vai trò trọng yếu theo Google Doc 1: Thứ nhất, là cơ sở pháp lý xác lập quan hệ đôi bên; Thứ hai, là công cụ vận hành dịch vụ từ nạp, rút, chuyển tiền đến thanh toán; Thứ ba, là công cụ phân bổ và kiểm soát rủi ro - xác định rõ ai chịu trách nhiệm khi mất thiết bị hay lộ OTP; Thứ tư, bảo vệ quyền lợi người dùng bằng biểu phí minh bạch; Thứ năm, đảm bảo tuân thủ phòng chống rửa tiền AML; Và thứ sáu, là căn cứ giải quyết mọi tranh chấp trước Trọng tài và Tòa án.',
       renderContent: () => (
-        <div className="space-y-2.5 text-xs">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
-            <div className="p-3 bg-white/95 rounded-xl border border-amber-300/80 shadow-2xs relative overflow-hidden">
-              <RoyalFiligreeCorner className="absolute top-1 right-1" />
-              <div className="flex items-center justify-between mb-1.5">
-                <strong className="text-slate-900 text-[11.5px] font-bold">1. Chuẩn hóa Quy trình Mở Ví</strong>
-                <span className="font-mono text-[9.5px] text-[#8C6B18] bg-amber-100/80 px-1.5 py-0.5 rounded">Giải pháp 1</span>
-              </div>
-              <p className="text-[11px] text-slate-600 m-0 leading-relaxed">
-                Thiết lập quy trình định danh chặt chẽ, đối soát căn cước chip và sinh trắc học để ngăn chặn giả mạo mở hộ ví ngay từ khâu onboarding.
+        <div className="space-y-3.5">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs sm:text-sm">
+            <div className="p-3.5 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs">
+              <span className="font-mono text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Vai trò 01</span>
+              <h4 className="font-bold text-slate-900 mt-1.5 mb-1">Xác lập quan hệ pháp lý</h4>
+              <p className="text-slate-600 m-0 leading-relaxed text-xs sm:text-[13px]">
+                Xác định phạm vi dịch vụ, quyền và nghĩa vụ của khách hàng cũng như trách nhiệm bên cung ứng trong toàn bộ quá trình.
               </p>
             </div>
 
-            <div className="p-3 bg-white/95 rounded-xl border border-amber-300/80 shadow-2xs relative overflow-hidden">
-              <RoyalFiligreeCorner className="absolute top-1 right-1" />
-              <div className="flex items-center justify-between mb-1.5">
-                <strong className="text-slate-900 text-[11.5px] font-bold">2. Xây dựng Hợp đồng Chặt chẽ</strong>
-                <span className="font-mono text-[9.5px] text-[#8C6B18] bg-amber-100/80 px-1.5 py-0.5 rounded">Giải pháp 2</span>
-              </div>
-              <p className="text-[11px] text-slate-600 m-0 leading-relaxed">
-                Quy định rõ điều kiện mở ví, phương thức xác thực, hạn mức giao dịch và căn cứ pháp lý được tạm khóa tài khoản khi có dấu hiệu gian lận.
+            <div className="p-3.5 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs">
+              <span className="font-mono text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Vai trò 02</span>
+              <h4 className="font-bold text-slate-900 mt-1.5 mb-1">Cơ chế vận hành dịch vụ</h4>
+              <p className="text-slate-600 m-0 leading-relaxed text-xs sm:text-[13px]">
+                Quy định mạch lạc các luồng nạp, rút, chuyển tiền, thanh toán hóa đơn, hạn mức và điều kiện tạm khóa hoặc đóng ví.
               </p>
             </div>
 
-            <div className="p-3 bg-white/95 rounded-xl border border-amber-300/80 shadow-2xs relative overflow-hidden">
-              <RoyalFiligreeCorner className="absolute top-1 right-1" />
-              <div className="flex items-center justify-between mb-1.5">
-                <strong className="text-slate-900 text-[11.5px] font-bold">3. An toàn Bảo mật &amp; Nghĩa vụ User</strong>
-                <span className="font-mono text-[9.5px] text-[#8C6B18] bg-amber-100/80 px-1.5 py-0.5 rounded">Giải pháp 3</span>
-              </div>
-              <p className="text-[11px] text-slate-600 m-0 leading-relaxed">
-                Đầu tư AI phát hiện giao dịch bất thường realtime kết hợp quy định rõ khách hàng tự chịu trách nhiệm nếu để lộ OTP, mất thiết bị mà không báo.
+            <div className="p-3.5 bg-amber-50/90 rounded-2xl border-2 border-amber-400 shadow-xs">
+              <span className="font-mono text-xs font-bold text-amber-900 bg-amber-200 px-2 py-0.5 rounded">Vai trò 03 · Cốt lõi</span>
+              <h4 className="font-bold text-amber-950 mt-1.5 mb-1">Phân bổ &amp; kiểm soát rủi ro</h4>
+              <p className="text-slate-700 m-0 leading-relaxed text-xs sm:text-[13px]">
+                Xác định rạch ròi bên chịu trách nhiệm khi phát sinh mất thiết bị, lộ OTP, mã độc hay giao dịch gian lận.
               </p>
             </div>
 
-            <div className="p-3 bg-white/95 rounded-xl border border-amber-300/80 shadow-2xs relative overflow-hidden">
-              <RoyalFiligreeCorner className="absolute top-1 right-1" />
-              <div className="flex items-center justify-between mb-1.5">
-                <strong className="text-slate-900 text-[11.5px] font-bold">4. Cơ chế Tra soát &amp; Lưu trữ Chứng cứ</strong>
-                <span className="font-mono text-[9.5px] text-[#8C6B18] bg-amber-100/80 px-1.5 py-0.5 rounded">Giải pháp 4</span>
-              </div>
-              <p className="text-[11px] text-slate-600 m-0 leading-relaxed">
-                Quy định thời hạn khiếu nại, quy trình tiếp nhận và lưu giữ chứng cứ điện tử (IP, log giao dịch, tin nhắn OTP) để làm bằng chứng pháp lý trước Tòa.
+            <div className="p-3.5 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs">
+              <span className="font-mono text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Vai trò 04</span>
+              <h4 className="font-bold text-slate-900 mt-1.5 mb-1">Bảo vệ quyền lợi khách hàng</h4>
+              <p className="text-slate-600 m-0 leading-relaxed text-xs sm:text-[13px]">
+                Minh bạch mức phí, cam kết bảo vệ dữ liệu cá nhân và quy định thời hạn xử lý tra soát bồi hoàn khi hệ thống lỗi.
               </p>
             </div>
 
-            <div className="p-3 bg-white/95 rounded-xl border border-amber-300/80 shadow-2xs relative overflow-hidden sm:col-span-2 lg:col-span-2">
-              <RoyalFiligreeCorner className="absolute top-1 right-1" />
-              <div className="flex items-center justify-between mb-1.5">
-                <strong className="text-slate-900 text-[11.5px] font-bold">5. Kiểm soát Tuân thủ &amp; Cơ chế Sửa đổi Hợp đồng</strong>
-                <span className="font-mono text-[9.5px] text-[#8C6B18] bg-amber-100/80 px-1.5 py-0.5 rounded">Giải pháp 5</span>
+            <div className="p-3.5 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs">
+              <span className="font-mono text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Vai trò 05</span>
+              <h4 className="font-bold text-slate-900 mt-1.5 mb-1">Bảo đảm tuân thủ pháp luật</h4>
+              <p className="text-slate-600 m-0 leading-relaxed text-xs sm:text-[13px]">
+                Công cụ thể chế hóa quy định phòng, chống rửa tiền (AML), định danh eKYC và kiểm soát giao dịch đáng ngờ theo NHNN.
+              </p>
+            </div>
+
+            <div className="p-3.5 bg-amber-50/90 rounded-2xl border-2 border-amber-400 shadow-xs">
+              <span className="font-mono text-xs font-bold text-amber-900 bg-amber-200 px-2 py-0.5 rounded">Vai trò 06 · Tố tụng</span>
+              <h4 className="font-bold text-amber-950 mt-1.5 mb-1">Căn cứ giải quyết tranh chấp</h4>
+              <p className="text-slate-700 m-0 leading-relaxed text-xs sm:text-[13px]">
+                Chứng cứ điện tử và điều khoản giới hạn trách nhiệm là căn cứ xử lý thống nhất, tránh tranh chấp kéo dài tại Tòa án.
+              </p>
+            </div>
+          </div>
+        </div>
+      ),
+    },
+
+    // SLIDE 4: 05 GIẢI PHÁP BẢO VỆ TOÀN DIỆN CHO DOANH NGHIỆP FINTECH
+    {
+      id: 'wallet-slide-4',
+      badge: 'SLIDE 04 / 14 · GIẢI PHÁP BẢO VỆ',
+      category: 'PHẦN 2 · 05 GIẢI PHÁP FINTECH · TRẦN THỊ THƠ PHỤ TRÁCH',
+      title: '05 GIẢI PHÁP BẢO VỆ QUYỀN VÀ LỢI ÍCH HỢP PHÁP DOANH NGHIỆP',
+      subtitle: 'Chuyển đổi tư duy từ "bị động xử lý sự vụ sau tranh chấp" sang "chủ động nhận diện phòng ngừa từ sớm"',
+      speakerName: 'Trần Thị Thơ',
+      speakerRole: 'Chuyên viên Pháp chế Hợp đồng',
+      speakerAvatar: '/assets/team/tran-thi-tho.jpg',
+      speakerNotes:
+        'Thưa quý vị, để Hợp đồng thực sự trở thành lá chắn bảo vệ doanh nghiệp Fintech chứ không phải thủ tục hình thức, Mục II của tài liệu đề xuất 5 giải pháp then chốt: Một là chuẩn hóa quy trình mở ví eKYC ngăn chặn giả mạo ngay từ cửa ngõ; Hai là xây dựng hợp đồng rõ ràng, không tạo quyền đơn phương quá lớn để giữ niềm tin khách hàng; Ba là tăng cường bảo mật và AI phát hiện gian lận; Bốn là lưu trữ chứng cứ điện tử để làm bằng chứng sống trước Tòa; Và năm là quản trị tuân thủ thường xuyên đa luật.',
+      renderContent: () => (
+        <div className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-3 text-xs sm:text-sm">
+            <div className="p-3.5 bg-white rounded-2xl border-2 border-amber-300 shadow-xs flex flex-col justify-between">
+              <div>
+                <span className="font-mono text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Giải pháp 1</span>
+                <h4 className="font-bold text-slate-900 mt-2 mb-1">Chuẩn hóa mở ví eKYC</h4>
+                <p className="text-slate-600 m-0 leading-relaxed text-xs sm:text-[13px]">
+                  Xác minh CCCD chip NFC, sinh trắc học khuôn mặt, loại bỏ tài khoản ảo, rác và nặc danh ngay từ đầu vào.
+                </p>
               </div>
-              <p className="text-[11px] text-slate-600 m-0 leading-relaxed">
-                Rà soát pháp luật định kỳ (Nghị định 52, TT 40, AML, Bảo vệ dữ liệu cá nhân). Quy định cơ chế cập nhật điều khoản hợp đồng thông báo trước minh bạch và quy trình xử lý số dư khi đóng ví theo đúng Luật Doanh nghiệp và Dân sự.
+              <span className="text-[11px] font-mono text-[#8C6B18] font-bold mt-2">Ngăn chặn từ gốc</span>
+            </div>
+
+            <div className="p-3.5 bg-white rounded-2xl border-2 border-amber-300 shadow-xs flex flex-col justify-between">
+              <div>
+                <span className="font-mono text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Giải pháp 2</span>
+                <h4 className="font-bold text-slate-900 mt-2 mb-1">Hợp đồng rõ ràng, đầy đủ</h4>
+                <p className="text-slate-600 m-0 leading-relaxed text-xs sm:text-[13px]">
+                  Quy định minh bạch điều kiện tạm khóa, xử lý gian lận, tránh trao quyền đơn phương quá mức gây mất niềm tin.
+                </p>
+              </div>
+              <span className="text-[11px] font-mono text-[#8C6B18] font-bold mt-2">Cân bằng lợi ích</span>
+            </div>
+
+            <div className="p-3.5 bg-white rounded-2xl border-2 border-amber-300 shadow-xs flex flex-col justify-between">
+              <div>
+                <span className="font-mono text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Giải pháp 3</span>
+                <h4 className="font-bold text-slate-900 mt-2 mb-1">Bảo mật &amp; AI cảnh báo</h4>
+                <p className="text-slate-600 m-0 leading-relaxed text-xs sm:text-[13px]">
+                  Hệ thống AI giám sát dòng tiền bất thường, xác thực đa tầng với giao dịch rủi ro cao và phản ứng nhanh trong 15s.
+                </p>
+              </div>
+              <span className="text-[11px] font-mono text-[#8C6B18] font-bold mt-2">Công nghệ chủ động</span>
+            </div>
+
+            <div className="p-3.5 bg-white rounded-2xl border-2 border-amber-300 shadow-xs flex flex-col justify-between">
+              <div>
+                <span className="font-mono text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Giải pháp 4</span>
+                <h4 className="font-bold text-slate-900 mt-2 mb-1">Lưu trữ chứng cứ điện tử</h4>
+                <p className="text-slate-600 m-0 leading-relaxed text-xs sm:text-[13px]">
+                  Lưu log server, địa chỉ IP, OTP, thời gian thực làm "bằng chứng sống" bảo vệ TVPAY khi xảy ra tranh chấp tại Tòa.
+                </p>
+              </div>
+              <span className="text-[11px] font-mono text-[#8C6B18] font-bold mt-2">Bằng chứng pháp lý</span>
+            </div>
+
+            <div className="p-3.5 bg-white rounded-2xl border-2 border-amber-300 shadow-xs flex flex-col justify-between">
+              <div>
+                <span className="font-mono text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Giải pháp 5</span>
+                <h4 className="font-bold text-slate-900 mt-2 mb-1">Quản trị tuân thủ đa luật</h4>
+                <p className="text-slate-600 m-0 leading-relaxed text-xs sm:text-[13px]">
+                  Kiểm soát tuân thủ định kỳ đa ngành: Thanh toán số, giao dịch điện tử, AML, an toàn thông tin và dữ liệu cá nhân.
+                </p>
+              </div>
+              <span className="text-[11px] font-mono text-[#8C6B18] font-bold mt-2">Tuân thủ toàn diện</span>
+            </div>
+          </div>
+
+          <div className="p-3.5 bg-amber-50 rounded-xl border border-amber-300 text-center text-xs sm:text-sm font-semibold text-amber-950">
+            "Chuyển đổi từ tư duy bị động xử lý sự vụ sau khi đã phát sinh tranh chấp sang tư duy chủ động nhận diện và phòng ngừa rủi ro ngay từ đầu."
+          </div>
+        </div>
+      ),
+    },
+
+    // SLIDE 5: ĐIỀU 2: NGUYÊN TẮC MỞ, VẬN HÀNH & 10 KÊNH NẠP / RÚT TIỀN
+    {
+      id: 'wallet-slide-5',
+      badge: 'SLIDE 05 / 14 · ĐIỀU 2: VẬN HÀNH',
+      category: 'PHẦN 3 · ĐIỀU KHOẢN MẪU TRỌNG YẾU · TRẦN THỊ THÙY PHỤ TRÁCH',
+      title: 'ĐIỀU 2: NGUYÊN TẮC MỞ, SỬ DỤNG & CÁC KÊNH NẠP / RÚT TIỀN',
+      subtitle: 'Đối tượng thụ hưởng, bắt buộc liên kết tài khoản ngân hàng chính chủ và 10 kênh giao dịch',
+      speakerName: 'Trần Thị Thùy',
+      speakerRole: 'Chuyên viên Vận hành Dịch vụ Ví',
+      speakerAvatar: '/assets/team/tran-thuy.jpg',
+      speakerNotes:
+        'Kính thưa Thầy và các bạn, Điều 2 trong bản Thỏa thuận là điều khoản mở đầu then chốt quy định nguyên tắc sử dụng ví TVPAY. Khoản 1 xác định đối tượng: cá nhân đủ 18 tuổi có đầy đủ năng lực hành vi và doanh nghiệp hợp pháp. Khoản 2 đặt ra điều kiện tiên quyết: bắt buộc phải liên kết tài khoản ngân hàng chính chủ bằng VNĐ. Và các khoản 3, 4 phân định rõ 5 kênh nạp tiền hợp lệ và 5 hình thức rút tiền, thanh toán dịch vụ công theo đúng quy định của Nghị định 52/2024.',
+      renderContent: () => (
+        <div className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm">
+            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs">
+              <h4 className="font-bold text-slate-900 m-0 mb-2.5 flex items-center gap-2 text-sm sm:text-base">
+                <Coins className="w-5 h-5 text-emerald-600" />
+                05 Kênh nạp tiền vào ví TVPAY (Khoản 3)
+              </h4>
+              <ul className="space-y-2 text-slate-700 m-0 p-0 list-none">
+                <li className="flex items-center gap-2">
+                  <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-[10px]">1</span>
+                  <span>Nộp tiền mặt vào TK đảm bảo thanh toán tại NH hợp tác</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-[10px]">2</span>
+                  <span>Nhận tiền từ TK VNĐ của khách hàng tại NH liên kết chính chủ</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-[10px]">3</span>
+                  <span>Nhận tiền từ TK VNĐ mở tại các ngân hàng/chi nhánh NH nước ngoài</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-[10px]">4</span>
+                  <span>Nhận tiền từ các ví điện tử khác ngoài hệ thống</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-[10px]">5</span>
+                  <span>Nhận tiền từ các tài khoản ví TVPAY khác (chuyển tiền nội bộ)</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs">
+              <h4 className="font-bold text-slate-900 m-0 mb-2.5 flex items-center gap-2 text-sm sm:text-base">
+                <ArrowRight className="w-5 h-5 text-amber-600" />
+                05 Kênh rút tiền &amp; Thanh toán (Khoản 4)
+              </h4>
+              <ul className="space-y-2 text-slate-700 m-0 p-0 list-none">
+                <li className="flex items-center gap-2">
+                  <span className="w-5 h-5 rounded-full bg-amber-100 text-amber-800 flex items-center justify-center font-bold text-[10px]">1</span>
+                  <span>Rút tiền về TK VNĐ của khách hàng tại Ngân hàng liên kết</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-5 h-5 rounded-full bg-amber-100 text-amber-800 flex items-center justify-center font-bold text-[10px]">2</span>
+                  <span>Chuyển tiền đến TK VNĐ tại ngân hàng, chi nhánh NH nước ngoài</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-5 h-5 rounded-full bg-amber-100 text-amber-800 flex items-center justify-center font-bold text-[10px]">3</span>
+                  <span>Chuyển tiền đến ví điện tử TVPAY khác (P2P miễn phí)</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-5 h-5 rounded-full bg-amber-100 text-amber-800 flex items-center justify-center font-bold text-[10px]">4</span>
+                  <span>Chuyển tiền đến ví điện tử khác ngoài hệ thống theo chuẩn NHNN</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-5 h-5 rounded-full bg-amber-100 text-amber-800 flex items-center justify-center font-bold text-[10px]">5</span>
+                  <span>Thanh toán hàng hóa, dịch vụ, nộp phí lệ phí dịch vụ công hợp pháp</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="p-3 bg-amber-50 rounded-xl border border-amber-300 text-xs sm:text-sm text-slate-700">
+            <strong>Bắt buộc liên kết ngân hàng:</strong> Không mở ví cho khách hàng chưa hoàn tất liên kết tài khoản ngân hàng chính chủ nhằm tuân thủ quy chuẩn bảo đảm thanh toán 1:1.
+          </div>
+        </div>
+      ),
+    },
+
+    // SLIDE 6: ĐIỀU 2: QUY CHUẨN HỒ SƠ eKYC & HẠN MỨC GIAO DỊCH 100 TRIỆU/THÁNG
+    {
+      id: 'wallet-slide-6',
+      badge: 'SLIDE 06 / 14 · ĐIỀU 2: eKYC & HẠN MỨC',
+      category: 'PHẦN 3 · ĐIỀU KHOẢN MẪU TRỌNG YẾU · TRẦN THỊ THÙY PHỤ TRÁCH',
+      title: 'ĐIỀU 2: QUY CHUẨN HỒ SƠ eKYC & HẠN MỨC GIAO DỊCH 100 TRIỆU/THÁNG',
+      subtitle: 'Phân tầng hồ sơ công dân Việt Nam, Nước ngoài, 2 quốc tịch và cơ chế hạn mức rủi ro',
+      speakerName: 'Trần Thị Thùy',
+      speakerRole: 'Chuyên viên Vận hành Dịch vụ Ví',
+      speakerAvatar: '/assets/team/tran-thuy.jpg',
+      speakerNotes:
+        'Kính thưa Thầy và các bạn, Khoản 5 Điều 2 thiết lập quy chuẩn hồ sơ eKYC hết sức chi tiết chia làm 3 nhóm đối tượng: Người Việt Nam (CCCD chip NFC, dữ liệu sinh trắc học); Người nước ngoài (hộ chiếu còn hạn, thị thực, nơi cư trú tại VN); và Người có từ hai quốc tịch trở lên. TVPAY kiên quyết từ chối cung cấp dịch vụ nếu không đủ hồ sơ. Đồng thời, Khoản 10 ấn định hạn mức giao dịch cá nhân tối đa là 100 triệu đồng/tháng theo Thông tư 40 của NHNN, kèm cơ chế thông báo công khai khi có điều chỉnh.',
+      renderContent: () => (
+        <div className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 text-xs sm:text-sm">
+            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs">
+              <span className="font-mono text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Nhóm 1</span>
+              <h4 className="font-bold text-slate-900 mt-2 mb-1">Công dân Việt Nam</h4>
+              <p className="text-slate-600 m-0 leading-relaxed text-xs sm:text-[13px]">
+                Họ tên, ngày sinh, CCCD/thẻ căn cước gắn chip còn hạn, địa chỉ thường trú, email, số điện thoại chính chủ và dữ liệu sinh trắc học khuôn mặt đối chiếu Bộ Công an.
+              </p>
+            </div>
+
+            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs">
+              <span className="font-mono text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Nhóm 2</span>
+              <h4 className="font-bold text-slate-900 mt-2 mb-1">Người nước ngoài</h4>
+              <p className="text-slate-600 m-0 leading-relaxed text-xs sm:text-[13px]">
+                Hộ chiếu còn hạn, ngày hết hạn, số định danh người nước ngoài, số thị thực nhập cảnh hợp pháp, đăng ký tạm trú tại Việt Nam, email, SĐT và thông tin sinh trắc học.
+              </p>
+            </div>
+
+            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs">
+              <span className="font-mono text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Nhóm 3</span>
+              <h4 className="font-bold text-slate-900 mt-2 mb-1">Từ 02 Quốc tịch trở lên</h4>
+              <p className="text-slate-600 m-0 leading-relaxed text-xs sm:text-[13px]">
+                Bao gồm đầy đủ các thông tin tại Nhóm 1 và 2, kèm theo số hộ chiếu, ngày cấp, nơi cấp, quốc tịch và địa chỉ thường trú ở các quốc gia mang quốc tịch còn lại.
               </p>
             </div>
           </div>
 
-          <div className="p-2.5 bg-[#FAF6EE] rounded-xl border border-amber-300/80 text-[11px] text-slate-800 leading-relaxed flex items-center justify-between">
-            <span>
-              <strong className="text-[#8C6B18]">Ý nghĩa cốt lõi:</strong> Chuyển từ phương thức xử lý rủi ro thụ động sau tranh chấp sang chủ động nhận diện, phòng ngừa ngay trong quá trình thiết lập quan hệ dịch vụ.
+          <div className="p-4 bg-gradient-to-r from-amber-50 to-white rounded-2xl border-2 border-amber-400 flex flex-wrap items-center justify-between gap-3 text-xs sm:text-sm">
+            <div>
+              <span className="font-mono text-xs font-bold text-amber-900 uppercase tracking-wider block">Hạn mức giao dịch cá nhân tối đa (Khoản 10)</span>
+              <strong className="text-base sm:text-xl font-mono text-[#8C6B18]">100.000.000 VNĐ / THÁNG / KHÁCH HÀNG</strong>
+            </div>
+            <div className="text-slate-600 text-xs sm:text-[13px] max-w-md">
+              Áp dụng cho thanh toán hàng hóa dịch vụ và chuyển tiền. Không áp dụng đối với Đơn vị chấp nhận thanh toán (Merchant) có hợp đồng riêng.
+            </div>
+          </div>
+        </div>
+      ),
+    },
+
+    // SLIDE 7: ĐIỀU 6: DANH MỤC CÁC HÀNH VI BỊ CẤM TUYỆT ĐỐI (USER & TVPAY)
+    {
+      id: 'wallet-slide-7',
+      badge: 'SLIDE 07 / 14 · ĐIỀU 6: CÁC ĐIỀU CẤM',
+      category: 'PHẦN 3 · ĐIỀU KHOẢN MẪU TRỌNG YẾU · VƯƠNG THU THỦY PHỤ TRÁCH',
+      title: 'ĐIỀU 6: DANH MỤC CÁC HÀNH VI BỊ CẤM TUYỆT ĐỐI KHI DÙNG VÍ',
+      subtitle: 'Ranh giới đỏ pháp lý bảo vệ hệ thống, chống rửa tiền và cam kết không cấp tín dụng',
+      speakerName: 'Vương Thu Thủy',
+      speakerRole: 'Chuyên viên Kiểm soát Tuân thủ',
+      speakerAvatar: '/assets/team/vuong-thu-thuy.jpg',
+      speakerNotes:
+        'Kính thưa Thầy và các bạn, Điều 6 thiết lập "ranh giới đỏ" pháp lý phân định cho cả hai chủ thể: Về phía khách hàng: nghiêm cấm mở ví hộ, nặc danh, phát tán mã độc virus, mua bán chuyển nhượng ví, và sử dụng ví để rửa tiền, tài trợ khủng bố; Về phía TVPAY: Thỏa thuận khẳng định 2 điều cấm sống còn theo Nghị định 52: Cấm mở ví khi chưa thu thập đủ eKYC và CẤM TUYỆT ĐỐI CẤP TÍN DỤNG, CẤM TRẢ LÃI TRÊN SỐ DƯ VÍ. Điều này bảo đảm ví điện tử giữ đúng bản chất là phương tiện thanh toán trung gian.',
+      renderContent: () => (
+        <div className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm">
+            <div className="p-4 bg-white/95 rounded-2xl border-2 border-red-300 shadow-xs">
+              <h4 className="font-bold text-red-900 m-0 mb-2.5 flex items-center gap-2 text-sm sm:text-base">
+                <Ban className="w-5 h-5 text-red-600" />
+                06 Hành vi bị cấm đối với Khách hàng (Khoản 1)
+              </h4>
+              <ul className="space-y-2 text-slate-700 m-0 p-0 list-none">
+                <li className="flex items-start gap-2">
+                  <span className="text-red-500 font-bold">✕</span>
+                  <span>Mở hộ ví điện tử hoặc duy trì ví nặc danh, mạo danh thông tin người khác.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-red-500 font-bold">✕</span>
+                  <span>Mua, bán, cho thuê, cho mượn tài khoản ví hoặc chuyển nhượng thông tin đăng nhập.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-red-500 font-bold">✕</span>
+                  <span>Phát tán phần mềm độc hại, virus tấn công làm gián đoạn hạ tầng mạng TVPAY.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-red-500 font-bold">✕</span>
+                  <span>Cung cấp thông tin gian dối, giả mạo chứng từ giao dịch thanh toán.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-red-500 font-bold">✕</span>
+                  <span>Sử dụng ví vào mục đích rửa tiền, tài trợ khủng bố, lừa đảo chiếm đoạt tài sản.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-red-500 font-bold">✕</span>
+                  <span>Xâm phạm quyền sở hữu trí tuệ đối với ứng dụng và nhãn hiệu TVPAY.</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="p-4 bg-gradient-to-br from-amber-50 to-white rounded-2xl border-2 border-amber-400 shadow-xs">
+              <h4 className="font-bold text-amber-950 m-0 mb-2.5 flex items-center gap-2 text-sm sm:text-base">
+                <ShieldAlert className="w-5 h-5 text-amber-700" />
+                02 Điều cấm đối với Tổ chức cung ứng TVPAY (Khoản 2)
+              </h4>
+              <div className="space-y-3">
+                <div className="p-3 bg-white rounded-xl border border-amber-300">
+                  <strong className="block text-slate-900 mb-1">1. Cấm mở ví khi chưa đủ eKYC &amp; Chưa liên kết NH:</strong>
+                  <p className="text-slate-600 m-0 leading-relaxed text-xs sm:text-[13px]">
+                    Tuyệt đối không cấp tài khoản khi chưa thu thập đủ thông tin nhận biết khách hàng theo Khoản 5 Điều 2 hoặc chưa liên kết TK ngân hàng chính chủ.
+                  </p>
+                </div>
+                <div className="p-3 bg-white rounded-xl border border-amber-300">
+                  <strong className="block text-slate-900 mb-1">2. CẤM CẤP TÍN DỤNG &amp; CẤM TRẢ LÃI SỐ DƯ VÍ:</strong>
+                  <p className="text-slate-600 m-0 leading-relaxed text-xs sm:text-[13px]">
+                    Nghiêm cấm cấp tín dụng cho khách hàng sử dụng ví, cấm trả lãi trên số dư ví hoặc bất kỳ hành vi nào làm tăng giá trị tiền tệ so với số tiền thực nạp vào.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ),
+    },
+
+    // SLIDE 8: ĐIỀU 7: CÂN BẰNG PHÁP LÝ: 11 QUYỀN VÀ 24 NGHĨA VỤ KHÁCH HÀNG
+    {
+      id: 'wallet-slide-8',
+      badge: 'SLIDE 08 / 14 · ĐIỀU 7: QUYỀN & NGHĨA VỤ',
+      category: 'PHẦN 3 · ĐIỀU KHOẢN MẪU TRỌNG YẾU · VƯƠNG THU THỦY PHỤ TRÁCH',
+      title: 'ĐIỀU 7: CÂN BẰNG PHÁP LÝ: 11 QUYỀN VÀ 24 NGHĨA VỤ KHÁCH HÀNG',
+      subtitle: 'Trách nhiệm tự bảo mật OTP, nghĩa vụ hoàn tiền ghi Có nhầm và quyền dữ liệu cá nhân',
+      speakerName: 'Vương Thu Thủy',
+      speakerRole: 'Chuyên viên Kiểm soát Tuân thủ',
+      speakerAvatar: '/assets/team/vuong-thu-thuy.jpg',
+      speakerNotes:
+        'Kính thưa quý vị, Điều 7 là điều khoản đồ sộ nhất với 11 quyền và 24 nghĩa vụ của khách hàng. Điểm mấu chốt bảo vệ TVPAY nằm ở: Khoản 2.3 và 2.5: Khách hàng tự chịu trách nhiệm toàn bộ thiệt hại nếu để lộ OTP, PIN hoặc thiết bị mà không có lỗi của TVPAY; Khoản 2.12: Nghĩa vụ hoàn trả ngay lập tức và vô điều kiện các khoản tiền do TVPAY ghi Có nhầm, cho phép TVPAY tự động trích nợ thu hồi; Đồng thời tôn trọng quyền xem, sửa và phản đối xử lý dữ liệu cá nhân theo Luật Bảo vệ dữ liệu cá nhân 2025.',
+      renderContent: () => (
+        <div className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 text-xs sm:text-sm">
+            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs">
+              <span className="font-mono text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Điểm then chốt 1</span>
+              <h4 className="font-bold text-slate-900 mt-2 mb-1">Tự chịu rủi ro bảo mật OTP</h4>
+              <p className="text-slate-600 m-0 leading-relaxed text-xs sm:text-[13px]">
+                Nếu thông tin đăng nhập, OTP, mã PIN bị lộ do lỗi của khách hàng, khách hàng chịu toàn bộ chi phí và tổn thất tài chính phát sinh (Khoản 2.3 &amp; 2.5).
+              </p>
+            </div>
+
+            <div className="p-4 bg-amber-50/90 rounded-2xl border-2 border-amber-400 shadow-xs">
+              <span className="font-mono text-xs font-bold text-amber-900 bg-amber-200 px-2 py-0.5 rounded">Điểm then chốt 2</span>
+              <h4 className="font-bold text-amber-950 mt-2 mb-1">Tự động trích tiền ghi Có nhầm</h4>
+              <p className="text-slate-700 m-0 leading-relaxed text-xs sm:text-[13px]">
+                Khách hàng ủy quyền vô điều kiện cho TVPAY tự động trích nợ thu hồi các khoản tiền ghi Có nhầm hoặc giao dịch có bằng chứng gian lận (Khoản 2.12).
+              </p>
+            </div>
+
+            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs">
+              <span className="font-mono text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Điểm then chốt 3</span>
+              <h4 className="font-bold text-slate-900 mt-2 mb-1">Bảo vệ dữ liệu cá nhân</h4>
+              <p className="text-slate-600 m-0 leading-relaxed text-xs sm:text-[13px]">
+                Khách hàng có đầy đủ 11 quyền: Xem, chỉnh sửa, yêu cầu hạn chế xử lý dữ liệu và phản đối chia sẻ dữ liệu phục vụ mục đích quảng cáo (Khoản 1.8 - 1.10).
+              </p>
+            </div>
+          </div>
+
+          <div className="p-3.5 bg-amber-50 rounded-xl border border-amber-300 text-xs sm:text-sm text-slate-800">
+            <strong>Cân bằng quyền lợi:</strong> Minh chứng hợp đồng TVPAY vừa là khiên chắn bảo vệ tài chính cho công ty trước các vụ hack của người dùng, vừa tôn trọng tuyệt đối quyền riêng tư dữ liệu theo chuẩn mực pháp luật mới nhất.
+          </div>
+        </div>
+      ),
+    },
+
+    // SLIDE 9: ĐIỀU 10 & 11: CƠ CHẾ PHONG TỎA TÀI KHOẢN VÀ CHÍNH SÁCH HOÀN TIỀN LỖI
+    {
+      id: 'wallet-slide-9',
+      badge: 'SLIDE 09 / 14 · ĐIỀU 10 & 11: PHONG TỎA & LỖI',
+      category: 'PHẦN 3 · ĐIỀU KHOẢN MẪU TRỌNG YẾU · LÊ PHƯƠNG THẢO PHỤ TRÁCH',
+      title: 'ĐIỀU 10 & 11: CƠ CHẾ PHONG TỎA TÀI KHOẢN VÀ CHÍNH SÁCH HOÀN TIỀN LỖI',
+      subtitle: '4 căn cứ phong tỏa, 5 điều kiện mở khóa và cam kết hoàn tiền lỗi giao dịch trong 05 ngày',
+      speakerName: 'Lê Phương Thảo',
+      speakerRole: 'Phó Nhóm 13 · Giải quyết tranh chấp',
+      speakerAvatar: '/assets/team/le-phuong-thao.jpg',
+      speakerNotes:
+        'Kính thưa Thầy và các bạn, Điều 10 và Điều 11 xử lý các tình huống nhạy cảm nhất trong thanh toán số: phong tỏa tài khoản và hoàn tiền lỗi. TVPAY chỉ phong tỏa ví trong 4 trường hợp luật định: Có văn bản của cơ quan nhà nước; Theo yêu cầu tra soát đối tác; Khi phát hiện ghi Có nhầm; Hoặc có dấu hiệu gian lận vi phạm pháp luật. Đặc biệt Khoản 10.3 nêu rõ: chỉ phong tỏa số tiền tranh chấp, phần số dư hợp pháp còn lại vẫn được giao dịch bình thường. Đồng thời Điều 11 cam kết hoàn tiền giao dịch lỗi trong 05 ngày làm việc và hoàn toàn miễn phí.',
+      renderContent: () => (
+        <div className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm">
+            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs">
+              <h4 className="font-bold text-slate-900 m-0 mb-2.5 flex items-center gap-2 text-sm sm:text-base">
+                <Lock className="w-5 h-5 text-amber-600" />
+                Cơ chế phong tỏa tài khoản ví (Điều 10)
+              </h4>
+              <ul className="space-y-2 text-slate-700 m-0 p-0 list-none">
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                  <span><strong>04 Trường hợp phong tỏa:</strong> Văn bản CQNN có thẩm quyền; Yêu cầu từ đối tác tra soát; Phát hiện ghi Có nhầm; Nghi ngờ gian lận lừa đảo.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                  <span><strong>Nguyên tắc phong tỏa một phần:</strong> Số tiền phong tỏa không vượt quá số tiền tranh chấp. Phần số dư còn lại khách hàng vẫn sử dụng bình thường.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                  <span><strong>05 Điều kiện mở khóa:</strong> Hết thời hạn phong tỏa; CQNN yêu cầu giải tỏa; Xử lý xong nhầm lẫn; Xác minh không vi phạm; Giải quyết xong khiếu nại.</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="p-4 bg-gradient-to-br from-amber-50 to-white rounded-2xl border-2 border-amber-400 shadow-xs">
+              <h4 className="font-bold text-amber-950 m-0 mb-2.5 flex items-center gap-2 text-sm sm:text-base">
+                <RefreshCw className="w-5 h-5 text-amber-700" />
+                Chính sách hoàn tiền lỗi giao dịch (Điều 11)
+              </h4>
+              <ul className="space-y-2 text-slate-700 m-0 p-0 list-none">
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span><strong>Lỗi trừ tiền không ghi nhận:</strong> Khách hàng bị trừ tiền trong ví nhưng hệ thống merchant không ghi nhận giao dịch thành công.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span><strong>Thời hạn hoàn trả 05 ngày:</strong> TVPAY thực hiện báo Có ví của khách hàng trong vòng 05 ngày làm việc kể từ khi có kết quả xác minh.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span><strong>Cam kết không thu phí:</strong> Toàn bộ quá trình đối soát và hoàn tiền lỗi giao dịch được thực hiện miễn phí 100%.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      ),
+    },
+
+    // SLIDE 10: ĐIỀU 12: QUY TRÌNH ĐÓNG TÀI KHOẢN VÍ & XỬ LÝ SỐ DƯ TỒN ĐỌNG
+    {
+      id: 'wallet-slide-10',
+      badge: 'SLIDE 10 / 14 · ĐIỀU 12: ĐÓNG VÍ & SỐ DƯ',
+      category: 'PHẦN 3 · ĐIỀU KHOẢN MẪU TRỌNG YẾU · LÊ PHƯƠNG THẢO PHỤ TRÁCH',
+      title: 'ĐIỀU 12: QUY TRÌNH ĐÓNG TÀI KHOẢN VÍ & XỬ LÝ SỐ DƯ TỒN ĐỌNG',
+      subtitle: '8 căn cứ đóng ví, giải pháp thừa kế và khắc phục rủi ro điều khoản "hủy sau 5 năm"',
+      speakerName: 'Lê Phương Thảo',
+      speakerRole: 'Phó Nhóm 13 · Giải quyết tranh chấp',
+      speakerAvatar: '/assets/team/le-phuong-thao.jpg',
+      speakerNotes:
+        'Kính thưa Thầy và các bạn, Điều 12 quy định 8 căn cứ đóng tài khoản ví và các nghiệp vụ xác minh hủy lệnh. Điểm đặc sắc trong nghiên cứu của Nhóm 13 là nhận diện rủi ro tại Khoản 12.3.6: Quy định "sau 5 năm đóng ví thì hủy số dư và không hoàn trả" có nguy cơ xâm phạm quyền sở hữu tài sản của công dân theo Bộ luật Dân sự. Do đó, nhóm đã hoàn thiện giải pháp tư vấn: TVPAY tiếp tục theo dõi treo công nợ, thông báo định kỳ và chuyển số dư theo quy định pháp luật thừa kế/Tòa án, bảo đảm tuyệt đối tuân thủ Nghị định 52/2024.',
+      renderContent: () => (
+        <div className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm">
+            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs">
+              <h4 className="font-bold text-slate-900 m-0 mb-2.5 flex items-center gap-2 text-sm sm:text-base">
+                <AlertOctagon className="w-5 h-5 text-amber-600" />
+                08 Căn cứ đóng tài khoản ví (Khoản 1)
+              </h4>
+              <p className="text-slate-700 m-0 leading-relaxed text-xs sm:text-[13px]">
+                1. Theo yêu cầu của chủ tài khoản; 2. Cá nhân chết/mất tích; 3. TVPAY chấm dứt hoạt động; 4. Vi phạm cam kết thỏa thuận; 5. Dùng giấy tờ giả mạo eKYC; 6. Dùng ví lừa đảo; 7. Không liên kết ngân hàng sau thông báo; 8. Theo quyết định cơ quan nhà nước.
+              </p>
+            </div>
+
+            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs">
+              <h4 className="font-bold text-slate-900 m-0 mb-2.5 flex items-center gap-2 text-sm sm:text-base">
+                <Coins className="w-5 h-5 text-emerald-600" />
+                Phương án xử lý số dư còn lại (Khoản 3)
+              </h4>
+              <p className="text-slate-700 m-0 leading-relaxed text-xs sm:text-[13px]">
+                Chủ động rút về tài khoản ngân hàng chính chủ trước khi đóng; Chi trả cho người thừa kế hợp pháp nếu chủ ví qua đời; Chi trả theo bản án quyết định của Tòa án; Hoặc tiếp tục theo dõi treo công nợ nếu chưa liên lạc được với chủ tài khoản.
+              </p>
+            </div>
+          </div>
+
+          <div className="p-3.5 bg-amber-50 rounded-xl border border-amber-300 text-xs sm:text-sm text-slate-800">
+            <strong>Khắc phục bẫy pháp lý sau 5 năm:</strong> "Không tịch thu tài sản của khách hàng – Duy trì tài khoản treo công nợ và thông báo công khai theo luật định, bảo vệ an toàn pháp lý cho TVPAY trước nguy cơ kiện tụng."
+          </div>
+        </div>
+      ),
+    },
+
+    // SLIDE 11: ĐIỀU 13: CƠ CHẾ TRA SOÁT, KHIẾU NẠI & GIÁ TRỊ CHỨNG CỨ ĐIỆN TỬ
+    {
+      id: 'wallet-slide-11',
+      badge: 'SLIDE 11 / 14 · ĐIỀU 13: TRA SOÁT & CHỨNG CỨ',
+      category: 'PHẦN 3 · ĐIỀU KHOẢN MẪU TRỌNG YẾU · PHẠM VĂN QUANG PHỤ TRÁCH',
+      title: 'ĐIỀU 13: CƠ CHẾ TRA SOÁT, KHIẾU NẠI & GIÁ TRỊ CHỨNG CỨ ĐIỆN TỬ',
+      subtitle: 'Các mốc thời gian vàng: 60 ngày khiếu nại, 30 ngày xử lý, 5 ngày bồi hoàn và lưu trữ log hệ thống',
+      speakerName: 'Phạm Văn Quang',
+      speakerRole: 'Chuyên viên Tố tụng & Tra soát Số',
+      speakerAvatar: '/assets/team/quang-pham.jpg',
+      speakerNotes:
+        'Kính thưa Thầy và các bạn, Điều 13 là điều khoản thực chiến thiết lập quy trình giải quyết tra soát khiếu nại mẫu mực theo Thông tư 40/2024 của NHNN. Các mốc thời gian vàng gồm: Khách hàng được quyền khiếu nại trong vòng 60 ngày; TVPAY xử lý tối đa trong 30 ngày làm việc; Bồi hoàn tổn thất trong 5 ngày nếu có kết quả lỗi thuộc về ví; Hòa giải trong 15 ngày tiếp theo nếu chưa rõ lỗi; và báo cáo cơ quan công an nếu có dấu hiệu tội phạm. Toàn bộ lịch sử log, địa chỉ IP và mã OTP được lưu trữ làm chứng cứ điện tử vững chắc trước Tòa án.',
+      renderContent: () => (
+        <div className="space-y-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 text-xs sm:text-sm">
+            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs text-center">
+              <span className="font-mono text-xl sm:text-2xl font-black text-amber-800 block mb-1">60 NGÀY</span>
+              <strong className="block text-slate-900 mb-1">Thời hạn khiếu nại</strong>
+              <p className="text-slate-600 m-0 text-xs sm:text-[13px]">Kể từ ngày phát sinh giao dịch đề nghị tra soát khiếu nại lần đầu.</p>
+            </div>
+
+            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs text-center">
+              <span className="font-mono text-xl sm:text-2xl font-black text-amber-800 block mb-1">30 NGÀY</span>
+              <strong className="block text-slate-900 mb-1">Thời hạn xử lý tối đa</strong>
+              <p className="text-slate-600 m-0 text-xs sm:text-[13px]">Làm việc kể từ ngày tiếp nhận yêu cầu, phối hợp với ngân hàng liên kết.</p>
+            </div>
+
+            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs text-center">
+              <span className="font-mono text-xl sm:text-2xl font-black text-emerald-700 block mb-1">05 NGÀY</span>
+              <strong className="block text-slate-900 mb-1">Thời hạn bồi hoàn</strong>
+              <p className="text-slate-600 m-0 text-xs sm:text-[13px]">Bồi hoàn ngay số tiền tổn thất vào ví khách hàng nếu lỗi thuộc về TVPAY.</p>
+            </div>
+
+            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs text-center">
+              <span className="font-mono text-xl sm:text-2xl font-black text-blue-700 block mb-1">15 NGÀY</span>
+              <strong className="block text-slate-900 mb-1">Hòa giải chưa rõ lỗi</strong>
+              <p className="text-slate-600 m-0 text-xs sm:text-[13px]">Thỏa thuận phương án bồi hoàn tạm thời trong khi chờ kết luận CQNN.</p>
+            </div>
+          </div>
+
+          <div className="p-4 bg-gradient-to-br from-amber-50 to-white rounded-2xl border-2 border-amber-400 text-xs sm:text-sm text-slate-700">
+            <h4 className="font-bold text-amber-950 m-0 mb-1.5 flex items-center gap-2">
+              <Database className="w-5 h-5 text-amber-700" />
+              Giá trị chứng cứ điện tử trước Tòa án theo Luật GDĐT 2023
+            </h4>
+            <p className="m-0 leading-relaxed">
+              Hệ thống TVPAY tự động sao lưu dữ liệu giao dịch, địa chỉ IP truy cập, thời gian phát sinh tính đến mili-giây, nhật ký xác thực OTP và chữ ký số. Đây là nguồn chứng cứ hợp pháp chứng minh doanh nghiệp đã thực hiện đúng thỏa thuận khi phát sinh tranh chấp tại Tòa.
+            </p>
+          </div>
+        </div>
+      ),
+    },
+
+    // SLIDE 12: ĐIỀU 16 & 18: GIỚI HẠN TRÁCH NHIỆM BỒI THƯỜNG & CHẤP THUẬN NGẦM ĐỊNH
+    {
+      id: 'wallet-slide-12',
+      badge: 'SLIDE 12 / 14 · ĐIỀU 16 & 18: LÁ CHẮN',
+      category: 'PHẦN 3 · ĐIỀU KHOẢN MẪU TRỌNG YẾU · PHẠM VĂN QUANG PHỤ TRÁCH',
+      title: 'ĐIỀU 16 & 18: GIỚI HẠN TRÁCH NHIỆM BỒI THƯỜNG & CHẤP THUẬN NGẦM ĐỊNH',
+      subtitle: 'Lá chắn tài chính: Bồi thường tối đa bằng số dư ví và cơ chế sửa đổi điều khoản thông báo trước',
+      speakerName: 'Phạm Văn Quang',
+      speakerRole: 'Chuyên viên Tố tụng & Tra soát Số',
+      speakerAvatar: '/assets/team/quang-pham.jpg',
+      speakerNotes:
+        'Kính thưa quý vị, nếu phải chọn ra hai điều khoản mang tính "khiên chắn sinh tử" bảo vệ nguồn vốn 50 tỷ của công ty thì đó chính là Điều 16 và Điều 18. Khoản 16.5 nêu rõ: Trong mọi trường hợp phải bồi thường thiệt hại, toàn bộ trách nhiệm của TVPAY được giới hạn tối đa không vượt quá số dư ví của khách hàng ngay trước thời điểm phát sinh thiệt hại. Điều này chặn đứng nguy cơ đối mặt các khoản bồi thường vô hạn hàng chục tỷ đồng. Đồng thời Điều 18 xác lập cơ chế: TVPAY đăng tải sửa đổi trên website/app, nếu khách hàng tiếp tục sử dụng thì mặc nhiên được coi là đồng ý chấp thuận.',
+      renderContent: () => (
+        <div className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm">
+            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs">
+              <span className="font-mono text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Điều 16 · Giới hạn trách nhiệm</span>
+              <h4 className="font-bold text-slate-900 mt-2 mb-2 text-sm sm:text-base">Mức bồi thường tối đa bằng số dư ví</h4>
+              <ul className="space-y-2 text-slate-700 m-0 p-0 list-none">
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span><strong>Giới hạn tài chính:</strong> Trách nhiệm bồi thường không vượt quá số dư ví ngay trước thời điểm phát sinh tổn thất.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span><strong>Miễn trừ bất khả kháng:</strong> Miễn trừ trách nhiệm khi nghẽn mạng viễn thông quốc gia, lỗi từ bên thứ ba hoặc thiên tai.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span><strong>Không bù đắp rủi ro vĩ mô:</strong> Không chịu trách nhiệm về lạm phát, khấu hao tiền tệ hay thay đổi chính sách kinh tế.</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="p-4 bg-gradient-to-br from-amber-50 to-white rounded-2xl border-2 border-amber-400 shadow-xs">
+              <span className="font-mono text-xs font-bold text-amber-900 bg-amber-200 px-2 py-0.5 rounded">Điều 18 · Chấp thuận ngầm định</span>
+              <h4 className="font-bold text-amber-950 mt-2 mb-2 text-sm sm:text-base">Cơ chế sửa đổi điều khoản linh hoạt</h4>
+              <ul className="space-y-2 text-slate-700 m-0 p-0 list-none">
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                  <span><strong>Phương thức thông báo:</strong> Thông báo trên website www.tvpay.com.vn, ứng dụng hoặc qua SMS/Email đã đăng ký.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                  <span><strong>Chấp thuận ngầm định (Khoản 18.2):</strong> Nếu khách hàng tiếp tục dùng ví sau ngày thông báo, mặc nhiên được hiểu là chấp thuận toàn bộ.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                  <span><strong>Quyền đơn phương chấm dứt:</strong> Khách hàng không đồng ý có quyền đóng ví và rút hết số dư về tài khoản ngân hàng.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="p-3 bg-amber-100/80 rounded-xl border border-amber-300 text-center text-xs sm:text-sm font-semibold text-amber-950">
+            Lá chắn kép: "Hạn chế tối đa rủi ro tài chính phát sinh – Giữ vững sự chủ động linh hoạt cập nhật quy chuẩn theo đà phát triển công nghệ."
+          </div>
+        </div>
+      ),
+    },
+
+    // SLIDE 13: PHẦN C: HỆ SINH THÁI TIỆN ÍCH, LOYALTY & BÁNH ĐÀ DOANH THU NĐT
+    {
+      id: 'wallet-slide-13',
+      badge: 'SLIDE 13 / 14 · PHẦN C: HỆ SINH THÁI',
+      category: 'PHẦN 4 · HỆ SINH THÁI & TĂNG TRƯỞNG · ĐOÀN ÁNH PHƯƠNG PHỤ TRÁCH',
+      title: 'PHẦN C: HỆ SINH THÁI TIỆN ÍCH, LOYALTY & BÁNH ĐÀ DOANH THU NĐT',
+      subtitle: '4 Điều khoản mở rộng: Onboarding < 2 phút, QR Code toàn quốc, Cashback và giữ chân người dùng',
+      speakerName: 'Đoàn Ánh Phương',
+      speakerRole: 'Trưởng Nhóm 13 · Chiến lược sản phẩm',
+      speakerAvatar: '/assets/team/anh-phuong.jpg',
+      speakerNotes:
+        'Kính thưa Thầy và các bạn, một hợp đồng pháp lý hoàn hảo không chỉ dừng ở phòng ngừa rủi ro, mà còn phải tạo động lực thương mại thúc đẩy doanh số. Phần C của Hợp đồng TVPAY tích hợp 4 điều khoản thực chiến mang lại doanh thu đột phá cho 5 nhà đầu tư: Điều C1: Onboarding định danh eKYC siêu tốc dưới 2 phút; Điều C2: Kết nối mạng lưới QR Code liên ngân hàng toàn quốc; Điều C3: Hệ sinh thái Cashback và Hội viên VIP 4 hạng giữ chân người dùng; Và Điều C4: Cơ chế bánh đà doanh thu từ phí xử lý thanh toán Merchant 1-2%, biến lượng người dùng tích cực thành dòng tiền lợi nhuận bền vững.',
+      renderContent: () => (
+        <div className="space-y-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 text-xs sm:text-sm">
+            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs">
+              <span className="font-mono text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Điều C1</span>
+              <h4 className="font-bold text-slate-900 mt-2 mb-1">Onboarding eKYC &lt; 2p</h4>
+              <p className="text-slate-600 m-0 leading-relaxed text-xs sm:text-[13px]">
+                Ứng dụng công nghệ đọc chip NFC và so khớp sinh trắc học trực tiếp với Cơ sở dữ liệu Quốc gia về dân cư, mở ví thành công dưới 2 phút.
+              </p>
+            </div>
+
+            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs">
+              <span className="font-mono text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Điều C2</span>
+              <h4 className="font-bold text-slate-900 mt-2 mb-1">Mạng lưới VietQR toàn quốc</h4>
+              <p className="text-slate-600 m-0 leading-relaxed text-xs sm:text-[13px]">
+                Quét mã thanh toán tại hơn 100.000 điểm chấp nhận thanh toán, siêu thị, nhà hàng, cây xăng và thanh toán dịch vụ công trực tuyến.
+              </p>
+            </div>
+
+            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs">
+              <span className="font-mono text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Điều C3</span>
+              <h4 className="font-bold text-slate-900 mt-2 mb-1">Cashback &amp; Loyalty 4 Hạng</h4>
+              <p className="text-slate-600 m-0 leading-relaxed text-xs sm:text-[13px]">
+                Cơ chế hoàn tiền tự động, tích lũy điểm thưởng và phân hạng thành viên (Đồng, Bạc, Vàng, Kim Cương), gia tăng tần suất giao dịch hàng ngày.
+              </p>
+            </div>
+
+            <div className="p-4 bg-amber-50/90 rounded-2xl border-2 border-amber-400 shadow-xs">
+              <span className="font-mono text-xs font-bold text-amber-900 bg-amber-200 px-2 py-0.5 rounded">Điều C4</span>
+              <h4 className="font-bold text-amber-950 mt-2 mb-1">Bánh đà doanh thu NĐT</h4>
+              <p className="text-slate-700 m-0 leading-relaxed text-xs sm:text-[13px]">
+                Mô hình doanh thu đa nguồn: Phí xử lý giao dịch Merchant (1-2%), phí dịch vụ giá trị gia tăng, hoa hồng bảo hiểm và dòng tiền số dư thặng dư.
+              </p>
+            </div>
+          </div>
+
+          <div className="p-3.5 bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700 rounded-xl text-white text-center shadow-xs">
+            <span className="text-xs sm:text-sm font-bold">
+              Bánh đà tăng trưởng TVPAY: Người dùng hài lòng → GMV bùng nổ → Doanh thu Merchant tăng tốc → Lợi nhuận cổ đông bền vững.
             </span>
-            <span className="font-mono font-bold text-[10px] text-amber-800 shrink-0 ml-2">PHỤ LỤC 5</span>
           </div>
         </div>
       ),
     },
+
+    // SLIDE 14: TỔNG KẾT BÁO CÁO: KẾT HỢP ĐỒNG BỘ 04 TRỤ CỘT
     {
-      id: 'w-slide-10',
-      badge: 'SLIDE 10 / 10 · CẢNH BÁO AN TOÀN',
-      category: 'PHỤ LỤC 6 TỔNG THỰC HIỆN · DIỄN GIẢ: PHẠM VĂN QUANG & ĐOÀN ÁNH PHƯƠNG',
-      title: 'NHẬN DIỆN 04 NHÓM THỦ ĐOẠN LỪA ĐẢO & CẨM NANG AN TOÀN',
-      subtitle: 'Lá chắn phòng chống tội phạm công nghệ cao và Cẩm nang giao dịch an toàn cho khách hàng (Phụ lục 6)',
+      id: 'wallet-slide-14',
+      badge: 'SLIDE 14 / 14 · TỔNG KẾT HỢP ĐỒNG',
+      category: 'PHẦN 4 · CHIẾN LƯỢC TỔNG THỂ · ĐOÀN ÁNH PHƯƠNG PHỤ TRÁCH',
+      title: 'TỔNG KẾT BÁO CÁO: KẾT HỢP ĐỒNG BỘ 04 TRỤ CỘT BẢO VỆ FINTECH',
+      subtitle: 'Chuyển dịch mô hình phòng thủ chủ động: Pháp lý – Hợp đồng – Công nghệ – Quản trị',
+      speakerName: 'Đoàn Ánh Phương',
+      speakerRole: 'Trưởng Nhóm 13 · Tổng kết 4 trụ cột',
+      speakerAvatar: '/assets/team/anh-phuong.jpg',
+      speakerNotes:
+        'Kính thưa Thầy và các bạn, để khép lại bài thuyết trình, Nhóm 13 xin khẳng định: Bảo vệ quyền và lợi ích hợp pháp của doanh nghiệp Fintech ví điện tử không thể chỉ dựa vào một văn bản đơn lẻ, mà đòi hỏi sự kết hợp đồng bộ 4 trụ cột: Pháp lý vững vàng - Hợp đồng chặt chẽ - Công nghệ an toàn - và Quản trị tuân thủ thường xuyên. Nếu Điều lệ là nền tảng quản trị nội bộ thì Hợp đồng ví chính là tuyến phòng thủ tuyến đầu. Đó là con đường duy nhất để TVPAY chuyển từ bị động xử lý sự vụ sang chủ động nhận diện và phòng ngừa rủi ro từ sớm. Xin cảm ơn Thầy và các bạn đã chú ý lắng nghe!',
       renderContent: () => (
-        <div className="space-y-3 text-xs">
-          {/* 4 Nhóm lừa đảo */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
-            <div className="p-2.5 bg-white/95 rounded-lg border border-amber-300/80 shadow-2xs">
-              <strong className="text-slate-900 text-[11px] block mb-1 text-[#8C6B18]">1. Giả mạo chủ thể</strong>
-              <p className="text-[10.5px] text-slate-600 m-0 leading-relaxed">
-                Giả CSKH/kỹ thuật TVPAY báo khóa ví đòi OTP; Giả công an đe dọa chuyển tiền; Hack Facebook người quen mượn tiền.
+        <div className="space-y-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 text-xs sm:text-sm">
+            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs text-center">
+              <div className="w-10 h-10 rounded-full bg-amber-100 border border-amber-300 flex items-center justify-center text-amber-800 mx-auto mb-2">
+                <Scale className="w-6 h-6 text-amber-700" />
+              </div>
+              <h4 className="font-bold text-slate-900 m-0 mb-1 text-sm sm:text-base">1. TRỤ CỘT PHÁP LÝ</h4>
+              <p className="text-slate-600 m-0 text-xs sm:text-[13px]">
+                Nền tảng Luật Doanh nghiệp 2020 &amp; Nghị định 52/2024 đảm bảo tính hợp pháp tối cao cho mọi giao dịch.
               </p>
             </div>
-            <div className="p-2.5 bg-white/95 rounded-lg border border-amber-300/80 shadow-2xs">
-              <strong className="text-slate-900 text-[11px] block mb-1 text-[#8C6B18]">2. Đánh cắp thông tin</strong>
-              <p className="text-[10.5px] text-slate-600 m-0 leading-relaxed">
-                Gửi link phishing giả giao diện TVPAY; Lừa cài file .apk chứa mã độc chiếm quyền điện thoại; Chiếm đoạt SIM/số điện thoại.
+
+            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs text-center">
+              <div className="w-10 h-10 rounded-full bg-amber-100 border border-amber-300 flex items-center justify-center text-amber-800 mx-auto mb-2">
+                <FileCheck2 className="w-6 h-6 text-amber-700" />
+              </div>
+              <h4 className="font-bold text-slate-900 m-0 mb-1 text-sm sm:text-base">2. TRỤ CỘT HỢP ĐỒNG</h4>
+              <p className="text-slate-600 m-0 text-xs sm:text-[13px]">
+                Điều khoản mẫu chuẩn hóa, giới hạn trách nhiệm tài chính và cơ chế giải quyết khiếu nại minh bạch.
               </p>
             </div>
-            <div className="p-2.5 bg-white/95 rounded-lg border border-amber-300/80 shadow-2xs">
-              <strong className="text-slate-900 text-[11px] block mb-1 text-[#8C6B18]">3. Dẫn dụ giao dịch</strong>
-              <p className="text-[10.5px] text-slate-600 m-0 leading-relaxed">
-                Đánh tráo mã QR nhận tiền; Thông báo trúng thưởng yêu cầu nộp "phí nhận thưởng"; Bẫy việc làm trực tuyến nạp tiền hoa hồng.
+
+            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs text-center">
+              <div className="w-10 h-10 rounded-full bg-amber-100 border border-amber-300 flex items-center justify-center text-amber-800 mx-auto mb-2">
+                <ShieldCheck className="w-6 h-6 text-emerald-600" />
+              </div>
+              <h4 className="font-bold text-slate-900 m-0 mb-1 text-sm sm:text-base">3. TRỤ CỘT CÔNG NGHỆ</h4>
+              <p className="text-slate-600 m-0 text-xs sm:text-[13px]">
+                AI giám sát dòng tiền bất thường, sinh trắc học eKYC và lưu trữ chứng cứ điện tử sẵn sàng trước Tòa.
               </p>
             </div>
-            <div className="p-2.5 bg-white/95 rounded-lg border border-amber-300/80 shadow-2xs">
-              <strong className="text-slate-900 text-[11px] block mb-1 text-[#8C6B18]">4. Lợi dụng tài khoản</strong>
-              <p className="text-[10.5px] text-slate-600 m-0 leading-relaxed">
-                Dụ dỗ cho thuê/cho mượn ví nhận hoa hồng để rửa tiền bẩn; Chuyển tiền hộ; Thu mua ví đã eKYC của học sinh, sinh viên.
+
+            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs text-center">
+              <div className="w-10 h-10 rounded-full bg-amber-100 border border-amber-300 flex items-center justify-center text-amber-800 mx-auto mb-2">
+                <Landmark className="w-6 h-6 text-blue-700" />
+              </div>
+              <h4 className="font-bold text-slate-900 m-0 mb-1 text-sm sm:text-base">4. TRỤ CỘT QUẢN TRỊ</h4>
+              <p className="text-slate-600 m-0 text-xs sm:text-[13px]">
+                Kiểm soát tuân thủ liên tục đa luật, trích lập Quỹ dự phòng rủi ro bảo toàn vốn 50 tỷ của nhà đầu tư.
               </p>
             </div>
           </div>
 
-          {/* Cẩm nang an toàn: 4 Không - 4 Nên */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <div className="p-3 bg-white/95 rounded-xl border border-amber-300/80 shadow-2xs">
-              <div className="flex items-center gap-1.5 text-rose-800 font-bold mb-2">
-                <AlertTriangle className="w-4 h-4 text-rose-600" />
-                <span className="text-[11px] uppercase tracking-wide">QUY TẮC BẢO MẬT: 4 TUYỆT ĐỐI KHÔNG</span>
-              </div>
-              <ul className="text-[11px] text-slate-700 space-y-1.5 m-0 pl-4 list-disc">
-                <li><strong>KHÔNG</strong> chia sẻ mật khẩu, mã PIN, OTP cho bất kỳ ai, kể cả nhân viên TVPAY.</li>
-                <li><strong>KHÔNG</strong> click vào đường link lạ hoặc đăng nhập ví trên website không chính thống.</li>
-                <li><strong>KHÔNG</strong> cho mượn, cho thuê, mua bán tài khoản ví hoặc nhận tiền hộ người lạ.</li>
-                <li><strong>KHÔNG</strong> cài đặt ứng dụng không rõ nguồn gốc ngoài App Store / Google Play.</li>
-              </ul>
-            </div>
-
-            <div className="p-3 bg-white/95 rounded-xl border border-amber-300/80 shadow-2xs">
-              <div className="flex items-center gap-1.5 text-emerald-800 font-bold mb-2">
-                <ShieldCheck className="w-4 h-4 text-emerald-600" />
-                <span className="text-[11px] uppercase tracking-wide">CẨM NANG AN TOÀN: 4 ĐIỀU NÊN LÀM</span>
-              </div>
-              <ul className="text-[11px] text-slate-700 space-y-1.5 m-0 pl-4 list-disc">
-                <li><strong>NÊN</strong> đổi mật khẩu định kỳ 12 tháng và sử dụng mật khẩu mạnh kết hợp sinh trắc học.</li>
-                <li><strong>NÊN</strong> kiểm tra kỹ tên người nhận, số tiền và nội dung trước khi quét mã QR thanh toán.</li>
-                <li><strong>NÊN</strong> luôn đăng xuất khỏi ứng dụng sau khi hoàn thành giao dịch trên thiết bị lạ.</li>
-                <li><strong>NÊN</strong> bấm "Khóa ví tức thì" và gọi Hotline <strong>1900 5555 66</strong> ngay khi có nghi vấn.</li>
-              </ul>
-            </div>
+          <div className="p-4 bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700 rounded-2xl text-white text-center shadow-md">
+            <h3 className="text-sm sm:text-base md:text-lg font-bold m-0 mb-1">
+              TVPAY: CHỦ ĐỘNG NHẬN DIỆN &amp; PHÒNG NGỪA RỦI RO TỪ SỚM
+            </h3>
+            <p className="text-xs sm:text-sm text-amber-100 m-0">
+              Bộ đôi Điều lệ &amp; Hợp đồng ví tạo nên hệ thống quản trị pháp lý toàn diện, vững vàng phát triển bền vững.
+            </p>
           </div>
         </div>
       ),
@@ -1849,90 +1894,63 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
   const slides = isCharter ? charterSlides : walletSlides;
   const totalSlides = slides.length;
 
+  const goToSlide = useCallback(
+    (index: number) => {
+      if (index >= 0 && index < totalSlides && index !== currentSlide) {
+        setSlideDirection(index > currentSlide ? 'forward' : 'backward');
+        setCurrentSlide(index);
+        uiSound.playTransition();
+      }
+    },
+    [currentSlide, totalSlides]
+  );
+
   const nextSlide = useCallback(() => {
-    try {
-      uiSound.playClick();
-    } catch {}
-    setSlideDirection('forward');
-    setCurrentSlide((prev) => (prev + 1) % totalSlides);
-  }, [totalSlides]);
+    if (currentSlide < totalSlides - 1) {
+      setSlideDirection('forward');
+      setCurrentSlide((prev) => prev + 1);
+      uiSound.playNext();
+    } else {
+      setSlideDirection('forward');
+      setCurrentSlide(0);
+      uiSound.playNext();
+    }
+  }, [currentSlide, totalSlides]);
 
   const prevSlide = useCallback(() => {
-    try {
-      uiSound.playClick();
-    } catch {}
-    setSlideDirection('backward');
-    setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
-  }, [totalSlides]);
-
-  const goToSlide = (idx: number) => {
-    try {
-      uiSound.playClick();
-    } catch {}
-    setSlideDirection(idx >= currentSlide ? 'forward' : 'backward');
-    setCurrentSlide(idx);
-  };
-
-  // Auto-play timer
-  useEffect(() => {
-    if (!isAutoPlaying) return;
-    const timer = setInterval(() => {
-      setSlideDirection('forward');
-      setCurrentSlide((prev) => (prev + 1) % totalSlides);
-    }, 8000);
-    return () => clearInterval(timer);
-  }, [isAutoPlaying, totalSlides]);
+    if (currentSlide > 0) {
+      setSlideDirection('backward');
+      setCurrentSlide((prev) => prev - 1);
+      uiSound.playPrev();
+    } else {
+      setSlideDirection('backward');
+      setCurrentSlide(totalSlides - 1);
+      uiSound.playPrev();
+    }
+  }, [currentSlide, totalSlides]);
 
   const toggleFullscreen = useCallback(() => {
-    try {
-      uiSound.playClick();
-    } catch {}
-    if (!isFullscreen) {
-      if (document.documentElement.requestFullscreen) {
-        document.documentElement.requestFullscreen().catch(() => {});
-      }
-      setIsFullscreen(true);
-    } else {
-      if (document.fullscreenElement && document.exitFullscreen) {
-        document.exitFullscreen().catch(() => {});
-      }
-      setIsFullscreen(false);
-    }
-  }, [isFullscreen]);
-
-  // Handle native browser fullscreen change (e.g. user presses Esc key in browser)
-  useEffect(() => {
-    const handleFsChange = () => {
-      if (!document.fullscreenElement && isFullscreen) {
-        setIsFullscreen(false);
-      }
-    };
-    document.addEventListener('fullscreenchange', handleFsChange);
-    return () => document.removeEventListener('fullscreenchange', handleFsChange);
-  }, [isFullscreen]);
+    uiSound.playClick();
+    setIsFullscreen((prev) => !prev);
+  }, []);
 
   // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      const activeEl = document.activeElement;
-      if (
-        activeEl &&
-        (activeEl.tagName === 'INPUT' ||
-          activeEl.tagName === 'TEXTAREA' ||
-          (activeEl as HTMLElement).isContentEditable)
-      ) {
-        return;
-      }
-
-      if (e.key === 'ArrowRight' || (isFullscreen && e.key === ' ')) {
-        if (e.key === ' ') e.preventDefault();
+      if (e.key === 'ArrowRight' || e.key === 'PageDown' || (e.key === ' ' && !e.shiftKey)) {
+        e.preventDefault();
         nextSlide();
-      } else if (e.key === 'ArrowLeft') {
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp' || (e.key === ' ' && e.shiftKey)) {
+        e.preventDefault();
         prevSlide();
       } else if (e.key === 'Escape' && isFullscreen) {
-        toggleFullscreen();
-      } else if (e.key.toLowerCase() === 'f' && !e.metaKey && !e.ctrlKey) {
-        toggleFullscreen();
+        setIsFullscreen(false);
+      } else if (e.key.toLowerCase() === 'f' && !e.ctrlKey && !e.metaKey && !e.altKey) {
+        const target = e.target as HTMLElement;
+        if (target.tagName !== 'INPUT' && target.tagName !== 'TEXTAREA') {
+          e.preventDefault();
+          toggleFullscreen();
+        }
       }
     };
 
@@ -1940,60 +1958,63 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [nextSlide, prevSlide, isFullscreen, toggleFullscreen]);
 
+  // Autoplay handler
+  useEffect(() => {
+    if (!isAutoPlaying) return;
+    const timer = setInterval(() => {
+      nextSlide();
+    }, 8000);
+    return () => clearInterval(timer);
+  }, [isAutoPlaying, nextSlide]);
+
   const activeSlide = slides[currentSlide];
 
   // Helper for slide pill labels
   const getSlideLabel = (idx: number) => {
     if (isCharter) {
-      return idx === 0
-        ? 'Tổng quan'
-        : idx === 1
-        ? 'Nguyên tắc'
-        : idx === 2
-        ? 'Vai trò'
-        : idx === 3
-        ? '9 Chương'
-        : idx === 4
-        ? 'Cổ đông'
-        : idx === 5
-        ? 'Vốn & Xung đột'
-        : idx === 6
-        ? 'Fintech & ATTT'
-        : idx === 7
-        ? 'Rủi ro 1'
-        : idx === 8
-        ? 'Rủi ro 2'
-        : 'Q&A';
+      const labels = [
+        '01 · Bìa & Định vị',
+        '02 · 4 Nguyên tắc',
+        '03 · 5 Vai trò',
+        '04 · 9 Chương',
+        '05 · Cổ đông 50 Tỷ',
+        '06 · Ổn định CĐ',
+        '07 · Thẩm quyền',
+        '08 · Vốn & Quỹ rủi ro',
+        '09 · Sở hữu trí tuệ',
+        '10 · Khủng hoảng mạng',
+        '11 · May đo ngành ví',
+        '12 · Tổng kết Điều lệ',
+      ];
+      return labels[idx] || `Slide ${idx + 1}`;
     }
-    return idx === 0
-      ? 'Tổng quan'
-      : idx === 1
-      ? '3 Tầng văn kiện'
-      : idx === 2
-      ? '4 Trụ cột'
-      : idx === 3
-      ? 'eKYC & Hạn mức'
-      : idx === 4
-      ? 'Hệ sinh thái'
-      : idx === 5
-      ? 'Xác thực'
-      : idx === 6
-      ? 'Nạp rút & Phí'
-      : idx === 7
-      ? 'An toàn bảo mật'
-      : idx === 8
-      ? 'Ma trận rủi ro'
-      : 'Q&A & Cẩm nang';
+    const labels = [
+      '01 · Bìa & Tuyến đầu',
+      '02 · 4 Nội dung',
+      '03 · 6 Vai trò',
+      '04 · 5 Giải pháp',
+      '05 · Đ.2 Nạp rút tiền',
+      '06 · Đ.2 eKYC 100 Tr',
+      '07 · Đ.6 Lằn ranh cấm',
+      '08 · Đ.7 Quyền & Nghĩa vụ',
+      '09 · Đ.10-11 Phong tỏa',
+      '10 · Đ.12 Đóng ví 5 năm',
+      '11 · Đ.13 Tra soát Tòa',
+      '12 · Đ.16-18 Lá chắn',
+      '13 · Phần C Hệ sinh thái',
+      '14 · Tổng kết 4 Trụ cột',
+    ];
+    return labels[idx] || `Slide ${idx + 1}`;
   };
 
   // =========================================================================
-  // TRUE FULLSCREEN VIEW (No dark scrim, bright royal gold & ivory theme)
+  // TRUE FULLSCREEN VIEW (Projector-Grade Typography, Gold & Ivory Theme)
   // =========================================================================
   if (isFullscreen) {
     return (
       <div
         ref={containerRef}
-        className="fixed inset-0 z-[9999] w-screen h-screen bg-gradient-to-br from-[#FFFDF9] via-[#FAF6EE] to-[#F5ECE0] flex flex-col justify-between overflow-hidden select-none p-3 sm:p-5 md:p-6 lg:p-7 animate-in fade-in duration-300"
+        className="tvpay-fullscreen-mode tvpay-presentation-fullscreen fixed inset-0 z-[9999] w-screen h-screen bg-gradient-to-br from-[#FFFDF9] via-[#FAF6EE] to-[#F5ECE0] flex flex-col justify-between overflow-hidden select-none p-4 sm:p-6 md:p-8 lg:p-10 animate-in fade-in duration-300"
       >
         {/* Ornate Gold Filigree Corners */}
         <RoyalScreenCorner position="top-left" />
@@ -2005,23 +2026,23 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
         <RoyalWatermark />
 
         {/* Fullscreen Top Gold Navigation Bar */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-wrap items-center justify-between pb-3 border-b border-amber-300/80 gap-3 shrink-0">
-          <div className="flex items-center gap-2.5 min-w-0">
-            <span className="p-2 rounded-xl bg-gradient-to-br from-[#FFF8E7] to-[#F3E5BE] border border-[#D4AF37]/70 text-[#8C6B18] shadow-xs shrink-0">
-              <FileCheck2 className="w-5 h-5" />
+        <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-wrap items-center justify-between pb-3.5 border-b border-amber-300/80 gap-3 shrink-0">
+          <div className="flex items-center gap-3 min-w-0">
+            <span className="p-2.5 rounded-2xl bg-gradient-to-br from-[#FFF8E7] to-[#F3E5BE] border border-[#D4AF37]/80 text-[#8C6B18] shadow-xs shrink-0">
+              <FileCheck2 className="w-6 h-6" />
             </span>
             <div className="min-w-0">
               <div className="flex items-center gap-2 flex-wrap">
-                <span className="text-[10px] uppercase font-bold tracking-wider text-[#8C6B18] font-mono bg-amber-100/90 border border-amber-300/80 px-2 py-0.5 rounded truncate">
+                <span className="text-xs uppercase font-bold tracking-wider text-[#8C6B18] font-mono bg-amber-100/90 border border-amber-300/80 px-2.5 py-1 rounded truncate">
                   {isCharter
-                    ? 'BÁO CÁO ĐIỀU LỆ CÔNG TY CỔ PHẦN CUNG ỨNG VÍ ĐIỆN TỬ TVPAY'
-                    : 'BÁO CÁO HỢP ĐỒNG MỞ VÀ SỬ DỤNG VÍ ĐIỆN TỬ TVPAY'}
+                    ? `BÁO CÁO ĐIỀU LỆ CÔNG TY CP CUNG ỨNG VÍ ĐIỆN TỬ TVPAY · ${totalSlides} SLIDES`
+                    : `BÁO CÁO HỢP ĐỒNG MỞ VÀ SỬ DỤNG VÍ ĐIỆN TỬ TVPAY · ${totalSlides} SLIDES`}
                 </span>
-                <span className="text-xs font-mono font-bold text-[#7A5B10] bg-amber-200/60 px-2 py-0.5 rounded border border-amber-300">
+                <span className="text-xs sm:text-sm font-mono font-bold text-[#7A5B10] bg-amber-200/80 px-2.5 py-1 rounded border border-amber-300 shadow-2xs">
                   SLIDE {currentSlide + 1} / {totalSlides}
                 </span>
               </div>
-              <h2 className="font-serif text-sm sm:text-base md:text-lg font-bold text-slate-900 m-0 mt-0.5 truncate">
+              <h2 className="font-serif text-lg sm:text-2xl md:text-3xl font-bold text-slate-900 m-0 mt-1 truncate">
                 {activeSlide.title}
               </h2>
             </div>
@@ -2029,15 +2050,15 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
 
           <div className="flex items-center gap-2.5 shrink-0">
             {/* Keyboard hints */}
-            <div className="hidden lg:flex items-center gap-1.5 text-xs text-slate-600 bg-white/90 px-3 py-1.5 rounded-xl border border-amber-200/80 shadow-2xs">
-              <kbd className="px-1.5 py-0.5 bg-amber-50 border border-amber-300 rounded text-[#8C6B18] font-mono text-[11px] font-bold">
+            <div className="hidden lg:flex items-center gap-1.5 text-xs sm:text-sm text-slate-600 bg-white/95 px-3 py-1.5 rounded-xl border border-amber-200/80 shadow-2xs">
+              <kbd className="px-2 py-0.5 bg-amber-50 border border-amber-300 rounded text-[#8C6B18] font-mono text-xs font-bold">
                 ←
               </kbd>
-              <kbd className="px-1.5 py-0.5 bg-amber-50 border border-amber-300 rounded text-[#8C6B18] font-mono text-[11px] font-bold">
+              <kbd className="px-2 py-0.5 bg-amber-50 border border-amber-300 rounded text-[#8C6B18] font-mono text-xs font-bold">
                 →
               </kbd>
               <span className="text-slate-400">hoặc</span>
-              <kbd className="px-1.5 py-0.5 bg-amber-50 border border-amber-300 rounded text-[#8C6B18] font-mono text-[11px] font-bold">
+              <kbd className="px-2 py-0.5 bg-amber-50 border border-amber-300 rounded text-[#8C6B18] font-mono text-xs font-bold">
                 Space
               </kbd>
               <span className="text-slate-600 font-medium">chuyển slide</span>
@@ -2050,14 +2071,14 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
                 uiSound.playClick();
                 setIsAutoPlaying(!isAutoPlaying);
               }}
-              className={`px-3 py-1.5 rounded-xl border text-xs font-semibold flex items-center gap-1.5 transition cursor-pointer ${
+              className={`px-3 py-1.5 rounded-xl border text-xs sm:text-sm font-semibold flex items-center gap-1.5 transition cursor-pointer ${
                 isAutoPlaying
                   ? 'bg-[#C59B27] text-white border-amber-500 shadow-xs'
                   : 'bg-white hover:bg-amber-50 text-slate-700 border-amber-300 shadow-2xs'
               }`}
               title={isAutoPlaying ? 'Tạm dừng tự chạy' : 'Tự chạy 8s/slide'}
             >
-              {isAutoPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
+              {isAutoPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
               <span className="hidden sm:inline">{isAutoPlaying ? 'Tạm dừng' : 'Tự chạy'}</span>
             </button>
 
@@ -2065,7 +2086,7 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
             <button
               type="button"
               onClick={toggleFullscreen}
-              className="px-3.5 py-1.5 rounded-xl border border-amber-300/90 bg-white hover:bg-amber-50 text-[#8C6B18] hover:text-[#7A5B10] text-xs font-bold transition flex items-center gap-1.5 cursor-pointer shadow-xs hover:border-amber-400"
+              className="px-3.5 py-1.5 rounded-xl border border-amber-300/90 bg-white hover:bg-amber-50 text-[#8C6B18] hover:text-[#7A5B10] text-xs sm:text-sm font-bold transition flex items-center gap-1.5 cursor-pointer shadow-xs hover:border-amber-400"
               title="Thoát toàn màn hình (Phím Esc)"
             >
               <Minimize2 className="w-4 h-4 text-[#C59B27]" />
@@ -2078,18 +2099,18 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
         <div className="relative z-10 w-full max-w-7xl mx-auto flex-1 flex flex-col justify-between overflow-y-auto slide-theater-scroll py-3 px-1">
           <div>
             {/* Slide Category Header */}
-            <div className="flex flex-wrap items-center justify-between gap-2 pb-2 mb-2 border-b border-amber-200/70">
-              <div className="flex items-center gap-2">
-                <span className="text-[10.5px] font-mono font-extrabold uppercase px-2 py-0.5 rounded bg-white text-[#8C6B18] border border-amber-300 shadow-2xs">
+            <div className="flex flex-wrap items-center justify-between gap-2 pb-2.5 mb-2.5 border-b border-amber-200/80">
+              <div className="flex items-center gap-2.5">
+                <span className="text-xs sm:text-sm font-mono font-extrabold uppercase px-2.5 py-1 rounded bg-white text-[#8C6B18] border border-amber-300 shadow-2xs">
                   {activeSlide.badge}
                 </span>
-                <span className="text-xs font-bold text-[#8C6B18] uppercase tracking-wide">
+                <span className="text-xs sm:text-sm md:text-base font-bold text-[#8C6B18] uppercase tracking-wide">
                   {activeSlide.category}
                 </span>
               </div>
             </div>
 
-            <p className="text-xs sm:text-sm text-slate-700 font-medium leading-relaxed mb-3">
+            <p className="text-sm sm:text-base md:text-lg text-slate-800 font-medium leading-relaxed mb-4">
               {activeSlide.subtitle}
             </p>
 
@@ -2105,44 +2126,44 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
 
             {/* Speaker Notes Callout */}
             {activeSlide.speakerNotes && (
-              <div className="mt-3 p-3 bg-gradient-to-r from-amber-50/95 via-white to-amber-50/95 rounded-xl border border-amber-300/80 shadow-2xs flex items-start gap-3">
+              <div className="tvpay-speaker-box mt-4 p-4 sm:p-5 bg-gradient-to-r from-amber-50/95 via-white to-amber-50/95 rounded-2xl border-2 border-amber-300/90 shadow-xs flex items-start gap-4">
                 {activeSlide.speakerAvatar ? (
                   <div className="relative shrink-0 mt-0.5">
                     <img
                       src={activeSlide.speakerAvatar}
                       alt={activeSlide.speakerName || 'Thành viên Nhóm 13'}
-                      className="w-10 h-10 rounded-full object-cover border-2 border-amber-400 shadow-xs"
+                      className="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover border-2 border-amber-400 shadow-sm"
                     />
                     <span
-                      className="absolute -bottom-1 -right-1 w-3.5 h-3.5 bg-emerald-500 rounded-full border-2 border-white flex items-center justify-center text-[7px] text-white font-bold"
+                      className="absolute -bottom-1 -right-1 w-4 h-4 bg-emerald-500 rounded-full border-2 border-white flex items-center justify-center text-[9px] text-white font-bold"
                       title="Diễn giả sẵn sàng"
                     >
                       ✓
                     </span>
                   </div>
                 ) : (
-                  <div className="w-10 h-10 rounded-full bg-amber-100 border border-amber-300 flex items-center justify-center text-amber-800 font-bold shrink-0 mt-0.5">
+                  <div className="w-12 h-12 rounded-full bg-amber-100 border border-amber-300 flex items-center justify-center text-amber-800 font-bold shrink-0 mt-0.5">
                     13
                   </div>
                 )}
                 <div className="min-w-0 flex-1">
-                  <div className="flex flex-wrap items-center justify-between gap-1 mb-0.5">
-                    <div className="flex items-center gap-1.5 flex-wrap">
-                      <MessageSquare className="w-3.5 h-3.5 text-[#C59B27] shrink-0" />
-                      <strong className="text-xs text-slate-900 font-bold">
+                  <div className="flex flex-wrap items-center justify-between gap-1 mb-1">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <MessageSquare className="w-4 h-4 text-[#C59B27] shrink-0" />
+                      <strong className="text-sm sm:text-base text-slate-900 font-bold">
                         {activeSlide.speakerName || 'Thành viên Nhóm 13 (Thịnh Vượng Legal)'}
                       </strong>
                       {activeSlide.speakerRole && (
-                        <span className="text-[10px] px-2 py-0.5 rounded bg-amber-100/90 text-[#7A5B10] font-medium border border-amber-200/60 hidden sm:inline">
+                        <span className="text-xs sm:text-sm px-2.5 py-0.5 rounded bg-amber-100/90 text-[#7A5B10] font-medium border border-amber-200/80 hidden sm:inline">
                           {activeSlide.speakerRole}
                         </span>
                       )}
                     </div>
-                    <span className="text-[9.5px] font-mono text-slate-400 uppercase font-semibold">
+                    <span className="text-xs font-mono text-slate-400 uppercase font-semibold">
                       Speaker Notes
                     </span>
                   </div>
-                  <p className="text-[11px] sm:text-[11.5px] text-slate-700 leading-relaxed m-0 italic bg-amber-50/50 p-2 rounded-lg border border-amber-200/60">
+                  <p className="text-sm sm:text-base text-slate-700 leading-relaxed m-0 italic bg-amber-50/50 p-3 rounded-xl border border-amber-200/60">
                     "{activeSlide.speakerNotes}"
                   </p>
                 </div>
@@ -2152,11 +2173,11 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
         </div>
 
         {/* Fullscreen Bottom Navigation Controls */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto pt-3 border-t border-amber-300/80 flex flex-wrap items-center justify-between gap-3 shrink-0">
+        <div className="relative z-10 w-full max-w-7xl mx-auto pt-3.5 border-t border-amber-300/80 flex flex-wrap items-center justify-between gap-3 shrink-0">
           <button
             type="button"
             onClick={prevSlide}
-            className="px-3.5 py-1.5 sm:px-4 sm:py-2 text-xs font-bold bg-white hover:bg-amber-50 text-[#7A5B10] border border-amber-300 rounded-xl transition flex items-center gap-1.5 cursor-pointer shadow-xs hover:border-amber-400"
+            className="px-4 py-2 text-xs sm:text-sm font-bold bg-white hover:bg-amber-50 text-[#7A5B10] border border-amber-300 rounded-xl transition flex items-center gap-2 cursor-pointer shadow-xs hover:border-amber-400"
           >
             <ChevronLeft className="w-4 h-4 text-[#C59B27]" />
             <span>Trang trước</span>
@@ -2170,15 +2191,15 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
                   key={`fs-pill-${s.id}`}
                   type="button"
                   onClick={() => goToSlide(idx)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition flex items-center gap-1.5 cursor-pointer shrink-0 ${
+                  className={`px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition flex items-center gap-1.5 cursor-pointer shrink-0 ${
                     isActive
-                      ? 'bg-[#C59B27] text-white shadow-sm font-bold border border-amber-500 ring-2 ring-amber-300/50'
+                      ? 'bg-[#C59B27] text-white shadow-sm font-bold border border-amber-500 ring-2 ring-amber-300/60'
                       : 'bg-white/90 text-slate-700 hover:text-slate-900 border border-amber-200/80 hover:bg-amber-50'
                   }`}
                   title={s.title}
                 >
-                  <span className="font-mono text-[10.5px] opacity-90">{idx + 1 < 10 ? `0${idx + 1}` : idx + 1}</span>
-                  <span className="hidden xl:inline text-[11px] truncate max-w-[100px]">
+                  <span className="font-mono text-xs opacity-90">{idx + 1 < 10 ? `0${idx + 1}` : idx + 1}</span>
+                  <span className="hidden xl:inline text-xs truncate max-w-[110px]">
                     {getSlideLabel(idx)}
                   </span>
                 </button>
@@ -2189,7 +2210,7 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
           <button
             type="button"
             onClick={nextSlide}
-            className="px-3.5 py-1.5 sm:px-4 sm:py-2 text-xs font-bold bg-gradient-to-r from-[#D4AF37] via-[#C59B27] to-[#A87B15] hover:brightness-105 text-white border border-amber-300 rounded-xl transition flex items-center gap-1.5 cursor-pointer shadow-md"
+            className="px-4 py-2 text-xs sm:text-sm font-bold bg-gradient-to-r from-[#D4AF37] via-[#C59B27] to-[#A87B15] hover:brightness-105 text-white border border-amber-300 rounded-xl transition flex items-center gap-2 cursor-pointer shadow-md"
           >
             <span>Trang tiếp</span>
             <ChevronRight className="w-4 h-4 text-amber-100" />
@@ -2224,12 +2245,12 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
             </span>
             <div className="min-w-0">
               <div className="flex items-center gap-2">
-                <span className="text-[10px] uppercase font-bold tracking-wider text-[#8C6B18] font-mono bg-amber-100/90 border border-amber-300/80 px-2 py-0.5 rounded truncate">
+                <span className="text-xs uppercase font-bold tracking-wider text-[#8C6B18] font-mono bg-amber-100/90 border border-amber-300/80 px-2 py-0.5 rounded truncate">
                   {isCharter
-                    ? 'BÁO CÁO ĐIỀU LỆ CÔNG TY CỔ PHẦN CUNG ỨNG VÍ ĐIỆN TỬ TVPAY · 10 SLIDE CHUYÊN SÂU'
-                    : 'BÁO CÁO HỢP ĐỒNG MỞ VÀ SỬ DỤNG VÍ ĐIỆN TỬ TVPAY · 10 SLIDE CHUYÊN SÂU'}
+                    ? `BÁO CÁO ĐIỀU LỆ CÔNG TY CP CUNG ỨNG VÍ ĐIỆN TỬ TVPAY · ${totalSlides} SLIDES`
+                    : `BÁO CÁO HỢP ĐỒNG MỞ VÀ SỬ DỤNG VÍ ĐIỆN TỬ TVPAY · ${totalSlides} SLIDES`}
                 </span>
-                <span className="text-[11px] text-slate-500 hidden sm:inline">
+                <span className="text-xs text-slate-500 hidden sm:inline">
                   · {docData.officialTitle}
                 </span>
               </div>
@@ -2241,7 +2262,7 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
 
           <div className="flex items-center gap-2 shrink-0">
             {/* Slide Index Pill */}
-            <span className="px-2.5 py-1 text-[11px] font-mono font-bold text-[#7A5B10] bg-amber-100/80 border border-amber-300/80 rounded-lg shadow-xs">
+            <span className="px-2.5 py-1 text-xs font-mono font-bold text-[#7A5B10] bg-amber-100/80 border border-amber-300/80 rounded-lg shadow-xs">
               {currentSlide + 1} / {totalSlides}
             </span>
 
@@ -2260,7 +2281,7 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
               title={isAutoPlaying ? 'Tạm dừng tự động chuyển slide' : 'Bật tự động chuyển slide sau 8s'}
             >
               {isAutoPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
-              <span className="hidden md:inline text-[11px] font-semibold">
+              <span className="hidden md:inline text-xs font-semibold">
                 {isAutoPlaying ? 'Đang chạy' : 'Tự chạy'}
               </span>
             </button>
@@ -2273,7 +2294,7 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
               title="Phóng to toàn màn hình (Phím F hoặc click)"
             >
               <Maximize2 className="w-3.5 h-3.5 text-[#C59B27]" />
-              <span className="hidden md:inline text-[11px] font-semibold">
+              <span className="hidden md:inline text-xs font-semibold">
                 Toàn màn hình (F)
               </span>
             </button>
@@ -2286,20 +2307,20 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
             {/* Slide Category Header */}
             <div className="flex flex-wrap items-center justify-between gap-2 pb-2.5 mb-3.5 border-b border-amber-200/60">
               <div className="flex items-center gap-2">
-                <span className="text-[10px] font-mono font-extrabold uppercase px-2 py-0.5 rounded bg-white text-[#8C6B18] border border-amber-300 shadow-2xs">
+                <span className="text-xs font-mono font-extrabold uppercase px-2 py-0.5 rounded bg-white text-[#8C6B18] border border-amber-300 shadow-2xs">
                   {activeSlide.badge}
                 </span>
-                <span className="text-xs font-bold text-[#8C6B18] uppercase tracking-wide">
+                <span className="text-xs sm:text-sm font-bold text-[#8C6B18] uppercase tracking-wide">
                   {activeSlide.category}
                 </span>
               </div>
-              <span className="text-[11px] text-slate-500 italic hidden sm:inline">
+              <span className="text-xs text-slate-500 italic hidden sm:inline">
                 Dùng phím ← và → trên bàn phím để chuyển slide
               </span>
             </div>
 
             {/* Slide Subtitle */}
-            <p className="text-xs sm:text-[13px] text-slate-600 font-medium leading-relaxed mb-4">
+            <p className="text-xs sm:text-sm text-slate-700 font-medium leading-relaxed mb-4">
               {activeSlide.subtitle}
             </p>
 
@@ -2315,7 +2336,7 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
 
             {/* Speaker Notes Callout with Real Team Member Avatar */}
             {activeSlide.speakerNotes && (
-              <div className="mt-4 p-3 sm:p-3.5 bg-gradient-to-r from-amber-50/95 via-white to-amber-50/95 rounded-xl border border-amber-300/80 shadow-2xs flex items-start gap-3">
+              <div className="mt-4 p-3.5 sm:p-4 bg-gradient-to-r from-amber-50/95 via-white to-amber-50/95 rounded-xl border border-amber-300/80 shadow-2xs flex items-start gap-3">
                 {activeSlide.speakerAvatar ? (
                   <div className="relative shrink-0 mt-0.5">
                     <img
@@ -2339,20 +2360,20 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
                   <div className="flex flex-wrap items-center justify-between gap-1 mb-1">
                     <div className="flex items-center gap-1.5 flex-wrap">
                       <MessageSquare className="w-3.5 h-3.5 text-[#C59B27] shrink-0" />
-                      <strong className="text-xs text-slate-900 font-bold">
+                      <strong className="text-xs sm:text-sm text-slate-900 font-bold">
                         {activeSlide.speakerName || 'Thành viên Nhóm 13 (Thịnh Vượng Legal)'}
                       </strong>
                       {activeSlide.speakerRole && (
-                        <span className="text-[10.5px] px-2 py-0.5 rounded bg-amber-100/90 text-[#7A5B10] font-medium border border-amber-200/60 hidden sm:inline">
+                        <span className="text-xs px-2 py-0.5 rounded bg-amber-100/90 text-[#7A5B10] font-medium border border-amber-200/60 hidden sm:inline">
                           {activeSlide.speakerRole}
                         </span>
                       )}
                     </div>
-                    <span className="text-[10px] font-mono text-slate-400 uppercase font-semibold">
+                    <span className="text-[10px] sm:text-xs font-mono text-slate-400 uppercase font-semibold">
                       Speaker Script · Nhóm 13
                     </span>
                   </div>
-                  <p className="text-[11.5px] text-slate-700 leading-relaxed m-0 italic bg-amber-50/40 p-2 rounded-lg border border-amber-200/50">
+                  <p className="text-xs sm:text-sm text-slate-700 leading-relaxed m-0 italic bg-amber-50/40 p-2.5 rounded-lg border border-amber-200/50">
                     "{activeSlide.speakerNotes}"
                   </p>
                 </div>
@@ -2366,13 +2387,13 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
             <button
               type="button"
               onClick={prevSlide}
-              className="px-3 py-1.5 sm:px-3.5 sm:py-2 text-xs font-bold bg-white hover:bg-amber-50 text-[#7A5B10] border border-amber-300 rounded-xl transition flex items-center gap-1.5 cursor-pointer shadow-xs hover:border-amber-400"
+              className="px-3 py-1.5 sm:px-3.5 sm:py-2 text-xs sm:text-sm font-bold bg-white hover:bg-amber-50 text-[#7A5B10] border border-amber-300 rounded-xl transition flex items-center gap-1.5 cursor-pointer shadow-xs hover:border-amber-400"
             >
               <ChevronLeft className="w-4 h-4 text-[#C59B27]" />
               <span>Trang trước</span>
             </button>
 
-            {/* Step Indicators / Dot Pills (1 to 10) */}
+            {/* Step Indicators / Dot Pills */}
             <div className="flex items-center gap-1 overflow-x-auto py-1 max-w-[65vw] sm:max-w-none scrollbar-none">
               {slides.map((s, idx) => {
                 const isActive = idx === currentSlide;
@@ -2388,8 +2409,8 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
                     }`}
                     title={s.title}
                   >
-                    <span className="font-mono text-[10px] opacity-90">{idx + 1 < 10 ? `0${idx + 1}` : idx + 1}</span>
-                    <span className="hidden xl:inline text-[11px] truncate max-w-[90px]">
+                    <span className="font-mono text-xs opacity-90">{idx + 1 < 10 ? `0${idx + 1}` : idx + 1}</span>
+                    <span className="hidden xl:inline text-xs truncate max-w-[95px]">
                       {getSlideLabel(idx)}
                     </span>
                   </button>
@@ -2401,7 +2422,7 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
             <button
               type="button"
               onClick={nextSlide}
-              className="px-3.5 py-1.5 sm:px-4 sm:py-2 text-xs font-bold bg-gradient-to-r from-[#D4AF37] via-[#C59B27] to-[#A87B15] hover:brightness-105 text-white border border-amber-300 rounded-xl transition flex items-center gap-1.5 cursor-pointer shadow-md"
+              className="px-3.5 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-bold bg-gradient-to-r from-[#D4AF37] via-[#C59B27] to-[#A87B15] hover:brightness-105 text-white border border-amber-300 rounded-xl transition flex items-center gap-1.5 cursor-pointer shadow-md"
             >
               <span>Trang tiếp</span>
               <ChevronRight className="w-4 h-4 text-amber-100" />

@@ -1648,6 +1648,66 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   background: transparent;
 }
 
+/* =========================================================================
+   TRUE FULLSCREEN PRESENTATION MODE TYPOGRAPHY ENHANCEMENT
+   High-contrast, projector-ready, enlarged fonts for auditoriums & meeting rooms
+   ========================================================================= */
+.tvpay-fullscreen-mode {
+  font-size: 16px;
+}
+
+.tvpay-fullscreen-mode .tvpay-slide-content {
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.tvpay-fullscreen-mode .tvpay-slide-content p {
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+@media (min-width: 768px) {
+  .tvpay-fullscreen-mode .tvpay-slide-content p {
+    font-size: 1.05rem;
+  }
+}
+
+.tvpay-fullscreen-mode .tvpay-slide-content h4 {
+  font-size: 1.15rem;
+  line-height: 1.4;
+}
+
+@media (min-width: 768px) {
+  .tvpay-fullscreen-mode .tvpay-slide-content h4 {
+    font-size: 1.25rem;
+  }
+}
+
+.tvpay-fullscreen-mode .tvpay-slide-content h3 {
+  font-size: 1.35rem;
+  line-height: 1.35;
+}
+
+.tvpay-fullscreen-mode .tvpay-slide-content .font-mono {
+  font-size: 0.875rem;
+}
+
+.tvpay-fullscreen-mode .tvpay-slide-content span.text-\[10\.5px\],
+.tvpay-fullscreen-mode .tvpay-slide-content span.text-\[11px\],
+.tvpay-fullscreen-mode .tvpay-slide-content span.text-xs {
+  font-size: 0.875rem;
+}
+
+.tvpay-fullscreen-mode .tvpay-speaker-box p {
+  font-size: 1rem !important;
+  line-height: 1.7 !important;
+}
+
+.tvpay-fullscreen-mode .tvpay-speaker-box strong {
+  font-size: 1.05rem !important;
+}
+
+
 
 
 
