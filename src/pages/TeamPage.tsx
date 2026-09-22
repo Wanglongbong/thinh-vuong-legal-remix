@@ -211,7 +211,7 @@ export function TeamPage() {
                 12 Thành viên Ban Nghiên cứu &amp; Chuyên đề
               </h2>
               <p className="text-sm text-[#5f6e7c] mt-1">
-                Nhóm 13 · Hệ thống dịch vụ pháp lý và hợp đồng mô phỏng cho ví điện tử Việt Nam
+                Nhóm 13 - Lớp 261LAW61A02 · Cơ chế đánh giá: A = 30% (4 thành viên xuất sắc)
               </p>
             </div>
 
@@ -325,7 +325,7 @@ export function TeamPage() {
                   {/* Member Meta */}
                   <div className="p-5 flex-1 flex flex-col justify-between">
                     <div>
-                      <div className="flex items-start justify-between gap-2 mb-1">
+                      <div className="flex items-start justify-between gap-2 mb-2">
                         <h3 className="font-serif text-lg font-bold text-[#0a131e] group-hover:text-[#8c6b18] transition-colors leading-snug">
                           {member.name}
                         </h3>
@@ -336,18 +336,45 @@ export function TeamPage() {
                         )}
                       </div>
 
-                      <p className="text-xs font-semibold text-[#8c6b18] mb-2 leading-relaxed">
-                        {member.role}
-                      </p>
+                      {/* Huy hiệu đánh giá đóng góp */}
+                      <div className="mb-3">
+                        {member.evaluation === 'A' ? (
+                          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-gradient-to-r from-[#FAF1D7] to-[#FAF5E8] border border-[#C59B27] rounded-xs text-[#8C6B18] font-bold text-xs shadow-xs">
+                            <span className="w-2 h-2 rounded-full bg-[#8C6B18]"></span>
+                            <span>Xếp loại A · 30% Xuất sắc</span>
+                          </div>
+                        ) : member.evaluation === 'B' ? (
+                          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-slate-50 border border-slate-200 rounded-xs text-slate-700 font-semibold text-xs">
+                            <span className="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
+                            <span>Xếp loại B</span>
+                          </div>
+                        ) : (
+                          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-amber-50/70 border border-amber-200 rounded-xs text-amber-800 font-medium text-xs">
+                            <span className="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                            <span>Xếp loại C</span>
+                          </div>
+                        )}
+                      </div>
 
-                      <p className="text-[11px] text-[#5f6e7c] leading-normal line-clamp-2 mb-4 bg-[#fbf9f5] p-2 rounded-xs border border-[#e3e7eb]">
-                        {member.expertise}
-                      </p>
+                      {/* Nhiệm vụ phân công chi tiết */}
+                      <div className="mb-4 bg-[#fbf9f5] p-3 rounded-xs border border-[#e3e7eb]">
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-[#8c6b18] block mb-1.5">
+                          Phân công công việc:
+                        </span>
+                        <ul className="space-y-1.5">
+                          {member.tasks.map((task, idx) => (
+                            <li key={idx} className="text-xs text-[#2c3e50] leading-relaxed flex items-start gap-1.5">
+                              <span className="text-[#8c6b18] font-bold select-none leading-tight mt-0.5">•</span>
+                              <span className="flex-1">{task}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
 
                     <div className="pt-3 border-t border-[#e3e7eb] flex items-center justify-between text-[11px] text-[#5f6e7c]">
                       <span className="text-slate-400">Mã sinh viên:</span>
-                      <span className="font-mono font-bold text-[#0a131e] bg-[#f0ede4] px-2 py-0.5 rounded-xs">
+                      <span className="font-mono font-bold text-[#0a131e] bg-[#f0ede4] px-2 py-0.5 rounded-xs border border-[#e3e7eb]">
                         {member.id}
                       </span>
                     </div>

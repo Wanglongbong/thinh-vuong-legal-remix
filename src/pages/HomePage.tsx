@@ -793,16 +793,13 @@ export function HomePage() {
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-1.5 flex-wrap">
-                        <strong className="truncate">{member.name}</strong>
+                        <strong className="truncate text-sm font-semibold text-[#0a131e]">{member.name}</strong>
                         {member.role.includes('Trưởng nhóm') && (
                           <span className="bg-[#8c6b18]/10 text-[#8c6b18] text-[9px] font-bold px-1.5 py-0.2 rounded-xs whitespace-nowrap">
                             Trưởng nhóm
                           </span>
                         )}
                       </div>
-                      <span className="truncate block text-slate-500 text-[11px]" title={member.role}>
-                        {member.role}
-                      </span>
                     </div>
 
                     {/* Quick upload icon on card hover */}
@@ -868,16 +865,13 @@ export function HomePage() {
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-1.5 flex-wrap">
-                            <strong className="truncate">{member.name}</strong>
+                            <strong className="truncate text-sm font-semibold text-[#0a131e]">{member.name}</strong>
                             {member.role.includes('Trưởng nhóm') && (
                               <span className="bg-[#8c6b18]/10 text-[#8c6b18] text-[9px] font-bold px-1.5 py-0.2 rounded-xs whitespace-nowrap">
                                 Trưởng nhóm
                               </span>
                             )}
                           </div>
-                          <span className="truncate block text-slate-500 text-[11px]" title={member.role}>
-                            {member.role}
-                          </span>
                         </div>
 
                         {/* Quick upload icon on card hover */}

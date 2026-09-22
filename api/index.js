@@ -46,106 +46,163 @@ var teamMembers = [
     slug: "anh-phuong",
     uploadedFileName: "ANh Phu\u031Bo\u031Bng.jpg",
     avatarUrl: "/assets/team/anh-phuong.jpg",
-    expertise: "Ph\xE2n t\xEDch t\u1ED5ng quan th\u1ECB tr\u01B0\u1EDDng v\xED \u0111i\u1EC7n t\u1EED & m\xF4 h\xECnh thanh to\xE1n di \u0111\u1ED9ng"
+    evaluation: "A",
+    evaluationNote: "Top 30% \u0111\xF3ng g\xF3p xu\u1EA5t s\u1EAFc",
+    tasks: [
+      "1. N\u1ED9i dung: Ch\u01B0\u01A1ng III, Ch\u01B0\u01A1ng IV, Ch\u01B0\u01A1ng V \u0110i\u1EC1u l\u1EC7 c\xF4ng ty",
+      "B\u1ED5 sung \u0110i\u1EC1u lu\u1EADt c\u1ED5 \u0111\xF4ng n\u01B0\u1EDBc ngo\xE0i, \u0111\u1EA7u t\u01B0 n\u01B0\u1EDBc ngo\xE0i",
+      "Ch\u1EC9nh b\xE0i t\u1ED5ng th\u1EC3 (\u0110i\u1EC1u l\u1EC7 + H\u1EE3p \u0111\u1ED3ng m\u1EDF)",
+      "2. Thuy\u1EBFt tr\xECnh"
+    ]
   },
   {
     name: "Ki\u1EC1u Ho\xE0i Thu",
     id: "26A4060739",
-    role: "Chuy\xEAn gia \u0110i\u1EC1u l\u1EC7 & \u0110H\u0110C\u0110",
+    role: "Th\xE0nh vi\xEAn",
     slug: "kieu-hoai-thu",
     uploadedFileName: "Kie\u0302\u0300u hoa\u0300i thu.jpg",
     avatarUrl: "/assets/team/kieu-hoai-thu.jpg",
-    expertise: "Qu\u1EA3n tr\u1ECB c\xF4ng ty \u0111\u1EA1i ch\xFAng, th\u1EA9m quy\u1EC1n bi\u1EC3u quy\u1EBFt v\xE0 c\u01A1 c\u1EA5u v\u1ED1n 50 t\u1EF7"
+    evaluation: "B",
+    tasks: [
+      "1. N\u1ED9i dung: Ch\u01B0\u01A1ng 2 - \u0110i\u1EC1u l\u1EC7 c\xF4ng ty; R\u1EE7i ro & X\u1EED l\xFD",
+      "2. Thuy\u1EBFt tr\xECnh"
+    ]
   },
   {
     name: "Tr\u1EA7n Th\u1ECB Th\u01A1",
     id: "26A4060737",
-    role: "Chuy\xEAn gia M\u1EDF v\xED & H\u1EE3p \u0111\u1ED3ng Gi\xE1m \u0111\u1ED1c",
+    role: "Th\xE0nh vi\xEAn",
     slug: "tran-thi-tho",
     uploadedFileName: "Tho\u031B .jpg",
     avatarUrl: "/assets/team/tran-thi-tho.jpg",
-    expertise: "Chu\u1EA9n h\xF3a \u0111i\u1EC1u kho\u1EA3n m\u1EDF v\xED ng\u01B0\u1EDDi d\xF9ng v\xE0 ph\xE2n \u0111\u1ECBnh th\u1EA9m quy\u1EC1n Ban \u0110i\u1EC1u h\xE0nh"
+    evaluation: "A",
+    evaluationNote: "Top 30% \u0111\xF3ng g\xF3p xu\u1EA5t s\u1EAFc",
+    tasks: [
+      "1. N\u1ED9i dung: Quy \u0111\u1ECBnh chung - H\u0110 m\u1EDF v\xE0 s\u1EED d\u1EE5ng V\xED \u0111i\u1EC7n t\u1EED",
+      "C\u1EA3nh b\xE1o khi s\u1EED d\u1EE5ng d\u1ECBch v\u1EE5 V\xED \u0111i\u1EC7n t\u1EED",
+      "N\u1ED9i dung & Vai tr\xF2 quan tr\u1ECDng c\u1EE7a H\u1EE3p \u0111\u1ED3ng m\u1EDF v\xE0 s\u1EED d\u1EE5ng"
+    ]
   },
   {
     name: "L\xEA Ph\u01B0\u01A1ng Th\u1EA3o",
     id: "26A4062560",
-    role: "Chuy\xEAn gia H\u1EE3p \u0111\u1ED3ng Lao \u0111\u1ED9ng & Li\xEAn k\u1EBFt NH",
+    role: "Th\xE0nh vi\xEAn",
     slug: "le-phuong-thao",
     uploadedFileName: "Le\u0302 pHU\u031BO\u031BNG THA\u0309O.jpg",
     avatarUrl: "/assets/team/le-phuong-thao.jpg",
-    expertise: "R\xE0ng bu\u1ED9c an ninh d\u1EEF li\u1EC7u nh\xE2n s\u1EF1 v\xE0 lu\u1ED3ng n\u1EA1p r\xFAt li\xEAn k\u1EBFt th\u1EBB/t\xE0i kho\u1EA3n"
+    evaluation: "B",
+    tasks: [
+      "1. N\u1ED9i dung: Ch\u01B0\u01A1ng 1 - \u0110i\u1EC1u l\u1EC7 c\xF4ng ty",
+      "N\u1ED9i dung & Vai tr\xF2 quan tr\u1ECDng c\u1EE7a \u0110i\u1EC1u l\u1EC7 c\xF4ng ty"
+    ]
   },
   {
     name: "V\u0169 Anh Qu\xE2n",
     id: "26A4062552",
-    role: "T\xEDch h\u1EE3p API & T\u1ED5ng h\u1EE3p, Web",
+    role: "Th\xE0nh vi\xEAn",
     slug: "vu-anh-quan",
     uploadedFileName: "VU\u0303 Anh Qua\u0302n.jpg",
     avatarUrl: "/assets/team/vu-anh-quan.jpg",
-    expertise: "Ki\u1EBFn tr\xFAc ph\xE1p l\xFD c\u1ED5ng thanh to\xE1n API, Webhook, SLA v\xE0 an to\xE0n h\u1EC7 th\u1ED1ng"
+    evaluation: "B",
+    tasks: [
+      "1. X\xE2y d\u1EF1ng Website & H\u1EC7 th\u1ED1ng Slide tr\xECnh chi\u1EBFu",
+      "2. So\u1EA1n th\u1EA3o v\u0103n b\u1EA3n b\xE1o c\xE1o Word"
+    ]
   },
   {
     name: "L\xEA Th\u1ECB H\u1ED3ng Nhung",
     id: "26A4062545",
-    role: "Chuy\xEAn gia Thu\xEA ngo\xE0i CNTT & Merchant",
+    role: "Th\xE0nh vi\xEAn",
     slug: "hong-nhung",
     uploadedFileName: "Ho\u0302\u0300ng Nhung .jpg",
     avatarUrl: "/assets/team/hong-nhung.jpg",
-    expertise: "Ki\u1EC3m so\xE1t nh\xE0 th\u1EA7u m\xE1y ch\u1EE7 \u0111\xE1m m\xE2y v\xE0 h\u1EE3p \u0111\u1ED3ng Merchant POS/Online"
+    evaluation: "B",
+    tasks: [
+      "1. N\u1ED9i dung: Ch\u01B0\u01A1ng 7 - Hi\u1EC7u l\u1EF1c thanh to\xE1n",
+      "2. X\xE2y d\u1EF1ng r\u1EE7i ro & gi\u1EA3i ph\xE1p"
+    ]
   },
   {
     name: "Ph\u1EA1m D\u1EA1 Th\u1EA3o",
     id: "26A4060735",
-    role: "Chuy\xEAn gia Th\xE0nh l\u1EADp DN & H\u1EE3p \u0111\u1ED3ng BCC",
+    role: "Th\xE0nh vi\xEAn",
     slug: "pham-da-thao",
     uploadedFileName: "Pha\u0323m Da\u0323 Tha\u0309o.jpg",
     avatarUrl: "/assets/team/pham-da-thao.jpg",
-    expertise: "H\u1ED3 s\u01A1 ph\xE1p l\xFD ti\u1EC1n c\u1EA5p ph\xE9p v\xE0 ph\xE2n \u0111\u1ECBnh ranh gi\u1EDBi h\u1EE3p t\xE1c kinh doanh"
+    evaluation: "A",
+    evaluationNote: "Top 30% \u0111\xF3ng g\xF3p xu\u1EA5t s\u1EAFc",
+    tasks: [
+      "1. N\u1ED9i dung: Ch\u01B0\u01A1ng 4 - \u0110i\u1EC1u l\u1EC7 c\xF4ng ty",
+      "Quy \u0111\u1ECBnh c\u1ED5 \u0111\xF4ng n\u01B0\u1EDBc ngo\xE0i & \u0111\u1EA7u t\u01B0 n\u01B0\u1EDBc ngo\xE0i",
+      "\xDD t\u01B0\u1EDFng / gi\u1EA3i ph\xE1p b\u1EA3o v\u1EC7 quy\u1EC1n v\xE0 l\u1EE3i \xEDch h\u1EE3p ph\xE1p c\u1EE7a DN"
+    ]
   },
   {
     name: "Nguy\u1EC5n Huy Th\xE1i",
     id: "26A4062558",
-    role: "Chuy\xEAn gia Tra so\xE1t Khi\u1EBFu n\u1EA1i & H\u1ED3 s\u01A1 S\u1EF1 c\u1ED1",
+    role: "Th\xE0nh vi\xEAn",
     slug: "nguyen-huy-thai",
     uploadedFileName: "Nguye\u0302\u0303n Huy Tha\u0301i.jpg",
     avatarUrl: "/assets/team/nguyen-huy-thai.jpg",
-    expertise: "Quy tr\xECnh gi\u1EA3i quy\u1EBFt tranh ch\u1EA5p t\xE0i ch\xEDnh 3 c\u1EA5p v\xE0 ph\u1EA3n \u1EE9ng s\u1EF1 c\u1ED1 an ninh m\u1EA1ng"
+    evaluation: "C",
+    tasks: [
+      "1. N\u1ED9i dung: Ti\u1EC7n \xEDch c\u1EE7a V\xED \u0111i\u1EC7n t\u1EED"
+    ]
   },
   {
     name: "Ph\u1EA1m V\u0103n Quang",
     id: "26A4062551",
-    role: "Chuy\xEAn gia B\u1EA3o m\u1EADt & S\u1EDF h\u1EEFu tr\xED tu\u1EC7",
+    role: "Th\xE0nh vi\xEAn",
     slug: "quang-pham",
     uploadedFileName: "Quang PhA\u0323M.jpg",
     avatarUrl: "/assets/team/quang-pham.jpg",
-    expertise: "B\u1EA3o v\u1EC7 m\xE3 ngu\u1ED3n v\xED \u0111i\u1EC7n t\u1EED, th\u1ECFa thu\u1EADn b\u1EA3o m\u1EADt NDA v\xE0 b\u1EA3n quy\u1EC1n ph\u1EA7n m\u1EC1m"
+    evaluation: "B",
+    tasks: [
+      "1. N\u1ED9i dung: C\u1EA3nh b\xE1o c\xE1c lo\u1EA1i h\xECnh l\u1EEBa \u0111\u1EA3o tr\u1EF1c tuy\u1EBFn (H\u0110 b\u1EA3o m\u1EADt th\xF4ng tin)",
+      "2. Thuy\u1EBFt tr\xECnh"
+    ]
   },
   {
     name: "Tr\u1EA7n Th\u1ECB Th\xF9y",
     id: "26A4062565",
-    role: "Chuy\xEAn gia Th\u1ECFa thu\u1EADn C\u1ED5 \u0111\xF4ng",
+    role: "Th\xE0nh vi\xEAn",
     slug: "tran-thuy",
     uploadedFileName: "Tra\u0302\u0300n Thuy\u0300.jpg",
     avatarUrl: "/assets/team/tran-thuy.jpg",
-    expertise: "Cam k\u1EBFt g\xF3p v\u1ED1n, x\u1EED l\xFD b\u1EBF t\u1EAFc Deadlock v\xE0 th\u1ECFa thu\u1EADn c\u1ED5 \u0111\xF4ng s\xE1ng l\u1EADp"
+    evaluation: "B",
+    tasks: [
+      "1. N\u1ED9i dung: Th\xF4ng tin kh\xE1ch h\xE0ng - H\u0110 m\u1EDF v\xE0 s\u1EED d\u1EE5ng",
+      "H\u01B0\u1EDBng d\u1EABn giao d\u1ECBch an to\xE0n tr\xEAn \u1EE9ng d\u1EE5ng",
+      "\xDD t\u01B0\u1EDFng / gi\u1EA3i ph\xE1p b\u1EA3o v\u1EC7 quy\u1EC1n v\xE0 l\u1EE3i \xEDch h\u1EE3p ph\xE1p c\u1EE7a DN"
+    ]
   },
   {
     name: "V\u01B0\u01A1ng Thu Th\u1EE7y",
     id: "26A4062567",
-    role: "Chuy\xEAn gia Khuy\u1EBFn m\u1EA1i & D\u1EEF li\u1EC7u C\xE1 nh\xE2n",
+    role: "Th\xE0nh vi\xEAn",
     slug: "vuong-thu-thuy",
     uploadedFileName: "VU\u031Bo\u031Bng thU thuy\u0309.jpg",
     avatarUrl: "/assets/team/vuong-thu-thuy.jpg",
-    expertise: "Tu\xE2n th\u1EE7 Lu\u1EADt B\u1EA3o v\u1EC7 d\u1EEF li\u1EC7u c\xE1 nh\xE2n 91/2025/QH15 v\xE0 quy ch\u1EBF khuy\u1EBFn m\u1EA1i v\xED"
+    evaluation: "A",
+    evaluationNote: "Top 30% \u0111\xF3ng g\xF3p xu\u1EA5t s\u1EAFc",
+    tasks: [
+      "1. N\u1ED9i dung: Gi\u1EDBi thi\u1EC7u H\u1EE3p \u0111\u1ED3ng m\u1EDF v\xE0 s\u1EED d\u1EE5ng",
+      "\xDD t\u01B0\u1EDFng / gi\u1EA3i ph\xE1p b\u1EA3o v\u1EC7 quy\u1EC1n v\xE0 l\u1EE3i \xEDch h\u1EE3p ph\xE1p c\u1EE7a DN",
+      "Gi\u1EA5y \u0111\u0103ng k\xFD m\u1EDF v\xE0 s\u1EED d\u1EE5ng"
+    ]
   },
   {
     name: "V\u0169 Ph\u01B0\u01A1ng Th\u1EA3o",
     id: "26A4060736",
-    role: "Chuy\xEAn gia TK B\u1EA3o \u0111\u1EA3m & C\u1EADp nh\u1EADt Ph\xE1p l\xFD",
+    role: "Th\xE0nh vi\xEAn",
     slug: "phuong-thao",
     uploadedFileName: "Phu\u031Bo\u031Bng Tha\u0309o.jpg",
     avatarUrl: "/assets/team/phuong-thao.jpg",
-    expertise: "C\u01A1 ch\u1EBF k\xFD qu\u1EF9 b\u1EA3o \u0111\u1EA3m thanh to\xE1n 1:1 v\xE0 quy tr\xECnh r\xE0 so\xE1t v\u0103n b\u1EA3n NHNN \u0111\u1ECBnh k\u1EF3"
+    evaluation: "B",
+    tasks: [
+      "N\u1ED9i dung: Ch\u01B0\u01A1ng 6 - \u0110i\u1EC1u l\u1EC7 c\xF4ng ty",
+      "\xDD t\u01B0\u1EDFng / gi\u1EA3i ph\xE1p b\u1EA3o v\u1EC7 quy\u1EC1n v\xE0 l\u1EE3i \xEDch h\u1EE3p ph\xE1p c\u1EE7a DN"
+    ]
   }
 ];
 var team = teamMembers.map((m) => [m.name, m.id, m.role]);
