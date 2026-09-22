@@ -1653,58 +1653,54 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
    High-contrast, projector-ready, enlarged fonts for auditoriums & meeting rooms
    ========================================================================= */
 .tvpay-fullscreen-mode {
-  font-size: 16px;
+  font-size: 15px;
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 99999999 !important;
 }
 
 .tvpay-fullscreen-mode .tvpay-slide-content {
-  font-size: 1rem;
-  line-height: 1.7;
+  font-size: 0.9rem;
+  line-height: 1.5;
 }
 
 .tvpay-fullscreen-mode .tvpay-slide-content p {
-  font-size: 0.95rem;
-  line-height: 1.65;
+  font-size: 0.85rem;
+  line-height: 1.5;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .tvpay-fullscreen-mode .tvpay-slide-content p {
-    font-size: 1.05rem;
+    font-size: 0.9rem;
   }
 }
 
 .tvpay-fullscreen-mode .tvpay-slide-content h4 {
-  font-size: 1.15rem;
-  line-height: 1.4;
+  font-size: 1rem;
+  line-height: 1.35;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .tvpay-fullscreen-mode .tvpay-slide-content h4 {
-    font-size: 1.25rem;
+    font-size: 1.05rem;
   }
 }
 
 .tvpay-fullscreen-mode .tvpay-slide-content h3 {
-  font-size: 1.35rem;
-  line-height: 1.35;
+  font-size: 1.15rem;
+  line-height: 1.3;
 }
 
 .tvpay-fullscreen-mode .tvpay-slide-content .font-mono {
-  font-size: 0.875rem;
+  font-size: 0.775rem;
 }
 
 .tvpay-fullscreen-mode .tvpay-slide-content span.text-\[10\.5px\],
 .tvpay-fullscreen-mode .tvpay-slide-content span.text-\[11px\],
 .tvpay-fullscreen-mode .tvpay-slide-content span.text-xs {
-  font-size: 0.875rem;
-}
-
-.tvpay-fullscreen-mode .tvpay-speaker-box p {
-  font-size: 1rem !important;
-  line-height: 1.7 !important;
-}
-
-.tvpay-fullscreen-mode .tvpay-speaker-box strong {
-  font-size: 1.05rem !important;
+  font-size: 0.775rem;
 }
 
 

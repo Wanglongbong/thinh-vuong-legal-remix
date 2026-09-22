@@ -91,7 +91,7 @@ export function ContractDetailPage() {
                   Chế độ hiển thị:
                 </span>
                 <span className="text-xs text-slate-600">
-                  (Văn kiện pháp lý chính thức &amp; Khung trình chiếu Slide thuyết trình 10 trang chuyên sâu)
+                  (Văn kiện pháp lý chính thức &amp; Khung trình chiếu Slide thuyết trình chuyên sâu)
                 </span>
               </div>
               <div className="flex items-center gap-2">
@@ -105,7 +105,7 @@ export function ContractDetailPage() {
                   href="#slides-section"
                   className="text-xs font-bold px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:brightness-105 text-white shadow-sm border border-amber-400/80 transition flex items-center gap-1.5"
                 >
-                  🖥️ 2. Slide Thuyết Trình 10 Trang
+                  🖥️ 2. Slide Thuyết Trình
                 </a>
               </div>
             </div>
@@ -115,7 +115,7 @@ export function ContractDetailPage() {
               <TvpayDocumentPresentation slug={item.slug} />
             </div>
 
-            {/* PART 2: INTERACTIVE PRESENTATION SLIDES (10 TRANG CHI TIẾT) */}
+            {/* PART 2: INTERACTIVE PRESENTATION SLIDES */}
             <div id="slides-section" className="mt-14 pt-8 border-t-2 border-dashed border-amber-900/25">
               <div className="flex flex-wrap items-center justify-between gap-3 pb-4 mb-2 border-b border-amber-200/80">
                 <div>

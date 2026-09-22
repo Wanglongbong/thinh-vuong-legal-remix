@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import {
   AlertTriangle,
   Award,
@@ -590,53 +591,53 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
       title: 'HỢP ĐỒNG VÍ ĐIỆN TỬ: TUYẾN PHÒNG THỦ Ở TUYẾN ĐẦU',
       subtitle: 'Nơi doanh nghiệp trực tiếp đối mặt hàng triệu giao dịch mỗi ngày. Trả lời: "Ai chịu trách nhiệm gì?"',
       renderContent: () => (
-        <div className="space-y-4">
-          <div className="p-4 sm:p-5 bg-gradient-to-r from-amber-100/90 via-amber-50 to-white rounded-2xl border-2 border-amber-300 shadow-xs">
-            <span className="font-mono text-xs uppercase font-bold text-[#8C6B18] tracking-wider block mb-1.5">
+        <div className="space-y-3">
+          <div className="p-3 sm:p-3.5 bg-gradient-to-r from-amber-100/90 via-amber-50 to-white rounded-xl border border-amber-300 shadow-2xs">
+            <span className="font-mono text-[11px] uppercase font-bold text-[#8C6B18] tracking-wider block mb-1">
               Ẩn dụ cốt lõi từ Kịch bản thuyết trình
             </span>
-            <p className="text-base sm:text-lg md:text-xl font-serif text-slate-900 font-bold leading-relaxed m-0 italic">
+            <p className="text-xs sm:text-sm md:text-base font-serif text-slate-900 font-bold leading-relaxed m-0 italic">
               "Nếu Điều lệ công ty là 'bộ gen' và khung xương quyết định cách doanh nghiệp vận hành ở tầm quản trị nội bộ, thì Hợp đồng ví điện tử chính là hệ thần kinh &amp; tuyến phòng thủ ở tuyến đầu - nơi mọi tương tác với hàng triệu khách hàng được ghi nhận và kiểm soát."
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="p-4 sm:p-5 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs relative overflow-hidden flex flex-col justify-between">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div className="p-3.5 bg-white/95 rounded-xl border border-amber-300 shadow-2xs relative overflow-hidden flex flex-col justify-between">
               <RoyalFiligreeCorner className="absolute top-2 right-2" />
               <div>
-                <span className="font-mono text-xs font-bold text-[#8C6B18] uppercase tracking-wider block mb-1">
+                <span className="font-mono text-[11px] font-bold text-[#8C6B18] uppercase tracking-wider block mb-1">
                   So sánh tầm vóc
                 </span>
-                <h4 className="text-base sm:text-lg font-bold text-slate-900 m-0 mb-2">ĐIỀU LỆ vs HỢP ĐỒNG VÍ</h4>
-                <p className="text-sm sm:text-base text-slate-700 leading-relaxed m-0">
+                <h4 className="text-sm sm:text-base font-bold text-slate-900 m-0 mb-1.5">ĐIỀU LỆ vs HỢP ĐỒNG VÍ</h4>
+                <p className="text-xs sm:text-sm text-slate-700 leading-relaxed m-0">
                   Nếu Điều lệ trả lời câu hỏi <em>"công ty được tổ chức và quản trị như thế nào"</em>, thì Hợp đồng ví điện tử trả lời câu hỏi sát sườn hơn:
                 </p>
-                <div className="mt-2.5 p-3 bg-amber-50 rounded-xl border border-amber-200 text-sm sm:text-base font-bold text-amber-950">
+                <div className="mt-2 p-2 bg-amber-50 rounded-lg border border-amber-200 text-xs sm:text-sm font-bold text-amber-950">
                   "KHI KHÁCH HÀNG VÀ DOANH NGHIỆP GIAO DỊCH VỚI NHAU, AI CHỊU TRÁCH NHIỆM GÌ?"
                 </div>
               </div>
-              <div className="mt-3 pt-2 border-t border-amber-200 text-xs sm:text-sm font-semibold text-[#8C6B18]">
+              <div className="mt-2 pt-1.5 border-t border-amber-200 text-xs font-semibold text-[#8C6B18]">
                 Tuyến đầu tiếp xúc người dùng
               </div>
             </div>
 
-            <div className="p-4 sm:p-5 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs relative overflow-hidden flex flex-col justify-between">
+            <div className="p-3.5 bg-white/95 rounded-xl border border-amber-300 shadow-2xs relative overflow-hidden flex flex-col justify-between">
               <RoyalFiligreeCorner className="absolute top-2 right-2" />
               <div>
-                <span className="font-mono text-xs font-bold text-[#8C6B18] uppercase tracking-wider block mb-1">
+                <span className="font-mono text-[11px] font-bold text-[#8C6B18] uppercase tracking-wider block mb-1">
                   Mục tiêu tối thượng
                 </span>
-                <h4 className="text-base sm:text-lg font-bold text-slate-900 m-0 mb-2">CÔNG CỤ PHÂN BỔ RỦI RO</h4>
-                <p className="text-sm sm:text-base text-slate-700 leading-relaxed m-0 mb-2">
-                  Một hợp đồng soạn thảo tốt không chỉ là "văn bản cho có", mà là công cụ chủ động phân bổ rủi ro một cách công bằng và hợp pháp.
+                <h4 className="text-sm sm:text-base font-bold text-slate-900 m-0 mb-1.5">CÔNG CỤ PHÂN BỔ RỦI RO</h4>
+                <p className="text-xs sm:text-sm text-slate-700 leading-relaxed m-0 mb-1.5">
+                  Một hợp đồng soạn thảo tốt không chỉ là "văn bản cho có", mà là công cụ chủ động phân bổ rủi ro một cách công bằng và hợp pháp:
                 </p>
-                <ul className="space-y-1 text-xs sm:text-sm text-slate-600 m-0 p-0 list-none">
+                <ul className="space-y-1 text-xs text-slate-600 m-0 p-0 list-none">
                   <li>• Minh bạch về điều kiện, quyền hạn và nghĩa vụ các bên.</li>
                   <li>• Bảo vệ doanh nghiệp trước rủi ro tài chính không giới hạn.</li>
                   <li>• Giữ vững niềm tin người dùng và tuân thủ chặt chẽ pháp luật.</li>
                 </ul>
               </div>
-              <div className="mt-3 pt-2 border-t border-amber-200 text-xs sm:text-sm font-semibold text-[#8C6B18]">
+              <div className="mt-2 pt-1.5 border-t border-amber-200 text-xs font-semibold text-[#8C6B18]">
                 Công bằng, hợp pháp &amp; minh bạch
               </div>
             </div>
@@ -645,88 +646,88 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
       ),
     },
 
-    // SLIDE 2: 04 NHÓM NỘI DUNG CỐT LÕI CỦA HỢP ĐỒNG VÍ (MỤC I.1)
+    // SLIDE 2: 04 NHÓM NỘI DUNG CỐT LÕI CỦA HỢP ĐỒNG VÍ
     {
       id: 'wallet-2',
       badge: 'SLIDE 02 / 07 · 04 NỘI DUNG CỐT LÕI',
-      category: 'HỢP ĐỒNG VÍ ĐIỆN TỬ · MỤC I.1 GOOGLE DOC 1',
+      category: 'HỢP ĐỒNG VÍ ĐIỆN TỬ · 04 NHÓM NỘI DUNG CỐT LÕI',
       title: '04 NHÓM NỘI DUNG CỐT LÕI CỦA HỢP ĐỒNG VÍ ĐIỆN TỬ',
       subtitle: 'Quy chuẩn mạch lạc về điều kiện, cách thức giao dịch, biểu phí và bảo mật giải quyết khiếu nại',
       renderContent: () => (
-        <div className="space-y-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
-            <div className="p-4 sm:p-5 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs relative overflow-hidden flex flex-col justify-between">
+        <div className="space-y-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
+            <div className="p-3 sm:p-3.5 bg-white/95 rounded-xl border border-amber-300 shadow-2xs relative overflow-hidden flex flex-col justify-between">
               <RoyalFiligreeCorner className="absolute top-1.5 right-1.5" />
               <div>
-                <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-amber-100 text-[#7A5B10] inline-block mb-2 border border-amber-300">
+                <span className="font-mono text-[10.5px] font-bold px-2 py-0.5 rounded bg-amber-100 text-[#7A5B10] inline-block mb-1.5 border border-amber-300">
                   Thứ nhất
                 </span>
-                <h4 className="text-base sm:text-lg font-bold text-slate-900 m-0 mb-2">ĐIỀU KIỆN MỞ &amp; DÙNG VÍ</h4>
-                <ul className="space-y-1.5 text-xs sm:text-sm text-slate-700 m-0 p-0 list-none">
+                <h4 className="text-xs sm:text-sm font-bold text-slate-900 m-0 mb-1.5">ĐIỀU KIỆN MỞ &amp; DÙNG VÍ</h4>
+                <ul className="space-y-1 text-[11px] sm:text-xs text-slate-700 m-0 p-0 list-none leading-snug">
                   <li>• Xác định quyền và nghĩa vụ của doanh nghiệp.</li>
-                  <li>• Quy định điều kiện mở ví và thông tin KH cần cung cấp.</li>
-                  <li>• Quy định phương thức xác thực.</li>
-                  <li>• Các trường hợp từ chối hoặc tạm dừng cung ứng dịch vụ.</li>
-                  <li>• Trách nhiệm của KH trong việc bảo quản: Thông tin xác thực, Mật khẩu, mã PIN, Thiết bị và phương tiện xác thực.</li>
+                  <li>• Quy định điều kiện mở ví &amp; thông tin cần cung cấp.</li>
+                  <li>• Quy định phương thức xác thực an toàn.</li>
+                  <li>• Trường hợp từ chối hoặc tạm dừng cung ứng dịch vụ.</li>
+                  <li>• Trách nhiệm KH: Bảo quản thông tin xác thực, mã PIN, thiết bị.</li>
                 </ul>
               </div>
-              <div className="mt-3 pt-2 border-t border-amber-200 text-xs font-semibold text-emerald-800">
-                Mục đích: hạn chế nguy cơ bị chiếm đoạt
+              <div className="mt-2 pt-1.5 border-t border-amber-200 text-[10.5px] font-semibold text-emerald-800">
+                Hạn chế nguy cơ bị chiếm đoạt
               </div>
             </div>
 
-            <div className="p-4 sm:p-5 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs relative overflow-hidden flex flex-col justify-between">
+            <div className="p-3 sm:p-3.5 bg-white/95 rounded-xl border border-amber-300 shadow-2xs relative overflow-hidden flex flex-col justify-between">
               <RoyalFiligreeCorner className="absolute top-1.5 right-1.5" />
               <div>
-                <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-amber-100 text-[#7A5B10] inline-block mb-2 border border-amber-300">
+                <span className="font-mono text-[10.5px] font-bold px-2 py-0.5 rounded bg-amber-100 text-[#7A5B10] inline-block mb-1.5 border border-amber-300">
                   Thứ hai
                 </span>
-                <h4 className="text-base sm:text-lg font-bold text-slate-900 m-0 mb-2">CÁCH THỨC THỰC HIỆN GD</h4>
-                <ul className="space-y-1.5 text-xs sm:text-sm text-slate-700 m-0 p-0 list-none">
-                  <li>• Quy định cách thức khách hàng thực hiện giao dịch thông qua ví.</li>
+                <h4 className="text-xs sm:text-sm font-bold text-slate-900 m-0 mb-1.5">CÁCH THỨC THỰC HIỆN GD</h4>
+                <ul className="space-y-1 text-[11px] sm:text-xs text-slate-700 m-0 p-0 list-none leading-snug">
+                  <li>• Quy định cách thức khách hàng thực hiện GD qua ví.</li>
                   <li>• Xác định thời điểm giao dịch được xác lập.</li>
                   <li>• Quy định phương thức xác nhận giao dịch.</li>
-                  <li>• Quy định hạn mức giao dịch.</li>
-                  <li>• Quy định cách xử lý khi giao dịch không thành công.</li>
+                  <li>• Quy định hạn mức giao dịch (100 Tr/tháng).</li>
+                  <li>• Xử lý khi giao dịch không thành công.</li>
                 </ul>
               </div>
-              <div className="mt-3 pt-2 border-t border-amber-200 text-xs font-semibold text-[#8C6B18]">
+              <div className="mt-2 pt-1.5 border-t border-amber-200 text-[10.5px] font-semibold text-[#8C6B18]">
                 Chuẩn hóa quy trình giao dịch
               </div>
             </div>
 
-            <div className="p-4 sm:p-5 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs relative overflow-hidden flex flex-col justify-between">
+            <div className="p-3 sm:p-3.5 bg-white/95 rounded-xl border border-amber-300 shadow-2xs relative overflow-hidden flex flex-col justify-between">
               <RoyalFiligreeCorner className="absolute top-1.5 right-1.5" />
               <div>
-                <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-amber-100 text-[#7A5B10] inline-block mb-2 border border-amber-300">
+                <span className="font-mono text-[10.5px] font-bold px-2 py-0.5 rounded bg-amber-100 text-[#7A5B10] inline-block mb-1.5 border border-amber-300">
                   Thứ ba
                 </span>
-                <h4 className="text-base sm:text-lg font-bold text-slate-900 m-0 mb-2">PHÍ DỊCH VỤ</h4>
-                <ul className="space-y-1.5 text-xs sm:text-sm text-slate-700 m-0 p-0 list-none">
+                <h4 className="text-xs sm:text-sm font-bold text-slate-900 m-0 mb-1.5">PHÍ DỊCH VỤ</h4>
+                <ul className="space-y-1 text-[11px] sm:text-xs text-slate-700 m-0 p-0 list-none leading-snug">
                   <li>• Quy định các loại phí khách hàng phải thanh toán.</li>
-                  <li>• Thời điểm thu phí.</li>
-                  <li>• Phương thức thu phí.</li>
+                  <li>• Thời điểm thu phí minh bạch.</li>
+                  <li>• Phương thức cấn trừ / thu phí tự động.</li>
                 </ul>
               </div>
-              <div className="mt-3 pt-2 border-t border-amber-200 text-xs font-semibold text-[#8C6B18]">
+              <div className="mt-2 pt-1.5 border-t border-amber-200 text-[10.5px] font-semibold text-[#8C6B18]">
                 Minh bạch tài chính
               </div>
             </div>
 
-            <div className="p-4 sm:p-5 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs relative overflow-hidden flex flex-col justify-between">
+            <div className="p-3 sm:p-3.5 bg-white/95 rounded-xl border border-amber-300 shadow-2xs relative overflow-hidden flex flex-col justify-between">
               <RoyalFiligreeCorner className="absolute top-1.5 right-1.5" />
               <div>
-                <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-amber-100 text-[#7A5B10] inline-block mb-2 border border-amber-300">
+                <span className="font-mono text-[10.5px] font-bold px-2 py-0.5 rounded bg-amber-100 text-[#7A5B10] inline-block mb-1.5 border border-amber-300">
                   Thứ tư
                 </span>
-                <h4 className="text-base sm:text-lg font-bold text-slate-900 m-0 mb-2">BẢO MẬT &amp; KHIẾU NẠI</h4>
-                <ul className="space-y-1.5 text-xs sm:text-sm text-slate-700 m-0 p-0 list-none">
-                  <li>• Quy định về bảo vệ dữ liệu cá nhân.</li>
-                  <li>• Bảo vệ thông tin khách hàng.</li>
-                  <li>• Quy định cơ chế giải quyết khiếu nại khi xảy ra tranh chấp.</li>
+                <h4 className="text-xs sm:text-sm font-bold text-slate-900 m-0 mb-1.5">BẢO MẬT &amp; KHIẾU NẠI</h4>
+                <ul className="space-y-1 text-[11px] sm:text-xs text-slate-700 m-0 p-0 list-none leading-snug">
+                  <li>• Quy định về bảo vệ dữ liệu cá nhân theo Luật 91/2025.</li>
+                  <li>• Bảo mật tuyệt đối thông tin khách hàng.</li>
+                  <li>• Cơ chế tiếp nhận &amp; giải quyết khiếu nại tranh chấp.</li>
                 </ul>
               </div>
-              <div className="mt-3 pt-2 border-t border-amber-200 text-xs font-semibold text-[#8C6B18]">
+              <div className="mt-2 pt-1.5 border-t border-amber-200 text-[10.5px] font-semibold text-[#8C6B18]">
                 An toàn &amp; Quyền riêng tư
               </div>
             </div>
@@ -735,61 +736,61 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
       ),
     },
 
-    // SLIDE 3: 06 VAI TRÒ TRỌNG YẾU CỦA HỢP ĐỒNG VÍ (MỤC I.2)
+    // SLIDE 3: 06 VAI TRÒ TRỌNG YẾU CỦA HỢP ĐỒNG VÍ
     {
       id: 'wallet-3',
       badge: 'SLIDE 03 / 07 · 06 VAI TRÒ TRỌNG YẾU',
-      category: 'HỢP ĐỒNG VÍ ĐIỆN TỬ · MỤC I.2 GOOGLE DOC 1',
+      category: 'HỢP ĐỒNG VÍ ĐIỆN TỬ · 06 VAI TRÒ TRỌNG YẾU',
       title: '06 VAI TRÒ TRỌNG YẾU CỦA HỢP ĐỒNG MỞ VÀ CUNG ỨNG DỊCH VỤ VÍ',
       subtitle: 'Thiết lập trật tự vận hành, phân bổ rủi ro công bằng, bảo vệ người dùng và đảm bảo tuân thủ pháp luật',
       renderContent: () => (
-        <div className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5">
-            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs">
-              <span className="font-mono text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Vai trò 01</span>
-              <h4 className="text-base font-bold text-slate-900 mt-2 mb-1.5">Cơ sở pháp lý xác lập quan hệ</h4>
-              <p className="text-xs sm:text-sm text-slate-700 m-0 leading-relaxed">
-                Xác lập quan hệ giữa tổ chức cung ứng và khách hàng; xác định phạm vi dịch vụ, điều kiện mở ví, phương thức giao dịch, quyền/nghĩa vụ của KH và trách nhiệm của bên cung ứng.
+        <div className="space-y-2.5">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5">
+            <div className="p-3 bg-white/95 rounded-xl border border-amber-300 shadow-2xs">
+              <span className="font-mono text-[10px] font-bold text-amber-800 bg-amber-100 px-1.5 py-0.5 rounded">Vai trò 01</span>
+              <h4 className="text-xs sm:text-[13px] font-bold text-slate-900 mt-1 mb-1">Cơ sở pháp lý xác lập quan hệ</h4>
+              <p className="text-[11px] sm:text-xs text-slate-700 m-0 leading-relaxed">
+                Xác lập quan hệ giữa tổ chức cung ứng và khách hàng; xác định phạm vi dịch vụ, điều kiện mở ví, phương thức giao dịch, quyền/nghĩa vụ của KH và bên cung ứng.
               </p>
             </div>
 
-            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs">
-              <span className="font-mono text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Vai trò 02</span>
-              <h4 className="text-base font-bold text-slate-900 mt-2 mb-1.5">Công cụ quy định cơ chế vận hành</h4>
-              <p className="text-xs sm:text-sm text-slate-700 m-0 leading-relaxed">
-                Quy định nạp tiền, rút tiền, chuyển tiền, thanh toán; hạn mức, phương thức xác thực, thời điểm ghi nhận, phí dịch vụ, xử lý giao dịch không thành công, tạm khóa/đóng ví.
+            <div className="p-3 bg-white/95 rounded-xl border border-amber-300 shadow-2xs">
+              <span className="font-mono text-[10px] font-bold text-amber-800 bg-amber-100 px-1.5 py-0.5 rounded">Vai trò 02</span>
+              <h4 className="text-xs sm:text-[13px] font-bold text-slate-900 mt-1 mb-1">Công cụ quy định cơ chế vận hành</h4>
+              <p className="text-[11px] sm:text-xs text-slate-700 m-0 leading-relaxed">
+                Quy định nạp tiền, rút tiền, chuyển tiền, thanh toán; hạn mức, phương thức xác thực, thời điểm ghi nhận, phí dịch vụ, xử lý giao dịch lỗi, tạm khóa/đóng ví.
               </p>
             </div>
 
-            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs">
-              <span className="font-mono text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Vai trò 03</span>
-              <h4 className="text-base font-bold text-slate-900 mt-2 mb-1.5">Phân bổ và kiểm soát rủi ro</h4>
-              <p className="text-xs sm:text-sm text-slate-700 m-0 leading-relaxed">
+            <div className="p-3 bg-white/95 rounded-xl border border-amber-300 shadow-2xs">
+              <span className="font-mono text-[10px] font-bold text-amber-800 bg-amber-100 px-1.5 py-0.5 rounded">Vai trò 03</span>
+              <h4 className="text-xs sm:text-[13px] font-bold text-slate-900 mt-1 mb-1">Phân bổ và kiểm soát rủi ro</h4>
+              <p className="text-[11px] sm:text-xs text-slate-700 m-0 leading-relaxed">
                 Trong môi trường điện tử (mất thiết bị, lộ OTP, giả mạo, gian lận): Xác định trách nhiệm bảo mật của KH vs trách nhiệm an toàn hệ thống và tra soát của bên cung ứng.
               </p>
             </div>
 
-            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs">
-              <span className="font-mono text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Vai trò 04</span>
-              <h4 className="text-base font-bold text-slate-900 mt-2 mb-1.5">Bảo vệ quyền &amp; lợi ích khách hàng</h4>
-              <p className="text-xs sm:text-sm text-slate-700 m-0 leading-relaxed">
-                Minh bạch mức phí, điều kiện sử dụng, quyền tạm ngừng, xử lý dữ liệu. Khi xảy ra sự cố kỹ thuật không do lỗi người dùng, điều khoản tra soát là căn cứ để KH bảo vệ quyền lợi.
+            <div className="p-3 bg-white/95 rounded-xl border border-amber-300 shadow-2xs">
+              <span className="font-mono text-[10px] font-bold text-amber-800 bg-amber-100 px-1.5 py-0.5 rounded">Vai trò 04</span>
+              <h4 className="text-xs sm:text-[13px] font-bold text-slate-900 mt-1 mb-1">Bảo vệ quyền &amp; lợi ích khách hàng</h4>
+              <p className="text-[11px] sm:text-xs text-slate-700 m-0 leading-relaxed">
+                Minh bạch mức phí, điều kiện sử dụng, quyền tạm ngừng, xử lý dữ liệu. Khi sự cố kỹ thuật không do lỗi người dùng, điều khoản tra soát là căn cứ bảo vệ quyền lợi.
               </p>
             </div>
 
-            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs">
-              <span className="font-mono text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Vai trò 05</span>
-              <h4 className="text-base font-bold text-slate-900 mt-2 mb-1.5">Bảo đảm tuân thủ pháp luật</h4>
-              <p className="text-xs sm:text-sm text-slate-700 m-0 leading-relaxed">
+            <div className="p-3 bg-white/95 rounded-xl border border-amber-300 shadow-2xs">
+              <span className="font-mono text-[10px] font-bold text-amber-800 bg-amber-100 px-1.5 py-0.5 rounded">Vai trò 05</span>
+              <h4 className="text-xs sm:text-[13px] font-bold text-slate-900 mt-1 mb-1">Bảo đảm tuân thủ pháp luật</h4>
+              <p className="text-[11px] sm:text-xs text-slate-700 m-0 leading-relaxed">
                 Gắn với yêu cầu nhận biết và xác minh khách hàng (eKYC), phòng chống rửa tiền (AML), quản lý thông tin khách hàng và kiểm soát các giao dịch bất thường.
               </p>
             </div>
 
-            <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs">
-              <span className="font-mono text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Vai trò 06</span>
-              <h4 className="text-base font-bold text-slate-900 mt-2 mb-1.5">Căn cứ giải quyết tranh chấp</h4>
-              <p className="text-xs sm:text-sm text-slate-700 m-0 leading-relaxed">
-                Căn cứ xác định trách nhiệm khi có tranh chấp về giao dịch, số dư, phí, giao dịch trái phép; quy định thời hạn thông báo, phương thức hòa giải và trách nhiệm bồi thường.
+            <div className="p-3 bg-white/95 rounded-xl border border-amber-300 shadow-2xs">
+              <span className="font-mono text-[10px] font-bold text-amber-800 bg-amber-100 px-1.5 py-0.5 rounded">Vai trò 06</span>
+              <h4 className="text-xs sm:text-[13px] font-bold text-slate-900 mt-1 mb-1">Căn cứ giải quyết tranh chấp</h4>
+              <p className="text-[11px] sm:text-xs text-slate-700 m-0 leading-relaxed">
+                Căn cứ xác định trách nhiệm khi có tranh chấp về giao dịch, số dư, phí, giao dịch trái phép; quy định thời hạn thông báo, hòa giải và bồi thường thiệt hại.
               </p>
             </div>
           </div>
@@ -801,49 +802,49 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
     {
       id: 'wallet-4',
       badge: 'SLIDE 04 / 07 · GIẢI PHÁP DN (PHẦN 1)',
-      category: 'HỢP ĐỒNG VÍ ĐIỆN TỬ · MỤC II GOOGLE DOC 1',
+      category: 'HỢP ĐỒNG VÍ ĐIỆN TỬ · 05 GIẢI PHÁP BẢO VỆ DOANH NGHIỆP',
       title: '05 GIẢI PHÁP BẢO VỆ DOANH NGHIỆP: QUY TRÌNH MỞ VÍ & THỎA THUẬN RÕ RÀNG',
       subtitle: 'Hạn chế rủi ro pháp lý ngay từ đầu vào và thiết lập hợp đồng cân bằng, minh bạch',
       renderContent: () => (
-        <div className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="p-5 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs flex flex-col justify-between">
+        <div className="space-y-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div className="p-3.5 sm:p-4 bg-white/95 rounded-xl border border-amber-300 shadow-2xs flex flex-col justify-between">
               <div>
-                <span className="font-mono text-xs font-bold px-2.5 py-1 rounded bg-amber-100 text-[#7A5B10] inline-block mb-2 border border-amber-300">
+                <span className="font-mono text-[10.5px] font-bold px-2 py-0.5 rounded bg-amber-100 text-[#7A5B10] inline-block mb-1.5 border border-amber-300">
                   Giải pháp 01
                 </span>
-                <h4 className="text-base sm:text-lg font-bold text-slate-900 m-0 mb-2">
+                <h4 className="text-sm sm:text-base font-bold text-slate-900 m-0 mb-1.5">
                   Hoàn thiện và chuẩn hóa quy trình mở &amp; sử dụng ví
                 </h4>
-                <ul className="space-y-1.5 text-xs sm:text-sm text-slate-700 m-0 p-0 list-none">
+                <ul className="space-y-1 text-xs text-slate-700 m-0 p-0 list-none leading-relaxed">
                   <li>• Hạn chế rủi ro pháp lý ngay từ khi thiết lập quan hệ với khách hàng.</li>
-                  <li>• Kiểm soát các rủi ro: Giả mạo danh tính; Sử dụng thông tin người khác; Chiếm quyền kiểm soát tài khoản; Giao dịch trái phép.</li>
-                  <li>• Xây dựng quy trình nhận biết và xác minh khách hàng chặt chẽ (đặc biệt mở ví điện tử eKYC).</li>
-                  <li>• Xác minh giấy tờ, đối chiếu dữ liệu, áp dụng phương thức xác thực phù hợp; thường xuyên rà soát cập nhật.</li>
-                  <li>• Trong hợp đồng quy định trách nhiệm KH: Cung cấp thông tin đầy đủ, chính xác; cập nhật khi có thay đổi để DN có cơ sở quy trách nhiệm.</li>
+                  <li>• Kiểm soát các rủi ro: Giả mạo danh tính, chiếm quyền tài khoản, GD trái phép.</li>
+                  <li>• Xây dựng quy trình nhận biết và xác minh khách hàng chặt chẽ (eKYC).</li>
+                  <li>• Xác minh giấy tờ, đối chiếu dữ liệu, áp dụng xác thực phù hợp &amp; rà soát định kỳ.</li>
+                  <li>• Quy định trách nhiệm KH cung cấp thông tin chính xác, kịp thời cập nhật.</li>
                 </ul>
               </div>
-              <div className="mt-3 pt-2 border-t border-amber-200 text-xs sm:text-sm font-semibold text-emerald-800">
+              <div className="mt-2 pt-1.5 border-t border-amber-200 text-xs font-semibold text-emerald-800">
                 Tuân thủ pháp luật &amp; giảm thiểu tổn thất tài chính
               </div>
             </div>
 
-            <div className="p-5 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs flex flex-col justify-between">
+            <div className="p-3.5 sm:p-4 bg-white/95 rounded-xl border border-amber-300 shadow-2xs flex flex-col justify-between">
               <div>
-                <span className="font-mono text-xs font-bold px-2.5 py-1 rounded bg-amber-100 text-[#7A5B10] inline-block mb-2 border border-amber-300">
+                <span className="font-mono text-[10.5px] font-bold px-2 py-0.5 rounded bg-amber-100 text-[#7A5B10] inline-block mb-1.5 border border-amber-300">
                   Giải pháp 02
                 </span>
-                <h4 className="text-base sm:text-lg font-bold text-slate-900 m-0 mb-2">
+                <h4 className="text-sm sm:text-base font-bold text-slate-900 m-0 mb-1.5">
                   Xây dựng thỏa thuận mở và sử dụng ví rõ ràng, đầy đủ
                 </h4>
-                <ul className="space-y-1.5 text-xs sm:text-sm text-slate-700 m-0 p-0 list-none">
-                  <li>• Hợp đồng là cơ sở xác định quyền và nghĩa vụ của các bên.</li>
-                  <li>• Không chỉ tập trung vào phí dịch vụ mà cần quy định: Điều kiện mở/dùng ví; Phương thức xác thực; Hạn mức; Trách nhiệm bảo mật; Bảo quản tài khoản; Tạm khóa/hạn chế GD; Xử lý GD nghi ngờ gian lận.</li>
-                  <li>• Điều khoản tạm ngừng/chấm dứt dịch vụ phải có cơ sở pháp luật, minh bạch với KH, tránh tạo quyền đơn phương quá lớn cho doanh nghiệp.</li>
-                  <li>• Hợp đồng chặt chẽ giúp: Xác định trách nhiệm mỗi bên; Hạn chế cách hiểu khác nhau; Tạo căn cứ bảo vệ DN khi tranh chấp.</li>
+                <ul className="space-y-1 text-xs text-slate-700 m-0 p-0 list-none leading-relaxed">
+                  <li>• Hợp đồng là cơ sở xác định quyền và nghĩa vụ các bên.</li>
+                  <li>• Quy định toàn diện: Điều kiện mở/dùng ví, xác thực, hạn mức, bảo mật, xử lý GD gian lận.</li>
+                  <li>• Điều khoản tạm ngừng/chấm dứt có cơ sở pháp luật, tránh quyền đơn phương quá lớn.</li>
+                  <li>• Hợp đồng chặt chẽ giúp phân định trách nhiệm rõ ràng và bảo vệ DN khi có tranh chấp.</li>
                 </ul>
               </div>
-              <div className="mt-3 pt-2 border-t border-amber-200 text-xs sm:text-sm font-semibold text-[#8C6B18]">
+              <div className="mt-2 pt-1.5 border-t border-amber-200 text-xs font-semibold text-[#8C6B18]">
                 Minh bạch &amp; giữ vững niềm tin người dùng
               </div>
             </div>
@@ -856,55 +857,55 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
     {
       id: 'wallet-5',
       badge: 'SLIDE 05 / 07 · GIẢI PHÁP DN (PHẦN 2)',
-      category: 'HỢP ĐỒNG VÍ ĐIỆN TỬ · MỤC II GOOGLE DOC 1',
+      category: 'HỢP ĐỒNG VÍ ĐIỆN TỬ · BẢO MẬT, CHỨNG CỨ & KIỂM SOÁT TUÂN THỦ',
       title: '05 GIẢI PHÁP: BẢO MẬT GIAN LẬN, LƯU TRỮ CHỨNG CỨ & QUẢN TRỊ TUÂN THỦ',
       subtitle: 'Đầu tư công nghệ phòng ngừa, lưu trữ chứng cứ điện tử trước Tòa và kiểm soát tuân thủ đa luật',
       renderContent: () => (
-        <div className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5">
-            <div className="p-4 sm:p-5 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs flex flex-col justify-between">
+        <div className="space-y-3">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5">
+            <div className="p-3 sm:p-3.5 bg-white/95 rounded-xl border border-amber-300 shadow-2xs flex flex-col justify-between">
               <div>
-                <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-amber-100 text-[#7A5B10] inline-block mb-2 border border-amber-300">
+                <span className="font-mono text-[10.5px] font-bold px-2 py-0.5 rounded bg-amber-100 text-[#7A5B10] inline-block mb-1.5 border border-amber-300">
                   Giải pháp 03
                 </span>
-                <h4 className="text-sm sm:text-base font-bold text-slate-900 m-0 mb-1.5">Tăng cường an toàn, bảo mật &amp; phòng ngừa gian lận</h4>
-                <ul className="space-y-1.5 text-xs sm:text-sm text-slate-700 m-0 p-0 list-none">
-                  <li>• Kiểm soát nguy cơ: Giả mạo, đánh cắp thông tin, chiếm quyền tài khoản, giao dịch bất hợp pháp.</li>
-                  <li>• Đầu tư hệ thống: Phát hiện và cảnh báo giao dịch bất thường; xác thực nhiều lớp với GD rủi ro cao; phản ứng nhanh.</li>
-                  <li>• Quy định hợp đồng: Trách nhiệm KH về bảo mật mật khẩu, mã OTP, thiết bị truy cập; KH phải thông báo ngay khi tài khoản bị lộ, mất.</li>
+                <h4 className="text-xs sm:text-sm font-bold text-slate-900 m-0 mb-1">An toàn, bảo mật &amp; phòng gian lận</h4>
+                <ul className="space-y-1 text-[11px] sm:text-xs text-slate-700 m-0 p-0 list-none leading-snug">
+                  <li>• Kiểm soát giả mạo, đánh cắp thông tin, chiếm quyền tài khoản.</li>
+                  <li>• Phát hiện cảnh báo GD bất thường; xác thực nhiều lớp với GD rủi ro.</li>
+                  <li>• Ràng buộc trách nhiệm KH bảo mật OTP, thiết bị; thông báo ngay khi lộ.</li>
                 </ul>
               </div>
-              <span className="text-xs font-mono text-[#8C6B18] font-bold mt-2">Phản ứng nhanh với gian lận</span>
+              <span className="text-[10.5px] font-mono text-[#8C6B18] font-bold mt-2">Phản ứng nhanh với gian lận</span>
             </div>
 
-            <div className="p-4 sm:p-5 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs flex flex-col justify-between">
+            <div className="p-3 sm:p-3.5 bg-white/95 rounded-xl border border-amber-300 shadow-2xs flex flex-col justify-between">
               <div>
-                <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-amber-100 text-[#7A5B10] inline-block mb-2 border border-amber-300">
+                <span className="font-mono text-[10.5px] font-bold px-2 py-0.5 rounded bg-amber-100 text-[#7A5B10] inline-block mb-1.5 border border-amber-300">
                   Giải pháp 04
                 </span>
-                <h4 className="text-sm sm:text-base font-bold text-slate-900 m-0 mb-1.5">Cơ chế tra soát &amp; lưu trữ chứng cứ điện tử</h4>
-                <ul className="space-y-1.5 text-xs sm:text-sm text-slate-700 m-0 p-0 list-none">
-                  <li>• Xây dựng quy trình: Tiếp nhận, xử lý, thời hạn và trách nhiệm từng bộ phận khi phát sinh tranh chấp.</li>
-                  <li>• Lưu trữ chứng cứ điện tử: Dữ liệu giao dịch, lịch sử đăng nhập, thông tin xác thực làm căn cứ xác định ai thực hiện GD.</li>
-                  <li>• Là "bằng chứng sống" chứng minh doanh nghiệp đã thực hiện đúng nghĩa vụ trước Tòa án.</li>
+                <h4 className="text-xs sm:text-sm font-bold text-slate-900 m-0 mb-1">Tra soát &amp; lưu trữ chứng cứ điện tử</h4>
+                <ul className="space-y-1 text-[11px] sm:text-xs text-slate-700 m-0 p-0 list-none leading-snug">
+                  <li>• Quy trình tiếp nhận, xử lý, thời hạn và trách nhiệm khi tranh chấp.</li>
+                  <li>• Lưu trữ log giao dịch, IP đăng nhập, xác thực để xác định chủ thể GD.</li>
+                  <li>• Là "bằng chứng sống" bảo vệ doanh nghiệp trước Tòa án.</li>
                 </ul>
               </div>
-              <span className="text-xs font-mono text-[#8C6B18] font-bold mt-2">Chứng cứ pháp lý điện tử</span>
+              <span className="text-[10.5px] font-mono text-[#8C6B18] font-bold mt-2">Chứng cứ pháp lý điện tử</span>
             </div>
 
-            <div className="p-4 sm:p-5 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs flex flex-col justify-between">
+            <div className="p-3 sm:p-3.5 bg-white/95 rounded-xl border border-amber-300 shadow-2xs flex flex-col justify-between">
               <div>
-                <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-amber-100 text-[#7A5B10] inline-block mb-2 border border-amber-300">
+                <span className="font-mono text-[10.5px] font-bold px-2 py-0.5 rounded bg-amber-100 text-[#7A5B10] inline-block mb-1.5 border border-amber-300">
                   Giải pháp 05
                 </span>
-                <h4 className="text-sm sm:text-base font-bold text-slate-900 m-0 mb-1.5">Tăng cường quản trị &amp; kiểm soát tuân thủ</h4>
-                <ul className="space-y-1.5 text-xs sm:text-sm text-slate-700 m-0 p-0 list-none">
-                  <li>• Chịu sự điều chỉnh nhiều luật: TT không tiền mặt, GD điện tử, AML, bảo vệ dữ liệu cá nhân, an toàn thông tin.</li>
-                  <li>• Kiểm soát tuân thủ thường xuyên, đào tạo nhân viên nhận diện rủi ro sớm.</li>
-                  <li>• Quy định rõ cơ chế sửa đổi, chấm dứt hợp đồng và phương án xử lý số dư còn lại trên ví.</li>
+                <h4 className="text-xs sm:text-sm font-bold text-slate-900 m-0 mb-1">Quản trị &amp; kiểm soát tuân thủ</h4>
+                <ul className="space-y-1 text-[11px] sm:text-xs text-slate-700 m-0 p-0 list-none leading-snug">
+                  <li>• Đồng bộ đa luật: TT không tiền mặt, GD điện tử, AML, Bảo vệ DLCN.</li>
+                  <li>• Kiểm soát tuân thủ định kỳ, đào tạo nhân viên nhận diện rủi ro.</li>
+                  <li>• Quy định rõ cơ chế sửa đổi, chấm dứt và xử lý số dư trên ví.</li>
                 </ul>
               </div>
-              <span className="text-xs font-mono text-[#8C6B18] font-bold mt-2">Kiểm soát tuân thủ đa luật</span>
+              <span className="text-[10.5px] font-mono text-[#8C6B18] font-bold mt-2">Kiểm soát tuân thủ đa luật</span>
             </div>
           </div>
         </div>
@@ -915,99 +916,99 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
     {
       id: 'wallet-6',
       badge: 'SLIDE 06 / 07 · CÁC ĐIỀU LUẬT QUAN TRỌNG',
-      category: 'HỢP ĐỒNG VÍ ĐIỆN TỬ · MỤC III GOOGLE DOC 1',
+      category: 'HỢP ĐỒNG VÍ ĐIỆN TỬ · CÁC ĐIỀU KHOẢN TRỌNG TÂM',
       title: 'DANH MỤC CÁC ĐIỀU LUẬT QUAN TRỌNG TRONG THỎA THUẬN VÍ',
       subtitle: 'Hệ thống các điều khoản trọng yếu thể chế hóa quyền, nghĩa vụ và chế tài bảo vệ doanh nghiệp',
       renderContent: () => (
-        <div className="space-y-3.5">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <div className="p-3.5 bg-white rounded-xl border-2 border-amber-300 shadow-2xs">
-              <span className="font-mono text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Điều 2</span>
-              <h4 className="text-sm sm:text-base font-bold text-slate-900 mt-1 mb-0.5">
+        <div className="space-y-2">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+            <div className="p-2 sm:p-2.5 bg-white rounded-lg border border-amber-300 shadow-2xs">
+              <span className="font-mono text-[9.5px] font-bold text-amber-800 bg-amber-100 px-1.5 py-0.2 rounded">Điều 2</span>
+              <h4 className="text-xs sm:text-[13px] font-bold text-slate-900 mt-0.5 mb-0.5 truncate">
                 Nguyên tắc mở, sử dụng tài khoản ví điện tử
               </h4>
-              <p className="text-xs sm:text-[13px] text-slate-600 m-0">
+              <p className="text-[10.5px] text-slate-600 m-0 leading-tight line-clamp-2">
                 (Đối tượng, liên kết NH, 5 hình thức nạp, 5 hình thức rút/thanh toán, hồ sơ eKYC &amp; Hạn mức 100 Tr/tháng)
               </p>
             </div>
 
-            <div className="p-3.5 bg-white rounded-xl border-2 border-amber-300 shadow-2xs">
-              <span className="font-mono text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Điều 6</span>
-              <h4 className="text-sm sm:text-base font-bold text-slate-900 mt-1 mb-0.5">
+            <div className="p-2 sm:p-2.5 bg-white rounded-lg border border-amber-300 shadow-2xs">
+              <span className="font-mono text-[9.5px] font-bold text-amber-800 bg-amber-100 px-1.5 py-0.2 rounded">Điều 6</span>
+              <h4 className="text-xs sm:text-[13px] font-bold text-slate-900 mt-0.5 mb-0.5 truncate">
                 Các hành vi bị cấm khi sử dụng ví điện tử
               </h4>
-              <p className="text-xs sm:text-[13px] text-slate-600 m-0">
+              <p className="text-[10.5px] text-slate-600 m-0 leading-tight line-clamp-2">
                 (Hành vi cấm đối với khách hàng &amp; Cấm TVPAY cấp tín dụng, cấm trả lãi trên số dư ví)
               </p>
             </div>
 
-            <div className="p-3.5 bg-white rounded-xl border-2 border-amber-300 shadow-2xs">
-              <span className="font-mono text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Điều 7</span>
-              <h4 className="text-sm sm:text-base font-bold text-slate-900 mt-1 mb-0.5">
+            <div className="p-2 sm:p-2.5 bg-white rounded-lg border border-amber-300 shadow-2xs">
+              <span className="font-mono text-[9.5px] font-bold text-amber-800 bg-amber-100 px-1.5 py-0.2 rounded">Điều 7</span>
+              <h4 className="text-xs sm:text-[13px] font-bold text-slate-900 mt-0.5 mb-0.5 truncate">
                 Quyền và nghĩa vụ của khách hàng
               </h4>
-              <p className="text-xs sm:text-[13px] text-slate-600 m-0">
+              <p className="text-[10.5px] text-slate-600 m-0 leading-tight line-clamp-2">
                 (11 Quyền &amp; 24 Nghĩa vụ; khách hàng tự chịu trách nhiệm lộ OTP; hoàn trả tiền ghi Có nhầm)
               </p>
             </div>
 
-            <div className="p-3.5 bg-white rounded-xl border-2 border-amber-300 shadow-2xs">
-              <span className="font-mono text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Điều 10</span>
-              <h4 className="text-sm sm:text-base font-bold text-slate-900 mt-1 mb-0.5">
+            <div className="p-2 sm:p-2.5 bg-white rounded-lg border border-amber-300 shadow-2xs">
+              <span className="font-mono text-[9.5px] font-bold text-amber-800 bg-amber-100 px-1.5 py-0.2 rounded">Điều 10</span>
+              <h4 className="text-xs sm:text-[13px] font-bold text-slate-900 mt-0.5 mb-0.5 truncate">
                 Phong tỏa tài khoản ví điện tử
               </h4>
-              <p className="text-xs sm:text-[13px] text-slate-600 m-0">
+              <p className="text-[10.5px] text-slate-600 m-0 leading-tight line-clamp-2">
                 (4 Trường hợp phong tỏa, 5 điều kiện mở phong tỏa; nguyên tắc chỉ phong tỏa số tiền tranh chấp)
               </p>
             </div>
 
-            <div className="p-3.5 bg-white rounded-xl border-2 border-amber-300 shadow-2xs">
-              <span className="font-mono text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Điều 11</span>
-              <h4 className="text-sm sm:text-base font-bold text-slate-900 mt-1 mb-0.5">
+            <div className="p-2 sm:p-2.5 bg-white rounded-lg border border-amber-300 shadow-2xs">
+              <span className="font-mono text-[9.5px] font-bold text-amber-800 bg-amber-100 px-1.5 py-0.2 rounded">Điều 11</span>
+              <h4 className="text-xs sm:text-[13px] font-bold text-slate-900 mt-0.5 mb-0.5 truncate">
                 Chính sách hoàn tiền
               </h4>
-              <p className="text-xs sm:text-[13px] text-slate-600 m-0">
+              <p className="text-[10.5px] text-slate-600 m-0 leading-tight line-clamp-2">
                 (Hoàn tiền trong 05 ngày làm việc khi giao dịch bị lỗi hệ thống; hoàn toàn không thu phí)
               </p>
             </div>
 
-            <div className="p-3.5 bg-white rounded-xl border-2 border-amber-300 shadow-2xs">
-              <span className="font-mono text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Điều 12</span>
-              <h4 className="text-sm sm:text-base font-bold text-slate-900 mt-1 mb-0.5">
+            <div className="p-2 sm:p-2.5 bg-white rounded-lg border border-amber-300 shadow-2xs">
+              <span className="font-mono text-[9.5px] font-bold text-amber-800 bg-amber-100 px-1.5 py-0.2 rounded">Điều 12</span>
+              <h4 className="text-xs sm:text-[13px] font-bold text-slate-900 mt-0.5 mb-0.5 truncate">
                 Đóng tài khoản ví điện tử
               </h4>
-              <p className="text-xs sm:text-[13px] text-slate-600 m-0">
+              <p className="text-[10.5px] text-slate-600 m-0 leading-tight line-clamp-2">
                 (08 Căn cứ đóng ví, nghiệp vụ hủy lệnh và phương án xử lý số dư còn lại trên tài khoản)
               </p>
             </div>
 
-            <div className="p-3.5 bg-white rounded-xl border-2 border-amber-300 shadow-2xs">
-              <span className="font-mono text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Điều 13</span>
-              <h4 className="text-sm sm:text-base font-bold text-slate-900 mt-1 mb-0.5">
+            <div className="p-2 sm:p-2.5 bg-white rounded-lg border border-amber-300 shadow-2xs">
+              <span className="font-mono text-[9.5px] font-bold text-amber-800 bg-amber-100 px-1.5 py-0.2 rounded">Điều 13</span>
+              <h4 className="text-xs sm:text-[13px] font-bold text-slate-900 mt-0.5 mb-0.5 truncate">
                 Tra soát, giải quyết khiếu nại
               </h4>
-              <p className="text-xs sm:text-[13px] text-slate-600 m-0">
-                (Thời hạn khiếu nại không quá 60 ngày, thời hạn xử lý không quá 30 ngày làm việc, bồi hoàn trong 5 ngày)
+              <p className="text-[10.5px] text-slate-600 m-0 leading-tight line-clamp-2">
+                (Thời hạn khiếu nại tối đa 60 ngày, thời hạn xử lý không quá 30 ngày, bồi hoàn trong 5 ngày)
               </p>
             </div>
 
-            <div className="p-3.5 bg-amber-50/90 rounded-xl border-2 border-amber-400 shadow-2xs">
-              <span className="font-mono text-xs font-bold text-amber-900 bg-amber-200 px-2 py-0.5 rounded">Điều 16 · Lá chắn</span>
-              <h4 className="text-sm sm:text-base font-bold text-amber-950 mt-1 mb-0.5">
+            <div className="p-2 sm:p-2.5 bg-amber-50/90 rounded-lg border border-amber-400 shadow-2xs">
+              <span className="font-mono text-[9.5px] font-bold text-amber-900 bg-amber-200 px-1.5 py-0.2 rounded">Điều 16 · Lá chắn</span>
+              <h4 className="text-xs sm:text-[13px] font-bold text-amber-950 mt-0.5 mb-0.5 truncate">
                 Giới hạn trách nhiệm
               </h4>
-              <p className="text-xs sm:text-[13px] text-slate-700 m-0">
-                (Toàn bộ trách nhiệm bồi thường của TVPAY giới hạn tối đa không vượt quá số dư ví ngay trước thời điểm phát sinh thiệt hại)
+              <p className="text-[10.5px] text-slate-700 m-0 leading-tight line-clamp-2">
+                (Trách nhiệm bồi thường của TVPAY giới hạn tối đa không vượt quá số dư ví ngay trước thiệt hại)
               </p>
             </div>
 
-            <div className="p-3.5 bg-white rounded-xl border-2 border-amber-300 shadow-2xs">
-              <span className="font-mono text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Điều 18</span>
-              <h4 className="text-sm sm:text-base font-bold text-slate-900 mt-1 mb-0.5">
+            <div className="p-2 sm:p-2.5 bg-white rounded-lg border border-amber-300 shadow-2xs">
+              <span className="font-mono text-[9.5px] font-bold text-amber-800 bg-amber-100 px-1.5 py-0.2 rounded">Điều 18</span>
+              <h4 className="text-xs sm:text-[13px] font-bold text-slate-900 mt-0.5 mb-0.5 truncate">
                 Điều khoản chung
               </h4>
-              <p className="text-xs sm:text-[13px] text-slate-600 m-0">
-                (Sửa đổi thông báo trước, tiếp tục sử dụng là chấp thuận ngầm định; giá trị pháp lý chứng từ điện tử)
+              <p className="text-[10.5px] text-slate-600 m-0 leading-tight line-clamp-2">
+                (Sửa đổi thông báo trước, tiếp tục dùng là chấp thuận ngầm định; giá trị chứng từ điện tử)
               </p>
             </div>
           </div>
@@ -1019,41 +1020,41 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
     {
       id: 'wallet-7',
       badge: 'SLIDE 07 / 07 · KẾT LUẬN & 04 TRỤ CỘT',
-      category: 'HỢP ĐỒNG VÍ ĐIỆN TỬ · KỊCH BẢN KẾT LUẬN GOOGLE DOC 1',
+      category: 'HỢP ĐỒNG VÍ ĐIỆN TỬ · THỂ CHẾ HÓA & ĐỒNG BỘ 04 TRỤ CỘT',
       title: 'THỂ CHẾ HÓA THỰC TẾ & KẾT HỢP ĐỒNG BỘ 04 TRỤ CỘT BẢO VỆ FINTECH',
       subtitle: 'Chuyển từ tư duy "xử lý sau tranh chấp" sang chủ động "nhận diện và phòng ngừa rủi ro từ đầu"',
       renderContent: () => (
-        <div className="space-y-4">
-          <div className="p-4 bg-white/95 rounded-2xl border-2 border-amber-300 shadow-xs">
-            <span className="font-mono text-xs font-bold text-[#8C6B18] uppercase tracking-wider block mb-1.5">
+        <div className="space-y-2.5">
+          <div className="p-3 bg-white/95 rounded-xl border border-amber-300 shadow-2xs">
+            <span className="font-mono text-[10px] font-bold text-[#8C6B18] uppercase tracking-wider block mb-1">
               4 Điểm thể chế hóa cụ thể trong Hợp đồng thực tế TVPAY
             </span>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 text-xs sm:text-sm">
-              <div className="p-2.5 bg-amber-50/80 rounded-xl border border-amber-200">
-                <strong className="block text-slate-900 mb-0.5">Hạn mức giao dịch rõ ràng:</strong>
-                <span className="text-slate-700">Tối đa 100 triệu đồng/tháng cho cá nhân, thông báo công khai khi thay đổi.</span>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 text-xs">
+              <div className="p-2 bg-amber-50/80 rounded-lg border border-amber-200">
+                <strong className="block text-slate-900 text-[11px] mb-0.5">Hạn mức giao dịch rõ ràng:</strong>
+                <span className="text-slate-700 text-[10.5px] leading-tight block">Tối đa 100 Tr/tháng cho cá nhân, công khai khi thay đổi.</span>
               </div>
-              <div className="p-2.5 bg-amber-50/80 rounded-xl border border-amber-200">
-                <strong className="block text-slate-900 mb-0.5">Phong tỏa có căn cứ:</strong>
-                <span className="text-slate-700">Theo yêu cầu cơ quan nhà nước, khi phát hiện gian lận hoặc khi có tranh chấp.</span>
+              <div className="p-2 bg-amber-50/80 rounded-lg border border-amber-200">
+                <strong className="block text-slate-900 text-[11px] mb-0.5">Phong tỏa có căn cứ:</strong>
+                <span className="text-slate-700 text-[10.5px] leading-tight block">Theo yêu cầu cơ quan NN, phát hiện gian lận hoặc tranh chấp.</span>
               </div>
-              <div className="p-2.5 bg-amber-50/80 rounded-xl border border-amber-200">
-                <strong className="block text-slate-900 mb-0.5">Thời hạn tra soát cụ thể:</strong>
-                <span className="text-slate-700">60 ngày để KH khiếu nại, 30 ngày xử lý, 5 ngày để bồi hoàn nếu có lỗi.</span>
+              <div className="p-2 bg-amber-50/80 rounded-lg border border-amber-200">
+                <strong className="block text-slate-900 text-[11px] mb-0.5">Thời hạn tra soát cụ thể:</strong>
+                <span className="text-slate-700 text-[10.5px] leading-tight block">60 ngày khiếu nại, 30 ngày xử lý, 5 ngày bồi hoàn nếu lỗi.</span>
               </div>
-              <div className="p-2.5 bg-amber-100/90 rounded-xl border border-amber-300">
-                <strong className="block text-amber-950 mb-0.5">Điều 16 Giới hạn trách nhiệm:</strong>
-                <span className="text-slate-800 font-medium">Bồi thường tối đa không vượt quá số dư ví ngay trước thời điểm thiệt hại.</span>
+              <div className="p-2 bg-amber-100/90 rounded-xl border border-amber-300">
+                <strong className="block text-amber-950 text-[11px] mb-0.5">Điều 16 Giới hạn trách nhiệm:</strong>
+                <span className="text-slate-800 text-[10.5px] font-medium leading-tight block">Bồi thường tối đa không quá số dư ví ngay trước thiệt hại.</span>
               </div>
             </div>
           </div>
 
-          <div className="p-4 sm:p-5 bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700 rounded-2xl text-white text-center shadow-md">
-            <h3 className="text-base sm:text-lg md:text-xl font-serif font-bold m-0 mb-1.5">
+          <div className="p-3 bg-gradient-to-r from-amber-600 via-amber-700 to-amber-800 rounded-xl text-white text-center shadow-xs">
+            <h3 className="text-xs sm:text-sm font-serif font-bold m-0 mb-1">
               KẾT HỢP ĐỒNG BỘ: PHÁP LÝ – HỢP ĐỒNG – CÔNG NGHỆ – QUẢN TRỊ
             </h3>
-            <p className="text-xs sm:text-sm md:text-base text-amber-100 m-0 max-w-3xl mx-auto leading-relaxed">
-              "Bảo vệ quyền lợi hợp pháp của doanh nghiệp Fintech cần kết hợp đồng bộ 4 trụ cột. Đó chính là cách doanh nghiệp chuyển từ tư duy 'xử lý rủi ro sau khi đã xảy ra tranh chấp' sang tư duy chủ động 'nhận diện và phòng ngừa rủi ro ngay từ đầu'."
+            <p className="text-[11px] sm:text-xs text-amber-100 m-0 max-w-3xl mx-auto leading-relaxed">
+              "Bảo vệ quyền lợi hợp pháp của doanh nghiệp Fintech cần kết hợp đồng bộ 4 trụ cột: Chuyển từ tư duy 'xử lý rủi ro sau khi đã xảy ra tranh chấp' sang chủ động 'nhận diện và phòng ngừa rủi ro ngay từ đầu'."
             </p>
           </div>
         </div>
@@ -1099,10 +1100,50 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
     }
   }, [currentSlide, totalSlides]);
 
-  const toggleFullscreen = useCallback(() => {
+  const toggleFullscreen = useCallback(async () => {
     uiSound.playClick();
-    setIsFullscreen((prev) => !prev);
-  }, []);
+    if (!isFullscreen) {
+      setIsFullscreen(true);
+      try {
+        if (typeof document !== 'undefined' && !document.fullscreenElement && document.documentElement.requestFullscreen) {
+          await document.documentElement.requestFullscreen();
+        }
+      } catch (err) {
+        console.warn('Native requestFullscreen denied or failed:', err);
+      }
+    } else {
+      setIsFullscreen(false);
+      try {
+        if (typeof document !== 'undefined' && document.fullscreenElement && document.exitFullscreen) {
+          await document.exitFullscreen();
+        }
+      } catch (err) {
+        console.warn('Exit fullscreen failed:', err);
+      }
+    }
+  }, [isFullscreen]);
+
+  // Sync state if user exits via browser native controls or Esc
+  useEffect(() => {
+    const handleFsChange = () => {
+      if (typeof document !== 'undefined' && !document.fullscreenElement && isFullscreen) {
+        setIsFullscreen(false);
+      }
+    };
+    document.addEventListener('fullscreenchange', handleFsChange);
+    return () => document.removeEventListener('fullscreenchange', handleFsChange);
+  }, [isFullscreen]);
+
+  // Lock body scroll when fullscreen is active to hide website navigation bar completely
+  useEffect(() => {
+    if (isFullscreen && typeof document !== 'undefined') {
+      const prevOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = prevOverflow;
+      };
+    }
+  }, [isFullscreen]);
 
   // Keyboard navigation
   useEffect(() => {
@@ -1115,6 +1156,9 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
         prevSlide();
       } else if (e.key === 'Escape' && isFullscreen) {
         setIsFullscreen(false);
+        if (typeof document !== 'undefined' && document.fullscreenElement && document.exitFullscreen) {
+          document.exitFullscreen().catch(() => {});
+        }
       } else if (e.key.toLowerCase() === 'f' && !e.ctrlKey && !e.metaKey && !e.altKey) {
         const target = e.target as HTMLElement;
         if (target.tagName !== 'INPUT' && target.tagName !== 'TEXTAREA') {
@@ -1165,13 +1209,14 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
   };
 
   // =========================================================================
-  // TRUE FULLSCREEN VIEW (No speaker notes, maximized cards & typography)
+  // TRUE FULLSCREEN VIEW (No speaker notes, fixed frame without vertical scroll)
+  // Mounted directly into document.body to fully mask the site header navigation
   // =========================================================================
-  if (isFullscreen) {
-    return (
+  if (isFullscreen && typeof document !== 'undefined') {
+    return createPortal(
       <div
         ref={containerRef}
-        className="tvpay-fullscreen-mode tvpay-presentation-fullscreen fixed inset-0 z-[9999] w-screen h-screen bg-gradient-to-br from-[#FFFDF9] via-[#FAF6EE] to-[#F5ECE0] flex flex-col justify-between overflow-hidden select-none p-4 sm:p-6 md:p-8 lg:p-10 animate-in fade-in duration-300"
+        className="tvpay-fullscreen-mode tvpay-presentation-fullscreen fixed inset-0 z-[99999999] w-screen h-screen bg-gradient-to-br from-[#FFFDF9] via-[#FAF6EE] to-[#F5ECE0] flex flex-col justify-between overflow-hidden select-none p-3 sm:p-5 md:p-6 lg:p-7 animate-in fade-in duration-300"
       >
         {/* Ornate Gold Filigree Corners */}
         <RoyalScreenCorner position="top-left" />
@@ -1183,39 +1228,39 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
         <RoyalWatermark />
 
         {/* Fullscreen Top Gold Navigation Bar */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-wrap items-center justify-between pb-3.5 border-b border-amber-300/80 gap-3 shrink-0">
-          <div className="flex items-center gap-3 min-w-0">
-            <span className="p-2.5 rounded-2xl bg-gradient-to-br from-[#FFF8E7] to-[#F3E5BE] border border-[#D4AF37]/80 text-[#8C6B18] shadow-xs shrink-0">
-              <FileCheck2 className="w-6 h-6" />
+        <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-wrap items-center justify-between pb-2 sm:pb-3 border-b border-amber-300/80 gap-2 shrink-0">
+          <div className="flex items-center gap-2.5 min-w-0">
+            <span className="p-2 rounded-xl bg-gradient-to-br from-[#FFF8E7] to-[#F3E5BE] border border-[#D4AF37]/80 text-[#8C6B18] shadow-xs shrink-0">
+              <FileCheck2 className="w-5 h-5" />
             </span>
             <div className="min-w-0">
               <div className="flex items-center gap-2 flex-wrap">
-                <span className="text-xs uppercase font-bold tracking-wider text-[#8C6B18] font-mono bg-amber-100/90 border border-amber-300/80 px-2.5 py-1 rounded truncate">
+                <span className="text-[11px] sm:text-xs uppercase font-bold tracking-wider text-[#8C6B18] font-mono bg-amber-100/90 border border-amber-300/80 px-2 py-0.5 rounded truncate">
                   {isCharter
                     ? `BÁO CÁO ĐIỀU LỆ CÔNG TY CP CUNG ỨNG VÍ ĐIỆN TỬ · ${totalSlides} SLIDES`
                     : `BÁO CÁO HỢP ĐỒNG MỞ VÀ SỬ DỤNG VÍ ĐIỆN TỬ · ${totalSlides} SLIDES`}
                 </span>
-                <span className="text-xs sm:text-sm font-mono font-bold text-[#7A5B10] bg-amber-200/80 px-2.5 py-1 rounded border border-amber-300 shadow-2xs">
+                <span className="text-[11px] sm:text-xs font-mono font-bold text-[#7A5B10] bg-amber-200/80 px-2 py-0.5 rounded border border-amber-300 shadow-2xs">
                   SLIDE {currentSlide + 1} / {totalSlides}
                 </span>
               </div>
-              <h2 className="font-serif text-lg sm:text-2xl md:text-3xl font-bold text-slate-900 m-0 mt-1 truncate">
+              <h2 className="font-serif text-base sm:text-xl md:text-2xl font-bold text-slate-900 m-0 mt-0.5 truncate">
                 {activeSlide.title}
               </h2>
             </div>
           </div>
 
-          <div className="flex items-center gap-2.5 shrink-0">
+          <div className="flex items-center gap-2 shrink-0">
             {/* Keyboard hints */}
-            <div className="hidden lg:flex items-center gap-1.5 text-xs sm:text-sm text-slate-600 bg-white/95 px-3 py-1.5 rounded-xl border border-amber-200/80 shadow-2xs">
-              <kbd className="px-2 py-0.5 bg-amber-50 border border-amber-300 rounded text-[#8C6B18] font-mono text-xs font-bold">
+            <div className="hidden lg:flex items-center gap-1.5 text-xs text-slate-600 bg-white/95 px-2.5 py-1.5 rounded-xl border border-amber-200/80 shadow-2xs">
+              <kbd className="px-1.5 py-0.5 bg-amber-50 border border-amber-300 rounded text-[#8C6B18] font-mono text-[11px] font-bold">
                 ←
               </kbd>
-              <kbd className="px-2 py-0.5 bg-amber-50 border border-amber-300 rounded text-[#8C6B18] font-mono text-xs font-bold">
+              <kbd className="px-1.5 py-0.5 bg-amber-50 border border-amber-300 rounded text-[#8C6B18] font-mono text-[11px] font-bold">
                 →
               </kbd>
               <span className="text-slate-400">hoặc</span>
-              <kbd className="px-2 py-0.5 bg-amber-50 border border-amber-300 rounded text-[#8C6B18] font-mono text-xs font-bold">
+              <kbd className="px-1.5 py-0.5 bg-amber-50 border border-amber-300 rounded text-[#8C6B18] font-mono text-[11px] font-bold">
                 Space
               </kbd>
               <span className="text-slate-600 font-medium">chuyển slide</span>
@@ -1252,22 +1297,22 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
           </div>
         </div>
 
-        {/* Fullscreen Slide Content Stage */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto flex-1 flex flex-col justify-center overflow-y-auto slide-theater-scroll py-4 px-1">
-          <div>
+        {/* Fullscreen Slide Content Stage - FIXED FRAME WITHOUT VERTICAL SCROLL */}
+        <div className="relative z-10 w-full max-w-7xl mx-auto flex-1 flex flex-col justify-center overflow-hidden py-2 px-1">
+          <div className="w-full flex flex-col justify-center">
             {/* Slide Category Header */}
-            <div className="flex flex-wrap items-center justify-between gap-2 pb-2.5 mb-2.5 border-b border-amber-200/80">
-              <div className="flex items-center gap-2.5">
-                <span className="text-xs sm:text-sm font-mono font-extrabold uppercase px-2.5 py-1 rounded bg-white text-[#8C6B18] border border-amber-300 shadow-2xs">
+            <div className="flex flex-wrap items-center justify-between gap-2 pb-1.5 mb-1.5 border-b border-amber-200/80 shrink-0">
+              <div className="flex items-center gap-2">
+                <span className="text-[11px] sm:text-xs font-mono font-extrabold uppercase px-2 py-0.5 rounded bg-white text-[#8C6B18] border border-amber-300 shadow-2xs">
                   {activeSlide.badge}
                 </span>
-                <span className="text-xs sm:text-sm md:text-base font-bold text-[#8C6B18] uppercase tracking-wide">
+                <span className="text-xs sm:text-sm font-bold text-[#8C6B18] uppercase tracking-wide">
                   {activeSlide.category}
                 </span>
               </div>
             </div>
 
-            <p className="text-sm sm:text-base md:text-lg text-slate-800 font-medium leading-relaxed mb-4">
+            <p className="text-xs sm:text-sm md:text-base text-slate-800 font-medium leading-normal mb-2 shrink-0">
               {activeSlide.subtitle}
             </p>
 
@@ -1284,11 +1329,11 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
         </div>
 
         {/* Fullscreen Bottom Navigation Controls */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto pt-3.5 border-t border-amber-300/80 flex flex-wrap items-center justify-between gap-3 shrink-0">
+        <div className="relative z-10 w-full max-w-7xl mx-auto pt-2.5 sm:pt-3 border-t border-amber-300/80 flex flex-wrap items-center justify-between gap-2.5 shrink-0">
           <button
             type="button"
             onClick={prevSlide}
-            className="px-4 py-2 text-xs sm:text-sm font-bold bg-white hover:bg-amber-50 text-[#7A5B10] border border-amber-300 rounded-xl transition flex items-center gap-2 cursor-pointer shadow-xs hover:border-amber-400"
+            className="px-3.5 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-bold bg-white hover:bg-amber-50 text-[#7A5B10] border border-amber-300 rounded-xl transition flex items-center gap-2 cursor-pointer shadow-xs hover:border-amber-400"
           >
             <ChevronLeft className="w-4 h-4 text-[#C59B27]" />
             <span>Trang trước</span>
@@ -1302,7 +1347,7 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
                   key={`fs-pill-${s.id}`}
                   type="button"
                   onClick={() => goToSlide(idx)}
-                  className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center gap-2 cursor-pointer shrink-0 ${
+                  className={`px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center gap-1.5 cursor-pointer shrink-0 ${
                     isActive
                       ? 'bg-[#C59B27] text-white shadow-sm font-bold border border-amber-500 ring-2 ring-amber-300/60'
                       : 'bg-white/90 text-slate-700 hover:text-slate-900 border border-amber-200/80 hover:bg-amber-50'
@@ -1321,13 +1366,14 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
           <button
             type="button"
             onClick={nextSlide}
-            className="px-4 py-2 text-xs sm:text-sm font-bold bg-gradient-to-r from-[#D4AF37] via-[#C59B27] to-[#A87B15] hover:brightness-105 text-white border border-amber-300 rounded-xl transition flex items-center gap-2 cursor-pointer shadow-md"
+            className="px-3.5 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-bold bg-gradient-to-r from-[#D4AF37] via-[#C59B27] to-[#A87B15] hover:brightness-105 text-white border border-amber-300 rounded-xl transition flex items-center gap-2 cursor-pointer shadow-md"
           >
             <span>Trang tiếp</span>
             <ChevronRight className="w-4 h-4 text-amber-100" />
           </button>
         </div>
-      </div>
+      </div>,
+      document.body
     );
   }
 
