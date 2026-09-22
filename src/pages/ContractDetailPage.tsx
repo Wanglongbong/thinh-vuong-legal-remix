@@ -123,10 +123,14 @@ export function ContractDetailPage() {
                     KHUNG TRÌNH CHIẾU SLIDE THUYẾT TRÌNH (10 TRANG CHI TIẾT)
                   </span>
                   <h2 className="text-xl sm:text-2xl font-serif font-bold text-[#0A131E] m-0">
-                    Hồ Sơ Tư Vấn Điều Lệ TVPAY: 7 Lá Chắn Bảo Vệ Nhà Đầu Tư &amp; Ma Trận Rủi Ro
+                    {item.slug === 'dieu-le-cong-ty-co-phan'
+                      ? 'Báo Cáo Thuyết Trình Điều Lệ Công Ty Cổ Phần Cung Ứng Ví Điện Tử TVPAY (10 Slide)'
+                      : 'Báo Cáo Thuyết Trình Hợp Đồng Mở Và Sử Dụng Ví Điện Tử TVPAY (10 Slide)'}
                   </h2>
                   <p className="text-xs text-slate-600 mt-1 mb-0">
-                    Biên soạn bám sát hồ sơ tư vấn chuyên môn của Nhóm 13 (Khoa Luật HVNH): Bảo vệ 05 Nhà đầu tư khách hàng (50 Tỷ VNĐ), 04 nguyên tắc soạn thảo, 07 lá chắn bảo vệ quyền lợi và ma trận xử lý rủi ro thực tiễn.
+                    {item.slug === 'dieu-le-cong-ty-co-phan'
+                      ? 'Biên soạn bám sát hồ sơ tư vấn chuyên môn của Nhóm 13 (Khoa Luật HVNH): Bảo vệ 05 Nhà đầu tư sáng lập (50 Tỷ VNĐ), 04 nguyên tắc soạn thảo, 07 lá chắn bảo vệ quyền lợi và ma trận xử lý rủi ro thực tiễn.'
+                      : 'Biên soạn bám sát hồ sơ pháp lý Nhóm 13 (Khoa Luật HVNH): Chuẩn hóa quy trình eKYC Thông tư 40/2024, nguyên tắc bảo toàn thanh khoản 1:1, hệ sinh thái tăng trưởng và 05 giải pháp bảo vệ doanh nghiệp Fintech.'}
                   </p>
                 </div>
                 <div className="flex items-center gap-2">

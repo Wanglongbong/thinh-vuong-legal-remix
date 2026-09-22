@@ -131,7 +131,7 @@ export function ContractExplorer() {
               </div>
 
               <h3 className="font-serif text-base sm:text-lg font-bold text-slate-900 m-0 mb-2 group-hover:text-amber-900 transition-colors">
-                Thỏa Thuận Mở Và Sử Dụng Ví Điện Tử TVPAY
+                Hợp Đồng Mở Và Sử Dụng Ví Điện Tử TVPAY
               </h3>
 
               <p className="text-xs text-slate-600 leading-relaxed m-0 mb-3">

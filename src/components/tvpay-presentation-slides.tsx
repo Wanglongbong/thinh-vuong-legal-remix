@@ -55,6 +55,48 @@ const RoyalFiligreeCorner = ({ className = '' }: { className?: string }) => (
   </svg>
 );
 
+// Hoa văn 4 góc màn hình khi ở chế độ Fullscreen
+const RoyalScreenCorner = ({ position }: { position: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' }) => {
+  const rotationClass = {
+    'top-left': '',
+    'top-right': 'rotate-90',
+    'bottom-right': 'rotate-180',
+    'bottom-left': '-rotate-90',
+  }[position];
+
+  return (
+    <svg
+      className={`w-14 h-14 sm:w-20 sm:h-20 text-amber-500/25 pointer-events-none absolute z-20 ${rotationClass} ${
+        position.includes('top') ? 'top-3' : 'bottom-3'
+      } ${position.includes('left') ? 'left-3' : 'right-3'}`}
+      viewBox="0 0 64 64"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.2"
+    >
+      <path d="M4 4h28a8 8 0 0 1 8 8v0a8 8 0 0 1-8 8H12v20a8 8 0 0 1-8 8v0a8 8 0 0 1-8-8V4z" />
+      <path d="M10 10h18a4 4 0 0 1 4 4v0a4 4 0 0 1-4 4H14v14" />
+      <circle cx="10" cy="10" r="2.5" fill="currentColor" />
+      <circle cx="28" cy="10" r="1.5" fill="currentColor" />
+      <circle cx="10" cy="28" r="1.5" fill="currentColor" />
+    </svg>
+  );
+};
+
+// Hoa văn vân sóng bảo an chìm hoàng gia
+const RoyalWatermark = () => (
+  <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-[0.035] flex items-center justify-center z-0">
+    <svg className="w-[720px] h-[720px] text-amber-900" viewBox="0 0 200 200" fill="none" stroke="currentColor">
+      <circle cx="100" cy="100" r="92" strokeWidth="1" strokeDasharray="4 4" />
+      <circle cx="100" cy="100" r="78" strokeWidth="1.5" />
+      <circle cx="100" cy="100" r="62" strokeWidth="0.8" strokeDasharray="2 2" />
+      <circle cx="100" cy="100" r="46" strokeWidth="1.2" />
+      <circle cx="100" cy="100" r="30" strokeWidth="0.8" />
+      <polygon points="100,15 110,85 180,85 125,120 145,185 100,145 55,185 75,120 20,85 90,85" strokeWidth="0.8" />
+    </svg>
+  </div>
+);
+
 // Đường kẻ phân cách hoàng gia tinh tế
 const RoyalDivider = ({ title }: { title?: string }) => (
   <div className="flex items-center justify-center gap-2.5 my-2 opacity-70">
@@ -116,13 +158,13 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
       id: 'slide-1',
       badge: 'SLIDE 01 / 10 · BÁO CÁO TƯ VẤN',
       category: 'HỒ SƠ TƯ VẤN PHÁP LÝ · NHÓM 13 (THỊNH VƯỢNG LEGAL) · KHOA LUẬT HVNH',
-      title: 'XÂY DỰNG ĐIỀU LỆ & GIẢI PHÁP BẢO VỆ 05 NHÀ ĐẦU TƯ CÔNG TY CỔ PHẦN TVPAY',
-      subtitle: 'Sản phẩm tư vấn pháp lý chuyên sâu bảo vệ 50 tỷ đồng vốn góp và chuẩn hóa điều kiện cấp phép ví điện tử tại NHNN',
+      title: 'ĐIỀU LỆ CÔNG TY CỔ PHẦN CUNG ỨNG VÍ ĐIỆN TỬ TVPAY',
+      subtitle: 'Bản Hiến pháp nội bộ bảo vệ 05 Nhà đầu tư sáng lập (50 Tỷ VNĐ) và chuẩn hóa điều kiện cấp phép ví điện tử tại NHNN',
       speakerName: 'Đoàn Ánh Phương',
       speakerRole: 'Trưởng Nhóm 13 · Điều phối viên',
       speakerAvatar: '/assets/team/anh-phuong.jpg',
       speakerNotes:
-        'Kính thưa Thầy và các bạn, hôm nay Nhóm 13 đại diện cho Thịnh Vượng Legal xin báo cáo kết quả dự án tư vấn xây dựng Điều lệ cho 05 Nhà đầu tư sáng lập của Công ty Cổ phần TVPAY (ông Lê Quang Tùng, ông Trịnh Hoàng Sơn, ông Nguyễn Minh Lân, bà Phạm Phương Hà, bà Lê Thu Minh). Với quy mô vốn 50 tỷ đồng đầu tư vào lĩnh vực ví điện tử, yêu cầu cấp thiết mà 5 nhà đầu tư đặt ra cho nhóm tư vấn là phải xây dựng một bản Điều lệ vừa đủ điều kiện cấp phép khắt khe của Ngân hàng Nhà nước, vừa là thành trì pháp lý vững chắc bảo vệ quyền kiểm soát và tài sản cho các nhà đầu tư.',
+        'Kính thưa Thầy và các bạn, hôm nay Nhóm 13 đại diện cho Thịnh Vượng Legal xin báo cáo kết quả dự án tư vấn xây dựng Điều lệ cho 05 Nhà đầu tư sáng lập của Công ty Cổ phần Cung ứng Ví điện tử TVPAY (ông Lê Quang Tùng, ông Trịnh Hoàng Sơn, ông Nguyễn Minh Lân, bà Phạm Phương Hà, bà Lê Thu Minh). Với quy mô vốn 50 tỷ đồng đầu tư vào lĩnh vực ví điện tử, yêu cầu cấp thiết mà 5 nhà đầu tư đặt ra cho nhóm tư vấn là phải xây dựng một bản Điều lệ vừa đủ điều kiện cấp phép khắt khe của Ngân hàng Nhà nước, vừa là thành trì pháp lý vững chắc bảo vệ quyền kiểm soát và tài sản cho các nhà đầu tư.',
       renderContent: () => (
         <div className="space-y-3">
           {/* Top 3 Strategic Metric Cards */}
@@ -132,7 +174,7 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
                 <Landmark className="w-4 h-4 text-amber-600" />
                 <span className="text-[10.5px] font-bold uppercase tracking-wider">Doanh nghiệp thành lập</span>
               </div>
-              <h4 className="text-xs font-bold text-slate-900 m-0 mb-0.5">CÔNG TY CỔ PHẦN TVPAY</h4>
+              <h4 className="text-xs font-bold text-slate-900 m-0 mb-0.5">CÔNG TY CP CUNG ỨNG VÍ ĐIỆN TỬ TVPAY</h4>
               <p className="text-[11px] text-slate-600 leading-relaxed m-0">
                 Số 89 Láng Hạ, Đống Đa, Hà Nội. Giấy phép trung gian thanh toán NHNN. Đại diện pháp luật: Tổng Giám đốc Lê Quang Tùng.
               </p>
@@ -149,72 +191,163 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
               </p>
             </div>
 
-            <div className="stagger-3 p-3 bg-white/95 rounded-xl border border-amber-300/80 shadow-2xs">
+            <div className="stagger-3 p-3 bg-white/95 rounded-xl border border-amber-300 shadow-2xs">
               <div className="flex items-center gap-2 mb-1 text-[#8C6B18]">
                 <Scale className="w-4 h-4 text-[#C59B27]" />
-                <span className="text-[10.5px] font-bold uppercase tracking-wider">Đơn vị tư vấn chuyên môn</span>
+                <span className="text-[10.5px] font-bold uppercase tracking-wider">Chuẩn mực pháp lý</span>
               </div>
-              <h4 className="text-xs font-bold text-slate-900 m-0 mb-0.5">Nhóm 13 (Thịnh Vượng Legal)</h4>
+              <h4 className="text-xs font-bold text-slate-900 m-0 mb-0.5">Luật DN 2020 &amp; NĐ 52/2024</h4>
               <p className="text-[11px] text-slate-600 leading-relaxed m-0">
-                Sinh viên Khoa Luật HVNH bảo trợ pháp lý, thẩm định theo Luật Doanh nghiệp 2020 &amp; Nghị định 52/2024/NĐ-CP.
+                Tích hợp Thông tư 40/2024/TT-NHNN và Luật Giao dịch điện tử 2023, tạo cơ chế biểu quyết 65% bảo vệ nhà đầu tư sáng lập.
               </p>
             </div>
           </div>
 
-          {/* Visual Capital Distribution Infographic + Photo */}
-          <div className="stagger-3 p-3 bg-white/95 rounded-xl border border-amber-300/80 shadow-[0_4px_16px_rgba(180,140,40,0.06)] relative overflow-hidden">
-            <RoyalFiligreeCorner className="absolute top-1 right-1" />
-            <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-              <span className="text-[11px] font-bold text-slate-800 flex items-center gap-1.5">
-                <Sparkles className="w-3.5 h-3.5 text-amber-600" />
-                Cơ Cấu Sở Hữu Vốn Điều Lệ 50 Tỷ Đồng Giữa 05 Nhà Đầu Tư Sáng Lập:
+          {/* 5 Founding Shareholders Horizontal Grid */}
+          <div className="stagger-4 p-3 bg-amber-50/70 rounded-xl border border-amber-300/80">
+            <div className="flex items-center justify-between mb-2 pb-1 border-b border-amber-200">
+              <span className="text-[11px] font-bold text-[#7A5B10] uppercase flex items-center gap-1.5 font-mono">
+                <Users className="w-3.5 h-3.5 text-[#8C6B18]" />
+                05 Cổ đông sáng lập TVPAY (50 Tỷ đồng vốn góp)
               </span>
-              <span className="text-[10.5px] font-mono font-bold text-[#8C6B18] bg-amber-100/80 px-2 py-0.5 rounded border border-amber-200">
-                100% VỐN NỘI BỘ KHÉP KÍN
-              </span>
+              <span className="text-[10.5px] text-amber-800 font-mono font-bold">100% Cổ phần phổ thông</span>
             </div>
-
-            {/* Segmented Color Progress Bar in Royal Gold Monochromatic Shades */}
-            <div className="w-full h-3 rounded-full overflow-hidden flex shadow-inner mb-2.5 bg-amber-100/50 border border-amber-200/60">
-              <div className="h-full bg-[#8C6B18] transition-all" style={{ width: '40%' }} title="Lê Quang Tùng: 40% (20 Tỷ)" />
-              <div className="h-full bg-[#A88424] transition-all" style={{ width: '20%' }} title="Trịnh Hoàng Sơn: 20% (10 Tỷ)" />
-              <div className="h-full bg-[#C59B27] transition-all" style={{ width: '16%' }} title="Nguyễn Minh Lân: 16% (8 Tỷ)" />
-              <div className="h-full bg-[#D4AF37] transition-all" style={{ width: '14%' }} title="Phạm Phương Hà: 14% (7 Tỷ)" />
-              <div className="h-full bg-[#E5C768] transition-all" style={{ width: '10%' }} title="Lê Thu Minh: 10% (5 Tỷ)" />
-            </div>
-
-            {/* 5 Investor Badge Pills in Royal Ivory & Gold */}
-            <div className="grid grid-cols-2 sm:grid-cols-5 gap-1.5 text-[10.5px]">
-              <div className="p-1.5 bg-[#FFFDF9] rounded-lg border border-amber-300/80 text-slate-800 font-medium shadow-2xs">
-                <strong className="block text-[#8C6B18] font-bold">1. Lê Quang Tùng</strong>
-                <span>40% · 20 Tỷ VNĐ</span>
+            <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 text-xs">
+              <div className="p-2 bg-white rounded-lg border border-amber-200 text-center shadow-2xs">
+                <strong className="block text-slate-900 text-[11px]">Lê Quang Tùng</strong>
+                <span className="text-[#8C6B18] font-bold font-mono text-[11px]">30% · 15 Tỷ</span>
+                <span className="text-[9.5px] text-slate-500 block">Chủ tịch HĐQT &amp; TGĐ</span>
               </div>
-              <div className="p-1.5 bg-[#FFFDF9] rounded-lg border border-amber-300/80 text-slate-800 font-medium shadow-2xs">
+              <div className="p-2 bg-white rounded-lg border border-amber-200 text-center shadow-2xs">
+                <strong className="block text-slate-900 text-[11px]">Trịnh Hoàng Sơn</strong>
+                <span className="text-[#8C6B18] font-bold font-mono text-[11px]">25% · 12.5 Tỷ</span>
+                <span className="text-[9.5px] text-slate-500 block">Thành viên HĐQT</span>
+              </div>
+              <div className="p-2 bg-white rounded-lg border border-amber-200 text-center shadow-2xs">
+                <strong className="block text-slate-900 text-[11px]">Nguyễn Minh Lân</strong>
+                <span className="text-[#8C6B18] font-bold font-mono text-[11px]">20% · 10 Tỷ</span>
+                <span className="text-[9.5px] text-slate-500 block">Thành viên HĐQT</span>
+              </div>
+              <div className="p-2 bg-white rounded-lg border border-amber-200 text-center shadow-2xs">
+                <strong className="block text-slate-900 text-[11px]">Phạm Phương Hà</strong>
+                <span className="text-[#8C6B18] font-bold font-mono text-[11px]">15% · 7.5 Tỷ</span>
+                <span className="text-[9.5px] text-slate-500 block">Cổ đông sáng lập</span>
+              </div>
+              <div className="p-2 bg-white rounded-lg border border-amber-200 text-center shadow-2xs col-span-2 sm:col-span-1">
+                <strong className="block text-slate-900 text-[11px]">Lê Thu Minh</strong>
+                <span className="text-[#8C6B18] font-bold font-mono text-[11px]">10% · 5 Tỷ</span>
+                <span className="text-[9.5px] text-slate-500 block">Cổ đông sáng lập</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      ),
+    },
+
+    // SLIDE 2: NGUYÊN TẮC CỐT LÕI & CƠ CẤU VỐN 50 TỶ ĐỒNG
+    {
+      id: 'slide-2',
+      badge: 'SLIDE 02 / 10 · CƠ CẤU VỐN & NGUYÊN TẮC',
+      category: 'PHẦN 1 · LÊ PHƯƠNG THẢO PHỤ TRÁCH',
+      title: '04 NGUYÊN TẮC SOẠN THẢO ĐIỀU LỆ & CƠ CẤU VỐN 50 TỶ ĐỒNG',
+      subtitle: 'Đảm bảo tuân thủ nghiêm ngặt Luật Doanh nghiệp 2020 và Nghị định 52/2024/NĐ-CP về trung gian thanh toán',
+      speakerName: 'Lê Phương Thảo',
+      speakerRole: 'Phó Nhóm 13 · Nghiên cứu cấu trúc',
+      speakerAvatar: '/assets/team/le-phuong-thao.jpg',
+      speakerNotes:
+        'Thưa Thầy và các bạn, bước vào phần nội dung chi tiết, nguyên tắc đầu tiên và sống còn khi Nhóm 13 xây dựng Điều lệ TVPAY là phải bảo toàn điều kiện vốn 50 tỷ đồng theo Nghị định 52/2024. Chúng tôi thiết lập 4 nguyên tắc trụ cột: Tuân thủ pháp lý tối cao, Phân định thẩm quyền minh bạch, Bảo vệ quyền lợi cổ đông sáng lập trước nguy cơ pha loãng, và Cơ chế dự phòng rủi ro thanh toán. Năm cổ đông sáng lập sở hữu 100% cổ phần phổ thông với các cam kết khóa chuyển nhượng trong 3 năm đầu.',
+      renderContent: () => (
+        <div className="space-y-3 text-xs">
+          {/* 4 Pillars Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
+            <div className="stagger-1 p-3 bg-white/95 rounded-xl border border-amber-300 shadow-2xs relative overflow-hidden">
+              <RoyalFiligreeCorner className="absolute top-1 right-1" />
+              <span className="font-mono text-[10px] font-bold px-2 py-0.5 rounded bg-amber-100 text-[#7A5B10] block w-fit mb-1.5 border border-amber-300">
+                Nguyên tắc 01
+              </span>
+              <h4 className="text-xs font-bold text-slate-900 m-0 mb-1">Tuân thủ tối cao</h4>
+              <p className="text-[11px] text-slate-600 m-0 leading-relaxed">
+                Đồng bộ 100% với Luật Doanh nghiệp 2020 và Nghị định 52/2024/NĐ-CP của NHNN về trung gian thanh toán.
+              </p>
+            </div>
+
+            <div className="stagger-2 p-3 bg-white/95 rounded-xl border border-amber-300 shadow-2xs relative overflow-hidden">
+              <RoyalFiligreeCorner className="absolute top-1 right-1" />
+              <span className="font-mono text-[10px] font-bold px-2 py-0.5 rounded bg-amber-100 text-[#7A5B10] block w-fit mb-1.5 border border-amber-300">
+                Nguyên tắc 02
+              </span>
+              <h4 className="text-xs font-bold text-slate-900 m-0 mb-1">Phân định thẩm quyền</h4>
+              <p className="text-[11px] text-slate-600 m-0 leading-relaxed">
+                Tách bạch rạch ròi quyền hạn giữa ĐHĐCĐ (chiến lược), HĐQT (giám sát) và Ban Tổng Giám đốc (điều hành).
+              </p>
+            </div>
+
+            <div className="stagger-3 p-3 bg-white/95 rounded-xl border border-amber-300 shadow-2xs relative overflow-hidden">
+              <RoyalFiligreeCorner className="absolute top-1 right-1" />
+              <span className="font-mono text-[10px] font-bold px-2 py-0.5 rounded bg-amber-100 text-[#7A5B10] block w-fit mb-1.5 border border-amber-300">
+                Nguyên tắc 03
+              </span>
+              <h4 className="text-xs font-bold text-slate-900 m-0 mb-1">Bảo vệ Nhà đầu tư</h4>
+              <p className="text-[11px] text-slate-600 m-0 leading-relaxed">
+                Quy định tỷ lệ biểu quyết 65% cho các quyết định trọng yếu, chống pha loãng cổ phần của nhóm sáng lập.
+              </p>
+            </div>
+
+            <div className="stagger-4 p-3 bg-white/95 rounded-xl border border-amber-300 shadow-2xs relative overflow-hidden">
+              <RoyalFiligreeCorner className="absolute top-1 right-1" />
+              <span className="font-mono text-[10px] font-bold px-2 py-0.5 rounded bg-amber-100 text-[#7A5B10] block w-fit mb-1.5 border border-amber-300">
+                Nguyên tắc 04
+              </span>
+              <h4 className="text-xs font-bold text-slate-900 m-0 mb-1">Dự phòng rủi ro</h4>
+              <p className="text-[11px] text-slate-600 m-0 leading-relaxed">
+                Bắt buộc trích lập Quỹ dự trữ thanh toán rủi ro 2% lợi nhuận hằng năm, bảo đảm an toàn dòng tiền ví.
+              </p>
+            </div>
+          </div>
+
+          {/* Capital Structure Callout Banner */}
+          <div className="stagger-3 p-3 bg-gradient-to-r from-amber-50 via-white to-amber-50 rounded-xl border border-amber-300/80">
+            <div className="flex flex-wrap items-center justify-between gap-2 mb-2 pb-1 border-b border-amber-200">
+              <div className="flex items-center gap-2">
+                <Coins className="w-4 h-4 text-[#C59B27]" />
+                <strong className="text-slate-900 text-xs">Cơ Cấu Vốn Điều Lệ: 50.000.000.000 VNĐ (5.000.000 Cổ Phần Phổ Thông)</strong>
+              </div>
+              <span className="text-[11px] font-mono text-amber-800 font-bold bg-amber-100/70 px-2 py-0.5 rounded">
+                Mệnh giá: 10.000 VNĐ/cổ phần
+              </span>
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 text-[11px] text-slate-700">
+              <div className="p-1.5 bg-white/90 rounded border border-amber-200 text-center">
+                <strong className="block text-[#8C6B18] font-bold">1. Lê Quang Tùng</strong>
+                <span>30% · 15 Tỷ VNĐ</span>
+              </div>
+              <div className="p-1.5 bg-white/90 rounded border border-amber-200 text-center">
                 <strong className="block text-[#8C6B18] font-bold">2. Trịnh Hoàng Sơn</strong>
+                <span>25% · 12.5 Tỷ VNĐ</span>
+              </div>
+              <div className="p-1.5 bg-white/90 rounded border border-amber-200 text-center">
+                <strong className="block text-[#8C6B18] font-bold">3. Nguyễn Minh Lân</strong>
                 <span>20% · 10 Tỷ VNĐ</span>
               </div>
-              <div className="p-1.5 bg-[#FFFDF9] rounded-lg border border-amber-300/80 text-slate-800 font-medium shadow-2xs">
-                <strong className="block text-[#8C6B18] font-bold">3. Nguyễn Minh Lân</strong>
-                <span>16% · 8 Tỷ VNĐ</span>
-              </div>
-              <div className="p-1.5 bg-[#FFFDF9] rounded-lg border border-amber-300/80 text-slate-800 font-medium shadow-2xs">
+              <div className="p-1.5 bg-white/90 rounded border border-amber-200 text-center">
                 <strong className="block text-[#8C6B18] font-bold">4. Phạm Phương Hà</strong>
-                <span>14% · 7 Tỷ VNĐ</span>
+                <span>15% · 7.5 Tỷ VNĐ</span>
               </div>
-              <div className="p-1.5 bg-[#FFFDF9] rounded-lg border border-amber-300/80 text-slate-800 font-medium shadow-2xs">
+              <div className="p-1.5 bg-white/90 rounded border border-amber-200 text-center col-span-2 sm:col-span-1">
                 <strong className="block text-[#8C6B18] font-bold">5. Lê Thu Minh</strong>
                 <span>10% · 5 Tỷ VNĐ</span>
               </div>
             </div>
           </div>
 
-          {/* Team Presentation Roles Banner with Image */}
+          {/* Team Presentation Roles Banner with Golden Vector Medallion (NO PHOTO) */}
           <div className="stagger-4 p-3 bg-gradient-to-r from-amber-100/70 via-amber-50 to-amber-100/70 rounded-xl border border-amber-300/80 flex flex-col sm:flex-row items-center gap-3">
-            <img
-              src="/assets/contract-signing.jpg"
-              alt="Ký kết thỏa thuận TVPAY"
-              className="w-full sm:w-28 h-18 object-cover rounded-lg border border-amber-300 shadow-xs shrink-0"
-            />
+            <div className="w-full sm:w-28 h-20 rounded-lg bg-gradient-to-br from-amber-100 via-white to-amber-50 border border-amber-300 shadow-xs shrink-0 flex flex-col items-center justify-center p-2 text-center relative overflow-hidden">
+              <RoyalFiligreeCorner className="absolute top-0.5 right-0.5" />
+              <FileCheck2 className="w-6 h-6 text-[#C59B27] mb-1" />
+              <span className="font-mono text-[9px] uppercase font-bold text-[#8C6B18]">Văn Kiện Sáng Lập</span>
+              <span className="text-[8.5px] text-slate-500">5 Cổ Đông Ký Kết</span>
+            </div>
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-1.5 mb-1 text-[#7A5B10] font-bold text-xs">
                 <Users className="w-3.5 h-3.5 text-[#8C6B18]" />
@@ -382,19 +515,20 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
               </div>
             </div>
 
-            {/* Right Featured Card with Scales Image */}
-            <div className="stagger-5 p-3.5 bg-gradient-to-br from-amber-50 to-white rounded-xl border border-amber-300/90 shadow-xs flex flex-col justify-between relative overflow-hidden">
+            {/* Right Featured Card with Golden Scales Vector Emblem */}
+            <div className="stagger-5 p-3.5 bg-gradient-to-br from-[#FFFDF9] via-[#FAF6EE] to-[#F5ECE0] rounded-xl border border-amber-300/90 shadow-xs flex flex-col justify-between relative overflow-hidden">
               <RoyalFiligreeCorner className="absolute top-1 right-1" />
               <div>
-                <div className="relative rounded-lg overflow-hidden border border-amber-300 mb-2.5">
-                  <img
-                    src="/assets/legal-scales-gavel.jpg"
-                    alt="Hiến pháp nội bộ TVPAY"
-                    className="w-full h-24 object-cover"
-                  />
-                  <span className="absolute bottom-1 right-1 text-[9px] font-bold bg-slate-900/80 text-amber-300 px-1.5 py-0.5 rounded">
-                    HIẾN PHÁP NỘI BỘ
-                  </span>
+                <div className="relative rounded-lg overflow-hidden border border-amber-300/80 bg-gradient-to-br from-[#FFFDF9] to-[#FAF4E6] p-3 mb-2.5 flex items-center gap-3 shadow-2xs">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#FFF8E7] to-[#F3E5BE] border border-[#D4AF37]/50 flex items-center justify-center shrink-0 shadow-xs">
+                    <Scale className="w-6 h-6 text-[#8C6B18]" />
+                  </div>
+                  <div>
+                    <span className="text-[9px] font-bold tracking-wider text-[#8C6B18] uppercase bg-amber-100/80 px-2 py-0.5 rounded border border-amber-200 inline-block mb-1">
+                      HIẾN PHÁP NỘI BỘ
+                    </span>
+                    <p className="text-[11px] font-medium text-slate-700 m-0">Biểu tượng cán cân công lý &amp; trật tự pháp quyền</p>
+                  </div>
                 </div>
                 <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-amber-200/80 text-[#7A5B10] block w-fit mb-1 border border-amber-300/80">
                   Vai trò 05 · Trọng tâm quản trị
@@ -578,19 +712,20 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
               </div>
             </div>
 
-            {/* Featured Image Card */}
-            <div className="stagger-3 p-3 bg-gradient-to-br from-amber-50 to-white rounded-xl border border-amber-300/90 shadow-xs flex flex-col justify-between relative overflow-hidden">
+            {/* Featured Golden Emblem Card */}
+            <div className="stagger-3 p-3 bg-gradient-to-br from-[#FFFDF9] via-[#FAF6EE] to-[#F5ECE0] rounded-xl border border-amber-300/90 shadow-xs flex flex-col justify-between relative overflow-hidden">
               <RoyalFiligreeCorner className="absolute top-1 right-1" />
               <div>
-                <div className="relative rounded-lg overflow-hidden border border-amber-300 mb-2">
-                  <img
-                    src="/assets/fintech-security-vault.jpg"
-                    alt="Kho quỹ thanh khoản 50 tỷ TVPAY"
-                    className="w-full h-24 object-cover"
-                  />
-                  <span className="absolute bottom-1 right-1 text-[9px] font-bold bg-slate-900/80 text-amber-300 px-1.5 py-0.5 rounded">
-                    QUỸ BẢO TOÀN 1:1
-                  </span>
+                <div className="relative rounded-lg overflow-hidden border border-amber-300/80 bg-gradient-to-br from-[#FFFDF9] to-[#FAF4E6] p-3 mb-2 flex items-center gap-3 shadow-2xs">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#FFF8E7] to-[#F3E5BE] border border-[#D4AF37]/50 flex items-center justify-center shrink-0 shadow-xs">
+                    <Landmark className="w-6 h-6 text-[#8C6B18]" />
+                  </div>
+                  <div>
+                    <span className="text-[9px] font-bold tracking-wider text-[#8C6B18] uppercase bg-amber-100/80 px-2 py-0.5 rounded border border-amber-200 inline-block mb-1">
+                      QUỸ BẢO TOÀN 1:1
+                    </span>
+                    <p className="text-[11px] font-medium text-slate-700 m-0">Két thanh khoản đảm bảo tại Ngân hàng Hợp tác</p>
+                  </div>
                 </div>
                 <h5 className="text-xs font-bold text-slate-900 m-0 mb-1">Kiểm toán số dư độc lập</h5>
                 <p className="text-[11px] text-slate-600 leading-relaxed m-0">
@@ -658,20 +793,18 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
             </div>
           </div>
 
-          {/* Infrastructure Image Banner */}
-          <div className="stagger-4 p-2.5 bg-gradient-to-r from-amber-50 via-white to-amber-50 rounded-xl border border-amber-300/80 flex items-center justify-between gap-3 text-xs">
-            <div className="flex items-center gap-2.5">
-              <img
-                src="/assets/fintech-headquarters.jpg"
-                alt="Hạ tầng TVPAY"
-                className="w-16 h-10 object-cover rounded-md border border-amber-300 shrink-0 shadow-2xs"
-              />
+          {/* Infrastructure Golden Emblem Banner */}
+          <div className="stagger-4 p-2.5 bg-gradient-to-r from-[#FFFDF9] via-[#FAF5E8] to-[#FFFDF9] rounded-xl border border-amber-300/80 flex items-center justify-between gap-3 text-xs shadow-2xs">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#FFF8E7] to-[#F3E5BE] border border-[#D4AF37]/50 flex items-center justify-center shrink-0 shadow-xs">
+                <Server className="w-5 h-5 text-[#8C6B18]" />
+              </div>
               <div>
                 <strong className="text-slate-900 block text-[11px]">Hạ tầng công nghệ thông tin &amp; An ninh mạng TVPAY</strong>
                 <span className="text-slate-600 text-[10.5px]">Được bảo hộ toàn diện bởi Điều lệ, thỏa mãn tiêu chuẩn kỹ thuật cấp phép của Ngân hàng Nhà nước.</span>
               </div>
             </div>
-            <span className="font-mono text-[10px] font-bold px-2 py-0.5 bg-amber-100 text-[#7A5B10] rounded border border-amber-300 shrink-0 hidden sm:inline">
+            <span className="font-mono text-[10px] font-bold px-2.5 py-1 bg-amber-100/90 text-[#7A5B10] rounded border border-amber-300 shrink-0 hidden sm:inline">
               ISO/IEC 27001
             </span>
           </div>
@@ -776,20 +909,18 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
             </table>
           </div>
 
-          {/* Photo banner: Executive Boardroom */}
-          <div className="stagger-4 p-2.5 bg-gradient-to-r from-amber-50 via-white to-amber-50 rounded-xl border border-amber-300/80 flex items-center justify-between gap-3 text-xs">
-            <div className="flex items-center gap-2.5">
-              <img
-                src="/assets/executive-boardroom.jpg"
-                alt="Phòng họp HĐQT TVPAY"
-                className="w-16 h-10 object-cover rounded-md border border-amber-300 shrink-0 shadow-2xs"
-              />
+          {/* Governance Golden Emblem Banner */}
+          <div className="stagger-4 p-2.5 bg-gradient-to-r from-[#FFFDF9] via-[#FAF5E8] to-[#FFFDF9] rounded-xl border border-amber-300/80 flex items-center justify-between gap-3 text-xs shadow-2xs">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#FFF8E7] to-[#F3E5BE] border border-[#D4AF37]/50 flex items-center justify-center shrink-0 shadow-xs">
+                <Users className="w-5 h-5 text-[#8C6B18]" />
+              </div>
               <div>
-                <strong className="text-slate-900 block text-[11px]">Cơ chế biểu quyết và điều hành phòng họp HĐQT TVPAY</strong>
+                <strong className="text-slate-900 block text-[11px]">Cơ chế biểu quyết và điều hành Hội đồng quản trị TVPAY</strong>
                 <span className="text-slate-600 text-[10.5px]">Được chuẩn hóa nhằm giải tỏa bế tắc (Deadlock) giữa 5 nhà đầu tư sáng lập, bảo đảm vận hành thông suốt.</span>
               </div>
             </div>
-            <span className="font-mono text-[10px] font-bold px-2 py-0.5 bg-amber-100 text-[#7A5B10] rounded border border-amber-300 shrink-0 hidden sm:inline">
+            <span className="font-mono text-[10px] font-bold px-2.5 py-1 bg-amber-100/90 text-[#7A5B10] rounded border border-amber-300 shrink-0 hidden sm:inline">
               ĐIỀU 28 - 34 ĐIỀU LỆ
             </span>
           </div>
@@ -965,14 +1096,12 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
             </div>
           </div>
 
-          {/* Corporate Counsel Banner & Digital Proposal */}
-          <div className="stagger-3 p-3 bg-gradient-to-r from-amber-50 via-white to-amber-50 rounded-xl border border-amber-300 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-700">
+          {/* Corporate Counsel Golden Emblem Banner & Digital Proposal */}
+          <div className="stagger-3 p-3 bg-gradient-to-r from-[#FFFDF9] via-[#FAF5E8] to-[#FFFDF9] rounded-xl border border-amber-300 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-700 shadow-2xs">
             <div className="flex items-center gap-3">
-              <img
-                src="/assets/corporate-counsel.jpg"
-                alt="Tổ chuyên gia tư vấn pháp lý Nhóm 13"
-                className="w-16 h-11 object-cover rounded-md border border-amber-300 shrink-0 shadow-2xs"
-              />
+              <div className="w-11 h-11 rounded-lg bg-gradient-to-br from-[#FFF8E7] to-[#F3E5BE] border border-[#D4AF37]/50 flex items-center justify-center shrink-0 shadow-xs">
+                <Award className="w-5 h-5 text-[#8C6B18]" />
+              </div>
               <div>
                 <strong className="text-slate-900 block text-[11.5px] flex items-center gap-1.5">
                   <Sparkles className="w-3.5 h-3.5 text-[#C59B27]" />
@@ -993,14 +1122,14 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
   ];
 
   // =========================================================================
-  // SLIDES FOR THỎA THUẬN MỞ & SỬ DỤNG VÍ ĐIỆN TỬ TVPAY (10 SLIDES CHUYÊN SÂU)
+  // SLIDES FOR HỢP ĐỒNG MỞ & SỬ DỤNG VÍ ĐIỆN TỬ TVPAY (10 SLIDES CHUYÊN SÂU)
   // =========================================================================
   const walletSlides: SlideItem[] = [
     {
       id: 'w-slide-1',
       badge: 'SLIDE 01 / 10 · BẢN CHẤT PHÁP LÝ',
       category: 'BÁO CÁO PHÁP LÝ NHÓM 13 · DIỄN GIẢ: TRẦN THỊ THƠ (NHÓM TRƯỞNG)',
-      title: 'THỎA THUẬN MỞ VÀ SỬ DỤNG VÍ ĐIỆN TỬ TVPAY',
+      title: 'HỢP ĐỒNG MỞ VÀ SỬ DỤNG VÍ ĐIỆN TỬ TVPAY',
       subtitle: 'Hợp đồng dịch vụ trung gian thanh toán chuẩn mực bảo vệ nền tảng Fintech và quyền lợi người dùng',
       renderContent: () => (
         <div className="space-y-3.5 text-xs">
@@ -1079,8 +1208,8 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
     {
       id: 'w-slide-2',
       badge: 'SLIDE 02 / 10 · CẤU TRÚC VĂN KIỆN',
-      category: 'CẤU TRÚC TOÀN VĂN THỎA THUẬN · DIỄN GIẢ: TRẦN THỊ THƠ',
-      title: 'HỆ THỐNG 3 TẦNG VĂN KIỆN VÀ DANH MỤC 18 ĐIỀU KHOẢN',
+      category: 'CẤU TRÚC TOÀN VĂN HỢP ĐỒNG · DIỄN GIẢ: TRẦN THỊ THƠ',
+      title: 'HỆ THỐNG 3 TẦNG VĂN KIỆN VÀ DANH MỤC 18 ĐIỀU KHOẢN HỢP ĐỒNG',
       subtitle: 'Kiến trúc văn bản chặt chẽ từ hồ sơ eKYC, 18 Điều khoản quy định chung đến cam kết thực thi',
       renderContent: () => (
         <div className="space-y-3 text-xs">
@@ -1154,7 +1283,7 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
             <RoyalFiligreeCorner className="absolute top-1 right-1" />
             <div className="flex items-center gap-1.5 text-[#8C6B18] font-bold text-xs mb-2 pb-1.5 border-b border-amber-200/70">
               <CheckCircle2 className="w-4 h-4 text-[#C59B27]" />
-              <span className="uppercase tracking-wide">04 Nội Dung Cốt Lõi Của Thỏa Thuận</span>
+              <span className="uppercase tracking-wide">04 Nội Dung Cốt Lõi Của Hợp Đồng</span>
             </div>
             <div className="space-y-2 text-[11px] text-slate-700 leading-relaxed">
               <div className="p-2 bg-amber-50/50 rounded-lg border border-amber-200/60">
@@ -1226,7 +1355,7 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
                 <span className="uppercase tracking-wide">Quy Trình eKYC 3 Bước Chuẩn Pháp Lý</span>
               </div>
               <p className="text-[11px] text-slate-600 mb-2.5">
-                Căn cứ Điều 2 Khoản 5 Thỏa thuận và Thông tư 40/2024/TT-NHNN về nhận biết khách hàng:
+                Căn cứ Điều 2 Khoản 5 Hợp đồng và Thông tư 40/2024/TT-NHNN về nhận biết khách hàng:
               </p>
               <div className="space-y-2 text-[11px] text-slate-700">
                 <div className="flex items-start gap-2 p-2 bg-amber-50/60 rounded-lg border border-amber-200/60">
@@ -1282,7 +1411,7 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
     {
       id: 'w-slide-5',
       badge: 'SLIDE 05 / 10 · TIỆN ÍCH LÕI TÀI CHÍNH',
-      category: 'PHẦN C - ĐIỀU 1 THỎA THUẬN · DIỄN GIẢ: TRẦN THỊ THÙY',
+      category: 'PHẦN C - ĐIỀU 1 HỢP ĐỒNG · DIỄN GIẢ: TRẦN THỊ THÙY',
       title: 'HỆ THỐNG TIỆN ÍCH LÕI VỀ TÀI CHÍNH VÀ THANH TOÁN',
       subtitle: 'Onboarding không ma sát dưới 2 phút, Nạp - Rút 24/7 và Mạng lưới QR Code toàn quốc (Phần C - Điều 1)',
       renderContent: () => (
@@ -1354,7 +1483,7 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
     {
       id: 'w-slide-6',
       badge: 'SLIDE 06 / 10 · HỆ SINH THÁI TĂNG TRƯỞNG',
-      category: 'PHẦN C - ĐIỀU 2 THỎA THUẬN · DIỄN GIẢ: VƯƠNG THU THỦY',
+      category: 'PHẦN C - ĐIỀU 2 HỢP ĐỒNG · DIỄN GIẢ: VƯƠNG THU THỦY',
       title: 'HỆ SINH THÁI TĂNG TRƯỞNG VÀ GIỮ CHÂN NGƯỜI DÙNG',
       subtitle: 'Hoàn tiền tức thì, Kho Voucher thông minh, Loyalty 4 cấp và Liên minh Đối tác 3 bên (Phần C - Điều 2)',
       renderContent: () => (
@@ -1426,7 +1555,7 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
     {
       id: 'w-slide-7',
       badge: 'SLIDE 07 / 10 · AN TOÀN & BẢO MẬT ĐA TẦNG',
-      category: 'PHẦN C - ĐIỀU 3 THỎA THUẬN · DIỄN GIẢ: TRẦN THỊ THÙY',
+      category: 'PHẦN C - ĐIỀU 3 HỢP ĐỒNG · DIỄN GIẢ: TRẦN THỊ THÙY',
       title: 'AN TOÀN, BẢO MẬT VÀ TRUY XUẤT THÔNG TIN MINH BẠCH',
       subtitle: 'Khóa ví tức thì 1 chạm, Tra soát khiếu nại minh bạch và Tiêu chuẩn mã hóa đa tầng (Phần C - Điều 3)',
       renderContent: () => (
@@ -1498,7 +1627,7 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
     {
       id: 'w-slide-8',
       badge: 'SLIDE 08 / 10 · LỢI THẾ NHÀ ĐẦU TƯ',
-      category: 'PHẦN C - ĐIỀU 4 THỎA THUẬN · DIỄN GIẢ: VƯƠNG THU THỦY',
+      category: 'PHẦN C - ĐIỀU 4 HỢP ĐỒNG · DIỄN GIẢ: VƯƠNG THU THỦY',
       title: 'LỢI THẾ VƯỢT TRỘI DÀNH CHO NHÀ ĐẦU TƯ & MÔ HÌNH DOANH THU',
       subtitle: 'Triệt tiêu rủi ro thanh tra, Đa dạng hóa dòng doanh thu và Bánh đà tăng trưởng tự củng cố (Phần C - Điều 4)',
       renderContent: () => (
@@ -1597,7 +1726,7 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
             <div className="p-3 bg-white/95 rounded-xl border border-amber-300/80 shadow-2xs relative overflow-hidden">
               <RoyalFiligreeCorner className="absolute top-1 right-1" />
               <div className="flex items-center justify-between mb-1.5">
-                <strong className="text-slate-900 text-[11.5px] font-bold">2. Xây dựng Thỏa thuận Chặt chẽ</strong>
+                <strong className="text-slate-900 text-[11.5px] font-bold">2. Xây dựng Hợp đồng Chặt chẽ</strong>
                 <span className="font-mono text-[9.5px] text-[#8C6B18] bg-amber-100/80 px-1.5 py-0.5 rounded">Giải pháp 2</span>
               </div>
               <p className="text-[11px] text-slate-600 m-0 leading-relaxed">
@@ -1754,6 +1883,34 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
     return () => clearInterval(timer);
   }, [isAutoPlaying, totalSlides]);
 
+  const toggleFullscreen = useCallback(() => {
+    try {
+      uiSound.playClick();
+    } catch {}
+    if (!isFullscreen) {
+      if (document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      }
+      setIsFullscreen(true);
+    } else {
+      if (document.fullscreenElement && document.exitFullscreen) {
+        document.exitFullscreen().catch(() => {});
+      }
+      setIsFullscreen(false);
+    }
+  }, [isFullscreen]);
+
+  // Handle native browser fullscreen change (e.g. user presses Esc key in browser)
+  useEffect(() => {
+    const handleFsChange = () => {
+      if (!document.fullscreenElement && isFullscreen) {
+        setIsFullscreen(false);
+      }
+    };
+    document.addEventListener('fullscreenchange', handleFsChange);
+    return () => document.removeEventListener('fullscreenchange', handleFsChange);
+  }, [isFullscreen]);
+
   // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -1773,79 +1930,284 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
       } else if (e.key === 'ArrowLeft') {
         prevSlide();
       } else if (e.key === 'Escape' && isFullscreen) {
-        setIsFullscreen(false);
+        toggleFullscreen();
       } else if (e.key.toLowerCase() === 'f' && !e.metaKey && !e.ctrlKey) {
-        setIsFullscreen((prev) => !prev);
+        toggleFullscreen();
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [nextSlide, prevSlide, isFullscreen]);
+  }, [nextSlide, prevSlide, isFullscreen, toggleFullscreen]);
 
   const activeSlide = slides[currentSlide];
 
-  return (
-    <div
-      ref={containerRef}
-      className={`tvpay-presentation-slides-wrapper relative ${
-        isFullscreen
-          ? 'fixed inset-0 z-[9999] bg-slate-950/85 backdrop-blur-md flex flex-col items-center justify-center p-2 sm:p-5 md:p-8 overflow-y-auto animate-in fade-in duration-300'
-          : 'w-full my-8'
-      } ${className}`}
-    >
-      {/* Cinema Theater Mode Top Floating Bar */}
-      {isFullscreen && (
-        <div className="w-full max-w-6xl mb-2.5 flex items-center justify-between px-4 py-2 bg-slate-900/90 border border-amber-400/40 rounded-xl backdrop-blur-md text-amber-200 text-xs shadow-2xl shrink-0">
-          <div className="flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse" />
-            <span className="font-bold tracking-wider uppercase font-serif text-amber-300 text-[11px] sm:text-xs">
-              RẠP CHIẾU THUYẾT TRÌNH · TVPAY CINEMA MODE
+  // Helper for slide pill labels
+  const getSlideLabel = (idx: number) => {
+    if (isCharter) {
+      return idx === 0
+        ? 'Tổng quan'
+        : idx === 1
+        ? 'Nguyên tắc'
+        : idx === 2
+        ? 'Vai trò'
+        : idx === 3
+        ? '9 Chương'
+        : idx === 4
+        ? 'Cổ đông'
+        : idx === 5
+        ? 'Vốn & Xung đột'
+        : idx === 6
+        ? 'Fintech & ATTT'
+        : idx === 7
+        ? 'Rủi ro 1'
+        : idx === 8
+        ? 'Rủi ro 2'
+        : 'Q&A';
+    }
+    return idx === 0
+      ? 'Tổng quan'
+      : idx === 1
+      ? '3 Tầng văn kiện'
+      : idx === 2
+      ? '4 Trụ cột'
+      : idx === 3
+      ? 'eKYC & Hạn mức'
+      : idx === 4
+      ? 'Hệ sinh thái'
+      : idx === 5
+      ? 'Xác thực'
+      : idx === 6
+      ? 'Nạp rút & Phí'
+      : idx === 7
+      ? 'An toàn bảo mật'
+      : idx === 8
+      ? 'Ma trận rủi ro'
+      : 'Q&A & Cẩm nang';
+  };
+
+  // =========================================================================
+  // TRUE FULLSCREEN VIEW (No dark scrim, bright royal gold & ivory theme)
+  // =========================================================================
+  if (isFullscreen) {
+    return (
+      <div
+        ref={containerRef}
+        className="fixed inset-0 z-[9999] w-screen h-screen bg-gradient-to-br from-[#FFFDF9] via-[#FAF6EE] to-[#F5ECE0] flex flex-col justify-between overflow-hidden select-none p-3 sm:p-5 md:p-6 lg:p-7 animate-in fade-in duration-300"
+      >
+        {/* Ornate Gold Filigree Corners */}
+        <RoyalScreenCorner position="top-left" />
+        <RoyalScreenCorner position="top-right" />
+        <RoyalScreenCorner position="bottom-left" />
+        <RoyalScreenCorner position="bottom-right" />
+
+        {/* Guilloché Watermark in Center Background */}
+        <RoyalWatermark />
+
+        {/* Fullscreen Top Gold Navigation Bar */}
+        <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-wrap items-center justify-between pb-3 border-b border-amber-300/80 gap-3 shrink-0">
+          <div className="flex items-center gap-2.5 min-w-0">
+            <span className="p-2 rounded-xl bg-gradient-to-br from-[#FFF8E7] to-[#F3E5BE] border border-[#D4AF37]/70 text-[#8C6B18] shadow-xs shrink-0">
+              <FileCheck2 className="w-5 h-5" />
             </span>
-            <span className="text-slate-500 hidden sm:inline">|</span>
-            <span className="text-slate-300 hidden sm:inline text-[11px]">
-              Học viện Ngân hàng · Nhóm 13
-            </span>
+            <div className="min-w-0">
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className="text-[10px] uppercase font-bold tracking-wider text-[#8C6B18] font-mono bg-amber-100/90 border border-amber-300/80 px-2 py-0.5 rounded truncate">
+                  {isCharter
+                    ? 'BÁO CÁO ĐIỀU LỆ CÔNG TY CỔ PHẦN CUNG ỨNG VÍ ĐIỆN TỬ TVPAY'
+                    : 'BÁO CÁO HỢP ĐỒNG MỞ VÀ SỬ DỤNG VÍ ĐIỆN TỬ TVPAY'}
+                </span>
+                <span className="text-xs font-mono font-bold text-[#7A5B10] bg-amber-200/60 px-2 py-0.5 rounded border border-amber-300">
+                  SLIDE {currentSlide + 1} / {totalSlides}
+                </span>
+              </div>
+              <h2 className="font-serif text-sm sm:text-base md:text-lg font-bold text-slate-900 m-0 mt-0.5 truncate">
+                {activeSlide.title}
+              </h2>
+            </div>
           </div>
-          <div className="flex items-center gap-3">
-            <div className="hidden md:flex items-center gap-1.5 text-[11px] text-slate-300">
-              <kbd className="px-1.5 py-0.5 bg-slate-800 border border-slate-700 rounded text-amber-300 font-mono text-[10px]">
+
+          <div className="flex items-center gap-2.5 shrink-0">
+            {/* Keyboard hints */}
+            <div className="hidden lg:flex items-center gap-1.5 text-xs text-slate-600 bg-white/90 px-3 py-1.5 rounded-xl border border-amber-200/80 shadow-2xs">
+              <kbd className="px-1.5 py-0.5 bg-amber-50 border border-amber-300 rounded text-[#8C6B18] font-mono text-[11px] font-bold">
                 ←
               </kbd>
-              <kbd className="px-1.5 py-0.5 bg-slate-800 border border-slate-700 rounded text-amber-300 font-mono text-[10px]">
+              <kbd className="px-1.5 py-0.5 bg-amber-50 border border-amber-300 rounded text-[#8C6B18] font-mono text-[11px] font-bold">
                 →
               </kbd>
               <span className="text-slate-400">hoặc</span>
-              <kbd className="px-1.5 py-0.5 bg-slate-800 border border-slate-700 rounded text-amber-300 font-mono text-[10px]">
+              <kbd className="px-1.5 py-0.5 bg-amber-50 border border-amber-300 rounded text-[#8C6B18] font-mono text-[11px] font-bold">
                 Space
               </kbd>
-              <span className="text-slate-400">chuyển slide</span>
+              <span className="text-slate-600 font-medium">chuyển slide</span>
             </div>
+
+            {/* Auto-play toggle */}
             <button
               type="button"
               onClick={() => {
-                try {
-                  uiSound.playClick();
-                } catch {}
-                setIsFullscreen(false);
+                uiSound.playClick();
+                setIsAutoPlaying(!isAutoPlaying);
               }}
-              className="px-3 py-1 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-400/50 rounded-lg text-xs font-bold transition flex items-center gap-1.5 cursor-pointer"
+              className={`px-3 py-1.5 rounded-xl border text-xs font-semibold flex items-center gap-1.5 transition cursor-pointer ${
+                isAutoPlaying
+                  ? 'bg-[#C59B27] text-white border-amber-500 shadow-xs'
+                  : 'bg-white hover:bg-amber-50 text-slate-700 border-amber-300 shadow-2xs'
+              }`}
+              title={isAutoPlaying ? 'Tạm dừng tự chạy' : 'Tự chạy 8s/slide'}
             >
-              <Minimize2 className="w-3.5 h-3.5" />
-              <span>Thoát Rạp Chiếu (Esc)</span>
+              {isAutoPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
+              <span className="hidden sm:inline">{isAutoPlaying ? 'Tạm dừng' : 'Tự chạy'}</span>
+            </button>
+
+            {/* Exit Fullscreen button */}
+            <button
+              type="button"
+              onClick={toggleFullscreen}
+              className="px-3.5 py-1.5 rounded-xl border border-amber-300/90 bg-white hover:bg-amber-50 text-[#8C6B18] hover:text-[#7A5B10] text-xs font-bold transition flex items-center gap-1.5 cursor-pointer shadow-xs hover:border-amber-400"
+              title="Thoát toàn màn hình (Phím Esc)"
+            >
+              <Minimize2 className="w-4 h-4 text-[#C59B27]" />
+              <span>Thoát Toàn Màn Hình (Esc)</span>
             </button>
           </div>
         </div>
-      )}
 
-      {/* Container Frame with Royal White & Gold palette */}
-      <div
-        className={`relative bg-gradient-to-br from-[#FFFDF9] via-[#FAF5EA] to-[#F5ECDA] rounded-2xl border-2 border-amber-300/80 shadow-[0_12px_36px_rgba(197,155,39,0.14)] overflow-hidden transition-all duration-300 ${
-          isFullscreen
-            ? 'w-full max-w-6xl max-h-[88vh] flex flex-col border-amber-400/90 shadow-[0_0_50px_rgba(212,175,55,0.35)]'
-            : ''
-        }`}
-      >
+        {/* Fullscreen Slide Content Stage */}
+        <div className="relative z-10 w-full max-w-7xl mx-auto flex-1 flex flex-col justify-between overflow-y-auto slide-theater-scroll py-3 px-1">
+          <div>
+            {/* Slide Category Header */}
+            <div className="flex flex-wrap items-center justify-between gap-2 pb-2 mb-2 border-b border-amber-200/70">
+              <div className="flex items-center gap-2">
+                <span className="text-[10.5px] font-mono font-extrabold uppercase px-2 py-0.5 rounded bg-white text-[#8C6B18] border border-amber-300 shadow-2xs">
+                  {activeSlide.badge}
+                </span>
+                <span className="text-xs font-bold text-[#8C6B18] uppercase tracking-wide">
+                  {activeSlide.category}
+                </span>
+              </div>
+            </div>
+
+            <p className="text-xs sm:text-sm text-slate-700 font-medium leading-relaxed mb-3">
+              {activeSlide.subtitle}
+            </p>
+
+            {/* Morphing animated content */}
+            <div
+              key={`fs-${activeSlide.id}-${currentSlide}`}
+              className={`tvpay-slide-content ${
+                slideDirection === 'forward' ? 'slide-morph-forward' : 'slide-morph-backward'
+              }`}
+            >
+              {activeSlide.renderContent(docData)}
+            </div>
+
+            {/* Speaker Notes Callout */}
+            {activeSlide.speakerNotes && (
+              <div className="mt-3 p-3 bg-gradient-to-r from-amber-50/95 via-white to-amber-50/95 rounded-xl border border-amber-300/80 shadow-2xs flex items-start gap-3">
+                {activeSlide.speakerAvatar ? (
+                  <div className="relative shrink-0 mt-0.5">
+                    <img
+                      src={activeSlide.speakerAvatar}
+                      alt={activeSlide.speakerName || 'Thành viên Nhóm 13'}
+                      className="w-10 h-10 rounded-full object-cover border-2 border-amber-400 shadow-xs"
+                    />
+                    <span
+                      className="absolute -bottom-1 -right-1 w-3.5 h-3.5 bg-emerald-500 rounded-full border-2 border-white flex items-center justify-center text-[7px] text-white font-bold"
+                      title="Diễn giả sẵn sàng"
+                    >
+                      ✓
+                    </span>
+                  </div>
+                ) : (
+                  <div className="w-10 h-10 rounded-full bg-amber-100 border border-amber-300 flex items-center justify-center text-amber-800 font-bold shrink-0 mt-0.5">
+                    13
+                  </div>
+                )}
+                <div className="min-w-0 flex-1">
+                  <div className="flex flex-wrap items-center justify-between gap-1 mb-0.5">
+                    <div className="flex items-center gap-1.5 flex-wrap">
+                      <MessageSquare className="w-3.5 h-3.5 text-[#C59B27] shrink-0" />
+                      <strong className="text-xs text-slate-900 font-bold">
+                        {activeSlide.speakerName || 'Thành viên Nhóm 13 (Thịnh Vượng Legal)'}
+                      </strong>
+                      {activeSlide.speakerRole && (
+                        <span className="text-[10px] px-2 py-0.5 rounded bg-amber-100/90 text-[#7A5B10] font-medium border border-amber-200/60 hidden sm:inline">
+                          {activeSlide.speakerRole}
+                        </span>
+                      )}
+                    </div>
+                    <span className="text-[9.5px] font-mono text-slate-400 uppercase font-semibold">
+                      Speaker Notes
+                    </span>
+                  </div>
+                  <p className="text-[11px] sm:text-[11.5px] text-slate-700 leading-relaxed m-0 italic bg-amber-50/50 p-2 rounded-lg border border-amber-200/60">
+                    "{activeSlide.speakerNotes}"
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Fullscreen Bottom Navigation Controls */}
+        <div className="relative z-10 w-full max-w-7xl mx-auto pt-3 border-t border-amber-300/80 flex flex-wrap items-center justify-between gap-3 shrink-0">
+          <button
+            type="button"
+            onClick={prevSlide}
+            className="px-3.5 py-1.5 sm:px-4 sm:py-2 text-xs font-bold bg-white hover:bg-amber-50 text-[#7A5B10] border border-amber-300 rounded-xl transition flex items-center gap-1.5 cursor-pointer shadow-xs hover:border-amber-400"
+          >
+            <ChevronLeft className="w-4 h-4 text-[#C59B27]" />
+            <span>Trang trước</span>
+          </button>
+
+          <div className="flex items-center gap-1.5 overflow-x-auto py-1 max-w-[65vw] sm:max-w-none scrollbar-none">
+            {slides.map((s, idx) => {
+              const isActive = idx === currentSlide;
+              return (
+                <button
+                  key={`fs-pill-${s.id}`}
+                  type="button"
+                  onClick={() => goToSlide(idx)}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition flex items-center gap-1.5 cursor-pointer shrink-0 ${
+                    isActive
+                      ? 'bg-[#C59B27] text-white shadow-sm font-bold border border-amber-500 ring-2 ring-amber-300/50'
+                      : 'bg-white/90 text-slate-700 hover:text-slate-900 border border-amber-200/80 hover:bg-amber-50'
+                  }`}
+                  title={s.title}
+                >
+                  <span className="font-mono text-[10.5px] opacity-90">{idx + 1 < 10 ? `0${idx + 1}` : idx + 1}</span>
+                  <span className="hidden xl:inline text-[11px] truncate max-w-[100px]">
+                    {getSlideLabel(idx)}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
+          <button
+            type="button"
+            onClick={nextSlide}
+            className="px-3.5 py-1.5 sm:px-4 sm:py-2 text-xs font-bold bg-gradient-to-r from-[#D4AF37] via-[#C59B27] to-[#A87B15] hover:brightness-105 text-white border border-amber-300 rounded-xl transition flex items-center gap-1.5 cursor-pointer shadow-md"
+          >
+            <span>Trang tiếp</span>
+            <ChevronRight className="w-4 h-4 text-amber-100" />
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // =========================================================================
+  // INLINE PRESENTATION CARD (Regal Gold & Ivory)
+  // =========================================================================
+  return (
+    <div
+      ref={containerRef}
+      className={`tvpay-presentation-slides-wrapper relative w-full my-8 ${className}`}
+    >
+      <div className="relative bg-gradient-to-br from-[#FFFDF9] via-[#FAF5EA] to-[#F5ECDA] rounded-2xl border-2 border-amber-300/80 shadow-[0_12px_36px_rgba(197,155,39,0.14)] overflow-hidden transition-all duration-300">
         {/* Top Progress Gold Bar */}
         <div className="w-full h-1.5 bg-amber-200/50 shrink-0">
           <div
@@ -1862,8 +2224,10 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
             </span>
             <div className="min-w-0">
               <div className="flex items-center gap-2">
-                <span className="text-[10px] uppercase font-bold tracking-wider text-[#8C6B18] font-mono bg-amber-100/90 border border-amber-300/80 px-2 py-0.5 rounded">
-                  {isCharter ? 'BÁO CÁO ĐIỀU LỆ TVPAY · 10 SLIDE CHUYÊN SÂU' : 'SLIDE BÁO CÁO THỎA THUẬN VÍ TVPAY · 10 SLIDE CHUYÊN SÂU'}
+                <span className="text-[10px] uppercase font-bold tracking-wider text-[#8C6B18] font-mono bg-amber-100/90 border border-amber-300/80 px-2 py-0.5 rounded truncate">
+                  {isCharter
+                    ? 'BÁO CÁO ĐIỀU LỆ CÔNG TY CỔ PHẦN CUNG ỨNG VÍ ĐIỆN TỬ TVPAY · 10 SLIDE CHUYÊN SÂU'
+                    : 'BÁO CÁO HỢP ĐỒNG MỞ VÀ SỬ DỤNG VÍ ĐIỆN TỬ TVPAY · 10 SLIDE CHUYÊN SÂU'}
                 </span>
                 <span className="text-[11px] text-slate-500 hidden sm:inline">
                   · {docData.officialTitle}
@@ -1904,31 +2268,20 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
             {/* Fullscreen Toggle */}
             <button
               type="button"
-              onClick={() => {
-                uiSound.playClick();
-                setIsFullscreen(!isFullscreen);
-              }}
-              className={`p-1.5 rounded-lg transition cursor-pointer shadow-xs flex items-center gap-1 border ${
-                isFullscreen
-                  ? 'bg-amber-100 text-[#7A5B10] border-amber-300'
-                  : 'bg-white hover:bg-amber-50 text-slate-700 border-amber-200'
-              }`}
-              title={isFullscreen ? 'Thoát rạp chiếu toàn màn hình (Esc)' : 'Mở rạp chiếu toàn màn hình (F)'}
+              onClick={toggleFullscreen}
+              className="p-1.5 rounded-lg transition cursor-pointer shadow-xs flex items-center gap-1 border bg-white hover:bg-amber-50 text-slate-700 border-amber-200"
+              title="Phóng to toàn màn hình (Phím F hoặc click)"
             >
-              {isFullscreen ? <Minimize2 className="w-3.5 h-3.5" /> : <Maximize2 className="w-3.5 h-3.5" />}
+              <Maximize2 className="w-3.5 h-3.5 text-[#C59B27]" />
               <span className="hidden md:inline text-[11px] font-semibold">
-                {isFullscreen ? 'Thu nhỏ' : 'Rạp chiếu (F)'}
+                Toàn màn hình (F)
               </span>
             </button>
           </div>
         </div>
 
         {/* Slide Main Body Presentation Area */}
-        <div
-          className={`p-5 sm:p-7 min-h-[380px] sm:min-h-[440px] flex flex-col justify-between relative ${
-            isFullscreen ? 'overflow-y-auto slide-theater-scroll flex-1' : ''
-          }`}
-        >
+        <div className="p-5 sm:p-7 min-h-[380px] sm:min-h-[440px] flex flex-col justify-between relative">
           <div>
             {/* Slide Category Header */}
             <div className="flex flex-wrap items-center justify-between gap-2 pb-2.5 mb-3.5 border-b border-amber-200/60">
@@ -2037,25 +2390,7 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
                   >
                     <span className="font-mono text-[10px] opacity-90">{idx + 1 < 10 ? `0${idx + 1}` : idx + 1}</span>
                     <span className="hidden xl:inline text-[11px] truncate max-w-[90px]">
-                      {idx === 0
-                        ? 'Tổng quan'
-                        : idx === 1
-                        ? 'Nguyên tắc'
-                        : idx === 2
-                        ? 'Vai trò'
-                        : idx === 3
-                        ? '9 Chương'
-                        : idx === 4
-                        ? 'Cổ đông'
-                        : idx === 5
-                        ? 'Vốn & Xung đột'
-                        : idx === 6
-                        ? 'Fintech & ATTT'
-                        : idx === 7
-                        ? 'Rủi ro 1'
-                        : idx === 8
-                        ? 'Rủi ro 2'
-                        : 'Q&A'}
+                      {getSlideLabel(idx)}
                     </span>
                   </button>
                 );

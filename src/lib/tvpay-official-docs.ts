@@ -156,7 +156,7 @@ export function getChapterArticles(chap: DocumentChapter): DocumentArticle[] {
 export const tvpayOfficialDocs: Record<string, OfficialDocumentData> = {
   'dieu-le-cong-ty-co-phan': {
     slug: 'dieu-le-cong-ty-co-phan',
-    officialTitle: 'ĐIỀU LỆ CÔNG TY CỔ PHẦN TVPAY',
+    officialTitle: 'ĐIỀU LỆ CÔNG TY CỔ PHẦN CUNG ỨNG VÍ ĐIỆN TỬ TVPAY',
     codeName: 'Văn kiện Quản trị Nội bộ Lõi',
     approvedDate: 'Thông qua ngày 09 tháng 09 năm 2026',
     legalBases: [
@@ -164,7 +164,7 @@ export const tvpayOfficialDocs: Record<string, OfficialDocumentData> = {
       'Nghị định số 52/2024/NĐ-CP về thanh toán không dùng tiền mặt',
       'Thông tư số 40/2024/TT-NHNN hướng dẫn dịch vụ trung gian thanh toán'
     ],
-    overview: 'Điều lệ Công ty Cổ phần TVPAY là "Bản Hiến pháp" nội bộ cao nhất, thiết lập toàn bộ cơ cấu vốn 50 tỷ đồng của 5 cổ đông sáng lập, phân định thẩm quyền tối cao giữa ĐHĐCĐ, HĐQT và Ban Tổng Giám đốc, đảm bảo điều kiện tiên quyết để được Ngân hàng Nhà nước cấp Giấy phép cung ứng dịch vụ trung gian thanh toán.',
+    overview: 'Điều lệ Công ty Cổ phần Cung ứng Ví điện tử TVPAY là "Bản Hiến pháp" nội bộ cao nhất, thiết lập toàn bộ cơ cấu vốn 50 tỷ đồng của 5 cổ đông sáng lập, phân định thẩm quyền tối cao giữa ĐHĐCĐ, HĐQT và Ban Tổng Giám đốc, đảm bảo điều kiện tiên quyết để được Ngân hàng Nhà nước cấp Giấy phép cung ứng dịch vụ trung gian thanh toán.',
     strategicRoles: [
       {
         title: 'Bản Hiến pháp Quản trị & Điều kiện Tiên quyết Cấp phép',
@@ -353,7 +353,7 @@ export const tvpayOfficialDocs: Record<string, OfficialDocumentData> = {
 
   'mo-va-su-dung-vi-dien-tu': {
     slug: 'mo-va-su-dung-vi-dien-tu',
-    officialTitle: 'THỎA THUẬN MỞ, QUẢN LÝ VÀ SỬ DỤNG VÍ ĐIỆN TỬ TVPAY',
+    officialTitle: 'HỢP ĐỒNG MỞ VÀ SỬ DỤNG VÍ ĐIỆN TỬ TVPAY',
     codeName: 'Hợp Đồng Cung Ứng Dịch Vụ Người Dùng Lõi',
     approvedDate: 'Áp dụng chính thức từ ngày cấp phép hoạt động',
     legalBases: [
@@ -363,7 +363,7 @@ export const tvpayOfficialDocs: Record<string, OfficialDocumentData> = {
       'Luật Bảo vệ quyền lợi người tiêu dùng số 19/2023/QH15',
       'Nghị định 13/2023/NĐ-CP về bảo vệ dữ liệu cá nhân'
     ],
-    overview: 'Thỏa thuận mở, quản lý và sử dụng ví điện tử TVPAY là hợp đồng điện tử theo mẫu chuẩn mực quốc tế, xác lập cơ chế liên kết tài khoản ngân hàng bảo đảm 1:1, hạn mức thanh toán 100 triệu VNĐ/tháng, nguyên tắc giao dịch không hủy ngang một khi đã xác thực OTP/sinh trắc học, và các điều khoản miễn trách nhiệm sự cố kỹ thuật đối tác.',
+    overview: 'Hợp đồng mở và sử dụng ví điện tử TVPAY là hợp đồng điện tử theo mẫu chuẩn mực quốc tế, xác lập cơ chế liên kết tài khoản ngân hàng bảo đảm 1:1, hạn mức thanh toán 100 triệu VNĐ/tháng, nguyên tắc giao dịch không hủy ngang một khi đã xác thực OTP/sinh trắc học, và các điều khoản miễn trách nhiệm sự cố kỹ thuật đối tác.',
     strategicRoles: [
       {
         title: 'Thiết Lập Cơ Chế Pháp Lý Liên Kết Tài Khoản 1:1 Bắt Buộc',
