@@ -81,6 +81,7 @@ export const teamMembers: TeamMember[] = [
       'Bổ sung Điều luật cổ đông nước ngoài, đầu tư nước ngoài',
       'Chỉnh bài tổng thể (Điều lệ + Hợp đồng mở)',
       '2. Thuyết trình',
+      '3. Làm phụ lục HĐ',
     ],
   },
   {
@@ -131,10 +132,12 @@ export const teamMembers: TeamMember[] = [
     slug: 'vu-anh-quan',
     uploadedFileName: 'VŨ Anh Quân.jpg',
     avatarUrl: '/assets/team/vu-anh-quan.jpg',
-    evaluation: 'B',
+    evaluation: 'A',
+    evaluationNote: 'Top 30% đóng góp xuất sắc',
     tasks: [
       '1. Xây dựng Website & Hệ thống Slide trình chiếu',
       '2. Soạn thảo văn bản báo cáo Word',
+      '3. Sửa thêm nội dung phần phụ lục HĐ',
     ],
   },
   {
@@ -211,8 +214,7 @@ export const teamMembers: TeamMember[] = [
     slug: 'vuong-thu-thuy',
     uploadedFileName: 'VƯơng thU thuỷ.jpg',
     avatarUrl: '/assets/team/vuong-thu-thuy.jpg',
-    evaluation: 'A',
-    evaluationNote: 'Top 30% đóng góp xuất sắc',
+    evaluation: 'B',
     tasks: [
       '1. Nội dung: Giới thiệu Hợp đồng mở và sử dụng',
       'Ý tưởng / giải pháp bảo vệ quyền và lợi ích hợp pháp của DN',
