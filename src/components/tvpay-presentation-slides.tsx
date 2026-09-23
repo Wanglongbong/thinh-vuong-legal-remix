@@ -1298,21 +1298,21 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
         </div>
 
         {/* Fullscreen Slide Content Stage - FIXED FRAME WITHOUT VERTICAL SCROLL */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto flex-1 flex flex-col justify-center overflow-hidden py-2 px-1">
+        <div className="relative z-10 w-full max-w-7xl mx-auto flex-1 flex flex-col justify-center overflow-hidden py-3 sm:py-4 px-2">
           <div className="w-full flex flex-col justify-center">
             {/* Slide Category Header */}
-            <div className="flex flex-wrap items-center justify-between gap-2 pb-1.5 mb-1.5 border-b border-amber-200/80 shrink-0">
+            <div className="flex flex-wrap items-center justify-between gap-2 pb-2 mb-2 border-b border-amber-200/80 shrink-0">
               <div className="flex items-center gap-2">
-                <span className="text-[11px] sm:text-xs font-mono font-extrabold uppercase px-2 py-0.5 rounded bg-white text-[#8C6B18] border border-amber-300 shadow-2xs">
+                <span className="text-xs sm:text-sm font-mono font-extrabold uppercase px-2.5 py-1 rounded bg-white text-[#8C6B18] border border-amber-300 shadow-2xs">
                   {activeSlide.badge}
                 </span>
-                <span className="text-xs sm:text-sm font-bold text-[#8C6B18] uppercase tracking-wide">
+                <span className="text-xs sm:text-sm md:text-base font-bold text-[#8C6B18] uppercase tracking-wide">
                   {activeSlide.category}
                 </span>
               </div>
             </div>
 
-            <p className="text-xs sm:text-sm md:text-base text-slate-800 font-medium leading-normal mb-2 shrink-0">
+            <p className="text-sm sm:text-base md:text-lg text-slate-800 font-medium leading-normal mb-3 shrink-0">
               {activeSlide.subtitle}
             </p>
 
@@ -1329,7 +1329,7 @@ export function TvpayPresentationSlides({ slug, className = '' }: TvpayPresentat
         </div>
 
         {/* Fullscreen Bottom Navigation Controls */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto pt-2.5 sm:pt-3 border-t border-amber-300/80 flex flex-wrap items-center justify-between gap-2.5 shrink-0">
+        <div className="relative z-10 w-full max-w-7xl mx-auto pt-3 sm:pt-3.5 border-t border-amber-300/80 flex flex-wrap items-center justify-between gap-2.5 shrink-0">
           <button
             type="button"
             onClick={prevSlide}
