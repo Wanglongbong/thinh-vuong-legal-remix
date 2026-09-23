@@ -52,7 +52,8 @@ var teamMembers = [
       "1. N\u1ED9i dung: Ch\u01B0\u01A1ng III, Ch\u01B0\u01A1ng IV, Ch\u01B0\u01A1ng V \u0110i\u1EC1u l\u1EC7 c\xF4ng ty",
       "B\u1ED5 sung \u0110i\u1EC1u lu\u1EADt c\u1ED5 \u0111\xF4ng n\u01B0\u1EDBc ngo\xE0i, \u0111\u1EA7u t\u01B0 n\u01B0\u1EDBc ngo\xE0i",
       "Ch\u1EC9nh b\xE0i t\u1ED5ng th\u1EC3 (\u0110i\u1EC1u l\u1EC7 + H\u1EE3p \u0111\u1ED3ng m\u1EDF)",
-      "2. Thuy\u1EBFt tr\xECnh"
+      "2. Thuy\u1EBFt tr\xECnh",
+      "3. L\xE0m ph\u1EE5 l\u1EE5c H\u0110"
     ]
   },
   {
@@ -103,10 +104,12 @@ var teamMembers = [
     slug: "vu-anh-quan",
     uploadedFileName: "VU\u0303 Anh Qua\u0302n.jpg",
     avatarUrl: "/assets/team/vu-anh-quan.jpg",
-    evaluation: "B",
+    evaluation: "A",
+    evaluationNote: "Top 30% \u0111\xF3ng g\xF3p xu\u1EA5t s\u1EAFc",
     tasks: [
       "1. X\xE2y d\u1EF1ng Website & H\u1EC7 th\u1ED1ng Slide tr\xECnh chi\u1EBFu",
-      "2. So\u1EA1n th\u1EA3o v\u0103n b\u1EA3n b\xE1o c\xE1o Word"
+      "2. So\u1EA1n th\u1EA3o v\u0103n b\u1EA3n b\xE1o c\xE1o Word",
+      "3. S\u1EEDa th\xEAm n\u1ED9i dung ph\u1EA7n ph\u1EE5 l\u1EE5c H\u0110"
     ]
   },
   {
@@ -183,8 +186,7 @@ var teamMembers = [
     slug: "vuong-thu-thuy",
     uploadedFileName: "VU\u031Bo\u031Bng thU thuy\u0309.jpg",
     avatarUrl: "/assets/team/vuong-thu-thuy.jpg",
-    evaluation: "A",
-    evaluationNote: "Top 30% \u0111\xF3ng g\xF3p xu\u1EA5t s\u1EAFc",
+    evaluation: "B",
     tasks: [
       "1. N\u1ED9i dung: Gi\u1EDBi thi\u1EC7u H\u1EE3p \u0111\u1ED3ng m\u1EDF v\xE0 s\u1EED d\u1EE5ng",
       "\xDD t\u01B0\u1EDFng / gi\u1EA3i ph\xE1p b\u1EA3o v\u1EC7 quy\u1EC1n v\xE0 l\u1EE3i \xEDch h\u1EE3p ph\xE1p c\u1EE7a DN",
